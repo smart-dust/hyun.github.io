@@ -62,11 +62,7 @@ nav {
   color: white;
   font-weight: 400; /* 약간 얇게 */
   font-size: 18px;
-  transition: transform 0.2s ease;
-}
-
-.nav-home:hover .nav-title {
-  transform: translateY(-2px); /* 부드럽게 살짝 들리게 */
+  /* 애니메이션 제거 */
 }
 
 /* ================== 메뉴 ================== */
@@ -122,10 +118,10 @@ nav {
 .submenu a:hover,
 .submenu a.active {
   background: rgba(255,255,255,0.12);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* 서브 메뉴 항목 애니메이션 */
 }
 
-/* ================== 메뉴/서브 메뉴 표시 ================== */
+/* ================== 서브 메뉴 표시 ================== */
 .menu-item:hover .submenu,
 .menu-item.active .submenu {
   opacity: 1;
@@ -135,19 +131,19 @@ nav {
 }
 
 /* ================== 메인 메뉴 전체 강조/애니메이션 ================== */
-.nav-menu a:hover,
-.nav-menu a.active,
+/* Home 포함 모든 메뉴 */
+.nav-menu a,
 .menu-item:hover > a,
 .menu-item.active > a {
   background: rgba(255,255,255,0.08);
-  transform: translateY(-2px);
+  transform: translateY(-2px); /* 글자 살짝 떠오르는 효과 */
 }
 
-/* ================== 서브 메뉴 선택 시 메인 메뉴 강조 ================== */
-.submenu a.active {
-  transform: translateY(-2px);
+/* 선택/호버 상태 부드럽게 */
+.nav-menu a:hover,
+.nav-menu a.active {
+  transition: transform 0.2s ease, background 0.2s ease;
 }
-
 /* ✅ 메인 */
 .hero {
   height: 100vh;
