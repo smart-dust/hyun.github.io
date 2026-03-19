@@ -4,12 +4,11 @@
 <meta charset="utf-8">
 <title>대전대흥교회 청소년부 - Home</title>
 <style>
-body { margin:0; font-family:Arial,sans-serif; background:#f5f7fa; }
+body { margin:0; font-family:Arial,sans-serif; background:#f9fafc; }
 html { scroll-behavior:smooth; }
-section { padding:60px 20px; text-align:center; scroll-margin-top:80px; }
 
 /* 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.3); }
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
 .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
 
 /* 로고+타이틀 */
@@ -23,10 +22,8 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   text-decoration:none; color:white; font-weight:600;
   padding:10px 12px; position:relative; border-radius:6px;
   transition: transform 0.25s ease, background 0.25s ease;
-  background: none; /* 클릭 전 강조 없음 */
+  background:none;
 }
-
-/* hover 및 active */
 .nav-menu a:hover, .nav-menu a:focus,
 .menu-item > a:hover, .menu-item > a:focus,
 .menu-item.active > a {
@@ -39,7 +36,8 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 .submenu {
   position:absolute; top:100%; left:0;
   min-width:220px; max-width:260px; padding:10px 0;
-  background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.4);
+  background:rgba(0,0,0,0.95); border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
   opacity:0; visibility:hidden; transform:translateY(8px);
   transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001;
 }
@@ -51,8 +49,9 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 .hero { height:100vh; background:url('church.png') center/cover no-repeat; display:flex; align-items:center; justify-content:center; position:relative; color:white; }
 .overlay { position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.5); }
 .hero-content { position:relative; text-align:center; }
-.hero h1 { font-size:48px; }
-.logo { height:70px; }
+.hero h1 { font-size:48px; margin-bottom:10px; }
+.hero p { font-size:20px; margin-bottom:20px; }
+.logo { height:70px; margin-bottom:20px; }
 
 /* 버튼 */
 .btn {
@@ -63,30 +62,33 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   border-radius:8px;
   text-decoration:none;
   display:inline-block;
-  font-weight:700;             /* 글씨 두껍게 */
-  transition: transform 0.15s ease, background 0.25s ease; /* 클릭/hover 애니메이션 */
+  font-weight:700;
+  transition: transform 0.15s ease, background 0.25s ease;
 }
+.btn:hover { background:#7fb8e0; transform:translateY(-2px); }
+.btn:active { transform:translateY(1px); background:#5f8cc0; }
 
-/* hover 시 살짝 밝게 */
-.btn:hover {
-  background:#7fb8e0;
-  transform: translateY(-2px);
+/* 섹션 디자인 */
+section {
+  padding:80px 20px;
 }
+.section-alt { background:#f5f7fa; } /* 교차 배경 색으로 구분 */
+.card { background:white; margin:0 auto; padding:30px; max-width:700px; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08); }
 
-/* 클릭 시 살짝 눌리는 느낌 */
-.btn:active {
-  transform: translateY(1px);
-  background:#5f8cc0;
-}
-/* 카드 */
-.card { background:white; margin:20px auto; padding:30px; max-width:700px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
-.card:hover { transform:translateY(-5px); }
-h2 { color:#6fa8dc; }
+/* 타이틀 */
+h2 { color:#6fa8dc; margin-bottom:20px; }
+
+/* 지도 */
 iframe { width:100%; height:450px; border-radius:10px; border:none; }
+
+/* 간격/텍스트 */
+p { font-size:16px; line-height:1.6; color:#333; margin-bottom:15px; }
+
 </style>
 </head>
 <body>
 
+<!-- 메뉴 -->
 <nav>
   <div class="nav-container">
     <div class="nav-left">
@@ -95,7 +97,6 @@ iframe { width:100%; height:450px; border-radius:10px; border:none; }
         <span class="nav-title">대전대흥교회 청소년부</span>
       </a>
     </div>
-
     <div class="nav-menu">
       <a href="index.html" class="active">Home</a>
       <div class="menu-item">
@@ -131,6 +132,7 @@ iframe { width:100%; height:450px; border-radius:10px; border:none; }
   </div>
 </nav>
 
+<!-- 히어로 -->
 <div class="hero" id="home">
   <div class="overlay"></div>
   <div class="hero-content">
@@ -141,13 +143,15 @@ iframe { width:100%; height:450px; border-radius:10px; border:none; }
   </div>
 </div>
 
-<section id="about">
+<!-- 섹션: 교회소개 -->
+<section id="about" class="section-alt">
   <div class="card">
     <h2>교회소개</h2>
     <p>하나님을 사랑하고 이웃을 섬기는 청소년 공동체입니다.</p>
   </div>
 </section>
 
+<!-- 섹션: 설교영상 -->
 <section id="sermon">
   <div class="card">
     <h2>설교영상</h2>
@@ -155,13 +159,15 @@ iframe { width:100%; height:450px; border-radius:10px; border:none; }
   </div>
 </section>
 
-<section id="notice">
+<!-- 섹션: 공지사항 -->
+<section id="notice" class="section-alt">
   <div class="card">
     <h2>공지사항</h2>
     <p>주일 오전 11시 교육선교관 2층</p>
   </div>
 </section>
 
+<!-- 섹션: 커뮤니티 -->
 <section id="community">
   <div class="card">
     <h2>커뮤니티</h2>
@@ -169,7 +175,8 @@ iframe { width:100%; height:450px; border-radius:10px; border:none; }
   </div>
 </section>
 
-<section>
+<!-- 섹션: 오시는 길 -->
+<section class="section-alt">
   <div class="card">
     <h2>오시는 길</h2>
     <p>교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
@@ -181,8 +188,8 @@ iframe { width:100%; height:450px; border-radius:10px; border:none; }
   </div>
 </section>
 
+<!-- 메뉴 자동 활성화 JS -->
 <script>
-// 현재 페이지 URL 기준으로 메뉴 자동 활성화
 document.addEventListener('DOMContentLoaded', function() {
   const links = document.querySelectorAll('.nav-menu a, .submenu a');
   const currentUrl = window.location.href;
