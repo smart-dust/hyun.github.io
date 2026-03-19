@@ -28,81 +28,75 @@ section {
 }
 
 /* ✅ 메뉴 */
+/* 메뉴 개선 CSS */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0,0,0,0.85);
+  background: rgba(0,0,0,0.9);
   z-index: 1000;
-}
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 30px;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.nav-logo {
-  height: 35px;
-}
-
-.nav-title {
-  color: white;
-  font-weight: bold;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
 }
 
 .nav-menu a {
-  display: inline-block;
-  line-height: 40px; 
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.nav-menu a:hover {
-  color: #9fc5e8;
-}
-  .menu-item {
   position: relative;
   display: inline-block;
+  padding: 10px 0;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -5px;
+  width: 100%;
+  height: 2px;
+  background: #9fc5e8;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+  transform-origin: right;
+}
+
+.nav-menu a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.menu-item {
+  position: relative;
 }
 
 .submenu {
   position: absolute;
-  top: 40px;
+  top: 100%;
   left: 0;
-  background: rgba(0,0,0,0.85);  /* 반투명 */
-  min-width: 160px;
-  border-radius: 0;  /* 사각형 */
-  overflow: hidden;
+  background: rgba(0,0,0,0.95);
+  min-width: 180px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(20px);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
   pointer-events: none;
   z-index: 1001;
 }
 
 .submenu a {
   display: block;
-  padding: 10px 15px;
+  padding: 12px 20px;
   color: white;
+  font-weight: 500;
+  transition: background 0.3s;
 }
 
 .submenu a:hover {
-  background: rgba(255,255,255,0.1);
+  background: #6fa8dc;
+  border-radius: 6px;
 }
 
 .menu-item:hover .submenu {
@@ -112,15 +106,18 @@ nav {
   pointer-events: auto;
 }
 
-
-/* 메뉴 호버 시 */
-.menu-item:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);   /* 원래 위치로 */
-  pointer-events: auto;       /* 클릭 가능 */
+/* 드롭다운 화살표 표시 */
+.menu-item > a::after {
+  content: '▼';
+  font-size: 10px;
+  margin-left: 5px;
+  transition: transform 0.3s;
 }
 
+.menu-item:hover > a::after {
+  transform: rotate(-180deg);
+}
+  
 /* ✅ 메인 */
 .hero {
   height: 100vh;
