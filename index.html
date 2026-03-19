@@ -3,21 +3,50 @@
 <head>
 <meta charset="utf-8">
 <title>대전대흥교회 청소년부 - Home</title>
+
+<!-- 손글씨 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
-/* 기본 스타일 */
-body { margin:0; font-family:Arial,sans-serif; background:#f5f7fa; }
-html { scroll-behavior:smooth; }
+/* 기본 폰트 */
+body {
+  margin:0;
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', Arial, sans-serif;
+  background:#f5f7fa;
+}
+html { scroll-behavior: smooth; }
 
 /* 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
-.nav-home { display:flex; align-items:center; gap:10px; text-decoration:none; }
+nav {
+  position: fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.85);
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+.nav-container {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 30px;
+}
+.nav-home {
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+}
 .nav-logo { height:35px; width:auto; }
-.nav-title { color:white; font-weight:400; font-size:18px; transition:none; }
+.nav-title { color:white; font-weight:400; font-size:18px; }
 .nav-menu { display:flex; gap:30px; align-items:center; }
 .nav-menu a, .menu-item > a {
-  text-decoration:none; color:white; font-weight:600;
-  padding:10px 12px; position:relative; border-radius:6px;
+  text-decoration:none;
+  color:white;
+  font-weight:600;
+  padding:10px 12px;
+  position:relative;
+  border-radius:6px;
   transition: transform 0.25s ease, background 0.25s ease;
   background:none;
 }
@@ -33,16 +62,37 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   opacity:0; visibility:hidden; transform:translateY(8px);
   transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001;
 }
-.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; text-align:left; border-radius:6px; transition: background 0.2s ease, transform 0.2s ease; }
+.submenu a {
+  display:block;
+  padding:12px 20px;
+  color:white;
+  font-weight:400;
+  text-align:left;
+  border-radius:6px;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
 .submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
 .menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
 /* 히어로 */
-.hero { height:80vh; background:url('church.png') center/cover no-repeat; display:flex; align-items:center; justify-content:center; position:relative; color:white; }
+.hero {
+  height:100vh; /* 화면 전체 유지 */
+  background: url('church.png') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  color:white;
+}
 .overlay { position:absolute; width:100%; height:100%; background:rgba(0,0,0,0.5); }
 .hero-content { position:relative; text-align:center; }
 .hero-content h1 { font-size:48px; margin-bottom:20px; }
-.hero-content p { font-size:20px; color:white; }
+.hero-content p {
+  font-family: 'Nanum Brush Script', cursive;
+  font-size:22px;
+  color:white;
+  margin-bottom:25px;
+}
 
 /* 버튼 */
 .btn {
