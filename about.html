@@ -8,11 +8,16 @@
 
 <style>
 /* 기본 */
-body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
+body {
+  margin:0;
+  font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
+  background:#f5f7fa;
+  color:#333;
+}
 html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
-/* ✅ 메뉴 (index와 동일) */
+/* ✅ 메뉴 */
 nav {
   position:fixed;
   top:0;
@@ -27,11 +32,24 @@ nav {
   align-items:center;
   padding:10px 30px;
 }
-.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-home {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 .nav-logo { height:35px; }
-.nav-title { color:white; font-weight:400; font-size:18px; }
+.nav-title {
+  color:white;
+  font-weight:400;
+  font-size:18px;
+}
 
-.nav-menu { display:flex; gap:25px; align-items:center; }
+/* 메인메뉴 */
+.nav-menu {
+  display:flex;
+  gap:25px;
+  align-items:center;
+}
 .nav-menu a, .menu-item > a {
   color:white;
   font-weight:600;
@@ -39,12 +57,55 @@ nav {
   border-radius:6px;
   transition:transform 0.25s ease, background 0.25s ease;
 }
-.nav-menu a:hover, .menu-item > a:hover {
+
+/* 🔥 메인메뉴 애니메이션 */
+.nav-menu a:hover,
+.menu-item > a:hover {
   transform:translateY(-2px);
   background:rgba(255,255,255,0.08);
 }
 
-/* ✅ 상단 비주얼 */
+/* 🔽 서브메뉴 */
+.menu-item { position:relative; }
+
+.submenu {
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  background:rgba(0,0,0,0.95);
+  border-radius:12px;
+  padding:10px 0;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(8px);
+  transition:all 0.25s ease;
+}
+
+.submenu a {
+  display:block;
+  padding:12px 20px;
+  color:white;
+  font-weight:400;
+  transition:transform 0.2s ease, background 0.2s ease;
+}
+
+/* 서브메뉴 hover */
+.submenu a:hover {
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.12);
+}
+
+/* 👉 열림 */
+.menu-item:hover .submenu {
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* ✅ 상단 배너 */
 .top-banner {
   height:300px;
   background:url('church.png') center/cover no-repeat;
@@ -82,7 +143,7 @@ nav {
   color:#555;
 }
 
-/* ✅ footer (index와 동일) */
+/* ✅ footer */
 .footer {
   background:#222;
   color:#ccc;
@@ -100,6 +161,7 @@ nav {
 <!-- ✅ 메뉴 -->
 <nav>
   <div class="nav-container">
+
     <div class="nav-left">
       <a href="index.html" class="nav-home">
         <img src="logo.png" class="nav-logo">
@@ -108,39 +170,71 @@ nav {
     </div>
 
     <div class="nav-menu">
+
       <a href="index.html">Home</a>
-      <a href="about.html">교회소개</a>
-      <a href="sermon.html">설교</a>
-      <a href="notice.html">공지사항</a>
-      <a href="community.html">커뮤니티</a>
+
+      <div class="menu-item">
+        <a href="about.html">교회소개</a>
+        <div class="submenu">
+          <a href="#vision">사명과 비전</a>
+          <a href="#worship">예배 안내</a>
+          <a href="#staff">섬기는 이들</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="sermon.html">설교</a>
+        <div class="submenu">
+          <a href="sermon.html#1">설교영상</a>
+          <a href="sermon.html#2">공과공부</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="notice.html">공지사항</a>
+        <div class="submenu">
+          <a href="notice.html#1">행사 안내</a>
+          <a href="notice.html#2">주보</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="community.html">커뮤니티</a>
+        <div class="submenu">
+          <a href="community.html#1">사진 갤러리</a>
+          <a href="community.html#2">게시판</a>
+        </div>
+      </div>
+
     </div>
+
   </div>
 </nav>
 
-<!-- ✅ 상단 배너 -->
+<!-- ✅ 배너 -->
 <div class="top-banner">
   <h1>교회소개</h1>
 </div>
 
 <!-- ✅ 내용 -->
 <div class="content">
-  <h2>우리 공동체</h2>
+
+  <h2 id="vision">비전</h2>
   <p>
-    대전대흥교회 청소년부는 하나님을 사랑하고 이웃을 섬기며  
-    예수님의 마음을 닮아가는 공동체입니다.
+    예수님의 마음을 닮아가는 청소년 공동체를 세우는 것을 목표로 합니다.
   </p>
 
-  <h2>비전</h2>
-  <p>
-    말씀과 예배를 통해 믿음이 성장하고  
-    삶 속에서 하나님을 드러내는 청소년으로 세워지는 것을 목표로 합니다.
-  </p>
-
-  <h2>예배 안내</h2>
+  <h2 id="worship">예배 안내</h2>
   <p>
     주일 오전 11시<br>
     교육선교관 2층
   </p>
+
+  <h2>우리 공동체</h2>
+  <p>
+    대전대흥교회 청소년부는 말씀과 사랑 안에서 함께 성장하는 공동체입니다.
+  </p>
+
 </div>
 
 <!-- ✅ footer -->
