@@ -27,24 +27,25 @@ section {
   scroll-margin-top: 80px;
 }
 
-/* 메뉴바 전체 */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(6px);
+  background: rgba(0, 0, 0, 0.7); /* 불투명도 70% */
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 
-/* 컨테이너: 왼쪽 끝 로고, 가운데 메뉴 */
+/* 컨테이너: 왼쪽 로고 + 중앙 메뉴 */
 .nav-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* 왼쪽+오른쪽 분리 */
+  justify-content: space-between; /* 왼쪽+가운데 분리 */
   align-items: center;
-  padding: 5px 20px; /* 상하 공간 좁힘 */
+  padding: 5px 20px; /* 상하 공간 줄임 */
 }
 
 /* 왼쪽 로고+이름 */
@@ -54,12 +55,10 @@ nav {
   gap: 8px;
 }
 
-/* 로고 화면 끝으로 붙이기 */
 .nav-left img {
   height: 45px;
 }
 
-/* 교회 이름 */
 .nav-title {
   color: white;
   font-weight: bold;
@@ -70,8 +69,8 @@ nav {
 .nav-menu {
   display: flex;
   gap: 8px;
-  justify-content: center; /* 메뉴 중앙 정렬 */
-  flex: 1; /* 가운데로 밀리도록 */
+  justify-content: center; 
+  flex: 1;
 }
 
 /* 메뉴 아이템 */
@@ -98,7 +97,7 @@ nav {
 /* 서브메뉴 */
 .submenu {
   position: absolute;
-  top: 40px; /* 상단 메뉴 높이에 맞춤 */
+  top: 40px;
   left: 0;
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(6px);
@@ -107,7 +106,7 @@ nav {
   opacity: 0;
   visibility: hidden;
   transform: translateY(8px);
-  transition: 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 .menu-item:hover .submenu {
@@ -124,6 +123,11 @@ nav {
 
 .submenu a:hover {
   background: rgba(255,255,255,0.1);
+}
+
+/* 본문이 메뉴바에 가리지 않도록 */
+body {
+  padding-top: 70px; /* 메뉴바 높이에 맞춤 */
 }
 
 /* 본문 padding */
@@ -203,7 +207,6 @@ h2 {
 </head>
 
 <body>
-
 <nav>
   <div class="nav-container">
     
