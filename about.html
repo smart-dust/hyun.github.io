@@ -2,144 +2,60 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>대전대흥교회 청소년부 - 교회소개</title>
+<title>교회소개</title>
 <style>
-body { margin:0; font-family:Arial,sans-serif; background:#f9fafc; }
-html { scroll-behavior:smooth; }
+body { margin:0; font-family:'Noto Sans KR', sans-serif; background:#f5f7fa; }
 
-/* 메뉴 (index와 동일) */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
-.nav-home { display:flex; align-items:center; gap:10px; text-decoration:none; }
-.nav-logo { height:35px; width:auto; }
-.nav-title { color:white; font-weight:400; font-size:18px; transition:none; }
-.nav-menu { display:flex; gap:30px; align-items:center; }
-.nav-menu a, .menu-item > a {
-  text-decoration:none; color:white; font-weight:600;
-  padding:10px 12px; position:relative; border-radius:6px;
-  transition: transform 0.25s ease, background 0.25s ease;
-  background:none;
+/* 공통 메뉴 */
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); color:white; padding:10px 30px; display:flex; justify-content:space-between; }
+nav a { color:white; margin-left:15px; text-decoration:none; }
+
+/* 상단 배너 */
+.header {
+  height:300px;
+  background:url('church.png') center/cover;
+  display:flex; align-items:center; justify-content:center;
+  color:white; font-size:32px; font-weight:bold;
 }
-.nav-menu a:hover, .menu-item > a:hover,
-.menu-item.active > a { transform: translateY(-2px); background: rgba(255,255,255,0.08); }
-.menu-item { position:relative; }
-.submenu {
-  position:absolute; top:100%; left:0; min-width:220px; max-width:260px; padding:10px 0;
-  background:rgba(0,0,0,0.95); border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
-  opacity:0; visibility:hidden; transform:translateY(8px);
-  transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001;
-}
-.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; text-align:left; border-radius:6px; transition: background 0.2s ease, transform 0.2s ease; }
-.submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
-.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
-/* 섹션 */
-section { padding:100px 20px; max-width:900px; margin:0 auto; }
-h1 { font-size:36px; text-align:center; color:#6fa8dc; margin-bottom:40px; }
-h2 { font-size:28px; color:#333; margin-bottom:15px; }
-p { font-size:16px; line-height:1.6; color:#555; margin-bottom:25px; }
+/* 내용 */
+.content { max-width:900px; margin:50px auto; padding:20px; line-height:1.8; }
 
-/* 강조 박스 */
-.info-box {
-  background:#fff;
-  padding:25px;
-  border-radius:12px;
-  box-shadow:0 2px 12px rgba(0,0,0,0.08);
-  margin-bottom:30px;
-  transition: transform 0.2s ease;
-}
-.info-box:hover { transform: translateY(-2px); }
-
-/* 버튼 */
-.btn {
-  margin:10px 8px;
-  padding:12px 20px;
-  background:#6fa8dc;
-  color:white;
-  border-radius:8px;
-  text-decoration:none;
-  display:inline-block;
-  font-weight:700;
-  transition: transform 0.15s ease, background 0.25s ease;
-}
-.btn:hover { background:#7fb8e0; transform:translateY(-2px); }
-.btn:active { transform:translateY(1px); background:#5f8cc0; }
-
-/* 아이콘 예시 */
-.icon { font-size:36px; color:#6fa8dc; margin-bottom:10px; display:block; }
-
+/* footer */
+.footer { background:#222; color:#ccc; text-align:center; padding:40px 20px; }
 </style>
 </head>
+
 <body>
 
-<!-- 메뉴 -->
 <nav>
-  <div class="nav-container">
-    <div class="nav-left">
-      <a href="index.html" class="nav-home">
-        <img src="logo.png" class="nav-logo">
-        <span class="nav-title">대전대흥교회 청소년부</span>
-      </a>
-    </div>
-    <div class="nav-menu">
-      <a href="index.html">Home</a>
-      <div class="menu-item">
-        <a href="about.html" class="active">교회소개</a>
-        <div class="submenu">
-          <a href="#vision">비전</a>
-          <a href="#worship">예배 안내</a>
-          <a href="#teacher">섬기는 이들</a>
-        </div>
-      </div>
-      <div class="menu-item"><a href="sermon.html">설교영상</a></div>
-      <div class="menu-item"><a href="notice.html">공지사항</a></div>
-      <div class="menu-item"><a href="community.html">커뮤니티</a></div>
-    </div>
+  <div>대전대흥교회 청소년부</div>
+  <div>
+    <a href="index.html">Home</a>
+    <a href="about.html">교회소개</a>
+    <a href="sermon.html">설교영상</a>
+    <a href="notice.html">공지사항</a>
+    <a href="community.html">커뮤니티</a>
   </div>
 </nav>
 
-<section id="vision">
-  <h1>우리의 비전</h1>
-  <div class="info-box">
-    <span class="icon">🌟</span>
-    <h2>청소년과 함께</h2>
-    <p>하나님의 사랑 안에서 청소년들이 신앙과 인격을 성장시키도록 돕습니다.</p>
-  </div>
-  <div class="info-box">
-    <span class="icon">🤝</span>
-    <h2>공동체 중심</h2>
-    <p>서로 격려하고 섬기며, 예수님의 마음을 닮아가는 공동체를 세웁니다.</p>
-  </div>
-</section>
+<div class="header">교회소개</div>
 
-<section id="worship" class="section-alt">
-  <h1>예배 안내</h1>
-  <div class="info-box">
-    <span class="icon">⛪</span>
-    <h2>주일 예배</h2>
-    <p>주일 오전 11시 교육선교관 2층에서 예배가 진행됩니다.</p>
-  </div>
-  <div class="info-box">
-    <span class="icon">🎵</span>
-    <h2>찬양과 기도</h2>
-    <p>청소년부 예배는 기도와 찬양 중심으로 진행되어 신앙의 깊이를 더합니다.</p>
-  </div>
-</section>
+<div class="content">
+  <h2>우리 공동체</h2>
+  <p>대전대흥교회 청소년부는 하나님을 사랑하고 이웃을 섬기는 공동체입니다.</p>
 
-<section id="teacher">
-  <h1>섬기는 이들</h1>
-  <div class="info-box">
-    <span class="icon">👩‍🏫</span>
-    <h2>교사 소개</h2>
-    <p>청소년부를 사랑으로 섬기는 교사들이 각자의 은사로 학생들을 지도합니다.</p>
-  </div>
-  <div class="info-box">
-    <span class="icon">🙏</span>
-    <h2>멘토링</h2>
-    <p>청소년들의 신앙과 삶을 돕는 멘토링 시스템을 운영합니다.</p>
-  </div>
-</section>
+  <h2>비전</h2>
+  <p>예수님의 마음을 닮아가는 청소년으로 성장하는 것.</p>
+
+  <h2>예배 안내</h2>
+  <p>주일 오전 11시 / 교육선교관 2층</p>
+</div>
+
+<footer class="footer">
+  <p>대전광역시 중구 충무로 11번길 43</p>
+  <p>© 2026 대전대흥교회 청소년부</p>
+</footer>
 
 </body>
 </html>
