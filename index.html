@@ -75,7 +75,19 @@ nav {
 }
 
 .nav-menu a:hover {
-  color: #9fc5e8;
+  background: rgba(255,255,255,0.15);  /* ✅ 박스 선택 느낌 */
+  color: white;
+}
+  .nav-menu {
+  display: flex;
+  gap: 10px;   /* ✅ 메뉴 사이 여백 */
+}
+  .nav-menu a.active {
+  background: rgba(255,255,255,0.25);
+}
+  .nav-menu a:hover {
+  background: rgba(255,255,255,0.15);
+  transform: translateY(-2px);  /* 살짝 뜨는 느낌 */
 }
   .menu-item {
   position: relative;
