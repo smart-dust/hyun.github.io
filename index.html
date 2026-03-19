@@ -79,46 +79,31 @@ nav {
   display: inline-block;
 }
 
-/* 서브메뉴: 반투명 + 부드러운 모션 + 사각형 선택 */
+/* 서브메뉴: 부드러운 모션 */
 .submenu {
   position: absolute;
-  top: 40px;
+  top: 45px;
   left: 0;
-  background: rgba(0,0,0,0.85); /* 반투명 검정 */
-  min-width: 150px;
-  border-radius: 6px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  background: rgba(0,0,0,0.85);  /* 반투명 배경 */
+  backdrop-filter: blur(6px);
+  min-width: 160px;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
 
-  /* 모션용 */
-  opacity: 0;
-  transform: translateY(10px); /* 살짝 아래에서 올라오는 느낌 */
-  transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events: none; /* 안보일 때 클릭 방지 */
+  opacity: 0;                 /* 안보일 때 투명 */
+  visibility: hidden;         /* 안보일 때 클릭 방지 */
+  transform: translateY(10px);/* 살짝 아래에서 올라오는 느낌 */
+  transition: opacity 0.25s ease, transform 0.25s ease; /* 부드러운 모션 */
+  pointer-events: none;       /* 안보일 때 클릭 방지 */
 }
 
 /* 메뉴 호버 시 */
 .menu-item:hover .submenu {
   opacity: 1;
-  transform: translateY(0); /* 원래 위치로 */
-  pointer-events: auto;
-}
-
-/* 서브 메뉴 항목 */
-.submenu a {
-  display: block;
-  padding: 10px 15px;
-  color: white;
-  text-decoration: none;
-  border-radius: 0; /* 사각형 선택 강조 */
-  transition: background 0.2s;
-}
-
-/* 항목 호버 시 사각형 배경 강조 */
-.submenu a:hover {
-  background: rgba(255,255,255,0.15); /* 선택된 느낌 */
-}
-.menu-item:hover .submenu {
-  display: block;
+  visibility: visible;
+  transform: translateY(0);   /* 원래 위치로 */
+  pointer-events: auto;       /* 클릭 가능 */
 }
 
 /* ✅ 메인 */
