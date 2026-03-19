@@ -64,20 +64,21 @@ nav {
 
 .nav-menu {
   display: flex;
-  gap: 25px;
+  gap: 30px;
   align-items: center;
 }
 
 .nav-menu a {
   text-decoration: none;
   color: white;
-  font-weight: 500;
+  font-weight: 600; /* 더 두꺼운 글씨 */
   padding: 8px 0;
   position: relative;
   transition: color 0.2s;
 }
 
-.nav-menu a:hover {
+.nav-menu a:hover,
+.nav-menu a.active {
   color: white;
 }
 
@@ -88,15 +89,15 @@ nav {
 
 .submenu {
   position: absolute;
-  top: 100%;
+  top: 100%;  /* 메인 메뉴 바로 아래 */
   left: 0;
-  background: rgba(0,0,0,0.95); /* 불투명도 사용 */
-  min-width: 180px;
+  right: 0;  /* 메인 메뉴 폭과 동일하게 */
+  background: rgba(0,0,0,0.95);
   border-radius: 10px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4); /* 고급스러운 그림자 */
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(10px); /* 살짝 떠오르는 느낌 */
+  transform: translateY(5px);
   transition: opacity 0.25s ease, transform 0.25s ease;
   pointer-events: none;
   z-index: 1001;
@@ -104,29 +105,32 @@ nav {
 
 .submenu a {
   display: block;
-  padding: 12px 18px;
+  padding: 12px 0;
   color: white;
   font-weight: 400;
-  transition: background 0.2s, transform 0.2s;
-  border-radius: 6px;
+  text-align: center;
+  transition: background 0.2s;
 }
 
-.submenu a:hover {
-  background: rgba(255,255,255,0.1); /* 색깔 대신 투명도 강조 */
-  transform: translateX(5px); /* 살짝 움직이는 느낌 */
+.submenu a:hover,
+.submenu a.active {
+  background: rgba(255,255,255,0.1); /* 선택 강조 */
 }
 
 /* 메뉴 호버 시 서브 메뉴 표시 */
-.menu-item:hover .submenu {
+.menu-item:hover .submenu,
+.menu-item.active .submenu {
   opacity: 1;
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-/* 🔹 역삼각형 제거 */
-.menu-item > a::after {
-  content: ''; /* 제거 */
+/* ================== 메인 메뉴도 서브 메뉴 선택 시 강조 ================== */
+.menu-item:hover > a,
+.menu-item.active > a {
+  background: rgba(255,255,255,0.05);
+  border-radius: 6px;
 }
 /* ✅ 메인 */
 .hero {
