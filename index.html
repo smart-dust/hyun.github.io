@@ -27,6 +27,7 @@ section {
   scroll-margin-top: 80px;
 }
 
+/* 메뉴바 전체 */
 nav {
   position: fixed;
   top: 0;
@@ -36,26 +37,29 @@ nav {
   z-index: 1000;
 }
 
+/* 컨테이너: 왼쪽 끝 로고, 가운데 메뉴 */
 .nav-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-between; /* 왼쪽 그룹 + 가운데 메뉴 */
+  justify-content: space-between; /* 왼쪽+오른쪽 분리 */
   align-items: center;
-  padding: 8px 20px;
+  padding: 5px 20px; /* 상하 공간 좁힘 */
 }
 
-/* 왼쪽 로고 + 텍스트 */
+/* 왼쪽 로고+이름 */
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
 }
 
+/* 로고 화면 끝으로 붙이기 */
 .nav-left img {
   height: 45px;
 }
 
+/* 교회 이름 */
 .nav-title {
   color: white;
   font-weight: bold;
@@ -65,7 +69,9 @@ nav {
 /* 가운데 메뉴 */
 .nav-menu {
   display: flex;
-  gap: 10px;
+  gap: 8px;
+  justify-content: center; /* 메뉴 중앙 정렬 */
+  flex: 1; /* 가운데로 밀리도록 */
 }
 
 /* 메뉴 아이템 */
@@ -73,7 +79,7 @@ nav {
   position: relative;
 }
 
-/* 대메뉴 버튼 */
+/* 메뉴 버튼 */
 .nav-menu a {
   display: block;
   padding: 8px 16px;
@@ -92,7 +98,7 @@ nav {
 /* 서브메뉴 */
 .submenu {
   position: absolute;
-  top: 45px;
+  top: 40px; /* 상단 메뉴 높이에 맞춤 */
   left: 0;
   background: rgba(0,0,0,0.85);
   backdrop-filter: blur(6px);
@@ -120,6 +126,10 @@ nav {
   background: rgba(255,255,255,0.1);
 }
 
+/* 본문 padding */
+.content {
+  padding-top: 70px; /* 메뉴바 높이에 맞춤 */
+}
 /* ✅ 메인 */
 .hero {
   height: 100vh;
@@ -194,20 +204,18 @@ h2 {
 
 <body>
 
- <!-- 메뉴바 -->
 <nav>
   <div class="nav-container">
     
-    <!-- 왼쪽: 로고 + 교회 타이틀 -->
+    <!-- 왼쪽: 로고 + 교회 이름 -->
     <div class="nav-left">
       <img src="logo.png" alt="로고">
       <span class="nav-title">대전대흥교회 청소년부</span>
     </div>
 
-    <!-- 가운데: 메뉴 -->
+    <!-- 가운데 메뉴 -->
     <div class="nav-menu">
       <div class="menu-item"><a href="#home">Home</a></div>
-
       <div class="menu-item">
         <a href="about.html">교회소개</a>
         <div class="submenu">
@@ -216,7 +224,6 @@ h2 {
           <a href="about.html#teacher">섬기는 이들</a>
         </div>
       </div>
-
       <div class="menu-item">
         <a href="sermon.html">설교영상</a>
         <div class="submenu">
@@ -224,7 +231,6 @@ h2 {
           <a href="sermon.html#all">전체 설교</a>
         </div>
       </div>
-
       <div class="menu-item">
         <a href="notice.html">공지사항</a>
         <div class="submenu">
@@ -232,7 +238,6 @@ h2 {
           <a href="notice.html#notation">공지사항</a>
         </div>
       </div>
-
       <div class="menu-item">
         <a href="community.html">커뮤니티</a>
         <div class="submenu">
