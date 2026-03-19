@@ -4,37 +4,136 @@
 <meta charset="utf-8">
 <title>공지사항</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; font-family:'Noto Sans KR'; background:#f5f7fa; }
+/* ✅ index와 동일 스타일 */
+body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
+a { text-decoration:none; }
 
-.table {
-  margin:120px auto;
-  width:80%;
-  border-collapse:collapse;
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; }
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; }
+.nav-title { color:white; font-size:18px; }
+
+.nav-menu { display:flex; gap:25px; }
+.nav-menu a, .menu-item > a {
+  color:white; padding:10px 12px; border-radius:6px;
+  transition:0.25s;
+}
+.nav-menu a:hover, .menu-item > a:hover {
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.08);
+}
+
+/* 서브메뉴 동일 */
+.menu-item { position:relative; }
+.submenu {
+  position:absolute; top:100%; left:0;
+  background:rgba(0,0,0,0.95);
+  border-radius:12px; padding:10px 0;
+  opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:0.25s;
+}
+.menu-item:hover .submenu {
+  opacity:1; visibility:visible; transform:translateY(0);
+}
+.submenu a { display:block; padding:10px 20px; }
+
+/* 콘텐츠 */
+.container { padding-top:120px; max-width:900px; margin:auto; }
+.notice-box {
   background:white;
+  padding:20px;
+  margin-bottom:20px;
+  border-radius:10px;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
-.table th, .table td {
-  padding:15px;
-  border-bottom:1px solid #ddd;
-}
-.table tr:hover { background:#f0f0f0; }
-.table th { background:#6fa8dc; color:white; }
 
-/* 메뉴 동일 */
-nav { position:fixed; top:0; width:100%; background:black; color:white; padding:10px; }
-
+/* footer 동일 */
+.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; }
 </style>
 </head>
 
 <body>
 
-<nav>공지사항</nav>
+<!-- ✅ 메뉴 (완전 동일) -->
+<nav>
+<div class="nav-container">
 
-<table class="table">
-<tr><th>제목</th><th>날짜</th></tr>
-<tr><td>수련회 안내</td><td>2026-03-01</td></tr>
-<tr><td>예배 변경 안내</td><td>2026-03-10</td></tr>
-</table>
+<a href="index.html" class="nav-home">
+<img src="logo.png" class="nav-logo">
+<span class="nav-title">대전대흥교회 청소년부</span>
+</a>
+
+<div class="nav-menu">
+
+<a href="index.html">Home</a>
+
+<div class="menu-item">
+<a href="about.html">교회소개</a>
+<div class="submenu">
+<a href="about.html#1">사명과 비전</a>
+<a href="about.html#2">예배 안내</a>
+<a href="about.html#3">섬기는 이들</a>
+</div>
+</div>
+
+<div class="menu-item">
+<a href="sermon.html">설교</a>
+<div class="submenu">
+<a href="sermon.html#1">설교영상</a>
+<a href="sermon.html#2">공과공부</a>
+</div>
+</div>
+
+<div class="menu-item">
+<a href="notice.html">공지사항</a>
+<div class="submenu">
+<a href="#1">행사 안내</a>
+<a href="#2">주보</a>
+</div>
+</div>
+
+<div class="menu-item">
+<a href="community.html">커뮤니티</a>
+<div class="submenu">
+<a href="community.html#1">사진 갤러리</a>
+<a href="community.html#2">게시판</a>
+</div>
+</div>
+
+</div>
+</div>
+</nav>
+
+<!-- 콘텐츠 -->
+<div class="container">
+
+<h2 id="1">행사 안내</h2>
+
+<div class="notice-box">
+<h3>수련회 안내</h3>
+<p>2026년 여름 수련회가 예정되어 있습니다.</p>
+</div>
+
+<div class="notice-box">
+<h3>예배 변경 안내</h3>
+<p>이번 주 예배 시간이 변경됩니다.</p>
+</div>
+
+<h2 id="2">주보</h2>
+
+<div class="notice-box">
+<p>주보 PDF 업로드 예정</p>
+</div>
+
+</div>
+
+<footer class="footer">
+<p>© 2026 대전대흥교회 청소년부</p>
+</footer>
 
 </body>
 </html>
