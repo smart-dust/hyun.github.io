@@ -55,8 +55,29 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 .logo { height:70px; }
 
 /* 버튼 */
-.btn { margin:10px 8px; padding:12px 20px; background:#6fa8dc; color:white; border-radius:8px; text-decoration:none; display:inline-block; }
+.btn {
+  margin:10px 8px;
+  padding:12px 20px;
+  background:#6fa8dc;
+  color:white;
+  border-radius:8px;
+  text-decoration:none;
+  display:inline-block;
+  font-weight:700;             /* 글씨 두껍게 */
+  transition: transform 0.15s ease, background 0.25s ease; /* 클릭/hover 애니메이션 */
+}
 
+/* hover 시 살짝 밝게 */
+.btn:hover {
+  background:#7fb8e0;
+  transform: translateY(-2px);
+}
+
+/* 클릭 시 살짝 눌리는 느낌 */
+.btn:active {
+  transform: translateY(1px);
+  background:#5f8cc0;
+}
 /* 카드 */
 .card { background:white; margin:20px auto; padding:30px; max-width:700px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); }
 .card:hover { transform:translateY(-5px); }
