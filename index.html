@@ -5,19 +5,18 @@
 <title>대전대흥교회 청소년부</title>
 
 <style>
-/* 기본 설정 */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f5f7fa;
 }
-  .hero {
+.hero {
   margin-top: 0;
 }
 .hero h1,
 .hero p {
   margin: 0;
-
+}
 html {
   scroll-behavior: smooth;
 }
@@ -28,7 +27,7 @@ section {
   scroll-margin-top: 80px;
 }
 
-/* 메뉴바 */
+/* ✅ 메뉴 */
 nav {
   position: fixed;
   top: 0;
@@ -72,38 +71,34 @@ nav {
   font-weight: bold;
 }
 
-/* 서브메뉴 */
-.submenu {
-  position: absolute;
-  top: 40px;
-  left: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(6px);
-  min-width: 160px;
-  border-radius: 8px;
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(8px);
-  transition: all 0.25s ease;
+.nav-menu a:hover {
+  color: #9fc5e8;
+}
+  .menu-item {
+  position: relative;
+  display: inline-block;
 }
 
-.menu-item:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
+.submenu {
+  display: none;
+  position: absolute;
+  top: 40px;
+  background: white;
+  min-width: 150px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
 .submenu a {
   display: block;
-  padding: 10px 15px;
-  color: white;
+  padding: 10px;
+  color: black;
 }
 
-.submenu a:hover {
-  background: rgba(255,255,255,0.1);
+.menu-item:hover .submenu {
+  display: block;
 }
 
-/* hero 배경 이미지 */
+/* ✅ 메인 */
 .hero {
   height: 100vh;
   padding-top: 0;
@@ -163,59 +158,65 @@ nav {
 h2 {
   color: #6fa8dc;
 }
-
-iframe {
+  iframe {
   width: 100%;
-  height: 450px;
+  height: 450px;   /* 👈 크게 */
   border-radius: 10px;
   border: none;
+}
+  .btn {
+  margin: 10px 8px;
 }
 </style>
 </head>
 
 <body>
+
+<!-- 메뉴 -->
 <nav>
   <div class="nav-container">
-    <!-- 왼쪽: 로고 + 교회 이름 -->
+
     <div class="nav-left">
-      <img src="logo.png" alt="로고">
+      <img src="logo.png" class="nav-logo">
       <span class="nav-title">대전대흥교회 청소년부</span>
     </div>
 
-    <!-- 가운데 메뉴 -->
     <div class="nav-menu">
-      <div class="menu-item"><a href="#home">Home</a></div>
-      <div class="menu-item">
-        <a href="about.html">교회소개</a>
-        <div class="submenu">
-          <a href="about.html#vision">비전</a>
-          <a href="about.html#worship">예배 안내</a>
-          <a href="about.html#teacher">섬기는 이들</a>
-        </div>
-      </div>
-      <div class="menu-item">
-        <a href="sermon.html">설교영상</a>
-        <div class="submenu">
-          <a href="sermon.html#this">이번주 설교</a>
-          <a href="sermon.html#all">전체 설교</a>
-        </div>
-      </div>
-      <div class="menu-item">
-        <a href="notice.html">공지사항</a>
-        <div class="submenu">
-          <a href="notice.html#weekseet">주보</a>
-          <a href="notice.html#notation">공지사항</a>
-        </div>
-      </div>
-      <div class="menu-item">
-        <a href="community.html">커뮤니티</a>
-        <div class="submenu">
-          <a href="community.html#photo">포토 갤러리</a>
-          <a href="community.html#community">우리들의 이야기</a>
-        </div>
-      </div>
+      <a href="#home">Home</a>
+         <div class="menu-item">
+     <a href="about.html">교회소개</a>
+     <div class="submenu">
+     <a href="about.html#vision">비전</a>
+     <a href="about.html#worship">예배 안내</a>
+     <a href="about.html#teacher">섬기는 이들</a>
+     </div>
     </div>
-  </div>
+      
+           <div class="menu-item">
+     <a href="sermon.html">설교영상</a>
+       <div class="submenu">
+      <a href="sermon.html#this">이번주 설교</a>
+      <a href="sermon.html#all">전체 설교</a>
+         </div>
+    </div>
+      
+         <div class="menu-item">
+     <a href="notice.html">공지사항</a> 
+            <div class="submenu">
+      <a href="notice.html#weekseet">주보</a>
+      <a href="notice.html#notation">공지사항</a>
+             </div>
+    </div>
+    
+         <div class="menu-item">     
+     <a href="community.html">커뮤니티</a>
+      <div class="submenu">
+      <a href="community.html#photo">포토 갤러리</a>
+      <a href="community.html#community">우리들의 이야기</a>
+     </div>
+    </div>
+      
+</div>
 </nav>
 
 <!-- 메인 -->
@@ -225,13 +226,14 @@ iframe {
     <img src="logo.png" class="logo">
     <h1>대전대흥교회 청소년부</h1>
     <p>예수님의 마음을 닮아가는 공동체</p>
+
     <a href="http://www.dhchurch.org/" target="_blank" class="btn">
       대전대흥교회 바로가기
     </a>
   </div>
 </div>
 
-<!-- 이하 기존 섹션 그대로 유지 -->
+<!-- 교회소개 -->
 <section id="about">
   <div class="card">
     <h2>교회소개</h2>
@@ -239,6 +241,7 @@ iframe {
   </div>
 </section>
 
+<!-- 설교 -->
 <section id="sermon">
   <div class="card">
     <h2>설교영상</h2>
@@ -246,6 +249,7 @@ iframe {
   </div>
 </section>
 
+<!-- 공지 -->
 <section id="notice">
   <div class="card">
     <h2>공지사항</h2>
@@ -253,6 +257,7 @@ iframe {
   </div>
 </section>
 
+<!-- 커뮤니티 -->
 <section id="community">
   <div class="card">
     <h2>커뮤니티</h2>
@@ -263,18 +268,33 @@ iframe {
 <section>
   <div class="card">
     <h2>오시는 길</h2>
+
     <p>교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
-    <iframe src="https://www.google.com/maps?q=대전광역시+중구+충무로+11번길+43&output=embed"></iframe>
+
+    <!-- 지도 크게 -->
+    <iframe 
+      src="https://www.google.com/maps?q=대전광역시+중구+충무로+11번길+43&output=embed">
+    </iframe>
+
+    <!-- 버튼들 -->
     <div style="margin-top:20px;">
+      
       <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" 
-         target="_blank" class="btn" style="background:#f7e600; color:black;">
+         target="_blank" 
+         class="btn" 
+         style="background:#f7e600; color:black;">
           카카오 길찾기
       </a>
+
       <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" 
-         target="_blank" class="btn" style="background:#03c75a;">
+         target="_blank" 
+         class="btn" 
+         style="background:#03c75a;">
           네이버 길찾기
       </a>
+
     </div>
+
   </div>
 </section>
 
