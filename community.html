@@ -3,52 +3,75 @@
 <head>
 <meta charset="utf-8">
 <title>커뮤니티</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; font-family:'Noto Sans KR', sans-serif; background:#f5f7fa; }
+/* 동일 */
+body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo'; background:#fafafa; }
+a { text-decoration:none; }
 
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); color:white; padding:10px 30px; display:flex; justify-content:space-between; }
-nav a { color:white; margin-left:15px; }
+/* 메뉴 동일 */
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); }
+.nav-container { display:flex; justify-content:space-between; padding:10px 30px; }
+.nav-menu { display:flex; gap:25px; }
 
-/* 갤러리 */
-.gallery {
-  margin-top:80px;
-  padding:40px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:20px;
+/* 서브메뉴 동일 */
+.menu-item { position:relative; }
+.submenu {
+  position:absolute;
+  background:black;
+  opacity:0;
+  visibility:hidden;
 }
+.menu-item:hover .submenu { opacity:1; visibility:visible; }
 
+/* 콘텐츠 */
+.gallery {
+  padding-top:120px;
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
+  gap:20px;
+  padding:120px 40px;
+}
 .gallery img {
   width:100%;
   border-radius:10px;
 }
 
 /* footer */
-.footer { background:#222; color:#ccc; text-align:center; padding:40px; }
+.footer { background:#222; color:#ccc; padding:40px; text-align:center; }
 </style>
 </head>
 
 <body>
 
+<!-- 메뉴 동일 -->
 <nav>
-  <div>대전대흥교회 청소년부</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="about.html">교회소개</a>
-    <a href="sermon.html">설교영상</a>
-    <a href="notice.html">공지사항</a>
-    <a href="community.html">커뮤니티</a>
-  </div>
+<div class="nav-container">
+
+<div>대전대흥교회 청소년부</div>
+
+<div class="nav-menu">
+<a href="index.html">Home</a>
+<a href="about.html">교회소개</a>
+<a href="sermon.html">설교</a>
+<a href="notice.html">공지사항</a>
+<a href="community.html">커뮤니티</a>
+</div>
+
+</div>
 </nav>
 
+<!-- 콘텐츠 -->
 <div class="gallery">
-  <img src="photo1.jpg">
-  <img src="photo2.jpg">
-  <img src="photo3.jpg">
+<img src="church.png">
+<img src="church.png">
+<img src="church.png">
 </div>
 
 <footer class="footer">
-  <p>© 2026 대전대흥교회 청소년부</p>
+<p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
 </body>
