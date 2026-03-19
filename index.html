@@ -74,7 +74,7 @@ nav {
   font-weight: 600;
   padding: 10px 12px;
   position: relative;
-  transition: color 0.2s, transform 0.2s;
+  transition: color 0.2s, transform 0.2s, background 0.2s;
   border-radius: 6px;
 }
 
@@ -114,7 +114,7 @@ nav {
 .submenu a:hover,
 .submenu a.active {
   background: rgba(255,255,255,0.12); /* 색상 없이 강조 */
-  transform: translateY(-2px); /* 살짝 위로 떠오르는 효과 */
+  transform: translateY(-2px); /* 살짝 위로 */
 }
 
 /* ================== 서브 메뉴 표시 ================== */
@@ -127,10 +127,11 @@ nav {
 }
 
 /* ================== 메인 메뉴 강조 ================== */
+.nav-menu a:hover,
 .menu-item:hover > a,
 .menu-item.active > a {
   background: rgba(255,255,255,0.08); /* 색 없이 강조 */
-  transform: translateY(-2px); /* 글자 살짝 위로 */
+  transform: translateY(-2px); /* 살짝 떠오르는 효과 */
   transition: transform 0.2s ease, background 0.2s ease;
 }
 /* ✅ 메인 */
