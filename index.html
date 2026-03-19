@@ -62,10 +62,10 @@ nav {
   color: white;
   font-weight: 400; /* 약간 얇게 */
   font-size: 18px;
-  /* 애니메이션 제거 */
+  transition: none; /* 애니메이션 없음 */
 }
 
-/* ================== 메뉴 ================== */
+/* ================== 메인 메뉴 ================== */
 .nav-menu {
   display: flex;
   gap: 30px;
@@ -78,8 +78,17 @@ nav {
   font-weight: 600;
   padding: 10px 12px;
   position: relative;
-  transition: transform 0.2s ease, background 0.2s ease;
   border-radius: 6px;
+  transition: transform 0.25s ease, background 0.25s ease;
+}
+
+/* ================== 메인 메뉴 애니메이션 ================== */
+.nav-menu a:hover,
+.nav-menu a.active,
+.menu-item:hover > a,
+.menu-item.active > a {
+  transform: translateY(-2px); /* 살짝 떠오르기 */
+  background: rgba(255,255,255,0.08); /* 색상 없이 강조 */
 }
 
 /* ================== 서브 메뉴 ================== */
@@ -91,16 +100,16 @@ nav {
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 200px;
-  max-width: 250px;
-  padding: 8px 0;
+  min-width: 220px; /* 넉넉하게 */
+  max-width: 260px;
+  padding: 10px 0;
   background: rgba(0,0,0,0.95);
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(5px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transform: translateY(8px); /* 살짝 아래에서 나타나기 */
+  transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
   z-index: 1001;
 }
@@ -111,14 +120,15 @@ nav {
   color: white;
   font-weight: 400;
   text-align: left;
-  transition: background 0.2s, transform 0.2s;
   border-radius: 6px;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 
+/* ================== 서브 메뉴 호버 ================== */
 .submenu a:hover,
 .submenu a.active {
+  transform: translateY(-2px); /* 살짝 떠오르기 */
   background: rgba(255,255,255,0.12);
-  transform: translateY(-2px);
 }
 
 /* ================== 서브 메뉴 표시 ================== */
@@ -128,16 +138,6 @@ nav {
   visibility: visible;
   transform: translateY(0);
   pointer-events: auto;
-}
-
-/* ================== 메인 메뉴 강조/애니메이션 ================== */
-/* Home 포함 모든 메뉴 */
-.nav-menu a,
-.menu-item:hover > a,
-.menu-item.active > a {
-  background: rgba(255,255,255,0.08);
-  transform: translateY(-2px);
-  transition: transform 0.2s ease, background 0.2s ease;
 }
   
 /* ✅ 메인 */
@@ -218,7 +218,7 @@ h2 {
 <nav>
   <div class="nav-container">
 
-    <!-- 로고+타이틀: 클릭하면 Home 이동 -->
+    <!-- 로고+타이틀 -->
     <div class="nav-left">
       <a href="#home" class="nav-home">
         <img src="logo.png" class="nav-logo">
@@ -226,6 +226,7 @@ h2 {
       </a>
     </div>
 
+    <!-- 메인 메뉴 -->
     <div class="nav-menu">
       <a href="#home">Home</a>
 
@@ -262,6 +263,7 @@ h2 {
         </div>
       </div>
     </div>
+
   </div>
 </nav>
   
