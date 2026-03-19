@@ -31,17 +31,31 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 .section h3 { font-size:22px; color:#4a90e2; margin-bottom:10px; text-align:center; }
 .section p { font-size:15px; line-height:1.6; text-align:center; color:#555; margin-bottom:15px; }
 
-/* 섬기는 이들 표 */
-.staff-table { width:100%; max-width:700px; margin:20px auto; border-collapse:collapse; }
-.staff-table th, .staff-table td { border:1px solid #ccc; padding:10px; text-align:center; }
-.staff-table th { background:#6fa8dc; color:white; }
-.staff-table td { background:white; }
-
-/* 학생 임원 표 */
-#student-officers .staff-table { width:80%; max-width:600px; margin:20px auto; border-collapse:collapse; }
-#student-officers .staff-table th, #student-officers .staff-table td { border:1px solid #ccc; padding:15px; text-align:center; font-size:16px; }
-#student-officers .staff-table th { background:#6fa8dc; color:white; }
-#student-officers .staff-table td { background:white; }
+/* 카드형 섬기는 사람들/학생 임원 */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin: 0 auto;
+  max-width: 1000px;
+}
+.staff-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+  flex: 1 1 200px;
+  max-width: 220px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.staff-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.staff-card h3 { margin-bottom: 10px; color:#4a90e2; font-size:18px; }
+.staff-card p { margin: 5px 0; color:#555; font-size:14px; }
 
 /* footer */
 .footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px; }
@@ -103,98 +117,33 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   <p>중·고등학생</p>
 </section>
 
-<!-- 섹션: 섬기는 이들 -->
-<section id="staff" class="section">
-  <h2>섬기는 사람들</h2>
-  <table class="staff-table">
-    <tr>
-      <th>이름</th>
-      <th>구분</th>
-      <th>담당반</th>
-    </tr>
-    <tr>
-      <td>장세아 전도사</td>
-      <td>담당교역자</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>김영삼 안수집사</td>
-      <td>부장교사</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>김정숙 집사</td>
-      <td>교사</td>
-      <td>드보라</td>
-    </tr>
-    <tr>
-      <td>김준호 집사</td>
-      <td>교사</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>변의백 집사</td>
-      <td>총무</td>
-      <td>사도바울</td>
-    </tr>
-    <tr>
-      <td>백성현 청년</td>
-      <td>교사</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>양미소 집사</td>
-      <td>교사</td>
-      <td>디모데</td>
-    </tr>
-    <tr>
-      <td>오윤지 청년</td>
-      <td>교사</td>
-      <td>드보라</td>
-    </tr>
-    <tr>
-      <td>오  준 성도</td>
-      <td>찬양 인도</td>
-      <td>다윗</td>
-    </tr>
-    <tr>
-      <td>이지혜 집사</td>
-      <td>회계</td>
-      <td>한나</td>
-    </tr>
-    <tr>
-      <td>황소영 성도</td>
-      <td>교사</td>
-      <td>드보라</td>
-    </tr>
-  </table>
-</section>
-
 <!-- 섹션: 학생 임원 -->
 <section id="student-officers" class="section">
   <h2>학생 임원</h2>
-  <table class="staff-table">
-    <tr>
-      <th>이름</th>
-      <th>구분</th>
-    </tr>
-    <tr>
-      <td>김도윤 (고1)</td>
-      <td>청소년부 회장</td>
-    </tr>
-    <tr>
-      <td>곽승찬 (고1)</td>
-      <td>고등부 부회장</td>
-    </tr>
-    <tr>
-      <td>김서윤 (중3)</td>
-      <td>중등부 부회장</td>
-    </tr>
-    <tr>
-      <td>서규섭 (중2)</td>
-      <td>청소년부 총무</td>
-    </tr>
-  </table>
+  <div class="card-container">
+    <div class="staff-card"><h3>김도윤</h3><p>청소년부 회장 (고1)</p></div>
+    <div class="staff-card"><h3>곽승찬</h3><p>고등부 부회장 (고1)</p></div>
+    <div class="staff-card"><h3>김서윤</h3><p>중등부 부회장 (중3)</p></div>
+    <div class="staff-card"><h3>서규섭</h3><p>청소년부 총무 (중2)</p></div>
+  </div>
+</section>
+
+<!-- 섹션: 섬기는 사람들 -->
+<section id="staff" class="section">
+  <h2>섬기는 사람들</h2>
+  <div class="card-container">
+    <div class="staff-card"><h3>장세아 전도사</h3><p>담당교역자</p></div>
+    <div class="staff-card"><h3>김영삼 안수집사</h3><p>부장교사</p></div>
+    <div class="staff-card"><h3>김정숙 집사</h3><p>교사</p><p>드보라</p></div>
+    <div class="staff-card"><h3>김준호 집사</h3><p>교사</p></div>
+    <div class="staff-card"><h3>변의백 집사</h3><p>총무</p><p>사도바울</p></div>
+    <div class="staff-card"><h3>백성현 청년</h3><p>교사</p></div>
+    <div class="staff-card"><h3>양미소 집사</h3><p>교사</p><p>디모데</p></div>
+    <div class="staff-card"><h3>오윤지 청년</h3><p>교사</p><p>드보라</p></div>
+    <div class="staff-card"><h3>오준 성도</h3><p>찬양 인도</p><p>다윗</p></div>
+    <div class="staff-card"><h3>이지혜 집사</h3><p>회계</p><p>한나</p></div>
+    <div class="staff-card"><h3>황소영 성도</h3><p>교사</p><p>드보라</p></div>
+  </div>
 </section>
 
 <!-- footer -->
