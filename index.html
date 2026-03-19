@@ -9,9 +9,14 @@ body {
   margin: 0;
   font-family: Arial, sans-serif;
   background: #f5f7fa;
-  padding-top: 70px;
 }
-
+.hero {
+  margin-top: 0;
+}
+.hero h1,
+.hero p {
+  margin: 0;
+}
 html {
   scroll-behavior: smooth;
 }
@@ -59,6 +64,8 @@ nav {
 }
 
 .nav-menu a {
+  display: inline-block;
+  line-height: 40px; 
   color: white;
   text-decoration: none;
   font-weight: bold;
@@ -71,6 +78,7 @@ nav {
 /* ✅ 메인 */
 .hero {
   height: 100vh;
+  padding-top: 0;
   background: url('church.png') center/cover no-repeat;
   display: flex;
   align-items: center;
@@ -126,6 +134,15 @@ nav {
 
 h2 {
   color: #6fa8dc;
+}
+  iframe {
+  width: 100%;
+  height: 450px;   /* 👈 크게 */
+  border-radius: 10px;
+  border: none;
+}
+  .btn {
+  margin: 10px 8px;
 }
 </style>
 </head>
@@ -198,25 +215,36 @@ h2 {
   </div>
 </section>
 
-<!-- 위치 -->
 <section>
   <div class="card">
     <h2>오시는 길</h2>
-    <p>대전광역시 중구 충무로 11번길 46</p>
 
-    <a href="https://map.kakao.com/link/map/대전대흥장로교회,36.3215,127.4242"
-       target="_blank"
-       class="btn"
-       style="background:#f7e600; color:black;">
-      🗺️ 카카오 지도 보기
-    </a>
+    <p>교육선교관 2층 : 대전광역시 중구 충무로 11번길 46</p>
 
-    <a href="https://map.kakao.com/link/search/대전대흥장로교회"
-       target="_blank"
-       class="btn"
-       style="background:#f7e600; color:black;">
-      🚗 카카오 길찾기
-    </a>
+    <!-- 지도 크게 -->
+    <iframe 
+      src="https://www.google.com/maps?q=대전광역시+중구+충무로+11번길+46&output=embed">
+    </iframe>
+
+    <!-- 버튼들 -->
+    <div style="margin-top:20px;">
+      
+      <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 46" 
+         target="_blank" 
+         class="btn" 
+         style="background:#f7e600; color:black;">
+          카카오 길찾기
+      </a>
+
+      <a href="https://map.naver.com/v5/search/대전광역시 중구 충무로 11번길 46" 
+         target="_blank" 
+         class="btn" 
+         style="background:#03c75a;">
+          네이버 길찾기
+      </a>
+
+    </div>
+
   </div>
 </section>
 
