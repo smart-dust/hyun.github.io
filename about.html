@@ -3,241 +3,125 @@
 <head>
 <meta charset="utf-8">
 <title>교회소개</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-
 <style>
-/* 기본 */
-body {
-  margin:0;
-  font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background:#f5f7fa;
-  color:#333;
-}
+body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
 html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
-/* ✅ 메뉴 */
-nav {
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(0,0,0,0.85);
-  z-index:1000;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
-}
-.nav-container {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:10px 30px;
-}
-.nav-home {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+/* 메뉴 */
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
 .nav-logo { height:35px; }
-.nav-title {
-  color:white;
-  font-weight:400;
-  font-size:18px;
-}
+.nav-title { color:white; font-weight:400; font-size:18px; }
+.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-menu a, .menu-item > a { color:white; font-weight:600; padding:10px 12px; border-radius:6px; transition:0.25s; }
+.nav-menu a:hover, .menu-item > a:hover { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
 
-/* 메인메뉴 */
-.nav-menu {
-  display:flex;
-  gap:25px;
-  align-items:center;
-}
-.nav-menu a, .menu-item > a {
-  color:white;
-  font-weight:600;
-  padding:10px 12px;
-  border-radius:6px;
-  transition:transform 0.25s ease, background 0.25s ease;
-}
-
-/* 🔥 메인메뉴 애니메이션 */
-.nav-menu a:hover,
-.menu-item > a:hover {
-  transform:translateY(-2px);
-  background:rgba(255,255,255,0.08);
-}
-
-/* 🔽 서브메뉴 */
+/* 서브메뉴 */
 .menu-item { position:relative; }
+.submenu { position:absolute; top:100%; left:0; min-width:220px; background:rgba(0,0,0,0.95); border-radius:12px; padding:10px 0; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:0.25s; }
+.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); }
+.submenu a { display:block; padding:12px 20px; color:white; }
 
-.submenu {
-  position:absolute;
-  top:100%;
-  left:0;
-  min-width:220px;
-  background:rgba(0,0,0,0.95);
-  border-radius:12px;
-  padding:10px 0;
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+/* 섹션 */
+.section { padding:120px 20px 60px; max-width:1000px; margin:auto; }
+.section h2 { font-size:28px; color:#6fa8dc; margin-bottom:20px; text-align:center; }
+.section h3 { font-size:22px; color:#4a90e2; margin-bottom:10px; text-align:center; }
+.section p { font-size:15px; line-height:1.6; text-align:center; color:#555; margin-bottom:15px; }
 
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(8px);
-  transition:all 0.25s ease;
-}
+/* 섬기는 이들 표 */
+.staff-table { width:100%; max-width:700px; margin:20px auto; border-collapse:collapse; }
+.staff-table th, .staff-table td { border:1px solid #ccc; padding:10px; text-align:center; }
+.staff-table th { background:#6fa8dc; color:white; }
+.staff-table td { background:white; }
 
-.submenu a {
-  display:block;
-  padding:12px 20px;
-  color:white;
-  font-weight:400;
-  transition:transform 0.2s ease, background 0.2s ease;
-}
-
-/* 서브메뉴 hover */
-.submenu a:hover {
-  transform:translateY(-2px);
-  background:rgba(255,255,255,0.12);
-}
-
-/* 👉 열림 */
-.menu-item:hover .submenu {
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-}
-
-/* ✅ 상단 배너 */
-.top-banner {
-  height:300px;
-  background:url('church.png') center/cover no-repeat;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  position:relative;
-  color:white;
-}
-.top-banner::after {
-  content:'';
-  position:absolute;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.4);
-}
-.top-banner h1 {
-  position:relative;
-  z-index:1;
-  font-size:40px;
-}
-
-/* ✅ 내용 */
-.content {
-  max-width:900px;
-  margin:80px auto 60px;
-  padding:20px;
-}
-.content h2 {
-  margin-top:40px;
-  color:#6fa8dc;
-}
-.content p {
-  line-height:1.8;
-  color:#555;
-}
-
-/* ✅ footer */
-.footer {
-  background:#222;
-  color:#ccc;
-  padding:40px 20px;
-  text-align:center;
-  font-size:14px;
-}
+/* footer */
+.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px; }
 .footer p { margin:5px 0; }
-
 </style>
 </head>
-
 <body>
 
-<!-- ✅ 메뉴 -->
+<!-- 메뉴 -->
 <nav>
   <div class="nav-container">
-
-    <div class="nav-left">
-      <a href="index.html" class="nav-home">
-        <img src="logo.png" class="nav-logo">
-        <span class="nav-title">대전대흥교회 청소년부</span>
-      </a>
-    </div>
-
+    <a href="index.html" class="nav-home">
+      <img src="logo.png" class="nav-logo">
+      <span class="nav-title">대전대흥교회 청소년부</span>
+    </a>
     <div class="nav-menu">
-
       <a href="index.html">Home</a>
-
       <div class="menu-item">
-        <a href="about.html">교회소개</a>
+        <a href="about.html" class="active">교회소개</a>
         <div class="submenu">
-          <a href="#vision">사명과 비전</a>
+          <a href="#mission">사명</a>
+          <a href="#vision">비전</a>
           <a href="#worship">예배 안내</a>
           <a href="#staff">섬기는 이들</a>
         </div>
       </div>
-
       <div class="menu-item">
         <a href="sermon.html">설교</a>
-        <div class="submenu">
-          <a href="sermon.html#1">설교영상</a>
-          <a href="sermon.html#2">공과공부</a>
-        </div>
       </div>
-
       <div class="menu-item">
         <a href="notice.html">공지사항</a>
-        <div class="submenu">
-          <a href="notice.html#1">행사 안내</a>
-          <a href="notice.html#2">주보</a>
-        </div>
       </div>
-
       <div class="menu-item">
         <a href="community.html">커뮤니티</a>
-        <div class="submenu">
-          <a href="community.html#1">사진 갤러리</a>
-          <a href="community.html#2">게시판</a>
-        </div>
       </div>
-
     </div>
-
   </div>
 </nav>
 
-<!-- ✅ 배너 -->
-<div class="top-banner">
-  <h1>교회소개</h1>
-</div>
+<!-- 섹션: 사명 -->
+<section id="mission" class="section">
+  <h2>사명</h2>
+  <p>대전대흥교회 청소년부의 사명은 하나님을 예배하고, 사랑과 섬김의 공동체를 만들어가는 것입니다.</p>
+</section>
 
-<!-- ✅ 내용 -->
-<div class="content">
+<!-- 섹션: 비전 -->
+<section id="vision" class="section">
+  <h2>비전</h2>
+  <p>모든 청소년들이 신앙 안에서 성장하며, 예수님의 사랑을 실천하는 삶을 살아가도록 돕는 것입니다.</p>
+</section>
 
-  <h2 id="vision">비전</h2>
-  <p>
-    예수님의 마음을 닮아가는 청소년 공동체를 세우는 것을 목표로 합니다.
-  </p>
+<!-- 섹션: 예배 안내 -->
+<section id="worship" class="section">
+  <h2>예배 안내</h2>
+  <h3>시간</h3>
+  <p>주일 11:00 ~ 12:00</p>
+  <h3>장소</h3>
+  <p>교육선교관 2층</p>
+  <h3>연령</h3>
+  <p>중·고등학생</p>
+</section>
 
-  <h2 id="worship">예배 안내</h2>
-  <p>
-    주일 오전 11시<br>
-    교육선교관 2층
-  </p>
+<!-- 섹션: 섬기는 이들 -->
+<section id="staff" class="section">
+  <h2>섬기는 이들</h2>
+  <table class="staff-table">
+    <tr>
+      <th>이름</th>
+      <th>직급</th>
+      <th>담당반</th>
+    </tr>
+    <tr>
+      <td>홍길동</td>
+      <td>담임교사</td>
+      <td>중1~중3</td>
+    </tr>
+    <tr>
+      <td>김철수</td>
+      <td>보조교사</td>
+      <td>고1~고3</td>
+    </tr>
+    <!-- 필요하면 tr 추가 -->
+  </table>
+</section>
 
-  <h2>우리 공동체</h2>
-  <p>
-    대전대흥교회 청소년부는 말씀과 사랑 안에서 함께 성장하는 공동체입니다.
-  </p>
-
-</div>
-
-<!-- ✅ footer -->
+<!-- footer -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
