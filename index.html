@@ -118,7 +118,7 @@ nav {
 .submenu a:hover,
 .submenu a.active {
   background: rgba(255,255,255,0.12);
-  transform: translateY(-2px); /* 서브 메뉴 항목 애니메이션 */
+  transform: translateY(-2px);
 }
 
 /* ================== 서브 메뉴 표시 ================== */
@@ -130,20 +130,16 @@ nav {
   pointer-events: auto;
 }
 
-/* ================== 메인 메뉴 전체 강조/애니메이션 ================== */
+/* ================== 메인 메뉴 강조/애니메이션 ================== */
 /* Home 포함 모든 메뉴 */
 .nav-menu a,
 .menu-item:hover > a,
 .menu-item.active > a {
   background: rgba(255,255,255,0.08);
-  transform: translateY(-2px); /* 글자 살짝 떠오르는 효과 */
-}
-
-/* 선택/호버 상태 부드럽게 */
-.nav-menu a:hover,
-.nav-menu a.active {
+  transform: translateY(-2px);
   transition: transform 0.2s ease, background 0.2s ease;
 }
+  
 /* ✅ 메인 */
 .hero {
   height: 100vh;
@@ -219,41 +215,56 @@ h2 {
 <body>
 
 <!-- 메뉴 -->
-<div class="nav-menu">
-  <a href="#home">Home</a>
+<nav>
+  <div class="nav-container">
 
-  <div class="menu-item">
-    <a href="about.html">교회소개</a>
-    <div class="submenu">
-      <a href="about.html#vision">비전</a>
-      <a href="about.html#worship">예배 안내</a>
-      <a href="about.html#teacher">섬기는 이들</a>
+    <!-- 로고+타이틀: 클릭하면 Home 이동 -->
+    <div class="nav-left">
+      <a href="#home" class="nav-home">
+        <img src="logo.png" class="nav-logo">
+        <span class="nav-title">대전대흥교회 청소년부</span>
+      </a>
+    </div>
+
+    <div class="nav-menu">
+      <a href="#home">Home</a>
+
+      <div class="menu-item">
+        <a href="about.html">교회소개</a>
+        <div class="submenu">
+          <a href="about.html#vision">비전</a>
+          <a href="about.html#worship">예배 안내</a>
+          <a href="about.html#teacher">섬기는 이들</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="sermon.html">설교영상</a>
+        <div class="submenu">
+          <a href="sermon.html#this">이번주 설교</a>
+          <a href="sermon.html#all">전체 설교</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="notice.html">공지사항</a>
+        <div class="submenu">
+          <a href="notice.html#weekseet">주보</a>
+          <a href="notice.html#notation">공지사항</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="community.html">커뮤니티</a>
+        <div class="submenu">
+          <a href="community.html#photo">포토 갤러리</a>
+          <a href="community.html#community">우리들의 이야기</a>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="menu-item">
-    <a href="sermon.html">설교영상</a>
-    <div class="submenu">
-      <a href="sermon.html#this">이번주 설교</a>
-      <a href="sermon.html#all">전체 설교</a>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <a href="notice.html">공지사항</a>
-    <div class="submenu">
-      <a href="notice.html#weekseet">주보</a>
-      <a href="notice.html#notation">공지사항</a>
-    </div>
-  </div>
-
-  <div class="menu-item">
-    <a href="community.html">커뮤니티</a>
-    <div class="submenu">
-      <a href="community.html#photo">포토 갤러리</a>
-      <a href="community.html#community">우리들의 이야기</a>
-    </div>
-  </div>
+</nav>
+  
 </div>
 <!-- 메인 -->
 <div class="hero" id="home">
