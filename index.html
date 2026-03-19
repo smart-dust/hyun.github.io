@@ -28,75 +28,70 @@ section {
 }
 
 /* ✅ 메뉴 */
-nav {
+/* 메뉴바 */
+.navbar {
   position: fixed;
   top: 0;
   width: 100%;
-  background: rgba(0,0,0,0.85);
+  background-color: #333;
+  display: flex;
+  justify-content: center;
   z-index: 1000;
 }
 
-.nav-container {
+/* 메뉴 리스트 */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 30px;
 }
 
-.nav-left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+/* 메뉴 아이템 */
+.navbar li {
+  position: relative;
 }
 
-.nav-logo {
-  height: 35px;
-}
-
-.nav-title {
-  color: white;
-  font-weight: bold;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 30px;
-}
-
-.nav-menu a {
-  display: inline-block;
-  line-height: 40px; 
+/* 메뉴 링크 */
+.navbar a {
+  display: block;
+  padding: 15px 20px;
   color: white;
   text-decoration: none;
-  font-weight: bold;
 }
 
-.nav-menu a:hover {
-  color: #9fc5e8;
-}
-  .menu-item {
-  position: relative;
-  display: inline-block;
+/* hover 효과 */
+.navbar a:hover {
+  background-color: #555;
 }
 
-.submenu {
-  display: none;
+/* 드롭다운 */
+.dropdown {
   position: absolute;
-  top: 40px;
-  background: white;
+  top: 100%;
+  left: 0;
+  background-color: #444;
   min-width: 150px;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
 }
 
-.submenu a {
-  display: block;
+/* 드롭다운 링크 */
+.dropdown a {
   padding: 10px;
-  color: black;
 }
 
-.menu-item:hover .submenu {
-  display: block;
+/* hover 시 나타남 */
+.navbar li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
 }
+  body {
+  padding-top: 70px;
+}
+  background-color: rgba(0,0,0,0.85);
 
 /* ✅ 메인 */
 .hero {
@@ -171,53 +166,46 @@ h2 {
 </head>
 
 <body>
+<div class="navbar">
+  <ul>
+    <li><a href="#home">Home</a></li>
 
-<!-- 메뉴 -->
-<nav>
-  <div class="nav-container">
+    <li>
+      <a href="about.html">교회소개</a>
+      <div class="dropdown">
+        <a href="about.html#vision">비전</a>
+        <a href="about.html#worship">예배 안내</a>
+        <a href="about.html#teacher">섬기는 이들</a>
+      </div>
+    </li>
 
-    <div class="nav-left">
-      <img src="logo.png" class="nav-logo">
-      <span class="nav-title">대전대흥교회 청소년부</span>
-    </div>
+    <li>
+      <a href="sermon.html">설교영상</a>
+      <div class="dropdown">
+        <a href="sermon.html#this">이번주 설교</a>
+        <a href="sermon.html#all">전체 설교</a>
+      </div>
+    </li>
 
-    <div class="nav-menu">
-      <a href="#home">Home</a>
-         <div class="menu-item">
-     <a href="about.html">교회소개</a>
-     <div class="submenu">
-     <a href="about.html#vision">비전</a>
-     <a href="about.html#worship">예배 안내</a>
-     <a href="about.html#teacher">섬기는 이들</a>
-     </div>
-    </div>
-      
-           <div class="menu-item">
-     <a href="sermon.html">설교영상</a>
-       <div class="submenu">
-      <a href="sermon.html#this">이번주 설교</a>
-      <a href="sermon.html#all">전체 설교</a>
-         </div>
-    </div>
-      
-         <div class="menu-item">
-     <a href="notice.html">공지사항</a> 
-            <div class="submenu">
-      <a href="notice.html#weekseet">주보</a>
-      <a href="notice.html#notation">공지사항</a>
-             </div>
-    </div>
-    
-         <div class="menu-item">     
-     <a href="community.html">커뮤니티</a>
-      <div class="submenu">
-      <a href="community.html#photo">포토 갤러리</a>
-      <a href="community.html#community">우리들의 이야기</a>
-     </div>
-    </div>
-      
+    <li>
+      <a href="notice.html">공지사항</a>
+      <div class="dropdown">
+        <a href="notice.html#weekseet">주보</a>
+        <a href="notice.html#notation">공지사항</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="community.html">커뮤니티</a>
+      <div class="dropdown">
+        <a href="community.html#photo">포토 갤러리</a>
+        <a href="community.html#community">우리들의 이야기</a>
+      </div>
+    </li>
+  </ul>
 </div>
-</nav>
+<!-- 메뉴 -->
+
 
 <!-- 메인 -->
 <div class="hero" id="home">
