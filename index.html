@@ -71,15 +71,11 @@ nav {
 .nav-menu a {
   text-decoration: none;
   color: white;
-  font-weight: 600; /* 더 두꺼운 글씨 */
-  padding: 8px 0;
+  font-weight: 600;
+  padding: 10px 12px;
   position: relative;
-  transition: color 0.2s;
-}
-
-.nav-menu a:hover,
-.nav-menu a.active {
-  color: white;
+  transition: color 0.2s, background 0.2s;
+  border-radius: 6px;
 }
 
 /* ================== 서브 메뉴 ================== */
@@ -89,11 +85,13 @@ nav {
 
 .submenu {
   position: absolute;
-  top: 100%;  /* 메인 메뉴 바로 아래 */
+  top: 100%;
   left: 0;
-  right: 0;  /* 메인 메뉴 폭과 동일하게 */
+  min-width: 200px;   /* 더 넉넉하게 */
+  max-width: 250px;   /* 제한 */
+  padding: 8px 0;
   background: rgba(0,0,0,0.95);
-  border-radius: 10px;
+  border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.4);
   opacity: 0;
   visibility: hidden;
@@ -105,19 +103,20 @@ nav {
 
 .submenu a {
   display: block;
-  padding: 12px 0;
+  padding: 12px 20px;  /* 더 넓은 패딩 */
   color: white;
   font-weight: 400;
-  text-align: center;
+  text-align: left;
   transition: background 0.2s;
+  border-radius: 6px;
 }
 
 .submenu a:hover,
 .submenu a.active {
-  background: rgba(255,255,255,0.1); /* 선택 강조 */
+  background: rgba(255,255,255,0.15); /* 강조 */
 }
 
-/* 메뉴 호버 시 서브 메뉴 표시 */
+/* ================== 서브 메뉴 표시 ================== */
 .menu-item:hover .submenu,
 .menu-item.active .submenu {
   opacity: 1;
@@ -126,11 +125,11 @@ nav {
   pointer-events: auto;
 }
 
-/* ================== 메인 메뉴도 서브 메뉴 선택 시 강조 ================== */
+/* ================== 메인 메뉴 강조 ================== */
 .menu-item:hover > a,
 .menu-item.active > a {
-  background: rgba(255,255,255,0.05);
-  border-radius: 6px;
+  background: rgba(255,255,255,0.1); /* 이전보다 진하게 */
+  box-shadow: inset 0 -3px 0 rgba(111,168,220,0.8); /* 바 형태 강조 */
 }
 /* ✅ 메인 */
 .hero {
