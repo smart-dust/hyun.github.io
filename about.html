@@ -3,57 +3,150 @@
 <head>
 <meta charset="utf-8">
 <title>교회소개</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; font-family:'Noto Sans KR', sans-serif; background:#f5f7fa; }
+/* 기본 */
+body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
+html { scroll-behavior:smooth; }
+a { text-decoration:none; }
 
-/* 공통 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); color:white; padding:10px 30px; display:flex; justify-content:space-between; }
-nav a { color:white; margin-left:15px; text-decoration:none; }
+/* ✅ 메뉴 (index와 동일) */
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.85);
+  z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
+.nav-container {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 30px;
+}
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; }
+.nav-title { color:white; font-weight:400; font-size:18px; }
 
-/* 상단 배너 */
-.header {
-  height:300px;
-  background:url('church.png') center/cover;
-  display:flex; align-items:center; justify-content:center;
-  color:white; font-size:32px; font-weight:bold;
+.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-menu a, .menu-item > a {
+  color:white;
+  font-weight:600;
+  padding:10px 12px;
+  border-radius:6px;
+  transition:transform 0.25s ease, background 0.25s ease;
+}
+.nav-menu a:hover, .menu-item > a:hover {
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.08);
 }
 
-/* 내용 */
-.content { max-width:900px; margin:50px auto; padding:20px; line-height:1.8; }
+/* ✅ 상단 비주얼 */
+.top-banner {
+  height:300px;
+  background:url('church.png') center/cover no-repeat;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  color:white;
+}
+.top-banner::after {
+  content:'';
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.4);
+}
+.top-banner h1 {
+  position:relative;
+  z-index:1;
+  font-size:40px;
+}
 
-/* footer */
-.footer { background:#222; color:#ccc; text-align:center; padding:40px 20px; }
+/* ✅ 내용 */
+.content {
+  max-width:900px;
+  margin:80px auto 60px;
+  padding:20px;
+}
+.content h2 {
+  margin-top:40px;
+  color:#6fa8dc;
+}
+.content p {
+  line-height:1.8;
+  color:#555;
+}
+
+/* ✅ footer (index와 동일) */
+.footer {
+  background:#222;
+  color:#ccc;
+  padding:40px 20px;
+  text-align:center;
+  font-size:14px;
+}
+.footer p { margin:5px 0; }
+
 </style>
 </head>
 
 <body>
 
+<!-- ✅ 메뉴 -->
 <nav>
-  <div>대전대흥교회 청소년부</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="about.html">교회소개</a>
-    <a href="sermon.html">설교</a>
-    <a href="notice.html">공지사항</a>
-    <a href="community.html">커뮤니티</a>
+  <div class="nav-container">
+    <div class="nav-left">
+      <a href="index.html" class="nav-home">
+        <img src="logo.png" class="nav-logo">
+        <span class="nav-title">대전대흥교회 청소년부</span>
+      </a>
+    </div>
+
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="about.html">교회소개</a>
+      <a href="sermon.html">설교</a>
+      <a href="notice.html">공지사항</a>
+      <a href="community.html">커뮤니티</a>
+    </div>
   </div>
 </nav>
 
-<div class="header">교회소개</div>
-
-<div class="content">
-  <h2>우리 공동체</h2>
-  <p>대전대흥교회 청소년부는 하나님을 사랑하고 이웃을 섬기는 공동체입니다.</p>
-
-  <h2>비전</h2>
-  <p>예수님의 마음을 닮아가는 청소년으로 성장하는 것.</p>
-
-  <h2>예배 안내</h2>
-  <p>주일 오전 11시 / 교육선교관 2층</p>
+<!-- ✅ 상단 배너 -->
+<div class="top-banner">
+  <h1>교회소개</h1>
 </div>
 
+<!-- ✅ 내용 -->
+<div class="content">
+  <h2>우리 공동체</h2>
+  <p>
+    대전대흥교회 청소년부는 하나님을 사랑하고 이웃을 섬기며  
+    예수님의 마음을 닮아가는 공동체입니다.
+  </p>
+
+  <h2>비전</h2>
+  <p>
+    말씀과 예배를 통해 믿음이 성장하고  
+    삶 속에서 하나님을 드러내는 청소년으로 세워지는 것을 목표로 합니다.
+  </p>
+
+  <h2>예배 안내</h2>
+  <p>
+    주일 오전 11시<br>
+    교육선교관 2층
+  </p>
+</div>
+
+<!-- ✅ footer -->
 <footer class="footer">
-  <p>대전광역시 중구 충무로 11번길 43</p>
+  <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
+  <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
