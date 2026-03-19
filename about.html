@@ -1,15 +1,114 @@
+<style>
+  /* 기본 리셋 */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+/* 상단 고정 메뉴바 */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #333;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+/* 메뉴 리스트 */
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+/* 메뉴 아이템 */
+.navbar li {
+  position: relative;
+}
+
+/* 메뉴 링크 */
+.navbar a {
+  display: block;
+  padding: 15px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+/* hover 효과 */
+.navbar a:hover {
+  background-color: #555;
+}
+
+/* 드롭다운 메뉴 */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #444;
+  min-width: 150px;
+}
+
+/* 드롭다운 아이템 */
+.dropdown a {
+  display: block;
+  padding: 10px;
+}
+
+/* hover 시 드롭다운 표시 */
+.navbar li:hover .dropdown {
+  display: block;
+}
+
+/* 페이지 내용이 메뉴에 가리지 않도록 */
+.content {
+  padding-top: 70px;
+}
+  </style>
+
+
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8">
-  <title>교회소개</title>
+  <meta charset="UTF-8">
+  <title>Home</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<h1>교회소개</h1>
-<p>대전대흥교회 청소년부 소개 페이지입니다.</p>
+  <!-- 메뉴바 -->
+  <div class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
 
-<a href="index.html">홈으로</a>
+      <li>
+        <a href="#">Menu1</a>
+        <div class="dropdown">
+          <a href="menu1-1.html">Sub 1</a>
+          <a href="menu1-2.html">Sub 2</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Menu2</a>
+        <div class="dropdown">
+          <a href="menu2-1.html">Sub A</a>
+          <a href="menu2-2.html">Sub B</a>
+        </div>
+      </li>
+
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </div>
+
+  <!-- 본문 -->
+  <div class="content">
+    <h1>Home 페이지</h1>
+    <p>여기에 내용을 작성하세요.</p>
+  </div>
 
 </body>
 </html>
