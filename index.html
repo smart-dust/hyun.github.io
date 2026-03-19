@@ -64,11 +64,14 @@ nav {
 }
 
 .nav-menu a {
-  display: inline-block;
-  line-height: 40px; 
+  display: block;              /* ✅ 전체 영역 클릭 가능 */
+  padding: 10px 18px;          /* ✅ 클릭 영역 확대 */
   color: white;
   text-decoration: none;
   font-weight: bold;
+
+  border-radius: 8px;          /* ✅ 네모 박스 느낌 */
+  transition: 0.2s;
 }
 
 .nav-menu a:hover {
