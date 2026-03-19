@@ -115,6 +115,59 @@ nav {
   visibility: visible;
   transform: translateY(0);
 }
+  /* 상단 메뉴 전체 */
+.nav-menu {
+  display: flex;
+  gap: 10px;
+}
+
+/* 메뉴 아이템 */
+.menu-item {
+  position: relative;
+}
+
+/* 대메뉴 (네모 버튼 스타일) */
+.nav-menu a {
+  display: block;
+  padding: 12px 20px;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 6px;
+  transition: 0.2s;
+}
+
+/* hover 시 네모 강조 */
+.nav-menu a:hover {
+  background-color: rgba(255,255,255,0.15);
+}
+
+/* 서브메뉴 */
+.submenu {
+  position: absolute;
+  top: 45px;
+  left: 0;
+
+  background-color: #444;
+  min-width: 160px;
+  border-radius: 6px;
+  overflow: hidden;
+
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.25s;
+}
+
+/* 서브메뉴 항목 */
+.submenu a {
+  padding: 10px 15px;
+}
+
+/* hover 시 서브메뉴 표시 */
+.menu-item:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+}
 
 /* ✅ 메인 */
 .hero {
