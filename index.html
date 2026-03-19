@@ -28,38 +28,35 @@ section {
 }
 
 nav {
-  nav {
-  height: 60px;          /* 원하는 메뉴바 높이 */
-  display: flex;
-  align-items: center;   /* 세로 중앙 정렬 */
-  padding: 0 20px;
-}
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  background: rgba(0, 0, 0, 0.7); /* 불투명도 70% */
+  height: 60px;           /* 메뉴바 높이 */
+  display: flex;
+  align-items: center;    /* 세로 중앙 정렬 */
+  padding: 0 20px;
+  background: rgba(0,0,0,0.7); 
   backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   z-index: 1000;
 }
 
-/* 컨테이너: 왼쪽 로고 + 중앙 메뉴 */
 .nav-container {
+  display: flex;
+  justify-content: space-between; /* 왼쪽 로고, 중앙 메뉴 */
+  align-items: center;
+  width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between; /* 왼쪽+가운데 분리 */
-  align-items: center;
-  padding: 5px 20px; /* 상하 공간 줄임 */
+  padding: 0 10px; /* 좌우 여백 최소화 */
 }
 
-/* 왼쪽 로고+이름 */
 .nav-left {
   display: flex;
   align-items: center;
   gap: 8px;
-   margin: 0;
+  margin: 0;  /* 왼쪽 끝으로 붙임 */
 }
 
 .nav-left img {
@@ -72,29 +69,21 @@ nav {
   font-size: 18px;
 }
 
-/* 가운데 메뉴 */
 .nav-menu {
   display: flex;
-  gap: 8px;
-  justify-content: center; 
+  gap: 10px;
   flex: 1;
-    margin: 0 auto;
+  justify-content: center;
+  margin: 0 auto;
 }
 
+.nav-menu a {
+  display: block;
+  padding: 12px 16px; /* 세로 중앙 + 클릭 영역 확보 */
+}
 /* 메뉴 아이템 */
 .menu-item {
   position: relative;
-}
-
-/* 메뉴 버튼 */
-.nav-menu a {
-  display: block;
-  padding: 8px 16px;
-  color: white;
-  text-decoration: none;
-  font-weight: 600;
-  border-radius: 6px;
-  transition: background 0.2s, transform 0.2s;
 }
 
 .nav-menu a:hover {
@@ -135,12 +124,12 @@ nav {
 
 /* 본문이 메뉴바에 가리지 않도록 */
 body {
-  padding-top: 70px; /* 메뉴바 높이에 맞춤 */
+  padding-top: 60px; /* 메뉴바 높이에 맞춤 */
 }
 
 /* 본문 padding */
 .content {
-  padding-top: 70px; /* 메뉴바 높이에 맞춤 */
+  padding-top: 60px; /* 메뉴바 높이에 맞춤 */
 }
 /* ✅ 메인 */
 .hero {
