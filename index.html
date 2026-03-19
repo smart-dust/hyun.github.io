@@ -28,109 +28,88 @@ section {
 }
 
 /* ✅ 메뉴 */
-/* ================== 상단 네비게이션 ================== */
+/* ================== 상단 네비 ================== */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
   background: rgba(0,0,0,0.85);
   z-index: 1000;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  backdrop-filter: blur(10px); /* 애플 느낌 */
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 40px;
+  padding: 10px 30px;
 }
 
 .nav-left {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
 }
 
 .nav-logo {
-  height: 30px;  /* 작게 유지 */
+  height: 35px;  /* 로고 크기 고정 */
   width: auto;
 }
 
 .nav-title {
   color: white;
-  font-weight: 600;
+  font-weight: bold;
   font-size: 18px;
 }
 
 .nav-menu {
   display: flex;
-  gap: 30px;
+  gap: 25px;
   align-items: center;
 }
 
 .nav-menu a {
-  position: relative;
   text-decoration: none;
   color: white;
   font-weight: 500;
   padding: 8px 0;
-  transition: color 0.3s;
+  transition: color 0.2s;
 }
 
-.nav-menu a::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 2px;
-  background: #6fa8dc;
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.3s ease;
+.nav-menu a:hover {
+  color: #9fc5e8;
 }
 
-.nav-menu a:hover::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
+/* ================== 서브 메뉴 ================== */
 .menu-item {
   position: relative;
 }
 
-/* ================== 서브 메뉴 ================== */
 .submenu {
   position: absolute;
   top: 100%;
   left: 0;
   background: rgba(0,0,0,0.95);
-  min-width: 180px;
-  border-radius: 12px;
-  box-shadow: 0 12px 24px rgba(0,0,0,0.3);
+  min-width: 160px;
+  border-radius: 6px;
   opacity: 0;
   visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+  transform: translateY(5px);
+  transition: opacity 0.2s ease, transform 0.2s ease;
   pointer-events: none;
   z-index: 1001;
 }
 
 .submenu a {
   display: block;
-  padding: 12px 20px;
+  padding: 10px 15px;
   color: white;
-  font-weight: 400;
-  transition: background 0.3s, transform 0.3s;
-  border-radius: 8px;
 }
 
 .submenu a:hover {
-  background: #6fa8dc;
-  transform: translateX(5px);
+  background: rgba(255,255,255,0.1);
 }
 
+/* 호버 시 서브 메뉴 표시 */
 .menu-item:hover .submenu {
   opacity: 1;
   visibility: visible;
@@ -138,17 +117,15 @@ nav {
   pointer-events: auto;
 }
 
-/* ================== 드롭다운 화살표 ================== */
+/* 서브 메뉴 화살표 */
 .menu-item > a::after {
   content: '▼';
   font-size: 10px;
-  margin-left: 5px;
-  transition: transform 0.3s;
+  margin-left: 4px;
 }
 
 .menu-item:hover > a::after {
   transform: rotate(-180deg);
-}
 }
 /* ✅ 메인 */
 .hero {
