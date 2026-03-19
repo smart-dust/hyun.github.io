@@ -7,71 +7,145 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 
 <style>
-/* 동일 */
-body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo'; background:#fafafa; }
+/* 🔥 메뉴, 서브메뉴 동일 */
+body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
+html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
-/* 메뉴 동일 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); }
-.nav-container { display:flex; justify-content:space-between; padding:10px 30px; }
-.nav-menu { display:flex; gap:25px; }
+/* 메뉴 */
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; }
+.nav-title { color:white; font-weight:400; font-size:18px; }
+.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-menu a, .menu-item > a { color:white; font-weight:600; padding:10px 12px; border-radius:6px; transition:0.25s; }
+.nav-menu a:hover, .menu-item > a:hover { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
 
-/* 서브메뉴 동일 */
+/* 서브메뉴 */
 .menu-item { position:relative; }
 .submenu {
-  position:absolute;
-  background:black;
-  opacity:0;
-  visibility:hidden;
+  position:absolute; top:100%; left:0; min-width:220px; background:rgba(0,0,0,0.95); border-radius:12px; padding:10px 0; box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  opacity:0; visibility:hidden; transform:translateY(8px); transition:0.25s;
 }
-.menu-item:hover .submenu { opacity:1; visibility:visible; }
+.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); }
+.submenu a { display:block; padding:12px 20px; color:white; }
 
-/* 콘텐츠 */
-.gallery {
-  padding-top:120px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(250px,1fr));
-  gap:20px;
-  padding:120px 40px;
-}
-.gallery img {
-  width:100%;
-  border-radius:10px;
-}
+/* 🔥 커뮤니티 전용 디자인 */
+.community-container { padding-top:120px; max-width:1000px; margin:auto; display:flex; gap:40px; flex-wrap:wrap; justify-content:center; }
 
-/* footer */
-.footer { background:#222; color:#ccc; padding:40px; text-align:center; }
+.gallery-card {
+  background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  width:220px; padding:10px; text-align:center; transition:0.2s;
+}
+.gallery-card img { width:100%; border-radius:10px; margin-bottom:10px; }
+.gallery-card:hover { transform:translateY(-3px); }
+
+.board-section { width:100%; max-width:700px; }
+.board-card {
+  background:white; padding:15px 20px; margin-bottom:20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1);
+  transition:0.2s;
+}
+.board-card:hover { transform:translateY(-2px); }
+.board-card h3 { margin:0 0 5px 0; color:#6fa8dc; }
+.board-card p { margin:0; color:#555; font-size:14px; }
+
+/* footer 동일 */
+.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px; }
+.footer p { margin:5px 0; }
+
 </style>
 </head>
 
 <body>
 
-<!-- 메뉴 동일 -->
+<!-- ✅ 메뉴 -->
 <nav>
-<div class="nav-container">
+  <div class="nav-container">
+    <a href="index.html" class="nav-home">
+      <img src="logo.png" class="nav-logo">
+      <span class="nav-title">대전대흥교회 청소년부</span>
+    </a>
 
-<div>대전대흥교회 청소년부</div>
+    <div class="nav-menu">
+      <a href="index.html">Home</a>
 
-<div class="nav-menu">
-<a href="index.html">Home</a>
-<a href="about.html">교회소개</a>
-<a href="sermon.html">설교</a>
-<a href="notice.html">공지사항</a>
-<a href="community.html">커뮤니티</a>
-</div>
+      <div class="menu-item">
+        <a href="about.html">교회소개</a>
+        <div class="submenu">
+          <a href="about.html#1">사명과 비전</a>
+          <a href="about.html#2">예배 안내</a>
+          <a href="about.html#3">섬기는 이들</a>
+        </div>
+      </div>
 
-</div>
+      <div class="menu-item">
+        <a href="sermon.html">설교</a>
+        <div class="submenu">
+          <a href="sermon.html#1">설교영상</a>
+          <a href="sermon.html#2">공과공부</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="notice.html">공지사항</a>
+        <div class="submenu">
+          <a href="notice.html#1">행사 안내</a>
+          <a href="notice.html#2">주보</a>
+        </div>
+      </div>
+
+      <div class="menu-item">
+        <a href="community.html">커뮤니티</a>
+        <div class="submenu">
+          <a href="#1">사진 갤러리</a>
+          <a href="#2">게시판</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </nav>
 
-<!-- 콘텐츠 -->
-<div class="gallery">
-<img src="church.png">
-<img src="church.png">
-<img src="church.png">
+<!-- ✅ 콘텐츠 -->
+<div class="community-container">
+
+  <!-- 사진 갤러리 -->
+  <div id="1" class="gallery-card">
+    <img src="gallery1.jpg" alt="갤러리1">
+    <p>청소년부 여름 수련회</p>
+  </div>
+  <div class="gallery-card">
+    <img src="gallery2.jpg" alt="갤러리2">
+    <p>주일 예배 모습</p>
+  </div>
+  <div class="gallery-card">
+    <img src="gallery3.jpg" alt="갤러리3">
+    <p>봄 캠프 활동</p>
+  </div>
+
+  <!-- 게시판 -->
+  <div id="2" class="board-section">
+    <div class="board-card">
+      <h3>다음 주 예배 공지</h3>
+      <p>2026.03.22 | 주일예배 안내</p>
+    </div>
+    <div class="board-card">
+      <h3>청소년부 모임 안내</h3>
+      <p>2026.03.20 | 성경공부 모임</p>
+    </div>
+    <div class="board-card">
+      <h3>봉사활동 모집</h3>
+      <p>2026.03.18 | 지역 봉사활동 참여 안내</p>
+    </div>
+  </div>
+
 </div>
 
+<!-- footer -->
 <footer class="footer">
-<p>© 2026 대전대흥교회 청소년부</p>
+  <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
+  <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
+  <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
 </body>
