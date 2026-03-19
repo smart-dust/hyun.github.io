@@ -2,60 +2,122 @@
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>설교영상</title>
+<title>설교</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
-body { margin:0; font-family:'Noto Sans KR', sans-serif; background:#f5f7fa; }
+/* 공통 */
+body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#111; color:white; }
+a { text-decoration:none; }
 
-/* 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); color:white; padding:10px 30px; display:flex; justify-content:space-between; }
-nav a { color:white; margin-left:15px; text-decoration:none; }
+/* 메뉴 (그대로 유지) */
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.9); z-index:1000; }
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; }
+.nav-title { color:white; font-size:18px; }
+.nav-menu { display:flex; gap:25px; }
+.nav-menu a, .menu-item > a { color:white; padding:10px; }
+.nav-menu a:hover, .menu-item > a:hover { transform:translateY(-2px); }
 
-/* 리스트 */
-.container { margin-top:80px; padding:40px; display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:30px; }
+.menu-item { position:relative; }
+.submenu {
+  position:absolute; top:100%; left:0;
+  background:black; padding:10px 0; border-radius:10px;
+  opacity:0; visibility:hidden; transform:translateY(10px);
+  transition:0.3s;
+}
+.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); }
+.submenu a { display:block; padding:10px 20px; }
 
+/* 영상 리스트 */
+.video-section {
+  padding-top:100px;
+  max-width:1000px;
+  margin:auto;
+}
 .video {
-  background:white;
-  padding:15px;
+  margin-bottom:40px;
+}
+iframe {
+  width:100%;
+  height:500px;
+  border:none;
   border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
-iframe { width:100%; height:200px; }
-
 /* footer */
-.footer { background:#222; color:#ccc; text-align:center; padding:40px; }
+.footer { background:#000; color:#aaa; padding:30px; text-align:center; }
 </style>
 </head>
 
 <body>
 
+<!-- 메뉴 -->
 <nav>
-  <div>대전대흥교회 청소년부</div>
-  <div>
-    <a href="index.html">Home</a>
-    <a href="about.html">교회소개</a>
-    <a href="sermon.html">설교영상</a>
-    <a href="notice.html">공지사항</a>
-    <a href="community.html">커뮤니티</a>
-  </div>
+<div class="nav-container">
+<a href="index.html" class="nav-home">
+<img src="logo.png" class="nav-logo">
+<span class="nav-title">대전대흥교회 청소년부</span>
+</a>
+
+<div class="nav-menu">
+<a href="index.html">Home</a>
+
+<div class="menu-item">
+<a href="about.html">교회소개</a>
+<div class="submenu">
+<a href="about.html#1">사명과 비전</a>
+<a href="about.html#2">예배 안내</a>
+<a href="about.html#3">섬기는 이들</a>
+</div>
+</div>
+
+<div class="menu-item">
+<a href="sermon.html">설교</a>
+<div class="submenu">
+<a href="#1">설교영상</a>
+<a href="#2">공과공부</a>
+</div>
+</div>
+
+<div class="menu-item">
+<a href="notice.html">공지사항</a>
+<div class="submenu">
+<a href="notice.html#1">행사 안내</a>
+<a href="notice.html#2">주보</a>
+</div>
+</div>
+
+<div class="menu-item">
+<a href="community.html">커뮤니티</a>
+<div class="submenu">
+<a href="community.html#1">사진</a>
+<a href="community.html#2">게시판</a>
+</div>
+</div>
+
+</div>
+</div>
 </nav>
 
-<div class="container">
+<!-- 영상 -->
+<div class="video-section">
+<h2 id="1">설교 영상</h2>
 
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
-    <h3>이번주 설교</h3>
-  </div>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+</div>
 
-  <div class="video">
-    <iframe src="https://www.youtube.com/embed/VIDEO_ID"></iframe>
-    <h3>지난 설교</h3>
-  </div>
+<div class="video">
+<iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>
+</div>
 
 </div>
 
 <footer class="footer">
-  <p>© 2026 대전대흥교회 청소년부</p>
+<p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
 </body>
