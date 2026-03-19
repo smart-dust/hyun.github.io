@@ -67,6 +67,19 @@ body {
 .content {
   padding-top: 70px;
 }
+  .navbar {
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+  .dropdown {
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.navbar li:hover .dropdown {
+  opacity: 1;
+  visibility: visible;
+}
   </style>
 
 
@@ -108,6 +121,70 @@ body {
   <div class="content">
     <h1>Home 페이지</h1>
     <p>여기에 내용을 작성하세요.</p>
+  </div>
+
+</body>
+</html>
+<div class="navbar">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+
+    <li>
+      <a href="#">Menu1</a>
+      <div class="dropdown">
+        <a href="menu1-1.html">Sub 1</a>
+        <a href="menu1-2.html">Sub 2</a>
+      </div>
+    </li>
+
+    <li>
+      <a href="#">Menu2</a>
+      <div class="dropdown">
+        <a href="menu2-1.html">Sub A</a>
+        <a href="menu2-2.html">Sub B</a>
+      </div>
+    </li>
+
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</div>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>Menu1 - Sub1</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- 메뉴바 -->
+  <div class="navbar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+
+      <li>
+        <a href="#">Menu1</a>
+        <div class="dropdown">
+          <a href="menu1-1.html">Sub 1</a>
+          <a href="menu1-2.html">Sub 2</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Menu2</a>
+        <div class="dropdown">
+          <a href="menu2-1.html">Sub A</a>
+          <a href="menu2-2.html">Sub B</a>
+        </div>
+      </li>
+
+      <li><a href="login.html">Login</a></li>
+    </ul>
+  </div>
+
+  <div class="content">
+    <h1>Menu1 - Sub1</h1>
+    <p>이 페이지 내용을 꾸미면 됩니다.</p>
   </div>
 
 </body>
