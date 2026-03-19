@@ -79,47 +79,26 @@ nav {
   display: inline-block;
 }
 
-/* 서브메뉴 (반투명 + 블러 효과) */
 .submenu {
-  display: none;
   position: absolute;
   top: 40px;
-
-  background: rgba(0, 0, 0, 0.75);   /* 반투명 */
-  backdrop-filter: blur(8px);        /* 유리 느낌 */
-
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
   min-width: 160px;
   border-radius: 8px;
   overflow: hidden;
-
   box-shadow: 0 4px 15px rgba(0,0,0,0.3);
   border: 1px solid rgba(255,255,255,0.2);
-
   opacity: 0;
   visibility: hidden;
-  transform: translateY(0);
+  transform: translateY(10px);
   transition: all 0.3s ease;
 }
 
-/* 서브메뉴 항목 */
-.submenu a {
-  display: block;
-  padding: 10px 15px;
-  color: white;
-  text-decoration: none;
-}
-
-/* hover 효과 */
-.submenu a:hover {
-  background: rgba(255,255,255,0.15);
-}
-
-/* 메뉴 hover 시 나타남 */
 .menu-item:hover .submenu {
-  display: block;
   opacity: 1;
   visibility: visible;
-  transform: translateY(5px);
+  transform: translateY(0);
 }
 
 /* ✅ 메인 */
