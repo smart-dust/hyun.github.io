@@ -23,6 +23,13 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
 
+/* 서브메뉴 */
+.menu-item { position:relative; }
+.submenu { position:absolute; top:100%; left:0; min-width:220px; max-width:260px; padding:10px 0; background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001; }
+.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
+.submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
+.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
+
 /* 히어로 섹션 */
 .hero {
   height:100vh;
@@ -47,7 +54,7 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 }
 .hero-content p {
   font-size:15px; 
-  margin:0 0 5px 0;
+  margin:0 0 10px 0;
   font-weight:500;
 }
 
@@ -73,7 +80,6 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   width:250px; padding:30px; text-align:center;
   transition:transform 0.25s ease, box-shadow 0.25s ease;
 }
-.section-box:hover { transform:translateY(-5px); box-shadow:0 8px 25px rgba(0,0,0,0.2); }
 .section-box img { width:60px; margin-bottom:15px; }
 .section-box h2 { color:#6fa8dc; margin-bottom:10px; }
 .section-box p { font-size:15px; line-height:1.6; color:#555; }
@@ -92,7 +98,6 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 }
 .footer a { color:#ccc; }
 .footer p { margin:5px 0; }
-
 </style>
 </head>
 <body>
@@ -108,10 +113,39 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
     </div>
     <div class="nav-menu">
       <a href="#home" class="active">Home</a>
-      <div class="menu-item"><a href="about.html">교회소개</a></div>
-      <div class="menu-item"><a href="sermon.html">설교영상</a></div>
-      <div class="menu-item"><a href="notice.html">공지사항</a></div>
-      <div class="menu-item"><a href="community.html">커뮤니티</a></div>
+      
+      <div class="menu-item">
+        <a href="about.html">교회소개</a>
+        <div class="submenu">
+          <a href="history.html">교회 역사</a>
+          <a href="mission.html">사명과 비전</a>
+          <a href="staff.html">담임목사 및 교역자</a>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <a href="sermon.html">설교영상</a>
+        <div class="submenu">
+          <a href="sermon_weekly.html">주간 설교</a>
+          <a href="sermon_special.html">특별 설교</a>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <a href="notice.html">공지사항</a>
+        <div class="submenu">
+          <a href="event.html">행사 안내</a>
+          <a href="newsletter.html">주보</a>
+        </div>
+      </div>
+      
+      <div class="menu-item">
+        <a href="community.html">커뮤니티</a>
+        <div class="submenu">
+          <a href="gallery.html">사진 갤러리</a>
+          <a href="board.html">게시판</a>
+        </div>
+      </div>
     </div>
   </div>
 </nav>
@@ -120,8 +154,8 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 <div class="hero" id="home">
   <div class="overlay"></div>
   <div class="hero-content">
-    <h1>"하나님이 보시기에 기쁘신 교회"</h1> <!-- 슬로건, 손글씨폰트 -->
-    <p>대전대흥교회 청소년부</p> <!-- 교회 이름, 고딕체 -->
+    <h1>"하나님이 보시기에 기쁘신 교회"</h1>
+    <p>대전대흥교회 청소년부</p>
     <a href="http://www.dhchurch.org/" target="_blank" class="btn">대전대흥교회 바로가기</a>
   </div>
 </div>
