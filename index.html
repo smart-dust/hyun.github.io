@@ -42,7 +42,7 @@ nav {
 
 .nav-container {
   display: flex;
-  justify-content: space-between; /* 왼쪽 로고 + 중앙 메뉴 */
+  justify-content: space-between; 
   align-items: center;
   width: 100%;
   max-width: 1200px;
@@ -50,12 +50,12 @@ nav {
   padding: 0;
 }
 
-/* 왼쪽 로고 + 이름 */
+/* 왼쪽 로고 + 이름 (왼쪽 끝) */
 .nav-left {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: 0; /* 좌측 여백 제거 */
+  margin-left: 0 !important;  /* 확실히 왼쪽 끝 */
 }
 .nav-left img {
   height: 45px;
@@ -127,13 +127,16 @@ nav {
   background: rgba(255,255,255,0.1);
 }
 
+/* hero 배경 이미지 */
 .hero {
-  height: calc(100vh - 70px); /* 메뉴바 높이만큼 제외 */
+  height: calc(100vh - 60px); /* 메뉴바 높이 제외 */
   display: flex;
   align-items: center;      /* 세로 중앙 정렬 */
   justify-content: center;  /* 가로 중앙 정렬 */
-  margin: 0;                /* 불필요한 상단 여백 제거 */
-  background: url('church.png') center top/cover no-repeat; /* 배경 상단 붙이기 */
+  margin: 0;                /* 상단 여백 제거 */
+  background: url('church.png') top center/cover no-repeat; /* 상단 붙이기 */
+  position: relative;
+  color: white;
 }
 
 .overlay {
@@ -145,7 +148,12 @@ nav {
 
 .hero-content {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 */
+  align-items: center;     /* 가로 중앙 */
   text-align: center;
+  height: 100%;
 }
 
 .hero h1 {
@@ -155,9 +163,6 @@ nav {
 
 .logo {
   height: 70px;
-}
-  body {
-  padding-top: 70px; /* 메뉴바 높이에 맞춰 Home 위치 조정 */
 }
 
 /* 버튼 */
@@ -256,7 +261,7 @@ iframe {
   </div>
 </div>
 
-<!-- 교회소개 -->
+<!-- 이하 기존 섹션 그대로 유지 -->
 <section id="about">
   <div class="card">
     <h2>교회소개</h2>
@@ -264,7 +269,6 @@ iframe {
   </div>
 </section>
 
-<!-- 설교 -->
 <section id="sermon">
   <div class="card">
     <h2>설교영상</h2>
@@ -272,7 +276,6 @@ iframe {
   </div>
 </section>
 
-<!-- 공지 -->
 <section id="notice">
   <div class="card">
     <h2>공지사항</h2>
@@ -280,7 +283,6 @@ iframe {
   </div>
 </section>
 
-<!-- 커뮤니티 -->
 <section id="community">
   <div class="card">
     <h2>커뮤니티</h2>
