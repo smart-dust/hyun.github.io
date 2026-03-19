@@ -28,7 +28,6 @@ section {
 }
 
 /* ✅ 메뉴 */
-/* ================== 상단 네비 ================== */
 nav {
   position: fixed;
   top: 0;
@@ -82,13 +81,13 @@ nav {
   transition: transform 0.25s ease, background 0.25s ease;
 }
 
-/* ================== 메인 메뉴 애니메이션 ================== */
+/* ================== 모든 메인 메뉴 hover/선택 애니메이션 ================== */
 .nav-menu a:hover,
 .nav-menu a.active,
 .menu-item:hover > a,
 .menu-item.active > a {
   transform: translateY(-2px); /* 살짝 떠오르기 */
-  background: rgba(255,255,255,0.08); /* 색상 없이 강조 */
+  background: rgba(255,255,255,0.08); /* 불투명도 강조 */
 }
 
 /* ================== 서브 메뉴 ================== */
@@ -124,7 +123,7 @@ nav {
   transition: background 0.2s ease, transform 0.2s ease;
 }
 
-/* ================== 서브 메뉴 호버 ================== */
+/* ================== 서브 메뉴 hover ================== */
 .submenu a:hover,
 .submenu a.active {
   transform: translateY(-2px); /* 살짝 떠오르기 */
