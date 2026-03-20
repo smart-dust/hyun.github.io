@@ -1,64 +1,132 @@
-/* ===== 메인 컬러 설정 ===== */
+/* ===== 기본 스타일 ===== */
+body { 
+  margin:0; 
+  font-family:'Noto Sans KR', 'Apple SD Gothic Neo', Arial, sans-serif; 
+  background:#f5f7fa; 
+  color:#333; 
+}
+html { scroll-behavior:smooth; }
+a { text-decoration:none; }
+
+/* ===== 메뉴 & 서브메뉴 ===== */
+nav { 
+  position:fixed; 
+  top:0; width:100%; 
+  background:rgba(0,0,0,0.85); 
+  z-index:1000; 
+  box-shadow:0 2px 6px rgba(0,0,0,0.2); 
+}
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; width:auto; }
+.nav-title { color:white; font-weight:400; font-size:18px; }
+.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-menu a, .menu-item > a {
+  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
+  transition:transform 0.25s ease, background 0.25s ease;
+  text-decoration:none;
+}
+.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { 
+  transform:translateY(-2px); 
+  background:rgba(255,255,255,0.08); 
+}
+.menu-item { position:relative; }
+.submenu { 
+  position:absolute; top:100%; left:0; 
+  min-width:220px; max-width:260px; padding:10px 0; 
+  background:rgba(0,0,0,0.95); border-radius:12px; 
+  box-shadow:0 8px 20px rgba(0,0,0,0.3); 
+  opacity:0; visibility:hidden; transform:translateY(8px); 
+  transition:opacity 0.3s ease, transform 0.3s ease; 
+  pointer-events:none; z-index:1001; 
+}
+.submenu a { 
+  display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; 
+  transition:background 0.2s ease, transform 0.2s ease; 
+  text-decoration:none;
+}
+.submenu a:hover { 
+  transform:translateY(-2px); 
+  background:rgba(255,255,255,0.12); 
+}
+.menu-item:hover .submenu { 
+  opacity:1; 
+  visibility:visible; 
+  transform:translateY(0); 
+  pointer-events:auto; 
+}
+
+/* ===== 히어로 ===== */
+.hero {
+  position: relative;
+  height:100vh;
+  overflow: hidden;
+}
+.hero img {
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:translate(-50%, -50%);
+}
+.overlay {
+  position:absolute;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+.hero-content {
+  position: relative;
+  z-index:2;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+}
+.hero-content h1 {
+  font-family:'Nanum Brush Script', cursive;
+  font-size:70px;
+  font-weight:300;
+}
+.hero-content p { margin-bottom:20px; }
+
+/* ===== 버튼 & 카드 애플 느낌 ===== */
 :root {
-  --main-color: #5c7fa3;    /* 카드 / 버튼 블루 */
-  --main-dark: #4a6b8c;     /* 버튼 hover */
+  --main-color: #5c7fa3;
+  --main-dark: #4a6b8c;
   --card-bg: #ffffff;
   --card-hover-bg: #f0f3f6;
 }
 
-/* ===== 버튼 스타일 ===== */
+/* 일반 버튼 */
 .btn {
   padding:12px 24px;
-  border-radius:999px; /* pill 형태 */
+  border-radius:999px;
   background: var(--main-color);
-  color: #fff;
+  color:#fff;
   font-weight:500;
   font-size:15px;
   transition: all 0.25s ease;
+  text-decoration:none;
 }
+.btn:hover { background: var(--main-dark); transform: scale(1.05); box-shadow:0 8px 16px rgba(0,0,0,0.15);}
+.btn:active { transform: scale(0.97); }
 
-.btn:hover {
-  background: var(--main-dark);
-  transform: scale(1.05);
-  box-shadow:0 8px 16px rgba(0,0,0,0.15);
-}
-
-.btn:active {
-  transform: scale(0.97);
-}
-
-/* 카카오 / 네이버 버튼 원래색 유지 */
-.btn.kakao {
-  background:#f7e600;
-  color:#222;
-}
-.btn.kakao:hover {
-  background:#ffe812;
-  transform: scale(1.03);
-  box-shadow:0 6px 12px rgba(0,0,0,0.1);
-}
+/* 카카오/네이버 버튼 원색 유지, 애플 느낌 제거 */
+.btn.kakao { background:#f7e600; color:#222; }
+.btn.kakao:hover { background:#ffe812; transform: scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.1);}
 .btn.kakao:active { transform: scale(0.97); }
 
-.btn.naver {
-  background:#03c75a;
-  color:#fff;
-}
-.btn.naver:hover {
-  background:#02b351;
-  transform: scale(1.03);
-  box-shadow:0 6px 12px rgba(0,0,0,0.1);
-}
+.btn.naver { background:#03c75a; color:#fff; }
+.btn.naver:hover { background:#02b351; transform: scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.1);}
 .btn.naver:active { transform: scale(0.97); }
 
-/* ===== 카드 스타일 ===== */
-.section-container {
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
-  gap:30px;
-  padding:60px 20px;
-}
-
+/* 카드 */
+.section-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:60px 20px;}
 .section-box {
   background: var(--card-bg);
   border-radius:20px;
@@ -69,37 +137,15 @@
   border-top:3px solid var(--main-color);
   border-left:3px solid var(--main-color);
   transition: all 0.35s ease, opacity 0.5s ease;
-  opacity:0; /* fade-in 시작 상태 */
+  opacity:0;
   transform: translateY(20px);
 }
+.section-box.visible { opacity:1; transform: translateY(0);}
+.section-box:hover { transform: translateY(-6px); box-shadow:0 10px 30px rgba(0,0,0,0.12); background: var(--card-hover-bg);}
+.section-box h2 { font-size:18px; margin-bottom:10px; color:#1d1d1f; font-weight:600;}
+.section-box p { color:#6e6e73; font-size:14px; line-height:1.6; }
 
-/* 카드 hover */
-.section-box:hover {
-  transform: translateY(-6px);
-  box-shadow:0 10px 30px rgba(0,0,0,0.12);
-  background: var(--card-hover-bg);
-}
-
-/* 카드 fade-in 애니메이션 */
-.section-box.visible {
-  opacity:1;
-  transform: translateY(0);
-}
-
-/* 카드 제목 / 내용 */
-.section-box h2 {
-  font-size:18px;
-  margin-bottom:10px;
-  color:#1d1d1f; /* 검정 통일 */
-  font-weight:600;
-}
-.section-box p {
-  color:#6e6e73;
-  font-size:14px;
-  line-height:1.6;
-}
-
-/* ===== 지도 카드 ===== */
+/* 지도 카드 */
 .map-section {
   background: var(--card-bg);
   border-radius:20px;
@@ -113,36 +159,13 @@
   opacity:0;
   transform: translateY(20px);
 }
-
-.map-section.visible {
-  opacity:1;
-  transform: translateY(0);
-}
-
-.map-section h2 {
-  margin-bottom:15px;
-  font-size:22px;
-  color:#1d1d1f; /* 검정 */
-}
-
-.map-section p {
-  color:#6e6e73;
-  margin-bottom:25px;
-}
-
-/* 지도 iframe */
-.map-section iframe {
-  width:100%;
-  height:450px;
-  border-radius:15px;
-  border:none;
-  margin-bottom:20px;
-}
+.map-section.visible { opacity:1; transform: translateY(0);}
+.map-section h2 { margin-bottom:15px; font-size:22px; color:#1d1d1f; }
+.map-section p { color:#6e6e73; margin-bottom:25px; }
+.map-section iframe { width:100%; height:450px; border-radius:15px; border:none; margin-bottom:20px; }
 
 /* 지도 버튼 간격 */
-.map-buttons {
-  display:flex;
-  justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
-}
+.map-buttons { display:flex; justify-content:center; gap:20px; flex-wrap:wrap; }
+
+/* 하단 */
+.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center;}
