@@ -4,27 +4,26 @@
 <meta charset="utf-8">
 <title>교회소개</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin:0;
-  font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background:linear-gradient(to bottom,#f8fafc,#eef3f8);
+  font-family:'Noto Sans KR',sans-serif;
+  background:linear-gradient(to bottom,#ffffff,#f3f7fb);
   color:#333;
 }
 html { scroll-behavior:smooth; }
-a { text-decoration:none; }
 
-/* ===== 메뉴 ===== */
+/* ===== 메뉴 (밝게) ===== */
 nav {
   position:fixed;
   top:0;
   width:100%;
-  background:rgba(20,30,50,0.95);
-  backdrop-filter:blur(6px);
+  background:rgba(255,255,255,0.9);
+  backdrop-filter:blur(8px);
+  box-shadow:0 2px 10px rgba(0,0,0,0.08);
   z-index:1000;
-  box-shadow:0 2px 10px rgba(0,0,0,0.3);
 }
 .nav-container {
   display:flex;
@@ -32,92 +31,92 @@ nav {
   align-items:center;
   padding:12px 40px;
 }
-.nav-home {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
-.nav-logo { height:36px; }
-.nav-title {
-  color:white;
-  font-size:18px;
-  letter-spacing:0.5px;
-}
-
-/* 메뉴 */
-.nav-menu {
-  display:flex;
-  gap:25px;
-  align-items:center;
-}
+.nav-title { color:#333; font-weight:600; }
 .nav-menu a, .menu-item > a {
-  color:white;
+  color:#333;
   font-weight:600;
   padding:10px 14px;
   border-radius:6px;
-  transition:0.25s;
 }
-.nav-menu a:hover,
-.menu-item > a:hover {
-  background:rgba(255,255,255,0.1);
-}
+.nav-menu a:hover { background:#eef3f8; }
 
-/* ===== 서브메뉴 ===== */
+/* 서브메뉴 */
 .menu-item { position:relative; }
-
 .submenu {
   position:absolute;
   top:100%;
   left:0;
   min-width:200px;
-  background:rgba(20,30,50,0.98);
+  background:white;
   border-radius:10px;
   padding:10px 0;
-  box-shadow:0 10px 25px rgba(0,0,0,0.4);
-
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
   opacity:0;
   visibility:hidden;
   transform:translateY(10px);
   transition:0.25s;
 }
-
 .menu-item:hover .submenu {
   opacity:1;
   visibility:visible;
   transform:translateY(0);
 }
+.submenu a { color:#333; padding:12px 18px; display:block; }
+.submenu a:hover { background:#f2f6fb; }
 
-.submenu a {
-  display:block;
-  padding:12px 18px;
+/* ===== 말씀 카드 ===== */
+.verse-box {
+  max-width:900px;
+  margin:110px auto 20px;
+  padding:30px;
+  background:linear-gradient(135deg,#6fa8dc,#8ec5ff);
   color:white;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
-.submenu a:hover {
-  background:rgba(255,255,255,0.1);
+.verse-box h3 {
+  font-family:'Nanum Brush Script',cursive;
+  font-size:32px;
+  margin-bottom:10px;
+}
+.verse-box p {
+  font-size:15px;
+  opacity:0.9;
 }
 
-/* ===== 카드 섹션 ===== */
+/* ===== 카드 ===== */
 .section {
   max-width:950px;
-  margin:110px auto 40px;
+  margin:30px auto;
   padding:40px;
   background:white;
   border-radius:18px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.08);
-  border-top:4px solid #c9a96e; /* 골드 포인트 */
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  border-top:4px solid #6fa8dc;
 }
-
 .section h2 {
   text-align:center;
-  color:#1e2a38;
+  color:#2c3e50;
   margin-bottom:20px;
-  font-weight:700;
 }
-
 .section p {
   text-align:center;
   color:#555;
   line-height:1.7;
+}
+
+/* ===== 영상 ===== */
+.video-wrapper {
+  margin-top:25px;
+  border-radius:14px;
+  overflow:hidden;
+}
+.video-wrapper iframe {
+  width:100%;
+  aspect-ratio:16/9;
+  border:0;
+  display:block;
 }
 
 /* ===== 표 ===== */
@@ -126,40 +125,33 @@ nav {
   border-collapse:collapse;
   margin-top:20px;
 }
-
 .staff-table th, .staff-table td,
 #worship-table th, #worship-table td {
-  border:1px solid #e2e6ea;
+  border:1px solid #e5eaf0;
   padding:12px;
   text-align:center;
 }
-
 .staff-table th, #worship-table th {
-  background:#1e2a38;
+  background:#6fa8dc;
   color:white;
-  font-weight:600;
 }
-
 .staff-table tr:hover td {
-  background:#f5f7fa;
+  background:#f4f8fc;
 }
 
-/* ===== footer (홈과 통일) ===== */
+/* ===== footer ===== */
 .footer {
-  background:#222;
-  color:#ccc;
+  background:#f0f4f8;
+  color:#555;
   padding:40px 20px;
   text-align:center;
-  font-size:14px;
 }
-.footer p { margin:5px 0; }
-
 </style>
 </head>
 
 <body>
 
-<!-- ===== 메뉴 ===== -->
+<!-- 메뉴 그대로 유지 -->
 <nav>
   <div class="nav-container">
     <a href="index.html" class="nav-home">
@@ -206,10 +198,23 @@ nav {
   </div>
 </nav>
 
+<!-- ✨ 말씀 카드 추가 -->
+<div class="verse-box">
+  <h3>“서로 친절하게 하며 불쌍히 여기며 서로 용서하기를…”</h3>
+  <p>에베소서 4:32</p>
+</div>
+
 <!-- ===== 교회소개 ===== -->
 <section id="mission" class="section">
   <h2>교회 소개</h2>
-  <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.</p>
+  <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.
+  담임목사 : 권신재 042-123-1234 청소년부 교역자 : 장세아 042-123-1235 </p>
+
+  <!-- 🎥 영상 추가 -->
+  <div class="video-wrapper">
+    <iframe src="https://www.youtube.com/embed/nD5G_htVfOY?rel=0&modestbranding=1" allowfullscreen></iframe>
+  </div>
+
 </section>
 
 <section class="section">
@@ -217,7 +222,6 @@ nav {
   <p>하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
 </section>
 
-<!-- ===== 예배 안내 ===== -->
 <section id="worship" class="section">
   <h2>예배 안내</h2>
   <table id="worship-table">
@@ -234,14 +238,10 @@ nav {
   </table>
 </section>
 
-<!-- ===== 학생 임원 ===== -->
 <section class="section">
   <h2>학생 임원</h2>
   <table class="staff-table">
-    <tr>
-      <th>이름</th>
-      <th>구분</th>
-    </tr>
+    <tr><th>이름</th><th>구분</th></tr>
     <tr><td>김도윤 (고1)</td><td>청소년부 회장</td></tr>
     <tr><td>곽승찬 (고1)</td><td>고등부 부회장</td></tr>
     <tr><td>김서윤 (중3)</td><td>중등부 부회장</td></tr>
@@ -249,15 +249,10 @@ nav {
   </table>
 </section>
 
-<!-- ===== 섬기는 사람들 ===== -->
 <section id="staff" class="section">
   <h2>섬기는 사람들</h2>
   <table class="staff-table">
-    <tr>
-      <th>이름</th>
-      <th>구분</th>
-      <th>담당반</th>
-    </tr>
+    <tr><th>이름</th><th>구분</th><th>담당반</th></tr>
     <tr><td>장세아 전도사</td><td>담당교역자</td><td></td></tr>
     <tr><td>김영삼 안수집사</td><td>부장교사</td><td></td></tr>
     <tr><td>김정숙 집사</td><td>교사</td><td>드보라</td></tr>
@@ -272,7 +267,6 @@ nav {
   </table>
 </section>
 
-<!-- ===== footer ===== -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
