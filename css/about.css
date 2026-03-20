@@ -2,7 +2,7 @@
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background: linear-gradient(160deg,#f0f4f8,#e2e6ed);
+  background: linear-gradient(160deg,#f4f7fa,#e9eff5);
   color:#333;
   line-height:1.6;
 }
@@ -168,7 +168,7 @@ nav {
 /* ===== 표 ===== */
 .table {
   width:100%;
-  table-layout:auto;
+  table-layout:auto; /* 컬럼 자동 맞춤 */
   border-collapse: collapse;
   margin:30px 0;
   border-radius:12px;
@@ -189,7 +189,8 @@ nav {
   padding:14px 10px;
   border:1px solid #507dbc;
   text-align:center;
-  user-select:none;
+  user-select:none; /* 헤더 선택 금지 */
+  cursor: default; /* 선택 불가 느낌 */
 }
 .table td {
   padding:12px 10px;
@@ -201,10 +202,9 @@ nav {
 }
 .table tr:nth-child(even) { background:#f7fafd; }
 .table tr:nth-child(odd) { background:#ffffff; }
-.table tr:hover {
+.table tr:hover td {
   background:#e6f0fb;
-  transform: translateY(-1px);
-  transition: background 0.3s ease, transform 0.3s ease;
+  transition: background 0.3s ease;
   cursor:pointer;
 }
 
@@ -236,4 +236,14 @@ nav {
 @keyframes fadeDown {
   from { opacity:0; transform: translateY(-20px); }
   to { opacity:1; transform: translateY(0); }
+}
+
+/* ===== 반응형 ===== */
+@media (max-width:1024px){
+  .table { font-size:15px; width:100%; }
+  .table th,.table td { padding:10px 8px; }
+  .hero-content h2 { font-size:30px; }
+  .hero-content p { font-size:16px; }
+  .section { padding:25px; }
+  .section h2 { font-size:22px; }
 }
