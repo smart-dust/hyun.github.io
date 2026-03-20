@@ -104,6 +104,18 @@
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
 
+  document.querySelectorAll('.section-box, .map-section').forEach(box => {
+    observer.observe(box);
+  });
+</script>
 </body>
 </html>
