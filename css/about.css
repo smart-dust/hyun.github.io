@@ -73,7 +73,7 @@ nav {
 /* ===== 히어로 ===== */
 .hero {
   position: relative;
-  height:40vh; /* 이미지 조금 작게 */
+  height:40vh;
   overflow: hidden;
   display:flex;
   justify-content:center;
@@ -107,20 +107,22 @@ nav {
   justify-content:center;
   align-items:center;
   text-align:center;
+  gap:8px; /* 말씀-출처 간격 조정 */
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
   font-size:48px;
-  font-weight:300; /* 얇게 */
+  font-weight:300;
   color:#fff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-  margin-bottom:10px;
+  margin:0;
 }
 .hero-content p {
   font-size:20px;
-  font-weight:300; /* 얇게 */
+  font-weight:300;
   color:#fff;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
+  margin:0;
 }
 
 /* ===== 섹션 ===== */
@@ -161,11 +163,11 @@ nav {
   border-top:6px solid #6fa8dc;
   opacity:0;
   transform: translateY(20px) scale(0.98);
-  transition: all 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  transition: all 0.4s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 .section-box:hover {
-  transform: translateY(-5px) scale(1.03);
-  box-shadow:0 14px 35px rgba(0,0,0,0.25);
+  transform: translateY(-4px); /* 과도한 확대 제거 */
+  box-shadow:0 10px 28px rgba(0,0,0,0.22);
   border-left-color:#4a90e2;
   border-top-color:#4a90e2;
 }
@@ -178,36 +180,29 @@ nav {
   font-family:'Noto Sans KR','Arial',sans-serif;
   font-size:15px;
   color:#222;
-  width:90%;        /* 표 전체 너비 */
-  table-layout: fixed; /* 컬럼 균등 */
+  width:90%;
+  table-layout: fixed;
   text-align:center;
 }
 .table th, .table td {
-  border:1px solid #c1d1e0; /* 내부 세로선 포함 */
+  border:1px solid #c1d1e0;
   padding:10px;
   text-align:center;
+  background:#fff; /* 배경 흰색 통일 */
 }
 .table th {
-  background:#6fa8dc;  /* 통일 색상 */
+  background:#6fa8dc;
   color:white;
   font-weight:600;
-  user-select:none; /* 선택 불가 */
+  user-select:none;
   cursor: default;
 }
-.table td {
-  background:#fdfdfd;
-  font-size:15px;
-  color:#111;
-}
-.table tr:nth-child(even) td { background:#f7faff; }
-.table tr:hover td { background:#e3f0ff; transition:0.3s; }
+.table td { font-size:15px; color:#111; }
+.table tr:nth-child(even) td { background:#fff; }
+.table tr:hover td { background:#f0f7ff; transition:0.3s; }
 
 /* ===== 학생임원 표만 가로 줄이기 ===== */
-#student-table {
-  width:80%;
-  margin:0 auto;
-  table-layout: fixed;
-}
+#student-table { width:80%; margin:0 auto; table-layout: fixed; }
 
 /* ===== 유튜브 ===== */
 .video-wrapper {
@@ -232,12 +227,6 @@ nav {
 }
 .footer p { margin:5px 0; }
 .footer a { color:#ccc; }
-
-/* ===== 애니메이션 ===== */
-@keyframes fadeDown {
-  from { opacity:0; transform: translateY(-20px); }
-  to { opacity:1; transform: translateY(0); }
-}
 
 /* ===== 반응형 ===== */
 @media (max-width:1024px){
