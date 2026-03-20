@@ -1,6 +1,4 @@
-/* ===== index.css ===== */
-
-/* 기본 스타일 */
+/* ===== 기본 스타일 ===== */
 body { 
   margin:0; 
   font-family:'Noto Sans KR', 'Apple SD Gothic Neo', Arial, sans-serif; 
@@ -47,10 +45,6 @@ nav {
   display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; 
   transition:background 0.2s ease, transform 0.2s ease; 
 }
-.submenu a:hover, .submenu a.active { 
-  transform:translateY(-2px); 
-  background:rgba(255,255,255,0.12); 
-}
 .menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
 /* ===== 히어로 섹션 (<img> 방식) ===== */
@@ -61,17 +55,15 @@ nav {
   overflow: hidden;
   text-align: center;
 }
-
 .hero img {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover; /* 이미지 비율 유지하며 전체 영역 채움 */
+  object-fit: cover;
   z-index: 0;
 }
-
 .overlay {
   position: absolute;
   width: 100%;
@@ -79,7 +71,6 @@ nav {
   background: rgba(0,0,0,0.5);
   z-index: 1;
 }
-
 .hero-content {
   position: relative;
   z-index: 2;
@@ -90,21 +81,19 @@ nav {
   height: 100%;
   color: white;
 }
-
 .hero-content h1 {
   font-family:'Nanum Brush Script', cursive;
   font-size: 70px;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
   margin: 0 0 10px 0;
 }
-
 .hero-content p {
   font-size: 16px;
   margin: 0 0 20px 0;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
-/* 버튼 스타일 */
+/* ===== 버튼 ===== */
 .btn {
   padding: 12px 20px;
   background: linear-gradient(135deg, #6fa8dc, #7fb8e0);
@@ -116,7 +105,6 @@ nav {
   position: relative;
   overflow: hidden;
 }
-
 .btn::after {
   content: '';
   position: absolute;
@@ -126,15 +114,17 @@ nav {
   opacity: 0;
   transition: opacity 0.3s ease;
 }
-
 .btn:hover::after { opacity: 1; }
 .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
 .btn:active { transform: translateY(1px); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
 
+.btn.kakao { background:#f7e600; color:black; }
+.btn.naver { background:#03c75a; }
+
 /* ===== 섹션 박스 ===== */
 .section-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:60px 20px; }
 .section-box {
-  background: linear-gradient(135deg, #ffffff, #eaf0f8);
+  background: #ffffff;
   border-radius:16px;
   box-shadow:0 6px 20px rgba(0,0,0,0.15);
   border-top:3px solid #4a90e2;
@@ -145,29 +135,10 @@ nav {
   overflow: hidden;
 }
 .section-box:hover {
-  transform: translateY(-10px) rotateZ(-1deg);
+  transform: translateY(-10px);
   box-shadow:0 12px 25px rgba(0,0,0,0.25);
-  background: linear-gradient(135deg, #ffffff, #d0e4f7);
+  background: #f0f7ff;
 }
-.section-box::before {
-  content:'';
-  position:absolute;
-  top:-50%;
-  left:-50%;
-  width:200%;
-  height:200%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.2), transparent 70%);
-  opacity:0;
-  transition:opacity 0.4s ease;
-  pointer-events:none;
-}
-.section-box:hover::before { opacity:1; }
-.section-box img { width:60px; margin-bottom:15px; transition: transform 0.3s ease; }
-.section-box:hover img { transform: scale(1.15); }
-.section-box h2 { color:#4a90e2; margin-bottom:10px; transition: color 0.3s ease; }
-.section-box:hover h2 { color:#1c6fd9; }
-.section-box p { font-size:15px; line-height:1.6; color:#555; transition: color 0.3s ease; }
-.section-box:hover p { color:#333; }
 
 /* ===== 지도 섹션 ===== */
 .map-section {
@@ -176,10 +147,8 @@ nav {
   padding:30px; max-width:700px; margin:40px auto;
 }
 .map-section iframe { width:100%; height:450px; border-radius:10px; border:none; }
-.map-section .btn:nth-child(1) { background:#f7e600; color:black; } /* 카카오 */
-.map-section .btn:nth-child(2) { background:#03c75a; } /* 네이버 */
 
-/* ===== 하단 정보란 ===== */
+/* ===== 푸터 ===== */
 .footer {
   background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px;
 }
