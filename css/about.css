@@ -2,8 +2,9 @@
 body {
   margin: 0;
   font-family: 'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background: linear-gradient(135deg,#e8eff5,#f0f4f8);
+  background: linear-gradient(145deg,#eaf1f8,#f7fafe);
   color: #333;
+  line-height: 1.6;
 }
 html { scroll-behavior: smooth; scroll-padding-top: 150px; }
 a { text-decoration: none; }
@@ -72,14 +73,14 @@ nav {
 /* ===== 히어로 섹션 ===== */
 .hero {
   position: relative;
-  height: 250px;
+  height: 200px; /* 이미지 축소 */
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
   color: white;
   background: url('../images/hero-bg.jpg') center/cover no-repeat;
-  padding-top: 160px;
+  padding-top: 180px; /* 말씀 위치 하향 조정 */
 }
 .hero::before {
   content:"";
@@ -96,22 +97,22 @@ nav {
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
-  font-size: 28px;
+  font-size: 36px; /* 폰트 확대 */
   font-weight: 400;
   line-height: 1.4;
   margin: 0 0 10px 0;
   text-shadow: 1px 1px 8px rgba(0,0,0,0.4);
 }
 .hero-content p {
-  font-size: 16px;
+  font-size: 18px;
   opacity: 0.9;
 }
 
 /* ===== 섹션 ===== */
 .section {
-  max-width: 950px;
-  margin: 50px auto 70px auto;
-  padding: 30px;
+  max-width: 850px; /* 여유 공간 확보 */
+  margin: 60px auto 80px auto;
+  padding: 40px;
   background: white;
   border-radius: 20px;
   box-shadow: 0 10px 25px rgba(0,0,0,0.08);
@@ -136,13 +137,13 @@ nav {
 .section h2 {
   text-align: center;
   color: #2a3b4d;
-  margin: 15px 0 25px 0;
+  margin: 20px 0 30px 0;
 }
 .section h2 span { color: #6fa8dc; }
 .section p {
   text-align: center;
   color: #555;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 /* ===== 유튜브 영상 ===== */
@@ -159,17 +160,14 @@ nav {
   display: block;
 }
 
-/* ===== 표 스타일 (새 디자인) ===== */
+/* ===== 표 스타일 (새롭게) ===== */
 .table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  margin-top: 20px;
-  border-radius: 12px;
-  overflow: hidden;
+  width: 90%; /* 폭 줄임 */
+  margin: 25px auto;
+  border-collapse: collapse;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  font-size: 15px;
-  color: #333;
+  font-size: 16px; /* 글자 확대 */
+  color: #000; /* 글자 검정 */
   opacity: 0;
   transform: translateY(20px) scale(0.98);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -181,17 +179,17 @@ nav {
 }
 
 .table th, .table td {
-  padding: 12px 15px;
+  padding: 14px 12px;
   text-align: center;
   vertical-align: middle;
-  border-bottom: 1px solid #d0d8e0;
+  border: 1px solid #6fa8dc; /* 모든 선 확실하게 */
 }
 
 .table th {
   background: #4a90e2;
-  color: white;
+  color: #fff;
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   position: relative;
 }
 
@@ -221,7 +219,7 @@ nav {
   background: white;
   border-radius: 12px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.12);
-  padding: 25px;
+  padding: 30px;
   text-align: center;
   margin-bottom: 30px;
   border-left: 6px solid #6fa8dc;
@@ -262,9 +260,10 @@ nav {
 
 /* ===== 반응형 ===== */
 @media (max-width: 1024px) {
-  .table th, .table td { padding: 10px 8px; font-size: 14px; }
-  .hero-content h2 { font-size: 24px; }
-  .hero-content p { font-size: 14px; }
+  .table { font-size: 15px; width: 100%; }
+  .table th, .table td { padding: 10px 8px; }
+  .hero-content h2 { font-size: 30px; }
+  .hero-content p { font-size: 16px; }
   .section { padding: 25px; }
-  .section h2 { font-size: 20px; }
+  .section h2 { font-size: 22px; }
 }
