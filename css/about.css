@@ -168,59 +168,43 @@ nav {
   border-top-color:#4a90e2;
 }
 
-/* ===== 표 (통일 색상, 컬럼 동일 너비) ===== */
-.table-wrapper {
-  overflow-x:auto;
-  margin:30px 0;
-  text-align:center;
-}
+/* ===== 표 통일 ===== */
+.table-wrapper { overflow-x:auto; margin:30px 0; text-align:center; }
 .table {
   margin:0 auto;
-  width:100%;
-  max-width:100%;
-  table-layout: fixed; /* 컬럼 동일 너비 */
   border-collapse: collapse;
   font-family:'Noto Sans KR','Arial',sans-serif;
   font-size:15px;
   color:#222;
+  width:90%;        /* 표 전체 너비 */
+  table-layout: fixed; /* 컬럼 균등 */
+  text-align:center;
 }
 .table th, .table td {
+  border:1px solid #c1d1e0; /* 내부 세로선 포함 */
+  padding:10px;
   text-align:center;
-  vertical-align:middle;
-  padding:10px 8px;
-  border:1px solid #d0d7de; /* 내부 세로선 */
 }
 .table th {
-  background:#6fa8dc;
+  background:#6fa8dc;  /* 통일 색상 */
   color:white;
   font-weight:600;
-  font-size:16px;
-  user-select:none;
-  cursor:default;
+  user-select:none; /* 선택 불가 */
+  cursor: default;
 }
 .table td {
   background:#fdfdfd;
   font-size:15px;
   color:#111;
 }
-.table tr:nth-child(even) td {
-  background:#f7faff;
-}
-.table tr:hover td {
-  background:#e3f0ff;
-  transition: background 0.3s ease;
-  cursor:pointer;
-}
-.table th:first-child { border-top-left-radius:12px; }
-.table th:last-child { border-top-right-radius:12px; }
-.table tr:last-child td:first-child { border-bottom-left-radius:12px; }
-.table tr:last-child td:last-child { border-bottom-right-radius:12px; }
+.table tr:nth-child(even) td { background:#f7faff; }
+.table tr:hover td { background:#e3f0ff; transition:0.3s; }
 
-/* ===== 학생임원 표만 가로 조금 줄이기 ===== */
+/* ===== 학생임원 표만 가로 줄이기 ===== */
 #student-table {
   width:80%;
-  table-layout: fixed;
   margin:0 auto;
+  table-layout: fixed;
 }
 
 /* ===== 유튜브 ===== */
