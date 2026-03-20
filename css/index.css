@@ -157,7 +157,7 @@ nav {
 
 /* 카드 클릭 시 하늘색 음영 */
 .section-box:active {
-  background: #d4e4f7;
+  background: #b5d7ff
   transform: translateY(-2px);
 }
 
@@ -185,3 +185,13 @@ nav {
 
 /* 지도 버튼 정렬, 간격 유지 */
 .map-buttons { display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; }
+
+/* ===== 하단 footer ===== */
+.footer {
+  background:#222;
+  color:#ccc;
+  padding:40px 20px;
+  text-align:center;
+}
+.footer p { margin:5px 0; }
+.footer a { color:#ccc; }
