@@ -10,7 +10,8 @@
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background: linear-gradient(to bottom,#f7f8fa,#ffffff);
+  background: linear-gradient(to bottom,#f7f9fc,#ffffff);
+  background-image: radial-gradient(circle at top left, rgba(175,210,230,0.1) 0%, transparent 50%), radial-gradient(circle at bottom right, rgba(240,220,180,0.05) 0%, transparent 60%);
   color:#333;
 }
 html { scroll-behavior:smooth; scroll-padding-top:80px; }
@@ -52,8 +53,8 @@ nav {
   max-width:900px;
   margin:140px auto 40px;
   padding:50px 35px;
-  background: linear-gradient(135deg,#a2c4c9,#8fbfc9); /* 부드러운 블루톤 */
-  color:white;
+  background: linear-gradient(135deg,#91c5e8,#b3daf0); /* 밝고 부드러운 톤 */
+  color:#1b2a35;
   border-radius:22px;
   text-align:center;
   box-shadow:0 14px 30px rgba(0,0,0,0.12);
@@ -62,10 +63,11 @@ nav {
 .verse-box h3 {
   font-family:'Nanum Brush Script',cursive;
   font-weight:500;
-  font-size:36px; /* 폰트 키움 */
-  margin-bottom:18px;
+  font-size:38px; /* 폰트 키움 */
+  margin-bottom:20px;
+  color:#0d1f2d;
 }
-.verse-box p { font-size:18px; opacity:0.95; }
+.verse-box p { font-size:18px; opacity:0.95; color:#0d1f2d; }
 
 /* ===== 본문 섹션 ===== */
 .section {
@@ -75,7 +77,7 @@ nav {
   background:white;
   border-radius:18px;
   box-shadow:0 12px 28px rgba(0,0,0,0.06);
-  border-top:4px solid #8fbfc9;
+  border-top:4px solid #91c5e8;
 }
 .section h2 {
   text-align:center;
@@ -93,6 +95,7 @@ nav {
 .section.education p {
   font-size:18px;
   font-weight:500;
+  color:#1a3b59; /* 포인트 컬러 */
 }
 
 /* ===== 유튜브 영상 ===== */
@@ -113,7 +116,8 @@ nav {
   font-size:16px;
   font-weight:500;
   margin-top:15px;
-  color:#3a3a3a;
+  margin-bottom:15px;
+  color:#1a3b59; /* 포인트 컬러 */
 }
 
 /* ===== 표 ===== */
@@ -128,7 +132,7 @@ nav {
   padding:12px;
   text-align:center;
 }
-.staff-table th, #worship-table th { background:#8fbfc9; color:white; }
+.staff-table th, #worship-table th { background:#91c5e8; color:white; }
 .staff-table tr:hover td { background:#f4f8fc; }
 
 /* ===== footer (홈페이지 통일) ===== */
@@ -220,11 +224,11 @@ html {
 
 <section id="worship" class="section">
   <h2>예배 안내</h2>
+  <p>“하나님은 영이시니 예배하는 자가 영과 진리로 예배할지니라.” 요한복음 4:24</p>
   <table id="worship-table">
     <tr><th>시간</th><th>장소</th><th>연령</th></tr>
     <tr><td>주일 11:00 ~ 12:00</td><td>대전대흥교회 교육선교관 2층</td><td>중·고등학생</td></tr>
   </table>
-  <p>“하나님은 영이시니 예배하는 자가 영과 진리로 예배할지니라.” 요한복음 4:24</p>
 </section>
 
 <section class="section">
