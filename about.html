@@ -10,10 +10,10 @@
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background: linear-gradient(to bottom,#f0f4f8,#ffffff);
+  background: linear-gradient(to bottom,#f7f8fa,#ffffff);
   color:#333;
 }
-html { scroll-behavior:smooth; scroll-padding-top:80px; } /* 메뉴바 높이만큼 offset */
+html { scroll-behavior:smooth; scroll-padding-top:80px; }
 a { text-decoration:none; }
 
 /* ===== 메뉴 (홈페이지 통일) ===== */
@@ -51,21 +51,21 @@ nav {
 .verse-box {
   max-width:900px;
   margin:140px auto 40px;
-  padding:40px 30px;
-  background: linear-gradient(135deg,#6fa8dc,#3a7bd5);
+  padding:50px 35px;
+  background: linear-gradient(135deg,#a2c4c9,#8fbfc9); /* 부드러운 블루톤 */
   color:white;
   border-radius:22px;
   text-align:center;
-  box-shadow:0 14px 30px rgba(0,0,0,0.15);
-  line-height:1.6;
+  box-shadow:0 14px 30px rgba(0,0,0,0.12);
+  line-height:1.7;
 }
 .verse-box h3 {
   font-family:'Nanum Brush Script',cursive;
-  font-weight:400; /* 두껍지 않게 */
-  font-size:30px;
-  margin-bottom:15px;
+  font-weight:500;
+  font-size:36px; /* 폰트 키움 */
+  margin-bottom:18px;
 }
-.verse-box p { font-size:16px; opacity:0.9; }
+.verse-box p { font-size:18px; opacity:0.95; }
 
 /* ===== 본문 섹션 ===== */
 .section {
@@ -74,8 +74,8 @@ nav {
   padding:45px 35px;
   background:white;
   border-radius:18px;
-  box-shadow:0 12px 30px rgba(0,0,0,0.07);
-  border-top:4px solid #3a7bd5;
+  box-shadow:0 12px 28px rgba(0,0,0,0.06);
+  border-top:4px solid #8fbfc9;
 }
 .section h2 {
   text-align:center;
@@ -86,6 +86,13 @@ nav {
   text-align:center;
   color:#555;
   line-height:1.8;
+  font-size:16px;
+}
+
+/* ===== 교육 주제 강조 ===== */
+.section.education p {
+  font-size:18px;
+  font-weight:500;
 }
 
 /* ===== 유튜브 영상 ===== */
@@ -101,6 +108,14 @@ nav {
   display:block;
 }
 
+/* ===== 예배 안내 강조 ===== */
+#worship p {
+  font-size:16px;
+  font-weight:500;
+  margin-top:15px;
+  color:#3a3a3a;
+}
+
 /* ===== 표 ===== */
 .staff-table, #worship-table {
   width:100%;
@@ -113,7 +128,7 @@ nav {
   padding:12px;
   text-align:center;
 }
-.staff-table th, #worship-table th { background:#3a7bd5; color:white; }
+.staff-table th, #worship-table th { background:#8fbfc9; color:white; }
 .staff-table tr:hover td { background:#f4f8fc; }
 
 /* ===== footer (홈페이지 통일) ===== */
@@ -198,9 +213,9 @@ html {
   </div>
 </section>
 
-<section class="section">
+<section class="section education">
   <h2>교육 주제</h2>
-  <p>하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
+  <p>하나님 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
 </section>
 
 <section id="worship" class="section">
@@ -209,6 +224,7 @@ html {
     <tr><th>시간</th><th>장소</th><th>연령</th></tr>
     <tr><td>주일 11:00 ~ 12:00</td><td>대전대흥교회 교육선교관 2층</td><td>중·고등학생</td></tr>
   </table>
+  <p>“하나님은 영이시니 예배하는 자가 영과 진리로 예배할지니라.” 요한복음 4:24</p>
 </section>
 
 <section class="section">
