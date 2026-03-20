@@ -108,6 +108,7 @@ nav {
   align-items:center;
   text-align:center;
   gap:4px;
+  height:100%;
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
@@ -152,6 +153,9 @@ nav {
   line-height:1.8;
 }
 
+/* ===== 교육주제 폰트 ===== */
+#education p { font-size:24px; line-height:1.6; }
+
 /* ===== 카드 ===== */
 .section-box {
   background: linear-gradient(145deg,#ffffff,#f4f7fb);
@@ -184,19 +188,19 @@ nav {
   text-align:center;
 }
 .table th, .table td {
-  border:1px solid #bbb;
+  border:1px solid #a0c4e8;
   padding:10px;
   text-align:center;
 }
 .table th {
-  background:#dce6f1;
-  color:#222;
+  background:#6fa8dc;  /* 파란계열, 헤더 */
+  color:white;
   font-weight:600;
   user-select:none;
   cursor: default;
 }
-.table td { font-size:15px; color:#111; background:#f8f9fb; }
-.table tr:hover td { background:#e0e8f5; transition:0.3s; }
+.table td { font-size:15px; color:#111; background:#e7f0fb; } /* 연한 파랑 계열, 표 배경 */
+.table tr:hover td { background:#d0e4fb; transition:0.3s; }
 
 /* 학생임원 표만 가로 줄이기 */
 #student-table { width:80%; margin:0 auto; table-layout: fixed; }
