@@ -73,7 +73,7 @@ nav {
 /* ===== 히어로 ===== */
 .hero {
   position: relative;
-  height:40vh;
+  height:35vh;
   overflow: hidden;
   display:flex;
   justify-content:center;
@@ -107,7 +107,7 @@ nav {
   justify-content:center;
   align-items:center;
   text-align:center;
-  gap:8px; /* 말씀-출처 간격 조정 */
+  gap:5px; /* 말씀-출처 간격 조정 */
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
