@@ -1,5 +1,7 @@
-/* ===== 기본 ===== */
-body.about {
+/* ===== about.css ===== */
+
+/* 기본 스타일 */
+body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
   background: linear-gradient(135deg,#f0f4f8,#e2e6ed);
@@ -9,54 +11,116 @@ html { scroll-behavior:smooth; scroll-padding-top:150px; }
 a { text-decoration:none; }
 
 /* ===== 메뉴 ===== */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+nav {
+  position:fixed; top:0; width:100%;
+  background:rgba(0,0,0,0.85); z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
+}
 .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
 .nav-home { display:flex; align-items:center; gap:10px; }
 .nav-logo { height:35px; width:auto; }
 .nav-title { color:white; font-weight:400; font-size:18px; }
 .nav-menu { display:flex; gap:25px; align-items:center; }
-.nav-menu a, .menu-item > a { color:white; font-weight:600; padding:10px 12px; border-radius:6px; transition:transform 0.25s ease, background 0.25s ease; }
-.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
+.nav-menu a, .menu-item > a {
+  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
+  transition:transform 0.25s ease, background 0.25s ease;
+}
+.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { 
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.08);
+}
+
+/* 서브메뉴 */
 .menu-item { position:relative; }
-.submenu { position:absolute; top:100%; left:0; min-width:220px; max-width:260px; padding:10px 0; background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001; }
-.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
-.submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
+.submenu {
+  position:absolute; top:100%; left:0;
+  min-width:220px; max-width:260px;
+  padding:10px 0;
+  background:rgba(0,0,0,0.95); border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
+  opacity:0; visibility:hidden; transform:translateY(8px);
+  transition:opacity 0.3s ease, transform 0.3s ease;
+  pointer-events:none; z-index:1001;
+}
+.submenu a {
+  display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px;
+  transition:background 0.2s ease, transform 0.2s ease;
+}
+.submenu a:hover, .submenu a.active {
+  transform:translateY(-2px); background:rgba(255,255,255,0.12);
+}
 .menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
-/* ===== Hero ===== */
-.about .hero {
+/* ===== 히어로 섹션 (상단 말씀) ===== */
+.hero {
   position:relative;
-  height:300px;
-  display:flex; justify-content:center; align-items:flex-end; /* 아래로 살짝 */
-  text-align:center;
-  color:white;
+  height:320px; /* 조금 더 크고 화면 상단에서 위치 보정 */
+  display:flex; justify-content:center; align-items:flex-start; /* 위쪽으로 이동 */
+  text-align:center; color:white;
   background: url('../images/hero-bg.jpg') center/cover no-repeat;
-  padding-bottom:40px; /* 메뉴바와 조금 띄움 */
+  padding-top:60px; /* 메뉴와 겹치지 않도록 */
 }
-.about .hero::before {
+.hero::before {
   content:""; position:absolute; top:0; left:0; width:100%; height:100%;
   background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.2));
 }
-.hero-content { position:relative; z-index:1; padding:20px; max-width:80%; }
-.hero-content h2 { font-family:'Nanum Brush Script', cursive; font-size:32px; font-weight:400; line-height:1.5; margin:0 0 10px 0; }
-.hero-content p { font-size:16px; opacity:0.9; margin:0; }
+.hero-content {
+  position:relative; z-index:1; padding:20px; max-width:80%;
+}
+.hero-content h2 {
+  font-family:'Nanum Brush Script', cursive;
+  font-size:36px; /* 조금 크게 */
+  font-weight:400; line-height:1.5;
+  margin:0 0 10px 0;
+}
+.hero-content p {
+  font-size:18px; /* 조금 크게 */
+  opacity:0.9; margin:0;
+  color:#ffffff; text-shadow:1px 1px 4px rgba(0,0,0,0.6);
+}
 
 /* ===== 섹션 ===== */
-.about .section { max-width:950px; margin:60px auto 70px auto; padding:35px; background:white; border-radius:18px; box-shadow:0 8px 25px rgba(0,0,0,0.06); border-top:4px solid #6fa8dc; }
-.about .section h2 { text-align:center; color:#2a3b4d; margin:15px 0 15px 0; }
-.about .section h2 span { color:#d4a373; } /* 골드포인트 */
-.about .section p { text-align:center; color:#555; line-height:1.7; }
-.about .section p.small { font-size:16px; }
+.section {
+  max-width:950px;
+  margin:60px auto 70px auto;
+  padding:35px;
+  background:white; border-radius:18px;
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
+  border-top:4px solid #6fa8dc; /* 포인트 색 */
+}
+.section h2 { text-align:center; color:#2a3b4d; margin:15px 0 15px 0; }
+.section h2 span { color:#d4a373; } /* 골드포인트 */
+.section p { text-align:center; color:#555; line-height:1.7; }
+.section p.small { font-size:20px; line-height:1.8; } /* 교육주제 내용 확대 */
 
-/* ===== 테이블 통일 ===== */
-.about .table { width:100%; border-collapse:collapse; margin-top:15px; }
-.about .table th, .about .table td { border:1px solid #e5eaf0; padding:12px; text-align:center; }
-.about .table th { background:#6fa8dc; color:white; }
-.about .table tr:hover td { background:#f4f8fc; }
+/* ===== 표 ===== */
+#worship-table, .staff-table {
+  width:100%; border-collapse:collapse; margin-top:15px;
+}
+#worship-table th, #worship-table td, .staff-table th, .staff-table td {
+  border:1px solid #e5eaf0;
+  padding:12px;
+  text-align:center;
+  width:33.33%; /* 칸 가로 너비 동일 */
+}
+#worship-table th, .staff-table th {
+  background:#6fa8dc; color:white;
+}
+#worship-table tr:hover td, .staff-table tr:hover td {
+  background:#f4f8fc;
+}
 
-/* ===== YouTube ===== */
+/* ===== YouTube 영상 ===== */
 .video-wrapper { margin-top:25px; border-radius:14px; overflow:hidden; }
 .video-wrapper iframe { width:100%; aspect-ratio:16/9; border:0; display:block; }
 
 /* ===== Footer ===== */
-.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; }
+.footer {
+  background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px;
+}
+.footer a { color:#ccc; }
+.footer p { margin:5px 0; }
+
+/* ===== 추가 포인트 색상 예시 ===== */
+.section { border-top:4px solid #f7e600; } /* 섹션 상단 포인트 색상 */
+#worship-table th, .staff-table th { background:#03c75a; } /* 표 헤더 포인트 색상 */
