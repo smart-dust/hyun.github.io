@@ -167,27 +167,31 @@ nav {
   border-top-color:#4a90e2;
 }
 
-/* ===== 애플 느낌 표 ===== */
+/* ===== 표 (애플 느낌, 내부 세로선 추가, 너비 글자맞춤) ===== */
 .table {
-  width:100%;
-  table-layout: fixed; /* 컬럼 너비 동일 */
-  border-collapse: separate;
-  border-spacing:0;
+  width:auto; /* 글자에 맞게 자동 */
+  max-width:100%;
+  table-layout:auto;
+  border-collapse: collapse;
   font-family:'Noto Sans KR','Arial',sans-serif;
   font-size:15px;
   color:#222;
-  background:#fdfdfd;
+  margin:30px 0;
+  box-shadow:0 2px 12px rgba(0,0,0,0.08);
   border-radius:12px;
   overflow:hidden;
-  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
-  margin:30px 0;
 }
 
 .table th, .table td {
   text-align:center;
   vertical-align:middle;
-  padding:14px 10px;
-  border-bottom:1px solid #e6eaf0; /* 내부 세로선 */
+  padding:12px 15px;
+  border-right:1px solid #e6eaf0; /* 내부 세로선 */
+  border-bottom:1px solid #e6eaf0;
+}
+
+.table th:last-child, .table td:last-child {
+  border-right:none;
 }
 
 .table th {
@@ -195,7 +199,7 @@ nav {
   color:white;
   font-weight:600;
   font-size:16px;
-  user-select:none; /* 선택 안됨 */
+  user-select:none; /* 선택 금지 */
   cursor:default;
 }
 
@@ -206,7 +210,7 @@ nav {
 }
 
 .table tr:nth-child(even) td {
-  background:#f7faff; /* 연한 파랑 */
+  background:#f7faff;
 }
 
 .table tr:hover td {
