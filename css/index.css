@@ -1,79 +1,93 @@
-/* ===== 기본 스타일 ===== */
+/* ===== 기본 ===== */
 body { 
   margin:0; 
-  font-family:'Noto Sans KR', 'Apple SD Gothic Neo', Arial, sans-serif; 
-  background:#f5f7fa; 
-  color:#333; 
+  font-family:-apple-system, BlinkMacSystemFont, 'Noto Sans KR', sans-serif;
+  background:#f5f5f7;
+  color:#1d1d1f;
 }
 html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
-/* ===== 메뉴 (절대 수정 안함 - 원본 유지) ===== */
+/* ===== 메뉴 (기존 유지 + 서브메뉴 복구) ===== */
 nav { 
   position:fixed; 
   top:0; width:100%; 
   background:rgba(0,0,0,0.85); 
   z-index:1000; 
-  box-shadow:0 2px 6px rgba(0,0,0,0.2); 
 }
 .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
 .nav-home { display:flex; align-items:center; gap:10px; }
-.nav-logo { height:35px; width:auto; }
-.nav-title { color:white; font-weight:400; font-size:18px; }
-.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-logo { height:35px; }
+.nav-title { color:white; font-size:18px; }
+
+.nav-menu { display:flex; gap:25px; }
 .nav-menu a, .menu-item > a {
-  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
-  transition:transform 0.25s ease, background 0.25s ease;
+  color:white;
+  padding:10px;
+  border-radius:6px;
+  transition:0.2s;
 }
-.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { 
-  transform:translateY(-2px); 
-  background:rgba(255,255,255,0.08); 
+.nav-menu a:hover, .menu-item > a:hover {
+  background:rgba(255,255,255,0.1);
 }
 
-/* 서브메뉴 */
+/* 👉 서브메뉴 복구 */
 .menu-item { position:relative; }
-.submenu { 
-  position:absolute; top:100%; left:0; 
-  min-width:220px; max-width:260px; padding:10px 0; 
-  background:rgba(0,0,0,0.95); border-radius:12px; 
-  box-shadow:0 8px 20px rgba(0,0,0,0.3); 
-  opacity:0; visibility:hidden; transform:translateY(8px); 
-  transition:opacity 0.3s ease, transform 0.3s ease; 
-  pointer-events:none; z-index:1001; 
+
+.submenu {
+  position:absolute;
+  top:100%;
+  left:0;
+  background:#1d1d1f;
+  border-radius:10px;
+  min-width:200px;
+  padding:8px 0;
+  opacity:0;
+  transform:translateY(10px);
+  transition:all 0.25s ease;
+  pointer-events:none;
 }
-.submenu a { 
-  display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; 
-  transition:background 0.2s ease, transform 0.2s ease; 
+
+.submenu a {
+  display:block;
+  padding:10px 18px;
+  color:#ccc;
+  font-size:14px;
 }
-.submenu a:hover { 
-  transform:translateY(-2px); 
-  background:rgba(255,255,255,0.12); 
+
+.submenu a:hover {
+  background:rgba(255,255,255,0.08);
+  color:white;
 }
-.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
+
+/* 👉 hover 시 자연스럽게 등장 */
+.menu-item:hover .submenu {
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
 
 /* ===== 히어로 ===== */
 .hero {
-  position: relative;
-  height: 100vh;
-  overflow: hidden;
+  position:relative;
+  height:100vh;
+  overflow:hidden;
 }
 .hero img {
-  position: absolute;
-  top:50%;
-  left:50%;
-  width:100%;
-  height:100%;
+  position:absolute;
+  top:50%; left:50%;
+  width:100%; height:100%;
   object-fit:cover;
-  transform:translate(-50%, -50%); /* 중앙 정렬 */
+  transform:translate(-50%, -50%);
 }
 .overlay {
   position:absolute;
-  width:100%;
-  height:100%;
+  width:100%; height:100%;
   background:rgba(0,0,0,0.45);
 }
+
 .hero-content {
-  position: relative;
+  position:relative;
   z-index:2;
   height:100%;
   display:flex;
@@ -82,112 +96,116 @@ nav {
   align-items:center;
   color:white;
 }
+
 .hero-content h1 {
-  font-family:'Nanum Brush Script', cursive;
-  font-size:70px;
-  font-weight:300;
+  font-size:64px;
+  font-weight:500;
+  letter-spacing:-1px;
   margin-bottom:15px;
 }
+
 .hero-content p {
+  font-size:18px;
+  opacity:0.85;
   margin-bottom:25px;
 }
 
-/* ===== 메인 컬러 통일 ===== */
-:root {
-  --main-color:#4a90e2;
+/* ===== 버튼 (애플 스타일) ===== */
+.btn {
+  padding:12px 24px;
+  border-radius:999px;
+  background:#0071e3;
+  color:white;
+  font-weight:500;
+  font-size:15px;
+  transition:all 0.2s ease;
 }
 
-/* ===== 버튼 ===== */
-.btn {
-  padding:12px 22px;
-  background:var(--main-color);
-  color:white;
-  border-radius:10px;
-  font-weight:700;
-  transition:all 0.25s ease;
-}
 .btn:hover {
-  transform:translateY(-3px);
-  box-shadow:0 8px 18px rgba(0,0,0,0.25);
-  background:#357ABD;
+  background:#005bb5;
 }
-.btn:active {
-  transform:translateY(1px);
-}
+
+/* 카카오 / 네이버 유지 */
+.btn.kakao { background:#f7e600; color:#222; }
+.btn.naver { background:#03c75a; }
 
 /* ===== 카드 ===== */
-.section-container { 
-  display:flex; flex-wrap:wrap; justify-content:center; 
-  gap:30px; padding:70px 20px; 
+.section-container {
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:30px;
+  padding:80px 20px;
 }
+
 .section-box {
-  background:#fff;
-  border-radius:16px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.15);
-  border-top:3px solid var(--main-color);
-  border-left:3px solid var(--main-color);
-  width:250px;
+  background:white;
+  border-radius:20px;
+  width:260px;
   padding:30px;
   text-align:center;
-  transition:0.35s;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  transition:all 0.25s ease;
 }
+
+/* 👉 애플 느낌 hover */
 .section-box:hover {
-  transform:translateY(-10px);
-  box-shadow:0 14px 30px rgba(0,0,0,0.25);
-  background:#f3f8ff;
+  transform:translateY(-6px);
+  box-shadow:0 10px 30px rgba(0,0,0,0.12);
 }
+
 .section-box h2 {
-  color:var(--main-color);
+  font-size:18px;
+  margin-bottom:10px;
+  color:#1d1d1f;
 }
+
 .section-box p {
+  color:#6e6e73;
+  font-size:14px;
   line-height:1.6;
 }
 
 /* ===== 지도 ===== */
 .map-section {
   background:white;
-  border-radius:16px;
-  box-shadow:0 6px 18px rgba(0,0,0,0.12);
-  border-top:3px solid var(--main-color);
-  border-left:3px solid var(--main-color);
+  border-radius:20px;
   padding:40px;
   max-width:750px;
   margin:60px auto;
-  transition:0.3s;
-}
-.map-section:hover {
-  transform:translateY(-5px);
-  box-shadow:0 12px 25px rgba(0,0,0,0.18);
-}
-.map-section h2 {
-  color:#333;
-  margin-bottom:15px;
-}
-.map-section p {
-  margin-bottom:20px;
-  color:#555;
-}
-.map-section iframe {
-  width:100%;
-  height:460px;
-  border-radius:12px;
-  border:none;
-  margin-bottom:25px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
 }
 
-/* ===== 길찾기 버튼 ===== */
+.map-section h2 {
+  margin-bottom:10px;
+  font-size:22px;
+}
+
+.map-section p {
+  color:#6e6e73;
+  margin-bottom:20px;
+}
+
+.map-section iframe {
+  width:100%;
+  height:450px;
+  border-radius:15px;
+  border:none;
+  margin-bottom:20px;
+}
+
+/* 버튼 간격 */
 .map-buttons {
   display:flex;
   justify-content:center;
-  gap:20px;
-  flex-wrap:wrap;
+  gap:15px;
 }
 
 /* ===== 푸터 ===== */
 .footer {
-  background:#222; 
-  color:#ccc; 
-  padding:45px 20px; 
+  background:#1d1d1f;
+  color:#aaa;
+  padding:40px 20px;
   text-align:center;
+  font-size:14px;
 }
-.footer p { margin:6px 0; }
