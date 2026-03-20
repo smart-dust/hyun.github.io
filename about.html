@@ -9,13 +9,13 @@
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background:linear-gradient(to bottom,#f5f6f8,#e8ebf0);
+  background: linear-gradient(135deg,#f0f4f8,#e2e6ed);
   color:#333;
 }
 html { scroll-behavior:smooth; scroll-padding-top:150px; }
 a { text-decoration:none; }
 
-/* ===== 메뉴바 ===== */
+/* ===== 메뉴바 (홈페이지 통일) ===== */
 nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
 .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
 .nav-home { display:flex; align-items:center; gap:10px; }
@@ -25,24 +25,23 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 .nav-menu a, .menu-item > a { color:white; font-weight:600; padding:10px 12px; border-radius:6px; transition:transform 0.25s ease, background 0.25s ease; }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
 .menu-item { position:relative; }
-.submenu { position:absolute; top:100%; left:50%; transform:translateX(-50%) translateY(8px); min-width:220px; max-width:260px; padding:10px 0; background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001; }
-.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; text-align:center; }
+.submenu { position:absolute; top:100%; left:0; min-width:220px; max-width:260px; padding:10px 0; background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001; }
+.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
 .submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
-.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); pointer-events:auto; }
+.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
-/* ===== Hero 영역 ===== */
+/* ===== 상단 Hero 말씀 ===== */
 .hero {
   position:relative;
-  height:300px;
+  height:280px;
   display:flex; justify-content:center; align-items:center;
   text-align:center;
   color:white;
-  background:url('hero-bg.jpg') center center/cover no-repeat;
-  margin-top:50px;
+  background: url('hero-bg.jpg') center center/cover no-repeat;
 }
 .hero::before {
   content:""; position:absolute; top:0; left:0; width:100%; height:100%;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(0,0,0,0.25));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.2));
 }
 .hero-content {
   position:relative; z-index:1;
@@ -53,33 +52,45 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   font-family:'Nanum Brush Script', cursive;
   font-size:32px; font-weight:400; line-height:1.5; margin:0 0 10px 0;
 }
-.hero-content p { font-size:15px; opacity:0.9; margin:0; }
+.hero-content p { font-size:16px; opacity:0.9; margin:0; }
 
 /* ===== 본문 섹션 ===== */
 .section {
   max-width:950px;
-  margin:60px auto;
+  margin:60px auto 60px auto;
   padding:35px;
   background:white;
   border-radius:18px;
-  box-shadow:0 8px 25px rgba(0,0,0,0.08);
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
   border-top:4px solid #6fa8dc;
 }
-.section + .section { margin-top:50px; } /* 카드 간 간격 */
 .section h2 {
   text-align:center;
   color:#2a3b4d;
-  margin:15px 0 10px 0;
+  margin:15px 0 15px 0;
 }
-.section h2 span { color:#d4a373; }
-.section p { text-align:center; color:#555; line-height:1.7; }
-.section p.small { font-size:15px; margin-bottom:25px; }
+.section h2 span { color:#d4a373; } /* 골드 포인트 */
+.section p {
+  text-align:center;
+  color:#555;
+  line-height:1.7;
+}
+.section p.small { font-size:16px; }
 
 /* ===== 유튜브 영상 ===== */
-.video-wrapper { margin-top:25px; border-radius:14px; overflow:hidden; }
-.video-wrapper iframe { width:100%; aspect-ratio:16/9; border:0; display:block; }
+.video-wrapper {
+  margin-top:25px;
+  border-radius:14px;
+  overflow:hidden;
+}
+.video-wrapper iframe {
+  width:100%;
+  aspect-ratio:16/9;
+  border:0;
+  display:block;
+}
 
-/* ===== 예배 안내 ===== */
+/* ===== 예배 안내 표 ===== */
 #worship-table { width:100%; border-collapse:collapse; margin-top:15px; }
 #worship-table th, #worship-table td { border:1px solid #e5eaf0; padding:14px; text-align:center; }
 #worship-table th { background:#6fa8dc; color:white; }
@@ -94,11 +105,23 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 /* ===== 중앙 스크롤 정렬 ===== */
 html:target { scroll-margin-top:150px; }
 
+/* ===== footer ===== */
+.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; }
+
+/* ===== 교육주제 폰트 확대 ===== */
+#education p { font-size:24px; line-height:1.6; }
+
+/* ===== 카드 여백/간격 통일 ===== */
+.section { margin-bottom:70px; }
+
+/* ===== 색상 포인트 ===== */
+.section h2 span { color:#d4a373; }
 </style>
 </head>
 
 <body>
 
+<!-- ===== 메뉴 ===== -->
 <nav>
   <div class="nav-container">
     <a href="index.html" class="nav-home">
@@ -140,7 +163,7 @@ html:target { scroll-margin-top:150px; }
   </div>
 </nav>
 
-<!-- Hero -->
+<!-- ===== Hero ===== -->
 <div class="hero">
   <div class="hero-content">
     <h2>“서로 친절하게 하며 불쌍히 여기며 서로 용서하기를…”</h2>
@@ -151,24 +174,21 @@ html:target { scroll-margin-top:150px; }
 <section id="mission" class="section">
   <h2>교회 소개</h2>
   <p class="small">
-    대전 대흥교회는 대한예수교장로회(통합)에 소속된 건강한 교회입니다. 대전 대흥교회 청소년부는 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체로 하나님 나라의 확장을 위해 힘써 일하는 교회입니다. 중·고등학생이라면 누구나 함께 예배할 수 있습니다.
-  </p>
-  <p class="small">
-    담임목사 : 권신재 &nbsp; 청소년부 예배 문의 : 장세아 042-123-1234
+  대전 대흥교회는 대한예수교장로회(통합)에 소속된 건강한 교회입니다. 대전 대흥교회 청소년부는 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체로 하나님 나라의 확장을 위해 힘써 일하는 교회입니다. 중·고등학생이라면 누구나 함께 예배할 수 있습니다.<br>
+  담임목사 : 권신재 &nbsp; 청소년부 예배 문의 : 장세아 042-123-1234
   </p>
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/nD5G_htVfOY?rel=0&modestbranding=1" allowfullscreen></iframe>
   </div>
 </section>
 
-<section class="section">
+<section id="education" class="section">
   <h2>교육 주제</h2>
-  <p style="font-size:26px;">하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
+  <p>하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
 </section>
 
 <section id="worship" class="section">
   <h2>예배 안내</h2>
-  <p style="font-size:16px; margin-bottom:10px;">“하나님은 영이시니 예배하는 자가 영과 진리로 예배할지니라.” (요한복음 4:24)</p>
   <table id="worship-table">
     <tr><th>장소</th><th>시간</th><th>연령</th></tr>
     <tr><td>대전대흥교회 교육선교관 2층</td><td>주일 11:00 ~ 12:00</td><td>중·고등학생</td></tr>
