@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <title>대전대흥교회 청소년부</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/index.css">
+<link rel="stylesheet" href="css/index.css"> <!-- 카드/버튼 스타일 포함 -->
 </head>
 <body>
 
@@ -13,13 +13,12 @@
   <div class="nav-container">
     <div class="nav-left">
       <a href="#home" class="nav-home">
-        <img src="images/logo.png" class="nav-logo" alt="로고">
+        <img src="images/logo.png" class="nav-logo">
         <span class="nav-title">대전대흥교회 청소년부</span>
       </a>
     </div>
     <div class="nav-menu">
       <a href="#home" class="active">Home</a>
-      
       <div class="menu-item">
         <a href="about.html">교회소개</a>
         <div class="submenu">
@@ -28,7 +27,6 @@
           <a href="about.html#staff">섬기는 사람들</a>
         </div>
       </div>
-      
       <div class="menu-item">
         <a href="sermon.html">설교</a>
         <div class="submenu">
@@ -36,7 +34,6 @@
           <a href="sermon.html#2">공과공부</a>
         </div>
       </div>
-      
       <div class="menu-item">
         <a href="notice.html">공지사항</a>
         <div class="submenu">
@@ -44,7 +41,6 @@
           <a href="notice.html#2">주보</a>
         </div>
       </div>
-      
       <div class="menu-item">
         <a href="community.html">커뮤니티</a>
         <div class="submenu">
@@ -56,10 +52,10 @@
   </div>
 </nav>
 
-<!-- 히어로 섹션 -->
+<!-- 히어로 -->
 <div class="hero" id="home">
-  <img src="images/church.png" alt="교회 이미지">
   <div class="overlay"></div>
+  <img src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="church">
   <div class="hero-content">
     <h1>"하나님이 보시기에 기쁘신 교회"</h1>
     <p>대전대흥교회 청소년부</p>
@@ -87,23 +83,25 @@
   </div>
 </section>
 
-<!-- 지도 섹션 -->
+<!-- 지도 -->
 <section class="map-section">
   <h2>오시는 길</h2>
   <p>대전대흥교회 교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
   <iframe src="https://www.google.com/maps?q=대전광역시+중구+충무로+11번길+43&output=embed"></iframe>
-<div class="map-buttons">
-  <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="btn kakao">카카오 길찾기</a>
-  <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" target="_blank" class="btn naver">네이버 길찾기</a>
-</div>
+  <div class="map-buttons">
+    <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="btn kakao">카카오 길찾기</a>
+    <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" target="_blank" class="btn naver">네이버 길찾기</a>
+  </div>
 </section>
 
-<!-- 푸터 -->
+<!-- 하단 -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
+
+<!-- JS: 카드 fade-in -->
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -117,5 +115,6 @@
     observer.observe(box);
   });
 </script>
+
 </body>
 </html>
