@@ -147,8 +147,8 @@ nav {
   padding:30px;
   text-align:center;
   transition:transform 0.25s ease, box-shadow 0.25s ease;
-  border-top:4px solid #6fa8dc; /* 하늘색 포인트 */
-}
+  border-top:4px solid 
+    
 .section-box img { width:60px; margin-bottom:15px; }
 .section-box h2 { color:#6fa8dc; margin-bottom:10px; }
 .section-box p { font-size:15px; line-height:1.6; color:#555; }
