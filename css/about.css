@@ -5,7 +5,6 @@ body {
   background: linear-gradient(160deg,#f7f9fc,#e5e9f1);
   color:#333;
   line-height:1.6;
-  overflow-x:hidden;
 }
 html { scroll-behavior: smooth; scroll-padding-top: 150px; }
 a { text-decoration: none; }
@@ -136,17 +135,7 @@ nav {
   box-shadow:0 10px 28px rgba(0,0,0,0.08);
   border-left:6px solid #6fa8dc;
   border-top:6px solid #6fa8dc;
-  opacity:0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s forwards;
-  animation-delay:0.1s;
-}
-.section:nth-child(2){ animation-delay:0.2s; }
-.section:nth-child(3){ animation-delay:0.3s; }
-.section:nth-child(4){ animation-delay:0.4s; }
-.section:nth-child(5){ animation-delay:0.5s; }
-@keyframes fadeInUp {
-  to { opacity:1; transform:translateY(0); }
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .section:hover {
   transform: translateY(-2px) scale(1.005);
@@ -182,9 +171,6 @@ nav {
   border-left:6px solid #6fa8dc;
   border-top:6px solid #6fa8dc;
   transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-  opacity:0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.6s forwards;
 }
 .section-box:hover {
   transform: translateY(-2px) scale(1.005);
@@ -207,7 +193,7 @@ nav {
   background:#fff;
 }
 .table th, .table td {
-  border:1px solid #bbb;
+  border:1px solid #bbb; /* 내부외부 회색 선 통일 */
   padding:10px;
   text-align:center;
 }
