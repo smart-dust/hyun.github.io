@@ -73,14 +73,14 @@ nav {
 /* ===== 히어로 섹션 ===== */
 .hero {
   position: relative;
-  height: 200px; /* 이미지 축소 */
+  height: 200px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
   color: white;
   background: url('../images/hero-bg.jpg') center/cover no-repeat;
-  padding-top: 180px; /* 말씀 위치 하향 조정 */
+  padding-top: 180px;
 }
 .hero::before {
   content:"";
@@ -97,7 +97,7 @@ nav {
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
-  font-size: 36px; /* 폰트 확대 */
+  font-size: 36px;
   font-weight: 400;
   line-height: 1.4;
   margin: 0 0 10px 0;
@@ -110,7 +110,7 @@ nav {
 
 /* ===== 섹션 ===== */
 .section {
-  max-width: 850px; /* 여유 공간 확보 */
+  max-width: 850px;
   margin: 60px auto 80px auto;
   padding: 40px;
   background: white;
@@ -160,14 +160,17 @@ nav {
   display: block;
 }
 
-/* ===== 표 스타일 (새롭게) ===== */
+/* ===== 표 스타일 (컬럼 균등, 현대적 디자인) ===== */
 .table {
-  width: 90%; /* 폭 줄임 */
-  margin: 25px auto;
+  width: 100%;
+  table-layout: fixed;
   border-collapse: collapse;
+  margin: 25px 0;
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-  font-size: 16px; /* 글자 확대 */
-  color: #000; /* 글자 검정 */
+  font-size: 16px;
+  color: #000;
   opacity: 0;
   transform: translateY(20px) scale(0.98);
   transition: opacity 0.6s ease, transform 0.6s ease;
@@ -178,30 +181,22 @@ nav {
   transform: translateY(0) scale(1);
 }
 
-.table th, .table td {
-  padding: 14px 12px;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid #6fa8dc; /* 모든 선 확실하게 */
-}
-
 .table th {
   background: #4a90e2;
   color: #fff;
   font-weight: 600;
   font-size: 16px;
-  position: relative;
+  padding: 14px 10px;
+  border: 1px solid #6fa8dc;
+  text-align: center;
 }
 
-.table th::after {
-  content: "";
-  display: block;
-  height: 3px;
-  background: rgba(255,255,255,0.3);
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
+.table td {
+  padding: 12px 10px;
+  border: 1px solid #6fa8dc;
+  text-align: center;
+  vertical-align: middle;
+  font-size: 15px;
 }
 
 .table tr:nth-child(even) { background: #f4f7fb; }
