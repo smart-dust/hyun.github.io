@@ -77,13 +77,13 @@ nav {
 /* ===== 상단 히어로 ===== */
 .hero {
   position: relative;
-  height: 400px;
+  height: 250px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
   color: white;
-  background: url('../img/hero-bg.jpg') center/cover no-repeat;
+  background: url('images/hero-bg.jpg') center/cover no-repeat;
   padding-top: 130px;
 }
 .hero::before {
