@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background: linear-gradient(135deg,#f0f4f8,#e2e6ed);
+  background: #f0f4f8;
   color: #333;
 }
 html { scroll-behavior: smooth; scroll-padding-top: 150px; }
@@ -16,6 +16,7 @@ nav {
   background: rgba(0,0,0,0.85);
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  transition: background 0.3s;
 }
 .nav-container {
   display: flex;
@@ -25,17 +26,17 @@ nav {
 }
 .nav-home { display: flex; align-items: center; gap: 10px; }
 .nav-logo { height: 35px; width: auto; }
-.nav-title { color: white; font-weight: 400; font-size: 18px; }
+.nav-title { color: white; font-weight: 500; font-size: 18px; }
 .nav-menu { display: flex; gap: 25px; align-items: center; }
 .nav-menu a, .menu-item > a {
   color: white; font-weight: 600;
   padding: 10px 12px;
-  border-radius: 6px;
-  transition: transform 0.25s ease, background 0.25s ease;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background 0.3s ease;
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
   transform: translateY(-2px);
-  background: rgba(255,255,255,0.08);
+  background: rgba(255,255,255,0.15);
 }
 .menu-item { position: relative; }
 .submenu {
@@ -43,14 +44,13 @@ nav {
   top: 100%;
   left: 0;
   min-width: 220px;
-  max-width: 260px;
   padding: 10px 0;
   background: rgba(0,0,0,0.95);
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.3);
   opacity: 0;
   visibility: hidden;
-  transform: translateY(8px);
+  transform: translateY(10px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   pointer-events: none;
   z-index: 1001;
@@ -61,11 +61,7 @@ nav {
   color: white;
   font-weight: 400;
   border-radius: 6px;
-  transition: background 0.2s ease, transform 0.2s ease;
-}
-.submenu a:hover, .submenu a.active {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,0.12);
+  transition: background 0.2s ease;
 }
 .menu-item:hover .submenu {
   opacity: 1;
@@ -77,55 +73,55 @@ nav {
 /* ===== 히어로 섹션 ===== */
 .hero {
   position: relative;
-  height: 400px;
+  height: 300px; /* 높이 줄임 */
   display: flex;
   justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   text-align: center;
   color: white;
-  /* 사진 경로 문제 해결: 절대경로/상대경로 확인 */
   background: url('../images/hero-bg.jpg') center/cover no-repeat;
-  padding-top: 130px;
 }
 .hero::before {
   content:"";
   position: absolute;
   top:0; left:0; width:100%; height:100%;
-  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.2));
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.25));
 }
 .hero-content {
   position: relative;
   z-index: 1;
   padding: 20px;
   max-width: 80%;
+  animation: fadeDown 1s ease forwards;
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 400;
-  line-height: 1.5;
+  line-height: 1.4;
   margin: 0 0 10px 0;
+  text-shadow: 1px 1px 8px rgba(0,0,0,0.4);
 }
 .hero-content p {
-  font-size: 18px;
+  font-size: 16px;
   opacity: 0.9;
-  margin: 0;
 }
 
 /* ===== 섹션 ===== */
 .section {
   max-width: 950px;
-  margin: 60px auto 70px auto;
-  padding: 35px;
+  margin: 50px auto 70px auto;
+  padding: 30px;
   background: white;
-  border-radius: 18px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   border-top: 4px solid #6fa8dc;
+  animation: fadeUp 0.8s ease forwards;
 }
 .section h2 {
   text-align: center;
   color: #2a3b4d;
-  margin: 15px 0 15px 0;
+  margin: 15px 0 25px 0;
 }
 .section h2 span { color: #6fa8dc; }
 .section p {
@@ -133,13 +129,13 @@ nav {
   color: #555;
   line-height: 1.7;
 }
-.section p.small { font-size: 16px; }
 
 /* ===== 유튜브 영상 ===== */
 .video-wrapper {
   margin-top: 25px;
   border-radius: 14px;
   overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 .video-wrapper iframe {
   width: 100%;
@@ -151,32 +147,36 @@ nav {
 /* ===== 테이블 스타일 (.table) ===== */
 .table {
   width: 100%;
-  border-collapse: collapse;
-  margin-top: 15px;
-  table-layout: fixed; /* 열 너비 균등 */
-  border: 1px solid #6fa8dc; /* 테두리 강조 */
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-top: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
 }
 .table th, .table td {
-  border: 1px solid #6fa8dc; /* 테두리 동일 */
-  padding: 14px;
+  padding: 14px 10px;
   text-align: center;
-  word-wrap: break-word;
+  border-bottom: 1px solid #e0e6ed;
 }
 .table th {
   background: #6fa8dc;
   color: white;
   font-weight: 600;
+  position: sticky;
+  top: 0;
 }
 .table tr:hover td {
-  background: #f4f8fc;
+  background: rgba(111,168,220,0.1);
 }
+.table td:first-child { text-align: left; }
 
-/* ===== 카드 스타일 및 효과 ===== */
+/* ===== 카드 스타일 및 애니메이션 ===== */
 .section-box {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-  padding: 30px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.12);
+  padding: 25px;
   text-align: center;
   margin-bottom: 30px;
   border-top: 4px solid #6fa8dc;
@@ -189,13 +189,13 @@ nav {
 .section-box:focus,
 .section-box.selected {
   transform: translateY(-5px) scale(1.03);
-  box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
   border-top-color: #4a90e2;
   cursor: pointer;
 }
 
 /* ===== 교육 주제 폰트 확대 ===== */
-#education p { font-size: 24px; line-height: 1.6; }
+#education p { font-size: 22px; line-height: 1.6; }
 
 /* ===== 하단 footer ===== */
 .footer {
@@ -207,7 +207,21 @@ nav {
 .footer p { margin: 5px 0; }
 .footer a { color: #ccc; }
 
-/* ===== 카드 애니메이션 ===== */
+/* ===== 애니메이션 ===== */
 @keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 768px) {
+  .hero { height: 220px; }
+  .hero-content h2 { font-size: 24px; }
+  .nav-container { padding: 10px 15px; }
+  .section { padding: 20px; }
+  .table th, .table td { padding: 10px 8px; font-size: 14px; }
 }
