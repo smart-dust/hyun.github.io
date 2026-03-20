@@ -1,0 +1,58 @@
+/* about.html 전용 CSS */
+.about body, .about a { font-family: 'Noto Sans KR', Arial, sans-serif; text-decoration: none; }
+
+/* ===== 메뉴 ===== */
+.about nav { position: fixed; top:0; width:100%; background: rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
+.about .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.about .nav-logo { height:35px; width:auto; }
+
+/* ===== Hero ===== */
+.about .hero {
+  position: relative;
+  height: 320px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  text-align: center;
+  color: white;
+  background: url('../images/hero-bg.jpg') center/cover no-repeat;
+  padding-bottom: 40px;
+}
+
+.about .hero::before {
+  content:""; position:absolute; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.2));
+}
+
+/* ===== 섹션 카드 ===== */
+.about .section {
+  max-width: 950px;
+  margin: 60px auto 70px auto;
+  padding: 35px;
+  background:white;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+  border-top: 4px solid #6fa8dc;
+}
+
+.about .section h2 { text-align:center; color:#2a3b4d; margin:15px 0; }
+.about .section h2 span { color:#d4a373; }
+.about .section p { text-align:center; color:#555; line-height:1.7; }
+.about .section p.small { font-size:16px; }
+
+/* ===== 테이블 ===== */
+.about table { width:100%; border-collapse:collapse; margin-top:15px; }
+.about th, .about td { border:1px solid #e5eaf0; padding:14px; text-align:center; }
+.about th { background:#6fa8dc; color:white; }
+.about td:nth-child(1) { background:#fef7e0; }
+.about tr:hover td { background:#f4f8fc; }
+
+/* ===== 유튜브 영상 ===== */
+.about .video-wrapper { margin-top:25px; border-radius:14px; overflow:hidden; }
+.about .video-wrapper iframe { width:100%; aspect-ratio:16/9; border:0; display:block; }
+
+/* ===== 교육 주제 ===== */
+.about #education p { font-size:20px; line-height:1.6; }
+
+/* ===== Footer ===== */
+.about .footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; }
