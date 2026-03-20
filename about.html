@@ -10,18 +10,14 @@
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background:linear-gradient(to bottom, #f8fafc, #eaeef3);
+  background:linear-gradient(to bottom, #f7f8fb, #e7ebf0);
   color:#333;
 }
-html { scroll-behavior:smooth; }
+html { scroll-behavior:smooth; scroll-padding-top:80px; }
 a { text-decoration:none; }
 
-/* ===== 메뉴바 (원래 홈페이지 통일) ===== */
-nav {
-  position:fixed; top:0; width:100%;
-  background:rgba(0,0,0,0.85); z-index:1000;
-  box-shadow:0 2px 6px rgba(0,0,0,0.2);
-}
+/* ===== 메뉴바 (홈페이지 통일) ===== */
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
 .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
 .nav-home { display:flex; align-items:center; gap:10px; }
 .nav-logo { height:35px; width:auto; }
@@ -35,51 +31,52 @@ nav {
 .submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
 .menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
-/* ===== Hero 영역 (말씀 상단 배너) ===== */
+/* ===== Hero 말씀 영역 ===== */
 .hero {
   position:relative;
-  height:450px;
+  height:350px;
   display:flex; justify-content:center; align-items:center;
   text-align:center;
   color:white;
-  background:url('hero-bg.jpg') center/cover no-repeat;
+  background:url('hero-bg.jpg') center center/cover no-repeat;
 }
 .hero::before {
   content:""; position:absolute; top:0; left:0; width:100%; height:100%;
-  background:rgba(0,0,0,0.45); /* 오버레이 */
+  background:rgba(0,0,0,0.4); /* 오버레이 */
 }
 .hero-content {
   position:relative; z-index:1;
-  padding:0 20px;
+  padding:20px;
+  max-width:90%;
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
-  font-size:42px; line-height:1.4; margin-bottom:15px;
+  font-size:38px; line-height:1.5; margin:0 0 15px 0;
 }
 .hero-content p {
-  font-size:20px; opacity:0.9;
+  font-size:18px; opacity:0.9; margin:0;
 }
 
 /* ===== 본문 섹션 ===== */
 .section {
   max-width:950px;
-  margin:30px auto;
+  margin:40px auto;
   padding:40px;
   background:white;
   border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  box-shadow:0 8px 25px rgba(0,0,0,0.06);
   border-top:4px solid #6fa8dc;
 }
 .section h2 {
   text-align:center;
-  color:#2c3e50; /* 제목 포인트 컬러 */
-  margin-bottom:20px;
+  color:#3b3b3b;
+  margin:30px 0 25px 0;
 }
 .section p {
   text-align:center;
   color:#555;
-  line-height:1.7;
-  font-size:18px;
+  line-height:1.8;
+  font-size:19px;
 }
 
 /* ===== 유튜브 영상 ===== */
@@ -95,19 +92,32 @@ nav {
   display:block;
 }
 
-/* ===== 표 ===== */
-.staff-table, #worship-table { width:100%; border-collapse:collapse; margin-top:20px; }
-.staff-table th, .staff-table td, #worship-table th, #worship-table td { border:1px solid #e5eaf0; padding:12px; text-align:center; }
-.staff-table th, #worship-table th { background:#6fa8dc; color:white; }
+/* ===== 예배 안내 ===== */
+#worship-table { width:100%; border-collapse:collapse; margin-top:15px; }
+#worship-table th, #worship-table td { border:1px solid #e5eaf0; padding:14px; text-align:center; }
+#worship-table th { background:#6fa8dc; color:white; }
+#worship-table tr:hover td { background:#f4f8fc; }
+
+/* ===== 표 제목 포인트 컬러 ===== */
+.section h2 span { color:#6fa8dc; }
+
+/* ===== 학생/교사 표 ===== */
+.staff-table { width:100%; border-collapse:collapse; margin-top:20px; }
+.staff-table th, .staff-table td { border:1px solid #e5eaf0; padding:12px; text-align:center; }
+.staff-table th { background:#6fa8dc; color:white; }
 .staff-table tr:hover td { background:#f4f8fc; }
 
-/* ===== footer (원래 홈페이지 통일) ===== */
+/* ===== footer (홈페이지 통일) ===== */
 .footer {
   background:#222;
   color:#ccc;
   padding:40px 20px;
   text-align:center;
 }
+
+/* ===== 중앙 스크롤 정렬 ===== */
+html:target { scroll-margin-top:150px; }
+
 </style>
 </head>
 
@@ -174,7 +184,6 @@ nav {
   <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.<br>
   담임목사 : 권신재 &nbsp; 청소년부 예배 문의 : 장세아 042-123-1234</p>
 
-  <!-- 🎥 유튜브 영상 -->
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/nD5G_htVfOY?rel=0&modestbranding=1" allowfullscreen></iframe>
   </div>
@@ -182,14 +191,14 @@ nav {
 
 <section class="section">
   <h2>교육 주제</h2>
-  <p style="font-size:20px;">하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
+  <p style="font-size:21px;">하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
 </section>
 
 <section id="worship" class="section">
   <h2>예배 안내</h2>
   <table id="worship-table">
-    <tr><th>시간</th><th>장소</th><th>연령</th></tr>
-    <tr><td>주일 11:00 ~ 12:00</td><td>대전대흥교회 교육선교관 2층</td><td>중·고등학생</td></tr>
+    <tr><th>장소</th><th>시간</th><th>연령</th></tr>
+    <tr><td>대전대흥교회 교육선교관 2층</td><td>주일 11:00 ~ 12:00</td><td>중·고등학생</td></tr>
   </table>
 </section>
 
@@ -222,7 +231,6 @@ nav {
   </table>
 </section>
 
-<!-- ===== footer ===== -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
