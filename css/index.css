@@ -94,7 +94,7 @@ nav {
   font-weight:300;
   color:#ffffff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin-bottom:0px; /* 슬로건 살짝 위로 이동 */
+  margin-bottom:-10px; /* 슬로건 살짝 위로 이동 */
 }
 .hero-content p {
   font-size:18px;
