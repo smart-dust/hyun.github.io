@@ -10,45 +10,38 @@
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background:linear-gradient(to bottom,#ffffff,#f3f7fb);
+  background: linear-gradient(to bottom,#f0f4f8,#ffffff);
   color:#333;
 }
 html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
-/* ===== 메뉴는 홈페이지 통일 그대로 ===== */
-nav { /* 기존 홈페이지와 동일 */ }
-.nav-container { /* 기존 홈페이지와 동일 */ }
-.nav-home { /* 기존 홈페이지와 동일 */ }
-.nav-logo { height:35px; width:auto; } /* 원래 홈페이지와 동일 */
+/* ===== 메뉴 (홈페이지 통일) ===== */
+nav { 
+  position:fixed; top:0; width:100%; 
+  background: rgba(20,30,50,0.95); /* 검정 기반, 투명도 적용 */
+  backdrop-filter:blur(6px);
+  z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.3);
+}
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:12px 40px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; width:auto; }
 .nav-title { color:white; font-weight:400; font-size:18px; }
 .nav-menu { display:flex; gap:25px; align-items:center; }
 .nav-menu a, .menu-item > a {
-  color:white;
-  font-weight:600;
-  padding:10px 12px;
-  border-radius:6px;
+  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
   transition:transform 0.25s ease, background 0.25s ease;
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
-  transform:translateY(-2px);
-  background:rgba(255,255,255,0.08);
+  transform:translateY(-2px); background:rgba(255,255,255,0.08);
 }
 .menu-item { position:relative; }
 .submenu {
-  position:absolute;
-  top:100%; left:0;
-  min-width:220px; max-width:260px;
-  padding:10px 0;
-  background:rgba(0,0,0,0.95);
-  border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.3);
-  opacity:0;
-  visibility:hidden;
-  transform:translateY(8px);
-  transition:opacity 0.3s ease, transform 0.3s ease;
-  pointer-events:none;
-  z-index:1001;
+  position:absolute; top:100%; left:0; min-width:220px; max-width:260px;
+  padding:10px 0; background:rgba(20,30,50,0.98); border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.4); opacity:0; visibility:hidden; 
+  transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; 
+  pointer-events:none; z-index:1001;
 }
 .submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
 .submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
@@ -58,29 +51,29 @@ nav { /* 기존 홈페이지와 동일 */ }
 .verse-box {
   max-width:900px;
   margin:120px auto 20px;
-  padding:30px;
-  background:linear-gradient(135deg,#6fa8dc,#8ec5ff);
+  padding:35px;
+  background: linear-gradient(135deg,#6fa8dc,#3a7bd5);
   color:white;
   border-radius:20px;
   text-align:center;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  box-shadow:0 12px 28px rgba(0,0,0,0.18);
 }
 .verse-box h3 {
   font-family:'Nanum Brush Script',cursive;
-  font-size:32px;
+  font-size:34px;
   margin-bottom:10px;
 }
-.verse-box p { font-size:15px; opacity:0.9; }
+.verse-box p { font-size:16px; opacity:0.9; }
 
 /* ===== 본문 섹션 ===== */
 .section {
   max-width:950px;
-  margin:30px auto;
+  margin:40px auto;
   padding:40px;
   background:white;
   border-radius:18px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.06);
-  border-top:4px solid #6fa8dc;
+  box-shadow:0 12px 30px rgba(0,0,0,0.07);
+  border-top:4px solid #3a7bd5;
 }
 .section h2 {
   text-align:center;
@@ -118,25 +111,21 @@ nav { /* 기존 홈페이지와 동일 */ }
   padding:12px;
   text-align:center;
 }
-.staff-table th, #worship-table th {
-  background:#6fa8dc;
-  color:white;
-}
+.staff-table th, #worship-table th { background:#3a7bd5; color:white; }
 .staff-table tr:hover td { background:#f4f8fc; }
 
-/* ===== footer ===== */
+/* ===== footer (홈페이지 통일) ===== */
 .footer {
-  background:#f0f4f8;
-  color:#555;
-  padding:40px 20px;
-  text-align:center;
+  background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px;
 }
+.footer a { color:#ccc; }
+.footer p { margin:5px 0; }
 </style>
 </head>
 
 <body>
 
-<!-- ===== 메뉴 (원래 홈페이지와 동일) ===== -->
+<!-- ===== 메뉴 ===== -->
 <nav>
   <div class="nav-container">
     <a href="index.html" class="nav-home">
@@ -192,8 +181,8 @@ nav { /* 기존 홈페이지와 동일 */ }
 <!-- ===== 교회소개 ===== -->
 <section id="mission" class="section">
   <h2>교회 소개</h2>
-  <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.
-  담임목사 : 권신재 청소년부 예배 문의 : 장세아 042-123-1234</p>
+  <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.<br>
+     담임목사 : 권신재 &nbsp; 청소년부 예배 문의 : 장세아 042-123-1234</p>
 
   <!-- 🎥 유튜브 영상 -->
   <div class="video-wrapper">
