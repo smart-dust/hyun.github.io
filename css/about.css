@@ -73,7 +73,7 @@ nav {
 /* ===== 히어로 ===== */
 .hero {
   position: relative;
-  height:40vh;
+  height:35vh;
   overflow: hidden;
   display:flex;
   justify-content:center;
@@ -107,18 +107,18 @@ nav {
   justify-content:center;
   align-items:center;
   text-align:center;
-  gap:6px;
+  gap:4px;
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
-  font-size:50px;
+  font-size:48px;
   font-weight:300;
   color:#fff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   margin:0;
 }
 .hero-content p {
-  font-size:20px;
+  font-size:18px;
   font-weight:300;
   color:#fff;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
@@ -135,11 +135,11 @@ nav {
   box-shadow:0 12px 28px rgba(0,0,0,0.08);
   border-left:6px solid #6fa8dc;
   border-top:6px solid #6fa8dc;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .section:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow:0 16px 36px rgba(0,0,0,0.18);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow:0 14px 28px rgba(0,0,0,0.15);
 }
 .section h2 {
   text-align:center;
@@ -154,7 +154,7 @@ nav {
 
 /* ===== 카드 ===== */
 .section-box {
-  background: linear-gradient(145deg,#ffffff,#f0f6fb);
+  background: linear-gradient(145deg,#ffffff,#f4f7fb);
   border-radius:12px;
   box-shadow:0 8px 22px rgba(0,0,0,0.12);
   padding:30px;
@@ -162,11 +162,11 @@ nav {
   margin-bottom:40px;
   border-left:6px solid #6fa8dc;
   border-top:6px solid #6fa8dc;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 .section-box:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow:0 16px 36px rgba(0,0,0,0.18);
+  transform: translateY(-3px) scale(1.01);
+  box-shadow:0 14px 28px rgba(0,0,0,0.15);
   border-left-color:#4a90e2;
   border-top-color:#4a90e2;
 }
@@ -184,23 +184,22 @@ nav {
   text-align:center;
 }
 .table th, .table td {
-  border:1px solid #c1d1e0;
+  border:1px solid #bbb;
   padding:10px;
   text-align:center;
-  background:#fff;
 }
 .table th {
-  background:#6fa8dc;
-  color:white;
+  background:#dce6f1;
+  color:#222;
   font-weight:600;
   user-select:none;
   cursor: default;
 }
-.table td { font-size:15px; color:#111; }
-.table tr:hover td { background:#f0f7ff; transition:0.3s; }
+.table td { font-size:15px; color:#111; background:#f8f9fb; }
+.table tr:hover td { background:#e0e8f5; transition:0.3s; }
 
 /* 학생임원 표만 가로 줄이기 */
-#student-table { width:60%; margin:0 auto; table-layout: fixed; }
+#student-table { width:80%; margin:0 auto; table-layout: fixed; }
 
 /* ===== 유튜브 ===== */
 .video-wrapper {
@@ -208,11 +207,6 @@ nav {
   border-radius:14px;
   overflow:hidden;
   box-shadow:0 8px 22px rgba(0,0,0,0.15);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-.video-wrapper:hover {
-  transform: translateY(-5px) scale(1.02);
-  box-shadow:0 16px 36px rgba(0,0,0,0.18);
 }
 .video-wrapper iframe {
   width:100%;
@@ -236,7 +230,7 @@ nav {
   .table { font-size:14px; width:100%; }
   .table th,.table td { padding:8px 6px; }
   .hero-content h2 { font-size:36px; }
-  .hero-content p { font-size:18px; }
+  .hero-content p { font-size:16px; }
   .section { padding:25px; }
   .section h2 { font-size:22px; }
 }
