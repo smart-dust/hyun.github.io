@@ -107,8 +107,7 @@ nav {
   justify-content:center;
   align-items:center;
   text-align:center;
-  gap:4px;
-  height:100%;
+  gap:2px; /* 말씀과 출처 간격 줄임 */
 }
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
@@ -155,9 +154,9 @@ nav {
 
 /* ===== 교육주제 폰트 ===== */
 #education p { 
-  font-size:22px; 
+  font-size:20px; 
   font-weight:600;
-  color:#2a3b4d;
+  color:#3f7fbf; /* 진한 파랑 */
   line-height:1.5;
 }
 
@@ -194,12 +193,12 @@ nav {
   background:#fff;
 }
 .table th, .table td {
-  border:1px solid #bbb;
+  border:1px solid #bbb; /* 내부외부 회색 선 통일 */
   padding:10px;
   text-align:center;
 }
 .table th {
-  background:#3f7fbf;  /* 채도 진한 파란색 */
+  background:#3f7fbf;  /* 진한 파랑 헤더 */
   color:white;
   font-weight:600;
   user-select:none;
