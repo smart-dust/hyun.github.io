@@ -16,13 +16,13 @@ nav {
   z-index:1000; 
   box-shadow:0 2px 6px rgba(0,0,0,0.2); 
 }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
-.nav-home { display:flex; align-items:center; gap:10px; }
-.nav-logo { height:35px; width:auto; }
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:15px 40px; }
+.nav-home { display:flex; align-items:center; gap:12px; }
+.nav-logo { height:40px; width:auto; }
 .nav-title { color:white; font-weight:400; font-size:18px; }
 .nav-menu { display:flex; gap:25px; align-items:center; }
 .nav-menu a, .menu-item > a {
-  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
+  color:white; font-weight:600; padding:10px 14px; border-radius:6px;
   transition:transform 0.25s ease, background 0.25s ease;
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { 
@@ -68,7 +68,7 @@ nav {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.45);
   z-index: 1;
 }
 .hero-content {
@@ -80,22 +80,24 @@ nav {
   justify-content: center;
   height: 100%;
   color: white;
+  padding: 0 20px;
 }
 .hero-content h1 {
   font-family:'Nanum Brush Script', cursive;
   font-size: 70px;
+  font-weight: 300; /* 두께 줄임 */
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-  margin: 0 0 10px 0;
+  margin: 0 0 15px 0;
 }
 .hero-content p {
   font-size: 16px;
-  margin: 0 0 20px 0;
+  margin: 0 0 25px 0;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
 /* ===== 버튼 ===== */
 .btn {
-  padding: 12px 20px;
+  padding: 12px 22px;
   background: linear-gradient(135deg, #6fa8dc, #7fb8e0);
   color: white;
   border-radius: 8px;
@@ -104,6 +106,7 @@ nav {
   text-decoration: none;
   position: relative;
   overflow: hidden;
+  margin: 5px 5px;
 }
 .btn::after {
   content: '';
@@ -118,39 +121,57 @@ nav {
 .btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
 .btn:active { transform: translateY(1px); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
 
+/* 길찾기 버튼 색상 및 효과 */
 .btn.kakao { background:#f7e600; color:black; }
+.btn.kakao:hover { background:#ffea33; transform: translateY(-3px) scale(1.03); box-shadow: 0 6px 18px rgba(0,0,0,0.3);}
 .btn.naver { background:#03c75a; }
+.btn.naver:hover { background:#04d361; transform: translateY(-3px) scale(1.03); box-shadow: 0 6px 18px rgba(0,0,0,0.3);}
 
 /* ===== 섹션 박스 ===== */
-.section-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:60px 20px; }
+.section-container { 
+  display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:80px 20px; /* 여유 추가 */
+}
 .section-box {
   background: #ffffff;
   border-radius:16px;
   box-shadow:0 6px 20px rgba(0,0,0,0.15);
   border-top:3px solid #4a90e2;
   border-left:3px solid #4a90e2;
-  width:250px; padding:30px; text-align:center;
-  transition:transform 0.35s ease, box-shadow 0.35s ease, background 0.35s ease;
+  width:260px; 
+  padding:35px; 
+  text-align:center;
+  transition:transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
   position: relative;
   overflow: hidden;
 }
 .section-box:hover {
-  transform: translateY(-10px);
-  box-shadow:0 12px 25px rgba(0,0,0,0.25);
+  transform: translateY(-5px); /* 효과 약하게 */
+  box-shadow:0 10px 20px rgba(0,0,0,0.2);
   background: #f0f7ff;
 }
+.section-box h2 { color:#4a90e2; margin-bottom:12px; transition: color 0.3s ease; }
+.section-box p { font-size:15px; line-height:1.7; color:#555; transition: color 0.3s ease; }
 
 /* ===== 지도 섹션 ===== */
 .map-section {
   background:white; border-radius:12px;
   box-shadow:0 4px 15px rgba(0,0,0,0.1);
-  padding:30px; max-width:700px; margin:40px auto;
+  padding:40px; max-width:750px; margin:60px auto; /* 여유 추가 */
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.map-section iframe { width:100%; height:450px; border-radius:10px; border:none; }
+.map-section:hover {
+  transform: translateY(-3px); /* 약한 hover 효과 */
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+.map-section h2 {
+  color:#00bfff; /* 오시는길 하늘색 */
+  margin-bottom:12px;
+}
+.map-section iframe { width:100%; height:480px; border-radius:12px; border:none; }
 
 /* ===== 푸터 ===== */
 .footer {
-  background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px;
+  background:#222; color:#ccc; padding:50px 20px; text-align:center; font-size:14px;
 }
 .footer a { color:#ccc; }
-.footer p { margin:5px 0; }
+.footer p { margin:6px 0; }
