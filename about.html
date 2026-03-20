@@ -53,33 +53,51 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 <!-- 메뉴 -->
 <nav>
   <div class="nav-container">
-    <a href="index.html" class="nav-home">
-      <img src="logo.png" class="nav-logo">
-      <span class="nav-title">대전대흥교회 청소년부</span>
-    </a>
+    <div class="nav-left">
+      <a href="#home" class="nav-home">
+        <img src="logo.png" class="nav-logo">
+        <span class="nav-title">대전대흥교회 청소년부</span>
+      </a>
+    </div>
     <div class="nav-menu">
-      <a href="index.html">Home</a>
+      <a href="#home" class="active">Home</a>
+      
       <div class="menu-item">
-        <a href="about.html" class="active">교회소개</a>
+        <a href="about.html">교회소개</a>
         <div class="submenu">
-          <a href="#mission">교육 주제</a>
-          <a href="#worship">예배 안내</a>
-          <a href="#student-officers">학생 임원</a>
-          <a href="#staff">섬기는 사람들</a>
+          <a href="about.html#1">사명과 비전</a>
+          <a href="about.html#2">예배 안내</a>
+          <a href="about.html#3">섬기는 사람들</a>
         </div>
       </div>
+      
       <div class="menu-item">
         <a href="sermon.html">설교</a>
+        <div class="submenu">
+          <a href="sermon.html#1">설교영상</a>
+          <a href="sermon.html#2">공과공부</a>
+        </div>
       </div>
+      
       <div class="menu-item">
         <a href="notice.html">공지사항</a>
+        <div class="submenu">
+          <a href="notice.html#1">행사 안내</a>
+          <a href="notice.html#2">주보</a>
+        </div>
       </div>
+      
       <div class="menu-item">
         <a href="community.html">커뮤니티</a>
+        <div class="submenu">
+          <a href="community.html#1">사진 갤러리</a>
+          <a href="community.html#2">게시판</a>
+        </div>
       </div>
     </div>
   </div>
 </nav>
+
 
 <!-- 섹션: 사명 -->
 <section id="mission" class="section">
