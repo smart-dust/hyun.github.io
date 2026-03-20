@@ -1,177 +1,249 @@
-/* ===============================
-   🎨 교회 감성 + 애플 스타일 업그레이드
-   (nav / footer 건드리지 않음)
-================================ */
-
-/* 컬러 시스템 */
-:root {
-  --main-color: #3b82f6;
-  --sub-color: #6366f1;
-  --soft-blue: #eaf2ff;
-  --warm-bg: #f9fafb;
-  --text-main: #111827;
-  --text-sub: #6b7280;
-}
-
-/* ===== 전체 배경 부드럽게 ===== */
+/* ===== 기본 스타일 ===== */
 body {
-  background: var(--warm-bg);
-  color: var(--text-main);
+  margin:0;
+  font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
+  background: linear-gradient(160deg,#f7f9fc,#e5e9f1);
+  color:#333;
+  line-height:1.6;
 }
+html { scroll-behavior: smooth; scroll-padding-top: 150px; }
+a { text-decoration: none; }
 
-/* ===== 히어로 (교회 감성 강화) ===== */
-.overlay {
-  background: linear-gradient(
-    rgba(0,0,0,0.25),
-    rgba(0,0,0,0.35)
-  );
-}
-
-.hero-content h2 {
-  font-size: 48px;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-}
-
-.hero-content p {
-  font-size: 18px;
-  opacity: 0.9;
-}
-
-/* ===== 섹션 (핵심 고급화) ===== */
-.section {
-  max-width: 900px;
-  margin: 90px auto;
-  padding: 55px 45px;
-  background: #fff;
-  border-radius: 22px;
-
-  /* 기존 border 제거하고 빛 느낌 추가 */
-  border: none;
-
-  /* 부드러운 그림자 */
-  box-shadow:
-    0 10px 30px rgba(0,0,0,0.06),
-    0 1px 0 rgba(255,255,255,0.8) inset;
-
-  position: relative;
-}
-
-/* 은은한 빛 효과 (교회 느낌 핵심) */
-.section::before {
-  content: "";
-  position: absolute;
-  top: -40px;
-  left: -40px;
-  width: 120px;
-  height: 120px;
-  background: radial-gradient(circle, rgba(59,130,246,0.15), transparent);
-  z-index: 0;
-}
-
-.section * {
-  position: relative;
-  z-index: 1;
-}
-
-.section h2 {
-  text-align: center;
-  margin-bottom: 30px;
-  font-size: 28px;
-  letter-spacing: -0.3px;
-}
-
-/* 구분선 느낌 */
-.section h2::after {
-  content: "";
-  display: block;
-  width: 40px;
-  height: 3px;
-  background: var(--main-color);
-  margin: 12px auto 0;
-  border-radius: 2px;
-}
-
-.section p {
-  text-align: center;
-  color: var(--text-sub);
-  line-height: 1.8;
-}
-
-/* ===== 카드 (청소년 감성 + 고급) ===== */
-.section-box {
-  background: #fff;
-  border-radius: 18px;
-  padding: 30px;
-
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-
-  border: 1px solid rgba(0,0,0,0.04);
-
-  transition: all 0.25s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-/* 카드 상단 빛 */
-.section-box::before {
-  content: "";
-  position: absolute;
+/* ===== 메뉴 ===== */
+nav {
+  position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, var(--main-color), var(--sub-color));
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 30px;
+}
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; width:auto; }
+.nav-title { color:white; font-weight:500; font-size:18px; }
+.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-menu a, .menu-item > a {
+  color:white; font-weight:600;
+  padding:10px 12px;
+  border-radius:6px;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.12);
+}
+.menu-item { position: relative; }
+.submenu {
+  position:absolute;
+  top:100%;
+  left:0;
+  min-width:220px;
+  padding:10px 0;
+  background: rgba(0,0,0,0.95);
+  border-radius:10px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.25);
+  opacity:0;
+  visibility:hidden;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events:none;
+  z-index:1001;
+}
+.submenu a {
+  display:block;
+  padding:12px 20px;
+  color:white;
+  font-weight:400;
+  border-radius:6px;
+  transition: background 0.2s ease;
+}
+.menu-item:hover .submenu {
+  opacity:1;
+  visibility:visible;
+  transform: translateY(0);
+  pointer-events:auto;
 }
 
-.section-box:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
-}
-
-/* ===== 교육주제 강조 (말씀 느낌) ===== */
-#education p {
-  font-size: 20px;
-  font-weight: 600;
-  color: var(--main-color);
-
-  background: var(--soft-blue);
-  padding: 18px;
-  border-radius: 12px;
-
-  display: inline-block;
-}
-
-/* ===== 테이블 (깔끔 + 교회 스타일) ===== */
-.table {
-  border-radius: 14px;
+/* ===== 히어로 ===== */
+.hero {
+  position: relative;
+  height:35vh;
   overflow: hidden;
-  border: 1px solid #e5e7eb;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+}
+.hero img {
+  position: absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:translate(-50%, -50%);
+  z-index:0;
+}
+.overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.35);
+  z-index:1;
+}
+.hero-content {
+  position: relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  gap:2px;
+}
+.hero-content h2 {
+  font-family:'Nanum Brush Script', cursive;
+  font-size:46px;
+  font-weight:300;
+  color:#fff;
+  text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+  margin:0;
+}
+.hero-content p {
+  font-size:18px;
+  font-weight:300;
+  color:#fff;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  margin:0;
 }
 
-.table th {
-  background: linear-gradient(135deg, var(--main-color), var(--sub-color));
-  color: white;
-  font-weight: 600;
+/* ===== 섹션 ===== */
+.section {
+  max-width:900px;
+  margin:60px auto 90px auto;
+  padding:40px;
+  background: #fff;
+  border-radius:18px;
+  box-shadow:0 10px 28px rgba(0,0,0,0.08);
+  border-left:6px solid #6fa8dc;
+  border-top:6px solid #6fa8dc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-.table th, .table td {
-  border: 1px solid #e5e7eb;
-}
-
-.table tr:hover td {
-  background: #f3f6fb;
-}
-
-/* ===== 유튜브 (부드럽게) ===== */
-.video-wrapper {
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 28px rgba(0,0,0,0.08);
-}
-
-/* ===== 전체 hover 부드럽게 ===== */
 .section:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 45px rgba(0,0,0,0.08);
+  transform: translateY(-2px) scale(1.005);
+  box-shadow:0 14px 28px rgba(0,0,0,0.12);
+}
+.section h2 {
+  text-align:center;
+  color:#2a3b4d;
+  margin:20px 0 30px 0;
+}
+.section p {
+  text-align:center;
+  color:#2a3b4d;
+  line-height:1.8;
+}
+
+/* ===== 교육주제 ===== */
+#education p {
+  font-size:20px;
+  font-weight:600;
+  color:#3f7fbf;
+  line-height:1.5;
+}
+
+/* ===== 카드 ===== */
+.section-box {
+  background: linear-gradient(140deg,#ffffff,#f4f7fb);
+  border-radius:12px;
+  box-shadow:0 8px 22px rgba(0,0,0,0.12);
+  padding:30px;
+  text-align:center;
+  margin-bottom:40px;
+  border-left:6px solid #6fa8dc;
+  border-top:6px solid #6fa8dc;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.section-box:hover {
+  transform: translateY(-2px) scale(1.005);
+  box-shadow:0 12px 26px rgba(0,0,0,0.14);
+  border-left-color:#4a90e2;
+  border-top-color:#4a90e2;
+}
+
+/* ===== 표 ===== */
+.table-wrapper { overflow-x:auto; margin:30px 0; text-align:center; }
+.table {
+  margin:0 auto;
+  border-collapse: collapse;
+  font-family:'Noto Sans KR','Arial',sans-serif;
+  font-size:15px;
+  color:#222;
+  width:90%;
+  table-layout: fixed;
+  text-align:center;
+  background:#fff;
+}
+.table th, .table td {
+  border:1px solid #bbb; /* 내부외부 회색 선 통일 */
+  padding:10px;
+  text-align:center;
+}
+.table th {
+  background:#3f7fbf;
+  color:white;
+  font-weight:600;
+  user-select:none;
+  cursor: default;
+}
+.table td {
+  font-size:15px;
+  color:#111;
+  background:#fff;
+}
+.table tr:hover td { background:#f0f4f9; transition:0.3s; }
+
+/* 학생임원 표만 가로 줄이기 */
+#student-table { width:80%; margin:0 auto; table-layout: fixed; }
+
+/* ===== 유튜브 ===== */
+.video-wrapper {
+  margin-top:25px;
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 8px 22px rgba(0,0,0,0.12);
+}
+.video-wrapper iframe {
+  width:100%;
+  aspect-ratio:16/9;
+  border:0;
+  display:block;
+}
+
+/* ===== footer ===== */
+.footer {
+  background:#222;
+  color:#ccc;
+  padding:40px 20px;
+  text-align:center;
+}
+.footer p { margin:5px 0; }
+.footer a { color:#ccc; }
+
+/* ===== 반응형 ===== */
+@media (max-width:1024px){
+  .table { font-size:14px; width:100%; }
+  .table th,.table td { padding:8px 6px; }
+  .hero-content h2 { font-size:36px; }
+  .hero-content p { font-size:16px; }
+  .section { padding:25px; }
+  .section h2 { font-size:22px; }
 }
