@@ -4,106 +4,88 @@
 <meta charset="utf-8">
 <title>교회소개</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 
 <style>
 body {
   margin:0;
   font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background-color:#f6f8fa;
-  background-image: radial-gradient(circle at top left, rgba(240,240,255,0.05) 0%, transparent 60%), radial-gradient(circle at bottom right, rgba(255,245,230,0.03) 0%, transparent 70%);
+  background:linear-gradient(to bottom, #f8fafc, #eaeef3);
   color:#333;
 }
-html { scroll-behavior:smooth; scroll-padding-top:80px; }
+html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
-/* ===== 메뉴 (홈페이지 통일) ===== */
-nav { 
-  position:fixed; top:0; width:100%; 
-  background: rgba(20,30,50,0.95);
-  backdrop-filter:blur(6px);
-  z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.3);
+/* ===== 메뉴바 (원래 홈페이지 통일) ===== */
+nav {
+  position:fixed; top:0; width:100%;
+  background:rgba(0,0,0,0.85); z-index:1000;
+  box-shadow:0 2px 6px rgba(0,0,0,0.2);
 }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:12px 40px; }
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
 .nav-home { display:flex; align-items:center; gap:10px; }
 .nav-logo { height:35px; width:auto; }
 .nav-title { color:white; font-weight:400; font-size:18px; }
 .nav-menu { display:flex; gap:25px; align-items:center; }
-.nav-menu a, .menu-item > a {
-  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
-  transition:transform 0.25s ease, background 0.25s ease;
-}
-.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
-  transform:translateY(-2px); background:rgba(255,255,255,0.08);
-}
+.nav-menu a, .menu-item > a { color:white; font-weight:600; padding:10px 12px; border-radius:6px; transition:transform 0.25s ease, background 0.25s ease; }
+.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
 .menu-item { position:relative; }
-.submenu {
-  position:absolute; top:100%; left:0; min-width:220px; max-width:260px;
-  padding:10px 0; background:rgba(20,30,50,0.98); border-radius:12px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.4); opacity:0; visibility:hidden; 
-  transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; 
-  pointer-events:none; z-index:1001;
-}
+.submenu { position:absolute; top:100%; left:0; min-width:220px; max-width:260px; padding:10px 0; background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001; }
 .submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
 .submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
 .menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
-/* ===== 말씀 카드 ===== */
-.verse-box {
-  max-width:900px;
-  margin:140px auto 40px;
-  padding:45px 35px;
-  background: linear-gradient(145deg,#cde1f5,#e3f1fb);
-  color:#0d1f2d;
-  border-radius:24px;
+/* ===== Hero 영역 (말씀 상단 배너) ===== */
+.hero {
+  position:relative;
+  height:450px;
+  display:flex; justify-content:center; align-items:center;
   text-align:center;
-  box-shadow:0 12px 25px rgba(0,0,0,0.12);
-  border-left:5px solid #7ab1e3;
-  line-height:1.8;
+  color:white;
+  background:url('hero-bg.jpg') center/cover no-repeat;
 }
-.verse-box h3 {
-  font-family:'Nanum Brush Script',cursive;
-  font-weight:500;
-  font-size:40px;
-  margin-bottom:20px;
-  color:#114d7c;
+.hero::before {
+  content:""; position:absolute; top:0; left:0; width:100%; height:100%;
+  background:rgba(0,0,0,0.45); /* 오버레이 */
 }
-.verse-box p { font-size:20px; font-weight:500; opacity:0.95; color:#114d7c; }
+.hero-content {
+  position:relative; z-index:1;
+  padding:0 20px;
+}
+.hero-content h2 {
+  font-family:'Nanum Brush Script', cursive;
+  font-size:42px; line-height:1.4; margin-bottom:15px;
+}
+.hero-content p {
+  font-size:20px; opacity:0.9;
+}
 
 /* ===== 본문 섹션 ===== */
 .section {
   max-width:950px;
-  margin:50px auto;
-  padding:45px 35px;
+  margin:30px auto;
+  padding:40px;
   background:white;
   border-radius:18px;
-  box-shadow:0 10px 28px rgba(0,0,0,0.06);
-  border-top:4px solid #7ab1e3;
+  box-shadow:0 10px 30px rgba(0,0,0,0.06);
+  border-top:4px solid #6fa8dc;
 }
 .section h2 {
   text-align:center;
-  margin-bottom:25px;
-  color:#0d2b4f; /* 섹션 제목 포인트 컬러 */
+  color:#2c3e50; /* 제목 포인트 컬러 */
+  margin-bottom:20px;
 }
 .section p {
   text-align:center;
   color:#555;
-  line-height:1.8;
-  font-size:16px;
-}
-
-/* ===== 교육 주제 카드 ===== */
-.section.education p {
-  font-size:20px;
-  font-weight:500;
-  color:#1b3a59;
-  line-height:1.9;
+  line-height:1.7;
+  font-size:18px;
 }
 
 /* ===== 유튜브 영상 ===== */
 .video-wrapper {
-  margin-top:30px;
-  border-radius:16px;
+  margin-top:25px;
+  border-radius:14px;
   overflow:hidden;
 }
 .video-wrapper iframe {
@@ -113,42 +95,25 @@ nav {
   display:block;
 }
 
-/* ===== 예배 안내 ===== */
-#worship p {
-  font-size:18px;
-  font-weight:500;
-  margin-bottom:15px;
-  color:#1b3a59;
-}
-
 /* ===== 표 ===== */
-.staff-table, #worship-table {
-  width:100%;
-  border-collapse:collapse;
-  margin-top:20px;
-}
-.staff-table th, .staff-table td,
-#worship-table th, #worship-table td {
-  border:1px solid #d1d9e6;
-  padding:12px;
-  text-align:center;
-}
-.staff-table th, #worship-table th { background:#7ab1e3; color:white; }
+.staff-table, #worship-table { width:100%; border-collapse:collapse; margin-top:20px; }
+.staff-table th, .staff-table td, #worship-table th, #worship-table td { border:1px solid #e5eaf0; padding:12px; text-align:center; }
+.staff-table th, #worship-table th { background:#6fa8dc; color:white; }
 .staff-table tr:hover td { background:#f4f8fc; }
 
-/* ===== footer (홈페이지 통일) ===== */
+/* ===== footer (원래 홈페이지 통일) ===== */
 .footer {
-  background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px;
+  background:#222;
+  color:#ccc;
+  padding:40px 20px;
+  text-align:center;
 }
-.footer a { color:#ccc; }
-.footer p { margin:5px 0; }
-
 </style>
 </head>
 
 <body>
 
-<!-- ===== 메뉴 ===== -->
+<!-- ===== 메뉴바 ===== -->
 <nav>
   <div class="nav-container">
     <a href="index.html" class="nav-home">
@@ -195,17 +160,19 @@ nav {
   </div>
 </nav>
 
-<!-- ✨ 말씀 카드 -->
-<div class="verse-box">
-  <h3>“서로 친절하게 하며 불쌍히 여기며 서로 용서하기를…”</h3>
-  <p>에베소서 4 : 32</p>
+<!-- ===== Hero 말씀 영역 ===== -->
+<div class="hero">
+  <div class="hero-content">
+    <h2>“서로 친절하게 하며 불쌍히 여기며 서로 용서하기를…”</h2>
+    <p>에베소서 4:32</p>
+  </div>
 </div>
 
 <!-- ===== 교회소개 ===== -->
 <section id="mission" class="section">
   <h2>교회 소개</h2>
   <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.<br>
-     담임목사 : 권신재 &nbsp; 청소년부 예배 문의 : 장세아 042-123-1234</p>
+  담임목사 : 권신재 &nbsp; 청소년부 예배 문의 : 장세아 042-123-1234</p>
 
   <!-- 🎥 유튜브 영상 -->
   <div class="video-wrapper">
@@ -213,14 +180,13 @@ nav {
   </div>
 </section>
 
-<section class="section education">
+<section class="section">
   <h2>교육 주제</h2>
-  <p>하나님 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
+  <p style="font-size:20px;">하나남 사랑 '나'를 사랑 그리고 이웃사랑 (에베소서 4:31-32)</p>
 </section>
 
 <section id="worship" class="section">
   <h2>예배 안내</h2>
-  <p>하나님은 영이시니 예배하는 자가 영과 진리로 예배할지니라</p>
   <table id="worship-table">
     <tr><th>시간</th><th>장소</th><th>연령</th></tr>
     <tr><td>주일 11:00 ~ 12:00</td><td>대전대흥교회 교육선교관 2층</td><td>중·고등학생</td></tr>
@@ -256,6 +222,7 @@ nav {
   </table>
 </section>
 
+<!-- ===== footer ===== -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
