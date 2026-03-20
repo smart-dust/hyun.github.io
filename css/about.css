@@ -74,16 +74,16 @@ nav {
   pointer-events: auto;
 }
 
-/* ===== 상단 히어로 ===== */
+/* ===== 히어로 섹션 ===== */
 .hero {
   position: relative;
-  height: 250px;
+  height: 400px;
   display: flex;
   justify-content: center;
   align-items: flex-start;
   text-align: center;
   color: white;
-  background: url('images/hero-bg.jpg') center/cover no-repeat;
+  background: url('../img/hero-bg.jpg') center/cover no-repeat;
   padding-top: 130px;
 }
 .hero::before {
@@ -147,31 +147,29 @@ nav {
   display: block;
 }
 
-/* ===== 예배 / 스태프 표 ===== */
-#worship-table, .staff-table {
+/* ===== 테이블 스타일 (.table) ===== */
+.table {
   width: 100%;
   border-collapse: collapse;
   margin-top: 15px;
   table-layout: fixed; /* 열 너비 균등 */
 }
-#worship-table th, #worship-table td,
-.staff-table th, .staff-table td {
+.table th, .table td {
   border: 1px solid #e5eaf0;
   padding: 14px;
   text-align: center;
   word-wrap: break-word;
-  width: 25%; /* 4열 기준 균등 */
 }
-#worship-table th, .staff-table th {
+.table th {
   background: #6fa8dc;
   color: white;
   font-weight: 600;
 }
-#worship-table tr:hover td, .staff-table tr:hover td {
+.table tr:hover td {
   background: #f4f8fc;
 }
 
-/* ===== 교육주제 폰트 확대 ===== */
+/* ===== 교육 주제 폰트 확대 ===== */
 #education p { font-size: 24px; line-height: 1.6; }
 
 /* ===== 하단 footer ===== */
