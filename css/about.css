@@ -73,7 +73,7 @@ nav {
 /* ===== 히어로 ===== */
 .hero {
   position: relative;
-  height:50vh;
+  height:40vh; /* 이미지 조금 작게 */
   overflow: hidden;
   display:flex;
   justify-content:center;
@@ -111,12 +111,14 @@ nav {
 .hero-content h2 {
   font-family:'Nanum Brush Script', cursive;
   font-size:48px;
+  font-weight:300; /* 얇게 */
   color:#fff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
   margin-bottom:10px;
 }
 .hero-content p {
   font-size:20px;
+  font-weight:300; /* 얇게 */
   color:#fff;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.5);
 }
@@ -159,7 +161,7 @@ nav {
   border-top:6px solid #6fa8dc;
   opacity:0;
   transform: translateY(20px) scale(0.98);
-  transition: all 0.4s ease;
+  transition: all 0.4s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 .section-box:hover {
   transform: translateY(-5px) scale(1.03);
