@@ -3,117 +3,194 @@
 <head>
 <meta charset="utf-8">
 <title>대전대흥교회 청소년부</title>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+
 <style>
-/* 기본 스타일 */
-body { margin:0; font-family:'Noto Sans KR', 'Apple SD Gothic Neo', Arial, sans-serif; background:#f5f7fa; color:#333; }
+body {
+  margin:0;
+  font-family:'Noto Sans KR', sans-serif;
+  background:#f5f7fa;
+  color:#333;
+}
 html { scroll-behavior:smooth; }
 a { text-decoration:none; }
 
 /* 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
-.nav-home { display:flex; align-items:center; gap:10px; }
-.nav-logo { height:35px; width:auto; }
-.nav-title { color:white; font-weight:400; font-size:18px; }
-.nav-menu { display:flex; gap:25px; align-items:center; }
-.nav-menu a, .menu-item > a {
-  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
-  transition:transform 0.25s ease, background 0.25s ease;
+nav {
+  position:fixed;
+  top:0;
+  width:100%;
+  background:rgba(0,0,0,0.9);
+  z-index:1000;
 }
-.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
+.nav-container {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:12px 30px;
+}
+.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-logo { height:35px; }
+.nav-title { color:white; font-size:18px; }
+
+.nav-menu {
+  display:flex;
+  gap:20px;
+}
+
+/* 메뉴 아이템 */
+.menu-item {
+  position:relative;
+}
+.menu-item > a {
+  color:white;
+  padding:10px 12px;
+  display:block;
+  border-radius:6px;
+  transition:0.2s;
+}
+.menu-item > a:hover {
+  background:rgba(255,255,255,0.15);
+}
 
 /* 서브메뉴 */
-.menu-item { position:relative; }
-.submenu { position:absolute; top:100%; left:0; min-width:220px; max-width:260px; padding:10px 0; background:rgba(0,0,0,0.95); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:opacity 0.3s ease, transform 0.3s ease; pointer-events:none; z-index:1001; }
-.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
-.submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
-.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
+.submenu {
+  position:absolute;
+  top:110%;
+  left:0;
+  min-width:180px;
+  background:rgba(0,0,0,0.95);
+  border-radius:10px;
+  opacity:0;
+  visibility:hidden;
+  transform:translateY(10px);
+  transition:0.25s;
+}
+.submenu a {
+  display:block;
+  padding:10px 15px;
+  color:white;
+  font-size:14px;
+}
+.submenu a:hover {
+  background:rgba(255,255,255,0.15);
+}
 
-/* 히어로 섹션 */
+/* hover 시 등장 */
+.menu-item:hover .submenu {
+  opacity:1;
+  visibility:visible;
+  transform:translateY(0);
+}
+
+/* 히어로 */
 .hero {
   height:100vh;
   background:url('church.png') center/cover no-repeat;
-  display:flex; align-items:center; justify-content:center;
-  position:relative; text-align:center; color:white; flex-direction:column;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  color:white;
+  position:relative;
 }
 .overlay {
-  position:absolute; width:100%; height:100%;
+  position:absolute;
+  width:100%; height:100%;
   background:rgba(0,0,0,0.5);
-  pointer-events:none;
 }
-.hero-content {
-  position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center;
-}
+.hero-content { position:relative; z-index:1; }
+
 .hero-content h1 {
   font-family:'Nanum Brush Script', cursive;
-  font-size:70px; 
-  margin:0 0 0px 0;
-  font-weight:300;
+  font-size:64px;
 }
-.hero-content p {
-  font-size:15px; 
-  margin:0 0 10px 0;
-  font-weight:500;
-}
+.hero-content p { font-size:16px; }
 
 /* 버튼 */
 .btn {
-  margin:10px 8px;
+  display:inline-block;
+  margin:10px 5px;
   padding:12px 20px;
   background:#6fa8dc;
   color:white;
   border-radius:8px;
   font-weight:700;
-  transition:transform 0.15s ease, background 0.25s ease;
-  display:inline-block;
 }
-.btn:hover { transform:translateY(-2px); background:#7fb8e0; }
-.btn:active { transform:translateY(1px); background:#5f8cc0; }
 
-/* 섹션 박스 */
-.section-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:60px 20px; }
+/* 섹션 */
+.section-container {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:30px;
+  padding:80px 20px;
+}
 .section-box {
-  background:white; border-radius:12px;
+  display:block;
+  width:260px;
+  background:white;
+  border-radius:12px;
+  padding:30px;
+  text-align:center;
   box-shadow:0 4px 15px rgba(0,0,0,0.1);
-  width:250px; padding:30px; text-align:center;
-  transition:transform 0.25s ease, box-shadow 0.25s ease;
+  color:inherit;
+  transition:0.25s;
 }
-.section-box img { width:60px; margin-bottom:15px; }
-.section-box h2 { color:#6fa8dc; margin-bottom:10px; }
-.section-box p { font-size:15px; line-height:1.6; color:#555; }
+.section-box:hover {
+  transform:translateY(-5px);
+}
 
-/* 지도 박스 */
+/* 영상 */
+.video-box iframe {
+  width:100%;
+  height:200px;
+  border-radius:10px;
+}
+
+/* 지도 */
 .map-section {
-  background:white; border-radius:12px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-  padding:30px; max-width:700px; margin:40px auto;
+  background:white;
+  border-radius:12px;
+  padding:30px;
+  max-width:700px;
+  margin:80px auto;
 }
-.map-section iframe { width:100%; height:450px; border-radius:10px; border:none; }
+.map-section iframe {
+  width:100%;
+  height:450px;
+  border:none;
+  border-radius:10px;
+}
 
-/* 하단 정보란 */
+/* footer */
 .footer {
-  background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px;
+  background:#222;
+  color:#ccc;
+  text-align:center;
+  padding:40px;
 }
-.footer a { color:#ccc; }
-.footer p { margin:5px 0; }
 </style>
 </head>
+
 <body>
 
 <!-- 메뉴 -->
 <nav>
   <div class="nav-container">
-    <div class="nav-left">
-      <a href="#home" class="nav-home">
-        <img src="logo.png" class="nav-logo">
-        <span class="nav-title">대전대흥교회 청소년부</span>
-      </a>
-    </div>
+
+    <a href="#home" class="nav-home">
+      <img src="logo.png" class="nav-logo">
+      <span class="nav-title">대전대흥교회 청소년부</span>
+    </a>
+
     <div class="nav-menu">
-      <a href="#home" class="active">Home</a>
-      
+
+      <div class="menu-item">
+        <a href="#home">Home</a>
+      </div>
+
       <div class="menu-item">
         <a href="about.html">교회소개</a>
         <div class="submenu">
@@ -122,15 +199,15 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
           <a href="about.html#staff">섬기는 사람들</a>
         </div>
       </div>
-      
+
       <div class="menu-item">
         <a href="sermon.html">설교</a>
         <div class="submenu">
-          <a href="sermon.html#1">설교영상</a>
-          <a href="sermon.html#2">공과공부</a>
+          <a href="sermon.html#1">설교 영상</a>
+          <a href="sermon.html#2">공과 공부</a>
         </div>
       </div>
-      
+
       <div class="menu-item">
         <a href="notice.html">공지사항</a>
         <div class="submenu">
@@ -138,7 +215,7 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
           <a href="notice.html#2">주보</a>
         </div>
       </div>
-      
+
       <div class="menu-item">
         <a href="community.html">커뮤니티</a>
         <div class="submenu">
@@ -146,6 +223,7 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
           <a href="community.html#2">게시판</a>
         </div>
       </div>
+
     </div>
   </div>
 </nav>
@@ -154,47 +232,46 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
 <div class="hero" id="home">
   <div class="overlay"></div>
   <div class="hero-content">
-    <h1>"하나님이 보시기에 기쁘신 교회"</h1>
+    <h1>하나님이 보시기에 기쁘신 교회</h1>
     <p>대전대흥교회 청소년부</p>
-    <a href="http://www.dhchurch.org/" target="_blank" class="btn">대전대흥교회 바로가기</a>
+    <a href="#info" class="btn">예배 안내</a>
   </div>
 </div>
 
-<!-- 섹션별 박스 -->
-<section class="section-container">
-  <div class="section-box">
+<!-- 섹션 -->
+<section class="section-container" id="info">
+
+  <a href="about.html" class="section-box">
     <h2>교회소개</h2>
-    <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.</p>
-  </div>
-  <div class="section-box">
+    <p>청소년들이 하나님을 예배하는 공동체</p>
+  </a>
+
+  <a href="about.html#worship" class="section-box">
     <h2>예배 안내</h2>
-    <p>주일 11시부터 12시까지 교육선교관 2층에서 예배드립니다.</p>
-  </div>
-  <div class="section-box">
+    <p>주일 오전 11시</p>
+  </a>
+
+  <a href="notice.html" class="section-box">
     <h2>공지사항</h2>
-    <p>공지사항을 확인해주세요.</p>
+    <p>최신 소식 확인</p>
+  </a>
+
+  <div class="section-box video-box">
+    <h2>설교 영상</h2>
+    <iframe src="https://www.youtube.com/embed/nD5G_htVfOY?rel=0&modestbranding=1"
+    allowfullscreen></iframe>
   </div>
-  <div class="section-box">
-    <h2>Play list</h2>
-    <p>내몸은 구주의 성전이니 - Gifted</p>
-  </div>
+
 </section>
 
 <!-- 지도 -->
 <section class="map-section">
   <h2>오시는 길</h2>
-  <p>대전대흥교회 교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
   <iframe src="https://www.google.com/maps?q=대전광역시+중구+충무로+11번길+43&output=embed"></iframe>
-  <div style="margin-top:20px;">
-    <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="btn" style="background:#f7e600; color:black;">카카오 길찾기</a>
-    <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" target="_blank" class="btn" style="background:#03c75a;">네이버 길찾기</a>
-  </div>
 </section>
 
-<!-- 하단 정보란 -->
+<!-- footer -->
 <footer class="footer">
-  <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
-  <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
