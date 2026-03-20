@@ -53,63 +53,83 @@ nav {
 }
 .menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
-/* ===== 히어로 섹션 ===== */
+/* ===== 히어로 섹션 (<img> 방식) ===== */
 .hero {
-  height:100vh;
-  background:url('./images/church.png') center/cover no-repeat;
-  display:flex; align-items:center; justify-content:center;
-  position:relative; text-align:center; color:white; flex-direction:column;
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
 }
+
+.hero img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지 비율 유지하며 전체 영역 채움 */
+  z-index: 0;
+}
+
 .overlay {
-  position:absolute; width:100%; height:100%;
-  background:rgba(0,0,0,0.5);
-  pointer-events:none;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
 }
+
 .hero-content {
-  position:relative; z-index:1;
-  display:flex; flex-direction:column; align-items:center;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  color: white;
 }
+
 .hero-content h1 {
   font-family:'Nanum Brush Script', cursive;
-  font-size:70px; 
-  margin:0 0 0 0;
-  font-weight:300;
-  color: #ffffff;
+  font-size: 70px;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  margin: 0 0 10px 0;
 }
+
 .hero-content p {
-  font-size:15px; 
-  margin:0 0 10px 0;
-  font-weight:500;
-  color: #ffffff;
+  font-size: 16px;
+  margin: 0 0 20px 0;
   text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
 }
 
-/* ===== 버튼 ===== */
+/* 버튼 스타일 */
 .btn {
-  margin:10px 8px;
-  padding:12px 20px;
+  padding: 12px 20px;
   background: linear-gradient(135deg, #6fa8dc, #7fb8e0);
-  color:white;
-  border-radius:8px;
-  font-weight:700;
-  transition:transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
-  display:inline-block;
+  color: white;
+  border-radius: 8px;
+  font-weight: 700;
+  transition: transform 0.2s ease, background 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none;
   position: relative;
   overflow: hidden;
 }
+
 .btn::after {
-  content:'';
-  position:absolute;
-  top:0; left:0;
-  width:100%; height:100%;
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
   background: rgba(255,255,255,0.15);
-  opacity:0;
-  transition:opacity 0.3s ease;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
-.btn:hover::after { opacity:1; }
-.btn:hover { transform:translateY(-3px); box-shadow:0 6px 15px rgba(0,0,0,0.25); }
-.btn:active { transform:translateY(1px); box-shadow:0 3px 8px rgba(0,0,0,0.2); }
+
+.btn:hover::after { opacity: 1; }
+.btn:hover { transform: translateY(-3px); box-shadow: 0 6px 15px rgba(0,0,0,0.25); }
+.btn:active { transform: translateY(1px); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
 
 /* ===== 섹션 박스 ===== */
 .section-container { display:flex; flex-wrap:wrap; justify-content:center; gap:30px; padding:60px 20px; }
