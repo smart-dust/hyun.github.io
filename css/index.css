@@ -75,7 +75,7 @@ nav {
   position:absolute;
   width:100%;
   height:100%;
-  background:rgba(0,0,0,0.5); /* 검은색 불투명 오버레이 */
+  background:rgba(0,0,0,0.5);
   z-index:1;
 }
 .hero-content {
@@ -94,20 +94,19 @@ nav {
   font-weight:300;
   color:#ffffff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin-bottom:10px;
-  transform: translateY(50px); /* 슬로건 아래로 */
+  margin-bottom:5px; /* 슬로건 살짝 위로 이동 */
 }
 .hero-content p {
   font-size:18px;
   font-weight:500;
   color:#ffffff;
   text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-  margin-bottom:25px;
+  margin-bottom:20px;
 }
 
 /* ===== 버튼 & 카드 ===== */
 :root {
-  --main-color: #6fa8dc; /* 톤업 하늘색 */
+  --main-color: #6fa8dc; /* 톤다운 하늘색 */
   --main-dark: #5c90c2;
   --card-bg: #ffffff;
   --card-hover-bg: #f0f3f6;
@@ -116,7 +115,7 @@ nav {
 /* 일반 버튼 */
 .btn {
   padding:12px 24px;
-  border-radius:999px;
+  border-radius:10px; /* 완전 사각형 아님 */
   background: var(--main-color);
   color:#fff;
   font-weight:500;
@@ -124,7 +123,7 @@ nav {
   transition: all 0.3s ease;
   text-decoration:none;
 }
-.btn:hover { background: var(--main-dark); transform: scale(1.07); box-shadow:0 10px 20px rgba(0,0,0,0.18);}
+.btn:hover { background: var(--main-dark); transform: scale(1.05); box-shadow:0 8px 16px rgba(0,0,0,0.18);}
 .btn:active { transform: scale(0.97); }
 
 /* 카카오/네이버 버튼 원색 유지 */
@@ -156,9 +155,9 @@ nav {
 .section-box h2 { font-size:21px; margin-bottom:12px; color:#1d1d1f; font-weight:600;}
 .section-box p { color:#1d1d1f; font-size:15px; line-height:1.7; }
 
-/* 카드 클릭 효과 하늘색 */
+/* 카드 클릭 시 하늘색 음영 */
 .section-box:active {
-  background: #d4e4f7; 
+  background: #d4e4f7;
   transform: translateY(-2px);
 }
 
@@ -182,10 +181,7 @@ nav {
 }
 .map-section h2 { margin-bottom:15px; font-size:22px; color:#1d1d1f; }
 .map-section p { color:#1d1d1f; margin-bottom:30px; }
-.map-section iframe { width:100%; height:450px; border-radius:15px; border:none; margin-bottom:25px; }
+.map-section iframe { width:100%; height:450px; border-radius:12px; border:none; margin-bottom:25px; }
 
-/* 지도 버튼 간격 */
-.map-buttons { display:flex; justify-content:center; gap:25px; flex-wrap:wrap; }
-
-/* 하단 */
-.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center;}
+/* 지도 버튼 정렬, 간격 유지 */
+.map-buttons { display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; }
