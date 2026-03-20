@@ -36,7 +36,7 @@ nav {
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
   transform:translateY(-2px);
-  background:rgba(111,168,220,0.25); /* 하늘색 강조 */
+  background:rgba(0,0,0,0.2); /* 하늘색 강조 */
 }
 
 /* ===== 서브메뉴 ===== */
@@ -68,7 +68,7 @@ nav {
 }
 .submenu a:hover, .submenu a.active {
   transform:translateY(-2px);
-  background:rgba(111,168,220,0.25); /* 하늘색 강조 */
+  background:rgba(0,0,0,0.2); /* 하늘색 강조 */
 }
 .menu-item:hover .submenu {
   opacity:1;
@@ -108,7 +108,7 @@ nav {
   font-size:75px;
   margin:0 0 10px 0;
   font-weight:400;
-  color:white;
+  color:white; #6fa8dc; /* 하늘색 */
 }
 .hero-content p {
   font-size:18px;
