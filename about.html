@@ -134,18 +134,6 @@ const observer = new IntersectionObserver(entries => {
 },{ threshold: 0.2 });
 observers.forEach(el => observer.observe(el));
 </script>
-<script>
-// 스크롤 애니메이션
-const sections = document.querySelectorAll('.section, .section-box, .table-wrapper, .video-wrapper');
-function revealSections() {
-  const triggerBottom = window.innerHeight * 0.85;
-  sections.forEach(section => {
-    const top = section.getBoundingClientRect().top;
-    if(top < triggerBottom) section.classList.add('visible');
-  });
-}
-window.addEventListener('scroll', revealSections);
-window.addEventListener('load', revealSections);
-</script>
+
 </body>
 </html>
