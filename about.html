@@ -9,65 +9,55 @@
 <style>
 body {
   margin:0;
-  font-family:'Noto Sans KR',sans-serif;
+  font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
   background:linear-gradient(to bottom,#ffffff,#f3f7fb);
   color:#333;
 }
 html { scroll-behavior:smooth; }
+a { text-decoration:none; }
 
-/* ===== 메뉴 (밝게) ===== */
-nav {
-  position:fixed;
-  top:0;
-  width:100%;
-  background:rgba(255,255,255,0.9);
-  backdrop-filter:blur(8px);
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-  z-index:1000;
-}
-.nav-container {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 40px;
-}
-.nav-title { color:#333; font-weight:600; }
+/* ===== 메뉴는 홈페이지 통일 그대로 ===== */
+nav { /* 기존 홈페이지와 동일 */ }
+.nav-container { /* 기존 홈페이지와 동일 */ }
+.nav-home { /* 기존 홈페이지와 동일 */ }
+.nav-logo { height:35px; width:auto; } /* 원래 홈페이지와 동일 */
+.nav-title { color:white; font-weight:400; font-size:18px; }
+.nav-menu { display:flex; gap:25px; align-items:center; }
 .nav-menu a, .menu-item > a {
-  color:#333;
+  color:white;
   font-weight:600;
-  padding:10px 14px;
+  padding:10px 12px;
   border-radius:6px;
+  transition:transform 0.25s ease, background 0.25s ease;
 }
-.nav-menu a:hover { background:#eef3f8; }
-
-/* 서브메뉴 */
+.nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
+  transform:translateY(-2px);
+  background:rgba(255,255,255,0.08);
+}
 .menu-item { position:relative; }
 .submenu {
   position:absolute;
-  top:100%;
-  left:0;
-  min-width:200px;
-  background:white;
-  border-radius:10px;
+  top:100%; left:0;
+  min-width:220px; max-width:260px;
   padding:10px 0;
-  box-shadow:0 10px 25px rgba(0,0,0,0.1);
+  background:rgba(0,0,0,0.95);
+  border-radius:12px;
+  box-shadow:0 8px 20px rgba(0,0,0,0.3);
   opacity:0;
   visibility:hidden;
-  transform:translateY(10px);
-  transition:0.25s;
+  transform:translateY(8px);
+  transition:opacity 0.3s ease, transform 0.3s ease;
+  pointer-events:none;
+  z-index:1001;
 }
-.menu-item:hover .submenu {
-  opacity:1;
-  visibility:visible;
-  transform:translateY(0);
-}
-.submenu a { color:#333; padding:12px 18px; display:block; }
-.submenu a:hover { background:#f2f6fb; }
+.submenu a { display:block; padding:12px 20px; color:white; font-weight:400; border-radius:6px; transition:background 0.2s ease, transform 0.2s ease; }
+.submenu a:hover, .submenu a.active { transform:translateY(-2px); background:rgba(255,255,255,0.12); }
+.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); pointer-events:auto; }
 
 /* ===== 말씀 카드 ===== */
 .verse-box {
   max-width:900px;
-  margin:110px auto 20px;
+  margin:120px auto 20px;
   padding:30px;
   background:linear-gradient(135deg,#6fa8dc,#8ec5ff);
   color:white;
@@ -80,12 +70,9 @@ nav {
   font-size:32px;
   margin-bottom:10px;
 }
-.verse-box p {
-  font-size:15px;
-  opacity:0.9;
-}
+.verse-box p { font-size:15px; opacity:0.9; }
 
-/* ===== 카드 ===== */
+/* ===== 본문 섹션 ===== */
 .section {
   max-width:950px;
   margin:30px auto;
@@ -106,7 +93,7 @@ nav {
   line-height:1.7;
 }
 
-/* ===== 영상 ===== */
+/* ===== 유튜브 영상 ===== */
 .video-wrapper {
   margin-top:25px;
   border-radius:14px;
@@ -135,9 +122,7 @@ nav {
   background:#6fa8dc;
   color:white;
 }
-.staff-table tr:hover td {
-  background:#f4f8fc;
-}
+.staff-table tr:hover td { background:#f4f8fc; }
 
 /* ===== footer ===== */
 .footer {
@@ -151,7 +136,7 @@ nav {
 
 <body>
 
-<!-- 메뉴 그대로 유지 -->
+<!-- ===== 메뉴 (원래 홈페이지와 동일) ===== -->
 <nav>
   <div class="nav-container">
     <a href="index.html" class="nav-home">
@@ -198,7 +183,7 @@ nav {
   </div>
 </nav>
 
-<!-- ✨ 말씀 카드 추가 -->
+<!-- ✨ 말씀 카드 -->
 <div class="verse-box">
   <h3>“서로 친절하게 하며 불쌍히 여기며 서로 용서하기를…”</h3>
   <p>에베소서 4:32</p>
@@ -208,13 +193,12 @@ nav {
 <section id="mission" class="section">
   <h2>교회 소개</h2>
   <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.
-  담임목사 : 권신재 042-123-1234 청소년부 교역자 : 장세아 042-123-1235 </p>
+  담임목사 : 권신재 청소년부 예배 문의 : 장세아 042-123-1234</p>
 
-  <!-- 🎥 영상 추가 -->
+  <!-- 🎥 유튜브 영상 -->
   <div class="video-wrapper">
     <iframe src="https://www.youtube.com/embed/nD5G_htVfOY?rel=0&modestbranding=1" allowfullscreen></iframe>
   </div>
-
 </section>
 
 <section class="section">
@@ -225,16 +209,8 @@ nav {
 <section id="worship" class="section">
   <h2>예배 안내</h2>
   <table id="worship-table">
-    <tr>
-      <th>시간</th>
-      <th>장소</th>
-      <th>연령</th>
-    </tr>
-    <tr>
-      <td>주일 11:00 ~ 12:00</td>
-      <td>대전대흥교회 교육선교관 2층</td>
-      <td>중·고등학생</td>
-    </tr>
+    <tr><th>시간</th><th>장소</th><th>연령</th></tr>
+    <tr><td>주일 11:00 ~ 12:00</td><td>대전대흥교회 교육선교관 2층</td><td>중·고등학생</td></tr>
   </table>
 </section>
 
