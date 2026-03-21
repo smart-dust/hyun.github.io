@@ -1,163 +1,182 @@
-/* ===== 1. 공통 변수 (동일) ===== */
+/* ============================================================
+   공통 디자인 가이드 (common.css)
+   대상: 메뉴바(Navigation), 하단정보(Footer), 공통 레이아웃
+   ============================================================ */
+
 :root {
-  --main-color: #6fa8dc;
-  --main-hover: rgba(111, 168, 220, 0.12); 
-  --glass-bg: rgba(255, 255, 255, 0.88); 
-  --glass-blur: blur(10px);
-  --text-main: #2c3e50; 
-  --text-menu: #4a5568; 
-  --footer-bg: #f8fbfe; 
-  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --main-color: #6fa8dc;                /* 브랜드 메인 하늘색 */
+  --main-hover: rgba(111, 168, 220, 0.12); /* 마우스 호버 시 연한 배경색 */
+  --glass-bg: rgba(255, 255, 255, 0.88);  /* 반투명 유리 효과 배경 */
+  --glass-blur: blur(10px);             /* 배경 흐림 강도 */
+  --text-main: #2c3e50;                 /* 로고 타이틀용 다크 블루그레이 */
+  --text-menu: #4a5568;                 /* 메뉴 텍스트용 차분한 그레이 */
+  --footer-bg: #f8fbfe;                 /* 푸터 영역 아주 연한 푸른빛 배경 */
+  --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); /* 공통 애니메이션 속도/곡선 */
 }
 
-/* ===== 2. 기본 스타일 (동일) ===== */
+/* 기본 초기화 */
 body {
   margin: 0;
   padding: 0;
   font-family: 'Noto Sans KR', sans-serif;
   background: #fdfdfd;
-  -webkit-font-smoothing: antialiased;
-}
-a { 
-  text-decoration: none !important; 
-  color: inherit; 
-  transition: var(--transition); 
+  -webkit-font-smoothing: antialiased;  /* 글자 테두리 매끄럽게 처리 */
 }
 
-/* ===== 3. 메뉴바 (NAV) - 간격 및 높이 고정 ===== */
+a { 
+  text-decoration: none !important;      /* 모든 링크 밑줄 강제 제거 */
+  color: inherit; 
+  transition: var(--transition);        /* 모든 클릭 요소에 애니메이션 부여 */
+}
+
+/* ============================================================
+   메뉴바 (Navigation Bar)
+   ============================================================ */
+
 nav {
-  position: fixed;
+  position: fixed;                      /* 상단에 항상 고정 */
   top: 0;
   width: 100%;
-  height: 60px; /* 60px 고정 */
+  height: 60px;                         /* 메뉴바 높이 60px 엄격 고정 */
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
+  backdrop-filter: var(--glass-blur);   /* 뒷배경 비치는 효과 */
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04);
-  z-index: 10000;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.04); /* 하단 미세 구분선 */
+  z-index: 10000;                       /* 최상위 레이어 유지 */
   display: flex;
-  align-items: center;
+  align-items: center;                  /* 내부 요소 수직 중앙 정렬 */
 }
 
 .nav-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between;       /* 로고(왼쪽)와 메뉴(오른쪽) 양끝 배치 */
   align-items: center;
   width: 100%;
-  max-width: 100%; 
+  max-width: 100%;                      /* 화면 꽉 차게 사용 */
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 40px;                      /* 양옆 여백 40px */
 }
 
+/* 왼쪽 로고 영역 */
 .nav-left, .nav-home {
   display: flex;
   align-items: center;
-  gap: 6px; /* [수정] 10px -> 6px로 줄여 로고와 이름을 더 밀착 */
+  gap: 6px;                             /* 로고 이미지와 이름 사이 간격 밀착 */
 }
 
 .nav-logo {
-  height: 30px; 
-  width: auto;
+  height: 30px;                         /* 로고 이미지 높이 30px */
+  width: auto;                          /* 비율 유지 */
 }
 
 .nav-title {
-  font-size: 17px;
-  font-weight: 700; 
-  color: var(--text-main);
-  letter-spacing: -0.5px;
+  font-size: 17px;                      /* 이름 크기 */
+  font-weight: 700;                     /* 이름 두께 (Bold) */
+  color: var(--text-main);              /* 이름 색상 */
+  letter-spacing: -0.5px;               /* 자간 좁혀서 단단한 느낌 */
 }
 
+/* 오른쪽 메뉴 영역 */
 .nav-menu {
   display: flex;
-  gap: 5px;
+  gap: 5px;                             /* 메인 메뉴들 사이 간격 */
   align-items: center;
 }
 
-/* [모든 메뉴 호버 효과 통일] */
+/* 메인메뉴 & 서브메뉴 공통 버튼 스타일 */
 .nav-menu > a, 
 .menu-item > a,
 .submenu a {
-  padding: 8px 14px;
-  font-size: 15.5px; 
-  font-weight: 500;
+  padding: 8px 14px;                    /* 클릭 영역 확보 */
+  font-size: 15.5px;                    /* 메뉴 글자 크기 */
+  font-weight: 500;                     /* 메뉴 글자 두께 (Medium) */
   color: var(--text-menu);
-  border-radius: 8px;
+  border-radius: 8px;                   /* 둥근 모서리 */
   display: block;
 }
 
+/* 마우스 호버 효과 (Home 포함 모든 메뉴 공통) */
 .nav-menu a:hover, 
 .menu-item:hover > a,
 .submenu a:hover {
-  color: var(--main-color) !important;
-  background: var(--main-hover);
-  transform: translateY(-2px);
+  color: var(--main-color) !important;  /* 글자색 하늘색으로 변경 */
+  background: var(--main-hover);        /* 연한 배경색 생성 */
+  transform: translateY(-2px);          /* 위로 살짝 떠오르는 애니메이션 */
 }
 
-/* ===== 4. 서브메뉴 (위치 미세 조정) ===== */
-.menu-item { position: relative; }
+/* ============================================================
+   서브메뉴 (Dropdown Menu)
+   ============================================================ */
+
+.menu-item { 
+  position: relative;                   /* 서브메뉴 배치의 기준점 */
+}
 
 .submenu {
   position: absolute;
-  /* [수정] 5px -> 8px로 내려 메뉴바 하단선과 겹치지 않게 함 */
-  /* 8px은 마우스가 끊기지 않고 자연스럽게 이동할 수 있는 최대 한계치입니다 */
-  top: calc(100% + 8px); 
+  top: calc(100% + 8px);                /* 메뉴바 하단에서 8px 띄움 */
   left: 50%;
-  transform: translateX(-50%) translateY(5px);
-  min-width: 150px;
-  background: var(--glass-bg);
+  transform: translateX(-50%) translateY(5px); /* 중앙 정렬 및 초기 위치 */
+  min-width: 150px;                     /* 서브메뉴 최소 너비 */
+  background: var(--glass-bg);          /* 메뉴바와 동일한 반투명색 */
   backdrop-filter: var(--glass-blur);
   border-radius: 10px;
-  padding: 8px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  opacity: 0;
-  visibility: hidden;
+  padding: 8px;                         /* 내부 상하좌우 여백 */
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08); /* 부드러운 하단 그림자 */
+  border: 1px solid rgba(0, 0, 0, 0.05); /* 박스 테두리 */
+  opacity: 0;                           /* 평소엔 투명하게 숨김 */
+  visibility: hidden;                   /* 평소엔 클릭 안되게 숨김 */
   transition: var(--transition);
 }
 
+/* 메인 메뉴에 마우스 올리면 서브메뉴 등장 */
 .menu-item:hover .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  opacity: 1;                           /* 선명하게 보임 */
+  visibility: visible;                  /* 클릭 가능하게 변경 */
+  transform: translateX(-50%) translateY(0); /* 제자리로 올라오는 애니메이션 */
 }
 
+/* 서브메뉴 리스트 항목 (세로 나열) */
 .submenu a {
-  display: block; 
+  display: block;                       /* 한 줄에 하나씩 배치 */
   font-size: 14.5px; 
   font-weight: 500;
   color: var(--text-menu);
   padding: 10px 15px;
-  margin: 2px 0;
+  margin: 2px 0;                        /* 항목 간 수직 간격 */
   border-radius: 6px;
 }
 
-/* ===== 5. 하단 정보 (푸터 - 동일) ===== */
+/* ============================================================
+   하단 정보 (Footer)
+   ============================================================ */
+
 .footer {
-  background: var(--footer-bg);
-  color: #555;
-  padding: 35px 20px;
-  text-align: center;
-  border-top: 2.5px solid var(--main-color); 
-  margin-top: 80px;
+  background: var(--footer-bg);         /* 연한 푸른빛 배경 */
+  color: #555;                          /* 본문 글자색 */
+  padding: 35px 20px;                   /* 상하 35px, 좌우 20px 패딩 */
+  text-align: center;                   /* 모든 내용 중앙 정렬 */
+  border-top: 2.5px solid var(--main-color); /* 상단 하늘색 포인트 선 */
+  margin-top: 80px;                     /* 본문 섹션과의 간격 */
 }
 
 .footer .highlight {
-  font-weight: 700;
-  color: var(--main-color);
+  font-weight: 700;                     /* 제목 강조 */
+  color: var(--main-color);             /* 하늘색 제목 */
   font-size: 15px;
-  display: block;
-  margin-bottom: 8px;
+  display: block;                       /* 한 줄 차지 */
+  margin-bottom: 8px;                   /* 아래 본문과의 간격 */
 }
 
 .footer p {
-  margin: 5px 0;
+  margin: 5px 0;                        /* 줄 사이 간격 */
   font-size: 13.5px;
-  line-height: 1.5;
+  line-height: 1.5;                     /* 줄바꿈 가독성 */
   color: #666;
 }
 
 .footer-copy {
-  margin-top: 15px;
+  margin-top: 15px;                     /* 카피라이트 상단 간격 */
   font-size: 12px;
-  color: #aaa;
+  color: #aaa;                          /* 흐린 회색 */
 }
