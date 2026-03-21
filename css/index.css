@@ -1,8 +1,8 @@
 /* ============================================================
-   메인 페이지 전용 디자인 (index.css) - 최종 디테일 교정
+   메인 페이지 전용 디자인 (index.css) - 최종 기능 및 효과 보정
    ============================================================ */
 
-/* [1] 히어로 섹션 - 슬로건 크기 확대 및 밀착 */
+/* [1] 히어로 섹션 - 버튼 사라짐 원천 차단 */
 .hero {
     position: relative;
     width: 100%;
@@ -14,25 +14,28 @@
     background: #000;
 }
 
+/* 배경 이미지: z-index 최하단 */
 .hero img {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     object-fit: cover;
-    z-index: 1;
+    z-index: 1; 
 }
 
+/* 오버레이: 이미지 위, 컨텐츠 아래 */
 .overlay {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
     background: rgba(0, 0, 0, 0.45);
-    z-index: 2;
+    z-index: 2; 
 }
 
+/* 컨텐츠 박스: z-index를 높게 설정하여 버튼 클릭 및 노출 보장 */
 .hero-content {
     position: relative;
-    z-index: 10; 
+    z-index: 999; /* [수정] 아주 높은 값을 주어 다른 요소에 가려지지 않게 함 */
     text-align: center;
     display: flex;
     flex-direction: column;
@@ -42,7 +45,7 @@
 
 .hero-content h1 {
     font-family: 'Nanum Brush Script', cursive;
-    font-size: 65px;            /* [수정] 52px -> 65px로 대폭 확대 (약 13px 업) */
+    font-size: 65px;
     font-weight: 400;
     color: #fff;
     margin: 0; 
@@ -53,11 +56,31 @@
     font-size: 19px;
     font-weight: 700;
     color: #e3f2fd;
-    margin: -8px 0 25px 0;      /* [수정] 폰트가 커진만큼 마진 조정하여 초밀착 유지 */
+    margin: -8px 0 25px 0;
     letter-spacing: -0.5px;
 }
 
-/* [2] 카드 섹션 - 높이 축소 및 텍스트 배치 정형화 */
+/* [2] 버튼 공통 및 효과 (길찾기 폰트 강화) */
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    font-weight: 800;           /* [수정] 700 -> 800으로 폰트 두께 강화 */
+    font-size: 15.5px;
+    cursor: pointer;
+    border: none;
+    text-decoration: none !important;
+    transition: all 0.25s ease;
+    position: relative;         /* 클릭 이벤트 보장을 위해 추가 */
+}
+
+/* 메인 바로가기 버튼 전용 */
+.hero-content .btn {
+    background: var(--main-color);
+    color: #fff !important;
+    border-radius: 50px;
+}
+
+/* [3] 카드 섹션 - 음영 효과(Shadow) 추가 */
 .section-container {
     display: flex;
     justify-content: center;
@@ -72,21 +95,30 @@
     background: #fff;
     border-radius: 20px;
     width: 250px;
-    min-height: 240px;          /* [수정] 세로 길이를 280px -> 240px로 축소 */
-    padding: 30px 25px;         /* 상하 패딩 조정 */
+    min-height: 240px;
+    padding: 30px 25px;
     text-align: center;
     display: flex;
     flex-direction: column;
     border: 1px solid rgba(111, 168, 220, 0.15);
-    box-shadow: 0 8px 30px rgba(0,0,0,0.03);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.02); /* 기본 상태의 아주 연한 음영 */
     transition: all 0.3s ease;
+}
+
+/* [수정] 카드 선택(호버) 시 음영 처리 효과 강화 */
+.section-box:hover {
+    transform: translateY(-8px);
+    border-color: var(--main-color);
+    background: #fcfdfe;
+    /* 깊이감이 느껴지는 진한 음영 추가 */
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1), 0 5px 15px rgba(111, 168, 220, 0.08);
 }
 
 .section-box h2 {
     color: var(--main-color);
     font-size: 19px;
     font-weight: 800;
-    margin-bottom: auto;        /* [수정] 제목을 상단에 고정 */
+    margin-bottom: auto;
     padding-bottom: 15px;
 }
 
@@ -94,68 +126,49 @@
     color: #555;
     font-size: 14.5px;
     line-height: 1.6;
-    margin: auto 0;             /* [수정] 내용을 카드 중앙에 고정 */
+    margin: auto 0;
 }
 
-.section-box:hover {
-    transform: translateY(-8px);
-    border-color: var(--main-color);
-}
-
-/* [3] 오시는 길 - 테두리 강조 및 왼쪽 정렬 */
+/* [4] 오시는 길 및 길찾기 버튼 */
 .map-section {
     max-width: 800px;
     margin: 0 auto 80px;
     padding: 40px 30px;
     background: #fff;
     border-radius: 25px;
-    border: 1px solid rgba(111, 168, 220, 0.2); /* 테두리 기본 강조 */
+    border: 1px solid rgba(111, 168, 220, 0.2);
     text-align: center;
     transition: all 0.4s ease;
 }
 
 .map-section:hover {
     transform: translateY(-2px); 
-    border-color: var(--main-color);           /* [수정] 호버 시 테두리색 더 강조 */
-    box-shadow: 0 10px 35px rgba(111, 168, 220, 0.15);
+    border-color: var(--main-color);
+    box-shadow: 0 10px 30px rgba(111, 168, 220, 0.15);
 }
 
-.map-section h2 {
-    color: var(--main-color);
-    font-size: 22px;
-    font-weight: 800;
-    margin-bottom: 25px;
-}
-
-.map-section iframe {
-    width: 100%;
-    height: 380px;
-    border-radius: 15px;
-    border: none;
-    margin-bottom: 25px;
-}
-
-/* 길찾기 버튼 - 왼쪽 정렬 및 간격 확대 */
 .map-buttons {
     display: flex;
-    justify-content: flex-start; /* [수정] 왼쪽 정렬 */
-    gap: 20px;                   /* [수정] 버튼 사이 간격 확대 */
+    justify-content: flex-start;
+    gap: 25px; /* 버튼 간격 더 벌림 */
     padding-left: 10px;
 }
 
+/* 길찾기 버튼 폰트 및 스타일 */
 .map-buttons .btn {
     border-radius: 12px;
-    padding: 10px 28px;
-    font-size: 14.5px;
+    padding: 11px 30px;
+    font-size: 15px;
+    font-weight: 800;           /* [수정] 길찾기 폰트 두께 800 적용 */
 }
 
 .btn.kakao { background: #fee500; color: #3c1e1e !important; }
 .btn.naver { background: #03c75a; color: #fff !important; }
 
-/* 공통 버튼 효과 */
+/* 공통 버튼 인터렉션 */
 .btn:hover {
     transform: translateY(-3px);
-    filter: brightness(1.1);
+    filter: brightness(1.05);
 }
 .btn:active {
     transform: translateY(1px);
