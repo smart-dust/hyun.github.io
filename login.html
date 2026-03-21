@@ -6,7 +6,6 @@
     <title>Member Login - 대전대흥교회 청소년부</title>
     <style>
         :root {
-            /* 지정하신 메인 컬러 (#6fa8dc) 기반 선명한 톤 */
             --main-color: #6fa8dc;
             --dark-blue: #5a94c8;
             --bg-color: #e9eff5;
@@ -27,15 +26,13 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1. 로그인 카드: 가로 폭을 넓혀 시원하게 구성 */
         .login-card {
             background: var(--white);
             width: 100%;
-            /* 세로로 길어 보이는 느낌을 없애기 위해 가로 폭을 대폭 넓힘 */
             max-width: 440px; 
-            padding: 60px 50px; /* 좌우 여백을 더 늘려 시원하게 구성 */
+            padding: 60px 50px; 
             border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 그림자를 조금 더 은은하게 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
             text-align: center;
             border: 2px solid var(--main-color);
             box-sizing: border-box;
@@ -44,13 +41,13 @@
         .login-card h2 {
             color: var(--main-color);
             margin-bottom: 45px;
-            font-size: 1.8rem; /* 폰트 크기 살짝 키움 */
+            font-size: 1.8rem;
             font-weight: 800;
             letter-spacing: -1px;
         }
 
         .input-group {
-            margin-bottom: 25px; /* 입력창 사이 간격을 조금 더 넓힘 */
+            margin-bottom: 25px;
             text-align: left;
         }
 
@@ -58,13 +55,13 @@
             display: block;
             font-size: 0.9rem;
             color: var(--text-main);
-            margin-bottom: 10px; /* 라벨과 입력창 사이 여백 */
+            margin-bottom: 10px;
             font-weight: 700;
         }
 
         input {
             width: 100%;
-            padding: 15px 18px; /* 입력창 내부 여백 늘림 */
+            padding: 15px 18px;
             border: 2px solid var(--border-color);
             border-radius: 8px;
             font-size: 1rem;
@@ -76,10 +73,8 @@
         input:focus {
             outline: none;
             border-color: var(--main-color);
-            background-color: #fff;
         }
 
-        /* Login 버튼: 두께 줄이고 자간 유지 */
         button {
             width: 100%;
             padding: 16px;
@@ -88,13 +83,12 @@
             border: none;
             border-radius: 8px;
             font-size: 1.1rem;
-            /* 글자 두께 Semibold(600) 유지 */
             font-weight: 600; 
             cursor: pointer;
             margin-top: 15px;
             transition: background 0.2s ease, transform 0.1s ease;
             box-shadow: 0 5px 12px rgba(111, 168, 220, 0.3);
-            letter-spacing: 3px; /* 자간 유지 */
+            letter-spacing: 3px;
             text-indent: 3px;
         }
 
@@ -103,11 +97,6 @@
             transform: translateY(-1px);
         }
 
-        button:active {
-            transform: translateY(1px);
-        }
-
-        /* ID / PW 찾기 및 하단 링크 디자인 */
         .find-group {
             margin-top: 28px;
             font-size: 0.85rem;
@@ -175,7 +164,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Firebase 설정 (기존과 동일)
     const firebaseConfig = {
         apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
         authDomain: "dhchurch-cf85f.firebaseapp.com",
@@ -186,7 +174,6 @@
         measurementId: "G-KKT2TX7SZ9"
     };
 
-    // Firebase 초기화
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
@@ -194,7 +181,6 @@
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
 
-    // 로그인 실행 함수
     const handleLogin = () => {
         const email = emailInput.value;
         const password = passwordInput.value;
@@ -203,29 +189,20 @@
 
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-                // 성공 시 바로 이동 (alert 없음)
                 window.location.href = "admin.html"; 
             })
             .catch((error) => {
-                console.error(error);
-                // 비밀번호가 틀렸을 때만 알림
-                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                    alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-                } else {
-                    alert("로그인 중 오류가 발생했습니다.");
-                }
+                console.error("로그인 실패:", error.code);
+                // 모든 에러 메시지를 하나로 통일
+                alert("아이디 또는 비밀번호가 일치하지 않습니다.");
             });
     };
 
-    // 버튼 클릭 시 로그인
     loginBtn.addEventListener('click', handleLogin);
-
-    // 엔터키 눌렀을 때도 로그인 되게 추가
     window.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleLogin();
     });
 
-    // 찾기 버튼 클릭 시 이벤트 전파 방지 (기능 구현 전)
     document.getElementById('find-id').onclick = (e) => e.preventDefault();
     document.getElementById('find-pw').onclick = (e) => e.preventDefault();
 </script>
