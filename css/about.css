@@ -1,4 +1,4 @@
-/* [1] 히어로 섹션 - 문구 노출 및 높이 고정 */
+/* [1] 히어로 섹션 - 문구 노출 보장 */
 .hero {
     position: relative;
     height: 38vh;
@@ -29,7 +29,6 @@
     font-size: 52px !important;
     font-weight: 400 !important;
     color: #fff !important;
-    margin-bottom: 5px;
     text-shadow: 0 2px 15px rgba(0,0,0,0.6);
 }
 
@@ -39,12 +38,11 @@
     color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* [2] 섹션 카드 - 답답함 해소 (간격 확대) */
+/* [2] 섹션 카드 - 간격 확대 (시원한 레이아웃) */
 .section {
     max-width: 1000px;
-    /* 요구사항: 섹션 간 간격을 100px 이상으로 벌려 답답함 해소 */
     margin: 110px auto !important; 
-    padding: 65px 50px; /* 내부 여백도 충분히 주어 강조 효과 극대화 */
+    padding: 65px 50px;
     background: #fff;
     border-radius: 24px;
     border: 1px solid #eee;
@@ -58,26 +56,7 @@
     border-color: #6fa8dc;
 }
 
-/* 제목 하단 포인트 선 */
-.section h2 {
-    color: #2c3e50;
-    font-size: 28px;
-    margin-bottom: 25px;
-    display: inline-block;
-    position: relative;
-}
-
-.section h2::after {
-    content: '';
-    display: block;
-    width: 35px;
-    height: 5px;
-    background: #6fa8dc;
-    margin-top: 10px;
-    border-radius: 10px;
-}
-
-/* [3] 교육 주제 - 텍스트 중심의 깔끔한 강조 */
+/* [3] 교육 주제 - 깔끔한 텍스트 강조 */
 .edu-topic {
     display: block !important;
     font-size: 26px !important;
@@ -88,16 +67,15 @@
     white-space: nowrap;
 }
 
-/* [4] 유튜브 영상 - 요구사항: 크기 원상복구 (폭 100% 사용) */
+/* [4] 유튜브 영상 - 크기 100% 원상복구 */
 .video-wrapper {
-    width: 100%; /* 너비를 꽉 채움 */
+    width: 100%; 
     margin-top: 40px;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 비율 유지 */
+    padding-bottom: 56.25%; 
     height: 0;
     border-radius: 24px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
 .video-wrapper iframe {
@@ -107,7 +85,7 @@
     border: none;
 }
 
-/* [5] 표(Table) - 디자인 완성본 유지 */
+/* [5] 표(Table) - 디자인 완성 및 ★선택 효과 복구★ */
 .worship-table, .staff-table {
     width: 100%;
     margin-top: 30px;
@@ -125,7 +103,8 @@
     padding: 18px 10px;
     font-size: 19px;
     font-weight: 900;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .worship-table td, .staff-table td {
@@ -134,10 +113,26 @@
     border-right: 1.5px solid rgba(111, 168, 220, 0.1) !important;
     text-align: center;
     color: #333;
+    background: #fff;
     font-size: 17px;
     font-weight: 450;
+    transition: all 0.2s ease; /* 부드러운 전환 효과 */
 }
 
+/* ★ 복구된 선택 효과 (Hover) ★ */
+.staff-table tbody tr:hover td, 
+.worship-table tbody tr:hover td {
+    background-color: #f0f7ff !important; /* 연한 하늘색 배경 */
+    color: #6fa8dc !important;           /* 글자색 하늘색으로 변경 */
+    font-weight: 600 !important;         /* 글자 살짝 두껍게 */
+    cursor: default;
+}
+
+/* 마지막 열/행 정리 */
+.worship-table th:last-child, .staff-table th:last-child,
 .worship-table td:last-child, .staff-table td:last-child {
     border-right: none !important;
+}
+.worship-table tr:last-child td, .staff-table tr:last-child td {
+    border-bottom: none !important;
 }
