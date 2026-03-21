@@ -3,70 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - 대전대흥교회 청소년부</title>
+    <title>Member Login - 대전대흥교회 청소년부</title>
     <style>
         :root {
             --main-color: #6fa8dc;
             --hover-color: #5a94c8;
-            --bg-color: #f4f7f9;
-            --text-color: #333;
-            --sub-text: #888;
+            --bg-color: #f5f7fa;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
+            --border-color: #dfe6e9;
         }
 
         body {
-            font-family: 'Pretendard', sans-serif;
+            font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
             background-color: var(--bg-color);
             display: flex;
-            flex-direction: column;
+            flex-direction: column; /* 세로 배치 */
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* 로그인 카드 (유지) */
+        /* 1. 로그인 카드 디자인 */
         .login-card {
             background: #ffffff;
+            width: 100%;
+            max-width: 320px; /* 더 단단해 보이는 슬림한 폭 */
             padding: 50px 35px;
             border-radius: 12px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
-            width: 100%;
-            max-width: 320px; /* 창 크기 슬림화 */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
             text-align: center;
-            z-index: 1;
+            border: 1px solid #edf2f7;
         }
 
         .login-card h2 {
-            color: var(--text-color);
+            color: var(--text-main);
             margin-bottom: 35px;
-            font-size: 1.5rem;
-            font-weight: 700;
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .input-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .input-group label {
             display: block;
             font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 7px;
+            color: var(--text-sub);
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
         input {
             width: 100%;
             padding: 13px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
+            border: 1.5px solid var(--border-color);
+            border-radius: 8px;
             font-size: 0.95rem;
             box-sizing: border-box;
-            transition: border-color 0.2s;
+            background-color: #fff;
+            transition: all 0.2s ease;
         }
 
-        /* Glow 효과 제거, 선택 시 기본색 테두리 */
+        /* 선택 시 Glow 없이 테두리 색상만 변경 */
         input:focus {
             outline: none;
             border-color: var(--main-color);
@@ -74,68 +78,74 @@
 
         button {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             background-color: var(--main-color);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
             margin-top: 10px;
-            transition: background 0.2s;
+            transition: background 0.2s ease;
         }
 
         button:hover {
             background-color: var(--hover-color);
         }
 
-        /* ID / PW 찾기 영역 */
-        .find-links {
-            margin-top: 20px;
+        /* ID / PW 찾기 디자인 */
+        .find-group {
+            margin-top: 25px;
             font-size: 0.8rem;
-            color: var(--sub-text);
+            color: #b2bec3;
         }
 
-        .find-links a {
-            color: var(--sub-text);
+        .find-group a {
+            color: #b2bec3;
             text-decoration: none;
-            cursor: pointer;
             transition: color 0.2s;
+            cursor: pointer;
         }
 
-        .find-links a:hover {
+        .find-group a:hover {
             color: var(--main-color);
             text-decoration: underline;
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 30px;
-            color: #bbb;
+            margin-top: 35px;
+            color: #bdc3c7;
             text-decoration: none;
             font-size: 0.8rem;
         }
 
-        /* 카드 밖 하단 로고 및 교회명 */
+        .back-home:hover {
+            color: var(--text-sub);
+            text-decoration: underline;
+        }
+
+        /* 2. 카드 밖 하단 로고 및 교회 이름 */
         .footer-info {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 40px;
-            gap: 10px;
-            opacity: 0.6;
+            margin-top: 45px;
+            gap: 12px;
+            opacity: 0.5; /* 배경처럼 은은하게 */
         }
 
         .footer-logo {
-            width: 25px;
+            width: 28px;
             height: auto;
         }
 
         .footer-text {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 600;
-            color: var(--text-color);
+            color: var(--text-main);
+            letter-spacing: -0.3px;
         }
     </style>
 </head>
@@ -146,7 +156,7 @@
 
     <div class="input-group">
         <label for="email">ID</label>
-        <input type="email" id="email" required spellcheck="false">
+        <input type="email" id="email" required spellcheck="false" autocomplete="off">
     </div>
 
     <div class="input-group">
@@ -155,18 +165,18 @@
     </div>
 
     <button id="login-btn">Login</button>
-    
-    <div class="find-links">
-        <a id="find-id">ID 찾기</a> &nbsp;|&nbsp; <a id="find-pw">비밀번호 찾기</a>
+
+    <div class="find-group">
+        <a id="find-id">ID 찾기</a> &nbsp; | &nbsp; <a id="find-pw">비밀번호 찾기</a>
     </div>
 
     <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
 </div>
 
-<div class="footer-info">
+<footer class="footer-info">
     <img src="images/logo.png" alt="" class="footer-logo" onerror="this.style.display='none'">
     <span class="footer-text">대전대흥교회 청소년부</span>
-</div>
+</footer>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -209,7 +219,7 @@
         if (e.key === 'Enter') handleLogin();
     });
 
-    // 찾기 버튼 클릭 시 이벤트 전파 방지 (기능 구현 전)
+    // 추후 구현을 위한 클릭 방지
     document.getElementById('find-id').onclick = (e) => e.preventDefault();
     document.getElementById('find-pw').onclick = (e) => e.preventDefault();
 </script>
