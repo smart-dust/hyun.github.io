@@ -148,5 +148,33 @@
             }
         });
     </script>
+    // index.html (및 다른 모든 페이지의 스크립트 부분)
+
+onAuthStateChanged(auth, (user) => {
+    const authBtn = document.getElementById('admin-auth-btn');
+    const adminElements = document.querySelectorAll('.admin-only');
+
+    if (user) {
+        // [로그인 상태일 때]
+        authBtn.innerText = "Logout";
+        authBtn.onclick = (e) => {
+            e.preventDefault();
+            if (confirm("정말 로그아웃하시겠습니까?")) {
+                signOut(auth).then(() => location.reload());
+            }
+        };
+        adminElements.forEach(el => el.style.display = 'block');
+    } else {
+        // [로그아웃 상태일 때]
+        authBtn.innerText = "Login";
+        const currentPage = window.location.pathname.split("/").pop() || "index.html";
+        authBtn.setAttribute('href', `login.html?redirect=${currentPage}`);
+        authBtn.onclick = null;
+        adminElements.forEach(el => el.style.display = 'none');
+    }
+
+    // ⭐ 핵심: 로그인이든 아니든 '판단'이 끝났으므로 이제 버튼을 보여줍니다.
+    authBtn.style.opacity = "1";
+});
 </body>
 </html>
