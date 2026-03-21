@@ -47,3 +47,4 @@ onAuthStateChanged(auth, (user) => {
 if (adminFab) {
     adminFab.style.setProperty('display', 'block', 'important');
 }
+alert("auth.js 연결 성공!");
