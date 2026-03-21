@@ -31,12 +31,7 @@ nav {
 .nav-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 10px 40px;
-}
-
-.nav-logo { 
-  height: 35px; 
 }
 
 .nav-title {
