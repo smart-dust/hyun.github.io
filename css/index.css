@@ -1,30 +1,77 @@
-/* [수정] 길찾기 버튼 - 브랜드 색상을 유지하며 세련되게 보정 */
+/* ============================================================
+   메인 페이지 전용 디자인 (index.css) - 최종 디테일 교정본
+   ============================================================ */
 
-.map-btn.kakao { 
-    background: linear-gradient(135deg, #fee500 0%, #fada00 100%); /* 미세한 그라데이션 */
-    color: #3c1e1e !important; 
-    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.2); /* 노란색 계열의 부드러운 그림자 */
+/* [1] 히어로 섹션 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
 }
 
-.map-btn.naver { 
-    background: linear-gradient(135deg, #03c75a 0%, #02b350 100%); 
-    color: #fff !important; 
-    box-shadow: 0 4px 12px rgba(3, 199, 90, 0.2); /* 초록색 계열의 부드러운 그림자 */
+.hero img {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
 
-/* 호버 시 브랜드 색감이 죽지 않으면서 더 선명해지는 효과 */
-.map-btn.kakao:hover {
-    filter: saturate(1.2) brightness(1.02);
-    box-shadow: 0 6px 18px rgba(254, 229, 0, 0.4);
+.overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 2;
 }
 
-.map-btn.naver:hover {
-    filter: saturate(1.2) brightness(1.02);
-    box-shadow: 0 6px 18px rgba(3, 199, 90, 0.4);
+.hero-content {
+    position: relative;
+    z-index: 10; 
+    text-align: center;
 }
 
-/* [추가] 지도 섹션의 전체적인 톤을 맞추기 위한 미세 조정 */
-.map-section {
-    border: 1px solid rgba(111, 168, 220, 0.25); /* 테두리를 조금 더 선명하게 */
-    background: linear-gradient(to bottom, #ffffff, #f9fbfc); /* 아래로 갈수록 아주 연한 푸른빛 */
+.hero-content h1 {
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 70px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 0;
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
 }
+
+.hero-content p {
+    font-size: 21px;
+    font-weight: 500; /* [수정] 메인 제목 강조를 위해 조금 얇게 */
+    color: #e3f2fd;
+    margin: -5px 0 25px 0;
+    letter-spacing: 0.5px;
+}
+
+/* 히어로 버튼 - 탄성 있는 호버 효과 */
+.hero-btn {
+    display: inline-block;
+    padding: 11px 32px;
+    background: var(--main-color);
+    color: #fff !important;
+    border-radius: 50px;
+    font-size: 15.5px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 15px rgba(111, 168, 220, 0.3);
+}
+
+.hero-btn:hover {
+    transform: translateY(-5px) scale(1.03);
+    background: #5ba4e5;
+    box-shadow: 0 8px 25px rgba(111, 168, 220, 0.5);
+}
+
+/* [2] 카드 섹션 */
+.section-container {
