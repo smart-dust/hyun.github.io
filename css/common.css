@@ -1,117 +1,195 @@
-/* ===== 1. 설정 변수 (여기만 바꾸면 전체 색상이 바뀝니다) ===== */
+/* ==================================================
+  [1] 공통 변수 설정 (수정하기 쉽게 모아둠)
+  ==================================================
+  - 색상이나 간격을 바꿀 때 여기 숫자만 바꾸면 전체가 바뀝니다.
+*/
 :root {
-  --main-blue: #6fa8dc;       /* 강조색: 부드러운 하늘색 */
-  --hover-bg: #f0f4f8;        /* 마우스 올렸을 때 배경색 */
-  --text-dark: #2d3436;       /* 진한 글자색 */
-  --text-gray: #636e72;       /* 보조 글자색 */
-  --nav-height: 70px;         /* 네비게이션 바 높이 */
+  --main-color: #6fa8dc;        /* 포인트 색상 (하늘색) */
+  --main-hover: rgba(111, 168, 220, 0.1); /* 마우스 올렸을 때 연한 배경색 */
+  --text-dark: #222222;         /* 메인 글자색 */
+  --text-light: #666666;        /* 보조 글자색 */
+  --nav-bg: rgba(255, 255, 255, 0.95); /* 메뉴바 배경 (살짝 투명) */
+  --footer-bg: #2c2c3d;         /* 푸터 배경색 */
+  --transition: all 0.3s ease;  /* 부드러운 움직임 속도 */
 }
 
-/* ===== 2. 네비게이션 전체 레이아웃 ===== */
+/* ==================================================
+  [2] 기본 스타일 (초기화)
+  ==================================================
+*/
+body {
+  margin: 0;
+  padding-top: 70px; /* 메뉴바가 고정(fixed)이라 상단 컨텐츠가 가려지지 않게 여백 추가 */
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  background: #f8f9fa;
+  color: #333;
+  -webkit-font-smoothing: antialiased; /* 글자를 더 매끄럽게 */
+}
+
+a { 
+  text-decoration: none; 
+  color: inherit; 
+}
+
+/* ==================================================
+  [3] 네비게이션 바 (상단 메뉴박스)
+  ==================================================
+*/
 nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  height: var(--nav-height);
-  background: rgba(255, 255, 255, 0.95); /* 살짝 투명하게 */
-  backdrop-filter: blur(10px);           /* 배경 흐림 효과 (고급스러움) */
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  height: 70px; /* 메뉴바 전체 높이 */
+  background: var(--nav-bg);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05); /* 아래쪽 은은한 그림자 */
+  backdrop-filter: blur(10px); /* 배경을 흐릿하게 해서 세련된 느낌 추가 */
   z-index: 1000;
   display: flex;
-  align-items: center; /* 세로 중앙 정렬 */
+  align-items: center;
 }
 
 .nav-container {
-  width: 100%;
-  max-width: 1200px;  /* 화면이 커져도 컨텐츠는 이 폭 안에 들어옴 */
-  margin: 0 auto;     /* 가운데 정렬 */
-  padding: 0 20px;
   display: flex;
   justify-content: space-between; /* 왼쪽(로고)과 오른쪽(메뉴) 끝으로 배치 */
+  align-items: center;           /* 세로 방향 정중앙 정렬 */
+  width: 100%;
+  max-width: 1200px;             /* 사이트 최대 폭 */
+  margin: 0 auto;                /* 화면 중앙 정렬 */
+  padding: 0 30px;
+}
+
+/* --- 로고 & 타이틀 영역 (수평 맞춤 핵심) --- */
+.nav-left {
+  display: flex;
   align-items: center;
 }
 
-/* ===== 3. [핵심] 로고 + 타이틀 수평 정렬 ===== */
 .nav-home {
-  display: flex;         /* 이미지와 글자를 가로로 배치 */
-  align-items: center;    /* 이미지와 글자의 세로 중앙을 딱 맞춤 */
-  gap: 12px;             /* 로고와 글자 사이 간격 */
-  text-decoration: none;
+  display: flex;      /* 가로 배치 */
+  align-items: center; /* 이미지와 글자의 세로 중앙을 딱 맞춤 */
+  gap: 12px;          /* 로고와 글자 사이 간격 */
 }
 
 .nav-logo {
-  height: 30px;          /* 로고 크기 - 원하는 대로 조절하세요 */
-  width: auto;           /* 비율 유지 */
-  object-fit: contain;   /* 이미지가 찌그러지지 않게 */
+  height: 40px;       /* 로고 이미지 크기 (조절 가능) */
+  width: auto;        /* 비율 유지 */
+  display: block;
 }
 
 .nav-title {
-  font-size: 1.2rem;     /* 글자 크기 */
-  font-weight: 700;      /* 두껍게 */
-  color: #000;           /* 글자색 */
-  letter-spacing: -0.5px; /* 자간을 줄여서 더 단단한 느낌 */
+  font-weight: 700;
+  font-size: 20px;
+  color: #000;
+  letter-spacing: -0.5px; /* 자간 조절 */
+  line-height: 1;         /* 텍스트 높이 초기화로 수평 정밀 조정 */
 }
 
-/* ===== 4. 우측 메뉴 영역 ===== */
+/* --- 메뉴 버튼 영역 --- */
 .nav-menu {
   display: flex;
+  gap: 8px; /* 메뉴 간 간격 */
   align-items: center;
-  gap: 5px; /* 메뉴 간의 간격 */
 }
 
 .nav-menu > a, 
 .menu-item > a {
-  padding: 8px 16px;
+  padding: 10px 18px;
   font-weight: 600;
+  font-size: 16px;
   color: var(--text-dark);
   border-radius: 8px;
-  transition: all 0.2s ease; /* 부드러운 변화 */
+  transition: var(--transition);
 }
 
-/* 메뉴 호버 및 활성화(active) 상태 */
-.nav-menu a:hover, 
-.nav-menu a.active {
-  color: var(--main-blue);
-  background-color: var(--hover-bg);
+/* 마우스 올렸을 때(Hover) & 활성화된 메뉴(Active) */
+.nav-menu a:hover,
+.nav-menu a.active,
+.menu-item:hover > a {
+  color: var(--main-color);
+  background: var(--main-hover);
 }
 
-/* ===== 5. 서브메뉴 디자인 (드롭다운) ===== */
+/* ==================================================
+  [4] 서브메뉴 (드롭다운)
+  ==================================================
+*/
 .menu-item {
-  position: relative; /* 서브메뉴 위치의 기준점 */
+  position: relative; /* 서브메뉴 배치의 기준점 */
 }
 
 .submenu {
   position: absolute;
-  top: 100%;             /* 부모 메뉴 바로 아래 */
-  left: 50%;
-  transform: translateX(-50%) translateY(10px); /* 가운데 정렬 및 살짝 아래 배치 */
-  background: #fff;
-  min-width: 150px;      /* 최소 너비 */
-  padding: 10px;
+  top: 100%;         /* 부모 메뉴 바로 아래 배치 */
+  left: 50%;         /* 중앙 정렬 시작 */
+  transform: translateX(-50%) translateY(10px); /* 중앙 이동 + 살짝 아래 배치 */
+  min-width: 160px;
+  background: #ffffff;
   border-radius: 12px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1); /* 부드러운 그림자 */
-  opacity: 0;            /* 평소엔 투명하게 */
-  visibility: hidden;    /* 평소엔 숨김 */
-  transition: all 0.3s ease;
+  padding: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12); /* 드롭다운 그림자 강화 */
+  opacity: 0;        /* 투명하게 숨김 */
+  visibility: hidden; /* 클릭 방지 */
+  transition: var(--transition);
 }
 
-/* 상위 메뉴에 마우스 올리면 서브메뉴 등장 */
+/* 마우스 올리면 서브메뉴 등장 */
 .menu-item:hover .submenu {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(5px); /* 위로 슬르륵 올라오며 등장 */
+  transform: translateX(-50%) translateY(5px); /* 위로 슬쩍 올라오며 등장 */
 }
 
 .submenu a {
   display: block;
   padding: 10px 15px;
-  font-size: 0.95rem;
-  color: var(--text-gray);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-light);
   border-radius: 6px;
-  white-space: nowrap; /* 글자 줄바꿈 방지 */
+  transition: var(--transition);
 }
 
 .submenu a:hover {
-  background: var(--hover-bg);
-  color: var(--main-blue);
+  background: var(--main-hover);
+  color: var(--main-color);
+}
+
+/* ==================================================
+  [5] 하단 (푸터) 스타일
+  ==================================================
+*/
+.footer {
+  background: var(--footer-bg);
+  color: #fff;
+  padding: 50px 20px;
+  text-align: center;
+  margin-top: 100px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.footer .highlight {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: var(--main-color);
+}
+
+.footer p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #cbd5e0;
+  margin: 5px 0;
+}
+
+.footer a {
+  color: #fff;
+  text-decoration: underline;
+  opacity: 0.8;
+}
+
+.footer a:hover {
+  opacity: 1;
+  color: var(--main-color);
 }
