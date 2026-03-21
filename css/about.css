@@ -1,17 +1,18 @@
 /* ============================================================
-   교회소개 전용 디자인 (about.css)
+   교회소개 전용 디자인 (통합 가이드 반영 버전)
    ============================================================ */
 
-/* [1] 서브 히어로 섹션 - 메인보다 콤팩트하게 */
+/* [1] 서브 히어로 섹션 - 메인 히어로의 압축 버전 */
 .hero {
     position: relative;
-    height: 45vh; /* 메인보다 낮게 설정하여 정보에 집중 */
-    min-height: 350px;
+    height: 40vh; /* 메인(100vh)보다 낮게 설정 */
+    min-height: 300px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    margin-top: 60px; /* 메뉴바 높이만큼 띄움 */
+    margin-top: 60px; /* 메뉴바 높이 */
+    background: #000;
 }
 
 .hero img {
@@ -20,14 +21,15 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
+    filter: brightness(0.7); /* 글자 가독성을 위해 어둡게 조절 */
 }
 
 .overlay {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* 흰색 배경이므로 어두운 톤보다 푸른 톤의 그라데이션이 더 세련됨 */
-    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(111, 168, 220, 0.4));
+    /* 메인의 단색 오버레이보다 세련된 그라데이션 적용 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(44, 62, 80, 0.5));
     z-index: 2;
 }
 
@@ -35,32 +37,40 @@
     position: relative;
     z-index: 10;
     text-align: center;
-    padding: 0 20px;
 }
 
 .hero-content h2 {
     font-family: 'Nanum Brush Script', cursive;
-    font-size: 48px;
+    font-size: 52px;
     color: #fff;
-    margin-bottom: 15px;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+    margin-bottom: 10px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
     font-size: 18px;
-    color: #f0faff;
+    color: #e3f2fd;
     font-weight: 500;
+    letter-spacing: 0.5px;
 }
 
-/* [2] 섹션 공통 스타일 */
+/* [2] 섹션 공통 스타일 - index.css의 카드 디자인 계승 */
 .section {
     max-width: 1000px;
     margin: 60px auto;
-    padding: 50px 40px;
+    padding: 60px 50px;
     background: #fff;
-    border-radius: 30px; /* 메인 카드와 통일감 있는 큰 곡률 */
-    box-shadow: 0 10px 40px rgba(111, 168, 220, 0.08); /* 부드러운 푸른 그림자 */
-    border: 1px solid rgba(111, 168, 220, 0.1);
+    border-radius: 24px; /* 메인 카드와 동일한 곡률 */
+    border: 1px solid rgba(111, 168, 220, 0.15);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+}
+
+/* 선택 효과: 읽고 있는 섹션 강조 */
+.section:hover {
+    transform: translateY(-5px);
+    border-color: var(--main-color);
+    box-shadow: 0 15px 45px rgba(111, 168, 220, 0.1);
 }
 
 .section h2 {
@@ -72,37 +82,34 @@
     display: inline-block;
 }
 
-/* 제목 아래 작은 포인트 선 */
+/* 제목 하단 포인트 바 */
 .section h2::after {
     content: '';
     display: block;
-    width: 40px;
+    width: 100%; /* 글자 길이에 맞춤 */
     height: 4px;
-    background: var(--main-color);
+    background: rgba(111, 168, 220, 0.3); /* 연한 포인트 컬러 */
     border-radius: 10px;
-    margin-top: 8px;
+    margin-top: 4px;
 }
 
 .section p {
-    font-size: 16.5px;
-    line-height: 1.8;
-    color: #444;
+    font-size: 17px;
+    line-height: 1.85;
+    color: #333; /* index.css와 동일한 진한 회색 */
+    word-break: keep-all;
 }
 
-.section p.small {
-    font-size: 15px;
-    color: #666;
-}
-
-/* [3] 유튜브 영상 박스 */
+/* [3] 유튜브 영상 박스 - 메인 지도 스타일 계승 */
 .video-wrapper {
-    margin-top: 30px;
+    margin-top: 35px;
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 비율 유지 */
+    padding-bottom: 56.25%; 
     height: 0;
     border-radius: 20px;
     overflow: hidden;
     box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(111, 168, 220, 0.1);
 }
 
 .video-wrapper iframe {
@@ -112,46 +119,49 @@
     border: none;
 }
 
-/* [4] 테이블 디자인 - 핵심 포인트 */
+/* [4] 테이블 디자인 - 가독성 및 선택 효과 극대화 */
 .table, .staff-table {
     width: 100%;
-    margin-top: 20px;
-    border-collapse: separate; /* 모서리 둥글게 하기 위해 separate 사용 */
+    margin-top: 30px;
+    border-collapse: separate;
     border-spacing: 0;
-    overflow: hidden;
     border-radius: 15px;
-    border: 1px solid rgba(111, 168, 220, 0.2);
+    overflow: hidden;
+    border: 1px solid #eef2f6;
 }
 
 .table th, .staff-table th {
-    background: #f4f9ff; /* 아주 연한 하늘색 배경 */
-    color: var(--main-color);
-    padding: 15px;
+    background: #f8fbfe; /* footer-bg와 유사한 톤 */
+    color: var(--text-main);
+    padding: 18px;
     font-weight: 700;
-    font-size: 15px;
-    border-bottom: 2px solid rgba(111, 168, 220, 0.1);
+    font-size: 15.5px;
+    border-bottom: 2px solid rgba(111, 168, 220, 0.2);
 }
 
 .table td, .staff-table td {
-    padding: 15px;
-    border-bottom: 1px solid #f0f0f0;
-    color: #555;
+    padding: 16px;
+    border-bottom: 1px solid #f1f4f8;
+    color: #444;
     font-size: 15px;
     text-align: center;
+    transition: var(--transition);
 }
 
+/* 행 선택 효과 (Hover & Active) */
+.table tr:hover td, .staff-table tr:hover td {
+    background-color: #f0f7ff; /* 메인 호버색보다 살짝 진하게 */
+    color: var(--main-color);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.table tr:active td, .staff-table tr:active td {
+    background-color: #e3f2fd;
+    transform: scale(0.998); /* 클릭 시 미세한 눌림 효과 */
+}
+
+/* 마지막 행 테두리 제거 */
 .table tr:last-child td, .staff-table tr:last-child td {
     border-bottom: none;
-}
-
-/* 테이블 줄무늬 효과 (가독성 향상) */
-.table tr:nth-child(even), .staff-table tr:nth-child(even) {
-    background-color: #fcfdfe;
-}
-
-/* 마우스 올렸을 때 행 강조 */
-.table tr:hover td, .staff-table tr:hover td {
-    background-color: #f0f7ff;
-    color: var(--main-color);
-    transition: all 0.2s;
 }
