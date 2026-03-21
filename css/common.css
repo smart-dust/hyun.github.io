@@ -200,3 +200,37 @@ nav {
     opacity: 1 !important;
     transform: none !important;
 }
+
+/* --- 관리자 전용 플로팅 버튼 스타일 --- */
+#admin-fab {
+    display: none; /* 로그인 전에는 안 보이게 설정 */
+    position: fixed;
+    bottom: 40px; /* 화면 하단에서 40px 띄움 */
+    right: 40px;  /* 화면 우측에서 40px 띄움 */
+    z-index: 9999; /* 다른 요소보다 무조건 위에 표시 */
+}
+
+.fab-btn {
+    width: 130px;
+    height: 55px;
+    background-color: #6fa8dc; /* 요청하신 쨍한 파란색 */
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(111, 168, 220, 0.5); /* 파란색 그림자 효과 */
+    transition: all 0.3s ease;
+    letter-spacing: 1px;
+}
+
+.fab-btn:hover {
+    background-color: #5a94c8; /* 마우스 올리면 조금 더 진하게 */
+    transform: translateY(-5px); /* 살짝 위로 떠오르는 효과 */
+    box-shadow: 0 8px 20px rgba(111, 168, 220, 0.6);
+}
+
+.fab-btn:active {
+    transform: scale(0.95); /* 클릭할 때 살짝 눌리는 효과 */
+}
