@@ -2,7 +2,7 @@
    교회소개 전용 디자인 (about.css) - 최종 정밀 교정본
    ============================================================ */
 
-/* [1] 서브 히어로 섹션 - 성경구절 가독성 및 오버레이 강화 */
+/* [1] 서브 히어로 섹션 - 상단 음영 제거 및 성경구절 가독성 */
 .hero {
     position: relative;
     height: 40vh;
@@ -26,8 +26,8 @@
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* 요청대로 오버레이를 조금 더 검정색으로 강화하여 흰 글씨 보호 */
-    background: rgba(0, 0, 0, 0.45); 
+    /* 상단 검은색 음영을 지우기 위해 linear 대신 투명도 높은 검정만 하단에 배치 */
+    background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%); 
     z-index: 2;
 }
 
@@ -35,142 +35,80 @@
     position: relative;
     z-index: 10;
     text-align: center;
-    padding: 0 20px;
 }
 
 .hero-content h2 {
     font-family: 'Nanum Brush Script', cursive;
     font-size: 56px;
-    color: #fff; /* 원래대로 흰색 */
+    color: #fff;
     margin-bottom: 12px;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    text-shadow: 0 2px 15px rgba(0,0,0,0.5);
 }
 
 .hero-content p {
-    font-size: 20px;
-    color: #fff; /* 성경구절 및 출처 흰색 유지 */
-    font-weight: 400;
-    letter-spacing: 0.5px;
-    opacity: 0.9;
+    font-size: 21px;
+    color: #fff; /* 성경구절 및 출처 흰색 */
+    font-weight: 500;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 
-/* [2] 섹션 카드 공통 스타일 (index.css 계승) */
+/* [2] 섹션 카드 스타일 (index.css 24px 곡률 일치) */
 .section {
     max-width: 1000px;
     margin: 60px auto;
     padding: 60px 50px;
     background: #fff;
-    border-radius: 24px;
-    border: 1px solid rgba(111, 168, 220, 0.15);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    border-radius: 24px; 
+    border: 1px solid rgba(111, 168, 220, 0.2);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .section:hover {
     transform: translateY(-5px);
-    border-color: var(--main-color);
-    box-shadow: 0 12px 30px rgba(111, 168, 220, 0.12);
+    box-shadow: 0 15px 40px rgba(111, 168, 220, 0.15);
 }
 
-/* 카드 제목 - 어두운 색 */
 .section h2 {
-    color: #2c3e50;
-    font-size: 28px;
+    color: #2c3e50; /* 카드 제목 어두운 색 */
+    font-size: 30px;
     font-weight: 800;
     margin-bottom: 25px;
-    position: relative;
     display: inline-block;
 }
 
-.section h2::after {
-    content: '';
-    display: block;
-    width: 40px;
-    height: 4px;
-    background: var(--main-color);
-    border-radius: 10px;
-    margin-top: 8px;
-}
-
-/* [3] 본문 강조 스타일 (하나님 사랑... 및 교육주제) */
+/* [3] 본문 강조 - 교육주제 및 비전 */
 .love-vision {
     display: block;
-    font-size: 26px; /* 더 키움 */
+    font-size: 28px; 
     font-weight: 800;
     color: var(--main-color);
-    margin: 25px 0 10px 0;
-    letter-spacing: -0.5px;
+    margin: 20px 0;
 }
 
-/* 교육주제 강조 - 배경색과 테두리로 확실하게 눈에 띄게 */
+/* 교육주제: 폰트를 파격적으로 키우고 강조 */
 .edu-topic {
-    display: inline-block;
-    font-size: 22px; 
-    font-weight: 800;
-    color: #fff;
-    background: var(--main-color); /* 하늘색 배경 */
-    padding: 5px 20px;
-    border-radius: 50px;
-    margin: 15px 0;
-    box-shadow: 0 4px 10px rgba(111, 168, 220, 0.3);
-}
-
-.bible-verse-sub {
-    font-size: 17px;
-    font-weight: 300;
-    color: #666;
-    margin-bottom: 20px;
-}
-
-/* [4] 테이블 디자인 - 세로 구분선 및 등간격 배치 */
-.table, .staff-table {
-    width: 100%;
-    table-layout: fixed; /* 모든 열의 너비를 등간격으로 고정 */
-    margin-top: 30px;
-    border-collapse: collapse; /* 세로선 연결을 위해 collapse */
-    border: 1px solid #d1d9e0;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.table th, .staff-table th {
-    background: #f8fbfe;
+    display: block;
+    font-size: 32px; /* 폰트 대폭 확대 */
+    font-weight: 900;
     color: #1a3a5f;
-    padding: 18px 10px;
-    font-weight: 700;
-    font-size: 17px;
-    border: 1px solid #e1ecf7; /* 세로/가로 모든 구분선 적용 */
-}
-
-.table td, .staff-table td {
-    padding: 18px 10px;
-    border: 1px solid #f0f0f0; /* 세로/가로 모든 구분선 적용 */
-    color: #333;
-    font-size: 17px;
+    padding: 20px 0;
     text-align: center;
-    word-break: keep-all;
+    border-top: 2px dashed #eee;
+    border-bottom: 2px dashed #eee;
+    margin: 30px 0;
 }
 
-/* 예배안내 섹션 전용 - 선택 효과(Hover) 제거 */
-.table.worship-table tr:hover td {
-    background-color: transparent !important;
-    color: inherit !important;
-}
-
-/* 일반 표(조직 등)는 약한 호버 유지 */
-.staff-table tr:hover td {
-    background-color: #f4f9ff;
-}
-
-/* [5] 유튜브 영상 박스 */
+/* [4] 유튜브 영상 박스 - 곡률 24px 일치 및 상단 음영 제거 */
 .video-wrapper {
     margin-top: 35px;
     position: relative;
     padding-bottom: 56.25%; 
     height: 0;
-    border-radius: 20px;
+    border-radius: 24px; /* 카드 곡률과 일치 */
     overflow: hidden;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 1px solid #ddd;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
 .video-wrapper iframe {
@@ -178,4 +116,50 @@
     top: 0; left: 0;
     width: 100%; height: 100%;
     border: none;
+}
+
+/* [5] 테이블 디자인 - 아웃라인 강화 및 세로 구분 */
+/* 공통 표 스타일 */
+.table, .staff-table {
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 30px;
+    border-collapse: collapse;
+    /* 표 외곽선을 아주 진하게 하여 배경과 분리 */
+    border: 2px solid #555; 
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.table th, .staff-table th {
+    background: #f1f5f9;
+    color: #111;
+    padding: 20px 10px;
+    font-weight: 800;
+    font-size: 18px;
+    border: 1px solid #555; /* 세로구분선 진하게 */
+}
+
+.table td, .staff-table td {
+    padding: 18px 10px;
+    border: 1px solid #ccc; /* 내부 구분선 */
+    color: #222;
+    font-size: 17.5px;
+    text-align: center;
+}
+
+/* --- 표별 선택 효과 분리 --- */
+
+/* 1. 예배안내 표: 선택 효과(Hover) 없음 */
+.worship-table tr:hover td {
+    background-color: transparent !important;
+    color: inherit !important;
+}
+
+/* 2. 섬기는 사람들 표: 선택 효과(Hover) 유지 */
+.staff-table tr:hover td {
+    background-color: #f4f9ff;
+    color: var(--main-color);
+    font-weight: 600;
+    cursor: default;
 }
