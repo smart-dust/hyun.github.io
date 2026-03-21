@@ -44,3 +44,6 @@ onAuthStateChanged(auth, (user) => {
         if (adminFab) adminFab.style.display = "none";
     }
 });
+if (adminFab) {
+    adminFab.style.setProperty('display', 'block', 'important');
+}
