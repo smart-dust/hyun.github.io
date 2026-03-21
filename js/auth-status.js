@@ -1,30 +1,42 @@
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-const auth = getAuth();
-const loginBtn = document.getElementById('admin-auth-btn');
+const firebaseConfig = {
+    apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+    authDomain: "dhchurch-cf85f.firebaseapp.com",
+    projectId: "dhchurch-cf85f",
+    storageBucket: "dhchurch-cf85f.firebasestorage.app",
+    messagingSenderId: "718998916531",
+    appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
+};
 
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+
+const authBtn = document.getElementById('admin-auth-btn');
+const adminFab = document.getElementById('admin-fab');
+
+// 로그인 상태 감지
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // [로그인 상태]
-        loginBtn.textContent = "Logout";
-        
-        // 버튼 클릭 시 로그아웃 실행
-        loginBtn.onclick = (e) => {
-            e.preventDefault(); // 페이지 이동 방지
-            if(confirm("로그아웃 하시겠습니까?")) {
-                signOut(auth).then(() => {
-                    alert("로그아웃 되었습니다.");
-                    window.location.href = "index.html";
-                });
-            }
-        };
+        // [관리자 상태]
+        if (authBtn) {
+            authBtn.innerText = "Logout";
+            authBtn.style.color = "#6fa8dc"; // 로그아웃은 파란색으로 강조 가능
+            authBtn.onclick = (e) => {
+                e.preventDefault();
+                if(confirm("로그아웃 하시겠습니까?")) {
+                    signOut(auth).then(() => location.reload());
+                }
+            };
+        }
+        if (adminFab) adminFab.style.display = "block";
     } else {
-        // [로그아웃 상태]
-        loginBtn.textContent = "Login";
-        
-        // 버튼 클릭 시 로그인 페이지로 이동
-        loginBtn.onclick = () => {
-            window.location.href = "login.html";
-        };
+        // [일반 사용자 상태]
+        if (authBtn) {
+            authBtn.innerText = "Login";
+            authBtn.onclick = null; // 기본 링크 동작(login.html 이동) 허용
+        }
+        if (adminFab) adminFab.style.display = "none";
     }
 });
