@@ -1,4 +1,4 @@
-/* [1] 히어로 섹션 - "서로 친절하게 하며..." 문구 극도로 얇게 */
+/* [1] 히어로 섹션 - 붓글씨 유지 + 가독성 최적화 */
 .hero {
     position: relative;
     height: 45vh;
@@ -15,114 +15,141 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.6); /* 배경을 어둡게 해서 얇은 글자를 살림 */
+    filter: brightness(0.55); /* 배경을 충분히 눌러서 얇은 붓글씨를 살림 */
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
     text-align: center;
-    width: 90%;
 }
 
-/* ★ 핵심수정: h2 문구(서로 친절하게 하며...)를 아주 얇게 조절 */
+/* ★ 붓글씨 유지하면서 얇게 조정 */
 .hero-content h2 {
-    font-family: 'Noto Sans KR', sans-serif !important; /* 브러쉬체 대신 깔끔하고 얇은 폰트 */
-    font-size: 38px !important;
-    font-weight: 100 !important; /* 가장 얇은 두께 */
+    font-family: 'Nanum Brush Script', cursive !important;
+    font-size: 56px !important;
+    font-weight: 400 !important; /* 붓글씨 특성상 가장 얇은 수치 */
     color: #fff !important;
-    line-height: 1.4;
-    letter-spacing: -1px;
-    margin-bottom: 20px;
-    text-shadow: none; /* 지저분한 그림자 제거 */
+    line-height: 1.3;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.5); /* 얇아도 잘 보이게 최소한의 그림자 */
 }
 
 .hero-bible {
     font-size: 18px !important;
     font-weight: 300 !important;
-    color: rgba(255,255,255,0.8) !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    margin-top: 10px;
 }
 
-/* [2] 인덱스(Index) 스타일 카드 선택 효과 복구 */
+/* [2] 카드 디자인 - 제목 아래 하늘색 선 & 인덱스형 호버 효과 */
 .section {
     max-width: 1000px;
     margin: 100px auto !important;
-    padding: 60px 50px;
+    padding: 70px 50px;
     background: #fff;
     border-radius: 24px;
-    border: 1px solid rgba(111, 168, 220, 0.15); /* 은은한 테두리 */
-    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1); /* 부드러운 애니메이션 */
+    border: 1px solid rgba(111, 168, 220, 0.1);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* 마우스 올리면 뜨는 효과 (Index.html과 동일) */
 .section:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(111, 168, 220, 0.2);
+    box-shadow: 0 20px 40px rgba(111, 168, 220, 0.15);
     border-color: #6fa8dc;
 }
 
-/* [3] 교육 주제 내용 - 폰트 키우고 한 줄 유지 */
+/* ★ 제목 아래 하늘색 선 유지 */
+.section h2 {
+    color: #2c3e50;
+    font-size: 30px;
+    margin-bottom: 25px;
+    display: inline-block;
+    position: relative;
+}
+
+.section h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 5px;
+    background: #6fa8dc;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+/* [3] 교육 주제 - 폰트 키우고 세련된 강조 */
 .edu-topic {
     display: block !important;
-    font-size: 28px !important; /* 22px에서 28px로 키움 */
+    font-size: 26px !important;
     font-weight: 700 !important;
     color: #333 !important;
     text-align: center;
     margin: 40px 0 !important;
     padding-bottom: 15px !important;
-    border-bottom: 3px solid #6fa8dc; 
+    border-bottom: 3px solid #6fa8dc;
     white-space: nowrap;
 }
 
-/* [4] 유튜브 영상 - 그림자 제거/밀착 */
+/* [4] 유튜브 영상 - 크기 원상복구 및 그림자 제거 */
 .video-wrapper {
     margin-top: 40px;
     position: relative;
-    padding-bottom: 56.25%; 
+    padding-bottom: 56.25%; /* 16:9 비율 유지 */
     height: 0;
     border-radius: 24px;
     overflow: hidden;
     border: 1px solid #eee;
-    box-shadow: none !important;
 }
 
-/* [5] 표 디자인 - 등간격(Fixed Layout) 및 세련된 테두리 */
+.video-wrapper iframe {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    border: none;
+}
+
+/* [5] 표 디자인 - 컬러풀 & 자연스러운 테두리 & 등간격 */
 .worship-table, .staff-table {
     width: 100%;
-    table-layout: fixed; /* ★ 등간격 강제 적용 */
+    table-layout: fixed; /* 등간격 */
     margin-top: 30px;
     border-collapse: separate !important;
     border-spacing: 0;
-    border: 1.5px solid #444 !important; /* 너무 검지 않은 명확한 선 */
+    border: 1.5px solid #6fa8dc !important; /* 하늘색 계열의 자연스러운 외부선 */
     border-radius: 15px;
     overflow: hidden;
 }
 
+/* 표 헤더 색깔 포인트 */
 .worship-table th, .staff-table th {
-    background: #f8fbfe !important; /* 헤더는 아주 연한 하늘색 */
-    color: #333 !important;
+    background: #6fa8dc !important;
+    color: #fff !important;
     padding: 18px 10px;
     font-weight: 700;
-    border-bottom: 1.5px solid #444 !important;
-    border-right: 1.5px solid #444 !important;
+    font-size: 18px;
+    border-bottom: 1.5px solid #6fa8dc !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
 .worship-table td, .staff-table td {
     padding: 16px 10px;
-    border-bottom: 1px solid #eee !important;
-    border-right: 1.5px solid #444 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+    border-right: 1.5px solid #6fa8dc33 !important; /* 연한 하늘색 세로선 */
     text-align: center;
-    vertical-align: middle;
+    color: #444;
+    font-size: 17px;
+    background: #fff;
+    transition: background 0.2s;
 }
 
-/* 마지막 열 선 제거 */
+/* 마지막 선 정리 */
 .worship-table th:last-child, .staff-table th:last-child,
 .worship-table td:last-child, .staff-table td:last-child {
     border-right: none !important;
 }
 
-/* 섬기는 사람들 표 선택 효과 (Row Hover) */
+/* 섬기는 사람들 표 선택 효과 (Index의 경쾌함 유지) */
 .staff-table tbody tr:hover td {
     background-color: #f0f7ff !important;
     color: #6fa8dc !important;
