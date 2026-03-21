@@ -114,7 +114,9 @@ section {
     border: none;
 }
 
-/* [5] 표(Table) - 디자인 및 선택 효과 유지 */
+/* [5] 표(Table) - 디자인 및 선택 효과 정밀 조정 */
+
+/* 모든 표의 기본 스타일 (공통) */
 .worship-table, .staff-table {
     width: 100%;
     margin-top: 30px;
@@ -126,43 +128,37 @@ section {
     table-layout: fixed;
 }
 
-.worship-table th, .staff-table th {
-    background: #6fa8dc !important;
-    color: #fff !important;
-    padding: 18px 10px;
-    font-size: 19px;
-    font-weight: 900;
-    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.25);
-    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
+/* 표 내부 셀 기본 스타일 */
 .worship-table td, .staff-table td {
     padding: 16px 10px;
     border-bottom: 1px solid #f2f2f2 !important;
     border-right: 1.5px solid rgba(111, 168, 220, 0.1) !important;
     text-align: center;
     color: #333;
-    background: #fff;
+    background: #fff; /* 기본 배경 흰색 */
     font-size: 17px;
     font-weight: 450;
-    transition: all 0.2s ease;
+    transition: background 0.2s ease;
 }
 
-/* 선택 효과 (Hover) */
-.staff-table tbody tr:hover td, 
+/* ★ 수정 포인트: '섬기는 사람들' 표에만 마우스 오버 효과 적용 ★ */
+.staff-table tbody tr:hover td {
+    background-color: #f0f7ff !important; /* 연한 하늘색 */
+    color: #6fa8dc !important;           /* 글자색 변경 */
+    font-weight: 600 !important;         /* 글자 두껍게 */
+}
+
+/* ★ 추가: '예배 안내' 표는 마우스를 올려도 변화 없도록 고정 ★ */
 .worship-table tbody tr:hover td {
-    background-color: #f0f7ff !important;
-    color: #6fa8dc !important;
-    font-weight: 600 !important;
+    background-color: #fff !important;   /* 배경 흰색 고정 */
+    color: #333 !important;              /* 글자색 고정 */
+    font-weight: 450 !important;         /* 두께 고정 */
+    cursor: default;                     /* 커서도 기본 모양으로 */
 }
 
-/* 마지막 열/행 정리 */
-.worship-table th:last-child, .staff-table th:last-child,
+/* 마지막 열 정리 */
 .worship-table td:last-child, .staff-table td:last-child {
     border-right: none !important;
-}
-.worship-table tr:last-child td, .staff-table tr:last-child td {
-    border-bottom: none !important;
 }
 /* [JS 애니메이션] 처음 상태: 투명하고 살짝 아래에 있음 */
 .section-box {
