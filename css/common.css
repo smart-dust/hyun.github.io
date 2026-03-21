@@ -237,8 +237,9 @@ nav {
 /* 로그인/로그아웃 버튼을 감싸는 스타일 */
 #admin-auth-btn {
     display: inline-block; /* 너비를 가질 수 있게 설정 */
-    width: 80px;           /* 'Logout'까지 충분히 들어가는 너비로 고정 */
+    width: 65px;           /* 'Logout'까지 충분히 들어가는 너비로 고정 */
     text-align: center;    /* 글자를 가운데 정렬 */
     text-decoration: none;
     font-weight: bold;
+    font-size: 14px;
 }
