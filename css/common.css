@@ -1,107 +1,117 @@
-/* ===== 1. 공통 변수 (반투명 테마) ===== */
+/* ===== 1. 공통 변수 (여기서 투명도와 색상을 한 번에 조절) ===== */
 :root {
-  --main-color: #6fa8dc;
-  --nav-bg: rgba(255, 255, 255, 0.75);    /* 메뉴바 반투명도 */
-  --submenu-bg: rgba(255, 255, 255, 0.85); /* 서브메뉴 반투명도 */
-  --glass-blur: blur(12px);               /* 배경 흐림 강도 */
+  --main-blue: #6fa8dc;
+  --glass-bg: rgba(255, 255, 255, 0.7);  /* 전체적인 반투명도 */
+  --glass-blur: blur(12px);             /* 배경 흐림 효과 */
+  --nav-height: 70px;
   --text-dark: #333;
-  --footer-bg: #fdfdfd;                   /* 푸터는 깔끔하게 밝은색 */
-  --transition: all 0.25s ease-in-out;
+  --text-light: #777;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===== 2. 기본 스타일 ===== */
+/* ===== 2. 기본 설정 ===== */
 body {
   margin: 0;
-  padding: 0; /* 상단 여백 제거 */
+  padding: 0;
   font-family: 'Noto Sans KR', sans-serif;
-  background: #f5f7fa;
+  background: #f8f9fa;
   color: var(--text-dark);
+  line-height: 1.6;
 }
 
-a { text-decoration: none; color: inherit; }
-
-/* ===== 3. 네비게이션 바 (상단 고정) ===== */
+/* ===== 3. 네비게이션 (상단 고정 및 유리 효과) ===== */
 nav {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  height: 65px;
-  background: var(--nav-bg);
-  backdrop-filter: var(--glass-blur);   /* 반투명 효과의 핵심 */
+  height: var(--nav-height);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-  z-index: 9999; /* 메뉴가 항상 최상단에 오도록 설정 */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  z-index: 10000; /* 모든 요소보다 위에 배치 */
   display: flex;
   align-items: center;
 }
 
 .nav-container {
-  display: flex;
-  justify-content: space-between; 
-  align-items: center;
   width: 100%;
-  max-width: 1300px; /* 폭을 넓게 설정해서 왼쪽 정렬 강조 */
+  max-width: 1300px; /* 사이트 전체 폭 */
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 30px;
+  display: flex;
+  justify-content: space-between; /* 로고 왼쪽, 메뉴 오른쪽 */
+  align-items: center;
 }
 
-/* --- 로고 영역 (왼쪽 정렬) --- */
+/* 로고 그룹 (왼쪽 정렬 완료) */
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
 .nav-home {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
+  text-decoration: none;
 }
 
 .nav-logo {
-  height: 34px; /* 로고 크기 살짝 조절 */
+  height: 38px;
   width: auto;
 }
 
 .nav-title {
-  font-weight: 600; /* 폰트 굵기 소폭 감소 */
-  font-size: 19px;
+  font-size: 20px;
+  font-weight: 600; /* 너무 두껍지 않게 조정 */
   color: #111;
   letter-spacing: -0.5px;
 }
 
-/* --- 메뉴 영역 --- */
+/* 메뉴 영역 (오른쪽 정렬) */
 .nav-menu {
   display: flex;
+  align-items: center;
   gap: 5px;
 }
 
-/* 일반 상태 (강조 효과 모두 제거) */
 .nav-menu > a, 
 .menu-item > a {
   padding: 10px 18px;
   font-weight: 500;
   color: var(--text-dark);
-  border-radius: 6px;
+  border-radius: 8px;
   transition: var(--transition);
+  display: block;
 }
 
-/* 마우스를 올릴 때만 효과 발생 */
-.nav-menu a:hover,
+/* 메뉴 호버 (강조 효과 제거 및 깔끔한 배경만) */
+.nav-menu a:hover, 
 .menu-item:hover > a {
-  color: var(--main-color);
+  color: var(--main-blue);
   background: rgba(111, 168, 220, 0.1);
 }
 
-/* ===== 4. 서브메뉴 (반투명 드롭다운) ===== */
-.menu-item { position: relative; }
+/* ===== 4. 서브메뉴 (메뉴와 디자인 통일) ===== */
+.menu-item {
+  position: relative;
+}
 
 .submenu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 5px);
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  min-width: 170px;
-  background: var(--submenu-bg); /* 서브메뉴 반투명 */
+  min-width: 160px;
+  background: var(--glass-bg); /* 메인 메뉴와 동일한 투명도 */
   backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: var(--glass-blur);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
   padding: 8px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
   opacity: 0;
   visibility: hidden;
   transition: var(--transition);
@@ -110,64 +120,121 @@ nav {
 .menu-item:hover .submenu {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(5px);
+  transform: translateX(-50%) translateY(0);
 }
 
 .submenu a {
-  display: block;
   padding: 10px 15px;
   font-size: 14px;
-  font-weight: 500;
   color: #444;
-  border-radius: 8px;
+  border-radius: 6px;
   transition: var(--transition);
 }
 
 .submenu a:hover {
-  background: var(--main-color);
-  color: #fff; /* 서브메뉴는 호버 시 가독성을 위해 반전 */
+  background: var(--main-blue);
+  color: #fff;
 }
 
-/* ===== 5. 하단 정보창 (푸터) 디자인 수정 ===== */
+/* ===== 5. 히어로 & 버튼 (사라짐 현상 해결) ===== */
+.hero {
+  position: relative;
+  height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero img {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  object-fit: cover;
+  z-index: -1; /* 이미지를 뒤로 보냄 */
+}
+
+.hero .overlay {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1; /* 글자와 버튼이 위로 오게 함 */
+  color: #fff;
+}
+
+/* 버튼 디자인 (z-index 충돌 방지) */
+.btn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: var(--main-blue);
+  color: #fff;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: var(--transition);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  z-index: 2; /* 버튼이 확실히 클릭되도록 설정 */
+}
+
+.btn:hover {
+  background: #5c90c2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(111, 168, 220, 0.4);
+}
+
+/* ===== 6. 하단 정보 (푸터) 가독성 수정 ===== */
 .footer {
-  background: var(--footer-bg);
+  background: #2c2c3d; /* 배경과 확실히 구분되도록 어두운 색상 채택 */
+  color: #eee;
   padding: 60px 20px;
   text-align: center;
-  border-top: 1px solid #eee;
-  margin-top: 80px;
-}
-
-.footer-content {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.footer .highlight {
-  display: inline-block;
-  font-size: 16px;
-  font-weight: 700;
-  color: #555;
-  margin-bottom: 20px;
-  padding-bottom: 5px;
-  border-bottom: 2px solid var(--main-color);
+  border-top: none;
 }
 
 .footer p {
+  margin: 8px 0;
   font-size: 14px;
+  opacity: 0.8;
+}
+
+.footer p:first-child {
+  font-weight: 600;
+  font-size: 16px;
+  color: #fff;
+  opacity: 1;
+  margin-bottom: 15px;
+}
+
+.footer-bottom-text {
+  margin-top: 25px;
+  font-size: 12px;
   color: #888;
-  line-height: 1.8;
-  margin: 5px 0;
 }
 
-.footer .contact {
-  margin-top: 20px;
-  font-size: 13px;
-  color: #aaa;
+/* ===== 7. 섹션 박스 보완 ===== */
+.section-container {
+  max-width: 1200px;
+  margin: 60px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
+  padding: 0 20px;
 }
 
-/* ===== 6. 기타 버튼/링크 (z-index 충돌 방지) ===== */
-/* 버튼이 사라지는 현상을 막기 위해 일반적인 링크 버튼의 위치를 조정 */
-.button, button, .btn {
-  position: relative; 
-  z-index: 1; /* 메뉴바(9999)보다는 낮지만 일반 바닥보다는 높게 */
+.section-box {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.section-box:hover {
+  transform: translateY(-5px);
 }
