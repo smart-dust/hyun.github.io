@@ -75,3 +75,124 @@
 
 /* [2] 카드 섹션 */
 .section-container {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 100px 20px;
+    background: #fdfdfd;
+    flex-wrap: wrap;
+}
+
+.section-box {
+    background: #fff;
+    border-radius: 24px;
+    width: 265px;
+    min-height: 230px;
+    padding: 35px 25px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(111, 168, 220, 0.15);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* 애니메이션 절제 */
+}
+
+.section-box:hover {
+    transform: translateY(-5px); 
+    border-color: var(--main-color);
+    box-shadow: 0 12px 30px rgba(111, 168, 220, 0.12);
+}
+
+.section-box h2 {
+    color: var(--main-color);
+    font-size: 26px; /* [수정] 제목 크기 확대 */
+    font-weight: 800;
+    margin-bottom: auto;
+    padding-bottom: 15px;
+}
+
+.section-box p {
+    color: #333;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: auto 0;
+}
+
+/* [3] 오시는 길 섹션 */
+.map-section {
+    max-width: 900px;
+    margin: 0 auto 100px;
+    padding: 45px 35px;
+    background: linear-gradient(to bottom, #ffffff, #f9fbfc); /* 미세한 그라데이션 */
+    border-radius: 30px;
+    border: 1px solid rgba(111, 168, 220, 0.25);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+.map-section:hover {
+    border-color: var(--main-color);
+    box-shadow: 0 10px 30px rgba(111, 168, 220, 0.08);
+}
+
+.map-section h2 {
+    color: var(--main-color);
+    font-size: 27px;
+    font-weight: 800;
+    margin-bottom: 12px;
+}
+
+.map-section p {
+    font-size: 15.5px;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+.map-section iframe {
+    width: 100%;
+    height: 450px;
+    border-radius: 20px;
+    border: none;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+/* [4] 길찾기 버튼 - 브랜드 컬러 보정 */
+.map-buttons {
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px; /* [수정] 버튼 사이 간격 미세 조정 */
+}
+
+.map-btn {
+    display: inline-block;
+    padding: 13px 26px; /* [수정] 높이 살짝 키움 */
+    border-radius: 12px;
+    font-weight: 800;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    text-decoration: none !important;
+}
+
+.map-btn.kakao { 
+    background: linear-gradient(135deg, #fee500 0%, #fada00 100%);
+    color: #3c1e1e !important; 
+    box-shadow: 0 4px 12px rgba(254, 229, 0, 0.15);
+}
+
+.map-btn.naver { 
+    background: linear-gradient(135deg, #03c75a 0%, #02b350 100%); 
+    color: #fff !important; 
+    box-shadow: 0 4px 12px rgba(3, 199, 90, 0.15);
+}
+
+.map-btn:hover {
+    transform: translateY(-3px);
+    filter: saturate(1.1) brightness(1.05);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+}
+
+/* 공통 클릭 효과 */
+.hero-btn:active, .map-btn:active {
+    transform: translateY(1px) scale(0.98);
+}
