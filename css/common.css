@@ -1,3 +1,5 @@
+/* ===== 공통 스타일: 메뉴/푸터/메인컬러 ===== */
+
 :root {
   --main-color: #6fa8dc; /* 메인 하늘색 */
   --main-dark: #5c90c2;
@@ -23,23 +25,43 @@ nav {
   z-index: 1000;
   box-shadow: 0 2px 6px rgba(0,0,0,0.1);
 }
+
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 30px;
 }
-.nav-home { display:flex; align-items:center; gap:10px; }
+
+/* 로고 텍스트 */
+.nav-home {
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
 .nav-logo { height:35px; width:auto; }
-.nav-title { color: var(--main-color); font-weight:600; font-size:18px; }
-.nav-menu { display:flex; gap:25px; align-items:center; }
+.nav-title { 
+  color: #000;       /* 검은색 */
+  font-weight: 300;  /* 얇게 */
+  font-size:18px; 
+}
+
+/* 메뉴 항목 */
+.nav-menu {
+  display:flex; 
+  gap:25px; 
+  align-items:center;
+}
 .nav-menu a, .menu-item > a {
-  color: #333; font-weight:500;
-  padding:10px 12px; border-radius:6px;
-  transition: transform 0.2s ease, background 0.2s ease;
+  color: #333;
+  font-weight: 700; /* 두껍게 */
+  padding:10px 12px;
+  border-radius:6px;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
   transform: translateY(-2px);
+  color: var(--main-color); /* 선택/호버 시 글자 색 변화 */
   background: rgba(111,168,220,0.15);
 }
 
@@ -48,7 +70,7 @@ nav {
 .submenu {
   position:absolute; top:100%; left:0;
   min-width:220px; padding:10px 0;
-  background: #ffffff;
+  background: rgba(255,255,255,0.95); /* 거의 불투명 */
   border-radius:10px;
   box-shadow:0 8px 20px rgba(0,0,0,0.12);
   opacity:0; visibility:hidden; transform: translateY(8px);
@@ -60,9 +82,13 @@ nav {
   display:block;
   padding:12px 20px;
   color:#333;
-  font-weight:400;
+  font-weight:500;
   border-radius:6px;
-  transition: background 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+.submenu a:hover {
+  background: rgba(111,168,220,0.2);
+  color: var(--main-color);
 }
 .menu-item:hover .submenu {
   opacity:1;
@@ -73,7 +99,7 @@ nav {
 
 /* ===== Footer ===== */
 .footer {
-  background:#f0f0f0;
+  background:#e0e0e0; /* 일반보다 조금 진하게 */
   color:#333;
   padding:40px 20px;
   text-align:center;
