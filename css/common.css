@@ -42,8 +42,8 @@ nav {
 .nav-logo { height:35px; width:auto; }
 .nav-title { 
   color: #000;       /* 검은색 */
-  font-weight: 300;  /* 얇게 */
-  font-size:18px; 
+  font-weight: 350;  /* 얇게 */
+  font-size:20px; 
 }
 
 /* 메뉴 항목 */
