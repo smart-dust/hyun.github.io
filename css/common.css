@@ -42,7 +42,7 @@ nav {
   gap: 10px; /* 로고와 글자 사이 공간 */
 }
 
-.nav-logo .img {
+.nav-logo {
   height: 36px; /* 로고 크기 조절 */
   width: auto;
 }
