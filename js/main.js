@@ -67,3 +67,24 @@ document.querySelectorAll('a[href^="about.html#"], a[href^="#"]').forEach(anchor
         }
     });
 });
+// [추가] 페이지 로드 시 URL에 #이 있으면 중앙으로 스크롤
+window.addEventListener('load', () => {
+    if (window.location.hash) {
+        const targetId = window.location.hash.substring(1); // # 제외한 ID만 추출
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            // 브라우저의 기본 상단 이동을 무시하고 약간의 지연 후 중앙 이동
+            setTimeout(() => {
+                const elementRect = targetElement.getBoundingClientRect();
+                const absoluteElementTop = elementRect.top + window.pageYOffset;
+                const middleOffset = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+
+                window.scrollTo({
+                    top: middleOffset,
+                    behavior: 'smooth'
+                });
+            }, 100); // 페이지 로딩 시간을 고려한 짧은 대기
+        }
+    }
+});
