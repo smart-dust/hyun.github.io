@@ -157,3 +157,78 @@
 
     <div class="input-group">
         <label for="password">Password</label>
+        <input type="password" id="password" placeholder="비밀번호를 입력하세요." required autocomplete="current-password">
+    </div>
+
+    <button id="login-btn">Login</button>
+
+    <div class="find-group">
+        <a id="find-id">ID 찾기</a> &nbsp; | &nbsp; <a id="find-pw">비밀번호 찾기</a>
+    </div>
+
+    <div class="back-home-container">
+        <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
+    </div>
+</div>
+
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    // Firebase 설정 (기존과 동일)
+    const firebaseConfig = {
+        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+        authDomain: "dhchurch-cf85f.firebaseapp.com",
+        projectId: "dhchurch-cf85f",
+        storageBucket: "dhchurch-cf85f.firebasestorage.app",
+        messagingSenderId: "718998916531",
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
+        measurementId: "G-KKT2TX7SZ9"
+    };
+
+    // Firebase 초기화
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    const loginBtn = document.getElementById('login-btn');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    // 로그인 실행 함수
+    const handleLogin = () => {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        if(!email || !password) return;
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then(() => {
+                // 성공 시 바로 이동 (alert 없음)
+                window.location.href = "admin.html"; 
+            })
+            .catch((error) => {
+                console.error(error);
+                // 비밀번호가 틀렸을 때만 알림
+                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                    alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+                } else {
+                    alert("로그인 중 오류가 발생했습니다.");
+                }
+            });
+    };
+
+    // 버튼 클릭 시 로그인
+    loginBtn.addEventListener('click', handleLogin);
+
+    // 엔터키 눌렀을 때도 로그인 되게 추가
+    window.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleLogin();
+    });
+
+    // 찾기 버튼 클릭 시 이벤트 전파 방지 (기능 구현 전)
+    document.getElementById('find-id').onclick = (e) => e.preventDefault();
+    document.getElementById('find-pw').onclick = (e) => e.preventDefault();
+</script>
+
+</body>
+</html>
