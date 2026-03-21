@@ -1,39 +1,157 @@
-/* ===== 히어로 ===== */
+/* ============================================================
+   교회소개 전용 디자인 (about.css)
+   ============================================================ */
+
+/* [1] 서브 히어로 섹션 - 메인보다 콤팩트하게 */
 .hero {
-  position: relative;
-  height: 50vh;
-  overflow: hidden;
+    position: relative;
+    height: 45vh; /* 메인보다 낮게 설정하여 정보에 집중 */
+    min-height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-top: 60px; /* 메뉴바 높이만큼 띄움 */
 }
+
 .hero img {
-  width:100%; height:100%;
-  object-fit:cover;
-  opacity:0.85;
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1;
 }
+
 .overlay {
-  position:absolute; top:0; left:0; width:100%; height:100%;
-  background: rgba(255,255,255,0.2);
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    /* 흰색 배경이므로 어두운 톤보다 푸른 톤의 그라데이션이 더 세련됨 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(111, 168, 220, 0.4));
+    z-index: 2;
 }
-.hero-content { position:relative; z-index:2; text-align:center; }
-.hero-content h2 { font-size:36px; color:#333; margin-bottom:5px; }
-.hero-content p { font-size:16px; color:#555; }
 
-/* ===== 섹션 ===== */
-.section { background:#fff; border-radius:18px; padding:30px; margin:40px auto; max-width:900px;
-  box-shadow:0 6px 20px rgba(0,0,0,0.08); opacity:0; transform:translateY(20px); transition: all 0.4s ease;}
-.section.visible { opacity:1; transform:translateY(0);}
-.section h2 { font-size:22px; color:#333; margin-bottom:12px;}
-.section p { font-size:15px; color:#555; line-height:1.7; }
-
-/* ===== 테이블 ===== */
-.table { width:90%; margin:0 auto; border-collapse: collapse; }
-.table th, .table td { border:1px solid #ccc; padding:10px; text-align:center; }
-.table th { background: var(--main-color); color:#fff; font-weight:500; }
-.table tr:hover td { background:#f0f4f9; }
-
-/* ===== 카드 그리드 ===== */
-.card-grid { display:flex; flex-wrap:wrap; gap:20px; justify-content:center; }
-.profile-card {
-  background:#fff; border-radius:12px; padding:20px; width:180px;
-  box-shadow:0 4px 18px rgba(0,0,0,0.08); text-align:center;
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 0 20px;
 }
-.profile-card:hover { transform:translateY(-4px); box-shadow:0 8px 22px rgba(0,0,0,0.12);}
+
+.hero-content h2 {
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 48px;
+    color: #fff;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+.hero-content p {
+    font-size: 18px;
+    color: #f0faff;
+    font-weight: 500;
+}
+
+/* [2] 섹션 공통 스타일 */
+.section {
+    max-width: 1000px;
+    margin: 60px auto;
+    padding: 50px 40px;
+    background: #fff;
+    border-radius: 30px; /* 메인 카드와 통일감 있는 큰 곡률 */
+    box-shadow: 0 10px 40px rgba(111, 168, 220, 0.08); /* 부드러운 푸른 그림자 */
+    border: 1px solid rgba(111, 168, 220, 0.1);
+}
+
+.section h2 {
+    color: var(--main-color);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+
+/* 제목 아래 작은 포인트 선 */
+.section h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--main-color);
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
+.section p {
+    font-size: 16.5px;
+    line-height: 1.8;
+    color: #444;
+}
+
+.section p.small {
+    font-size: 15px;
+    color: #666;
+}
+
+/* [3] 유튜브 영상 박스 */
+.video-wrapper {
+    margin-top: 30px;
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 비율 유지 */
+    height: 0;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+}
+
+/* [4] 테이블 디자인 - 핵심 포인트 */
+.table, .staff-table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: separate; /* 모서리 둥글게 하기 위해 separate 사용 */
+    border-spacing: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    border: 1px solid rgba(111, 168, 220, 0.2);
+}
+
+.table th, .staff-table th {
+    background: #f4f9ff; /* 아주 연한 하늘색 배경 */
+    color: var(--main-color);
+    padding: 15px;
+    font-weight: 700;
+    font-size: 15px;
+    border-bottom: 2px solid rgba(111, 168, 220, 0.1);
+}
+
+.table td, .staff-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #555;
+    font-size: 15px;
+    text-align: center;
+}
+
+.table tr:last-child td, .staff-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* 테이블 줄무늬 효과 (가독성 향상) */
+.table tr:nth-child(even), .staff-table tr:nth-child(even) {
+    background-color: #fcfdfe;
+}
+
+/* 마우스 올렸을 때 행 강조 */
+.table tr:hover td, .staff-table tr:hover td {
+    background-color: #f0f7ff;
+    color: var(--main-color);
+    transition: all 0.2s;
+}
