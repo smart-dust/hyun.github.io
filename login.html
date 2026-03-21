@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>관리자 로그인 - DHchurch</title>
+    <style>
+        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f2f5; margin: 0; }
+        .login-card { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 300px; text-align: center; }
+        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        button:hover { background: #0056b3; }
+        .back-home { margin-top: 15px; display: block; color: #666; text-decoration: none; font-size: 13px; }
+    </style>
+</head>
+<body>
+
+<div class="login-card">
+    <h2>Admin Login</h2>
+    <input type="text" id="email" placeholder="아이디(이메일 형식)">
+    <input type="password" id="password" placeholder="비밀번호">
+    <button id="login-btn">로그인</button>
+    <a href="index.html" class="back-home">홈으로 돌아가기</a>
+</div>
+
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+  // 본인의 설정값 (이미 복사해두신 것과 동일)
+  const firebaseConfig = {
+    apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+    authDomain: "dhchurch-cf85f.firebaseapp.com",
+    projectId: "dhchurch-cf85f",
+    storageBucket: "dhchurch-cf85f.firebasestorage.app",
+    messagingSenderId: "718998916531",
+    appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
+    measurementId: "G-KKT2TX7SZ9"
+  };
+
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+
+  document.getElementById('login-btn').addEventListener('click', () => {
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        alert("성공! 관리자 페이지로 이동합니다.");
+        // 로그인 성공 시 'admin.html'로 이동 (다음에 만들 페이지)
+        window.location.href = "admin.html"; 
+      })
+      .catch((error) => {
+        alert("로그인 실패: 정보를 확인하세요.");
+        console.error(error.message);
+      });
+  });
+</script>
+
+</body>
+</html>
