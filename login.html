@@ -6,19 +6,20 @@
     <title>Member Login - 대전대흥교회 청소년부</title>
     <style>
         :root {
+            /* 지정하신 메인 컬러 (#6fa8dc) 기반 선명한 톤 */
             --main-color: #6fa8dc;
-            --dark-blue: #4a8dc1;
+            --dark-blue: #5a94c8;
             --bg-color: #e9eff5;
             --text-main: #1e272e;
             --text-sub: #576574;
             --white: #ffffff;
+            --border-color: #ced6e0;
         }
 
         body {
-            font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
             background-color: var(--bg-color);
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
@@ -26,14 +27,15 @@
             -webkit-font-smoothing: antialiased;
         }
 
-        /* 1. 로그인 카드: 선명하고 단단한 테두리 유지 */
+        /* 1. 로그인 카드: 선명한 테두리 및 여백 최적화 */
         .login-card {
             background: var(--white);
             width: 100%;
-            max-width: 320px;
-            padding: 55px 40px;
+            /* 좌우 여유를 위해 max-width를 조금 더 넓히고 padding을 조정 */
+            max-width: 380px; 
+            padding: 60px 45px; /* 좌우 여백을 늘려 시원하게 구성 */
             border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* 그림자를 조금 더 은은하게 */
             text-align: center;
             border: 2px solid var(--main-color);
             box-sizing: border-box;
@@ -41,14 +43,14 @@
 
         .login-card h2 {
             color: var(--main-color);
-            margin-bottom: 40px;
-            font-size: 1.6rem;
+            margin-bottom: 45px;
+            font-size: 1.7rem; /* 폰트 크기 살짝 키움 */
             font-weight: 800;
-            letter-spacing: -0.5px;
+            letter-spacing: -1px;
         }
 
         .input-group {
-            margin-bottom: 22px;
+            margin-bottom: 25px; /* 입력창 사이 간격을 조금 더 넓힘 */
             text-align: left;
         }
 
@@ -56,16 +58,16 @@
             display: block;
             font-size: 0.9rem;
             color: var(--text-main);
-            margin-bottom: 8px;
+            margin-bottom: 10px; /* 라벨과 입력창 사이 여백 */
             font-weight: 700;
         }
 
         input {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #ced6e0;
+            padding: 15px 18px; /* 입력창 내부 여백 늘림 */
+            border: 2px solid var(--border-color);
             border-radius: 8px;
-            font-size: 0.95rem;
+            font-size: 1rem;
             box-sizing: border-box;
             background-color: #fff;
             transition: all 0.2s ease;
@@ -74,9 +76,10 @@
         input:focus {
             outline: none;
             border-color: var(--main-color);
+            background-color: #fff;
         }
 
-        /* Login 버튼: 자간 넓게 조절 */
+        /* Login 버튼: 두께 줄이고 자간 유지 */
         button {
             width: 100%;
             padding: 16px;
@@ -85,13 +88,14 @@
             border: none;
             border-radius: 8px;
             font-size: 1.1rem;
-            font-weight: 800;
+            /* 글자 두께를 600(Semibold)으로 줄여 세련되게 변경 */
+            font-weight: 600; 
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s ease;
-            box-shadow: 0 4px 10px rgba(111, 168, 220, 0.4);
-            letter-spacing: 3px; /* 자간을 넓혀 시원하게 변경 */
-            text-indent: 3px; /* 중앙 정렬을 위해 왼쪽 여백 추가 */
+            margin-top: 15px;
+            transition: background 0.2s ease, transform 0.1s ease;
+            box-shadow: 0 5px 12px rgba(111, 168, 220, 0.3);
+            letter-spacing: 3px; /* 자간 유지 */
+            text-indent: 3px;
         }
 
         button:hover {
@@ -99,9 +103,13 @@
             transform: translateY(-1px);
         }
 
-        /* ID / PW 찾기 디자인 살림 */
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* ID / PW 찾기 및 하단 링크 디자인 */
         .find-group {
-            margin-top: 25px;
+            margin-top: 28px;
             font-size: 0.85rem;
             color: var(--text-sub);
         }
@@ -119,9 +127,8 @@
             text-decoration: underline;
         }
 
-        /* 홈페이지로 돌아가기 디자인 살림 */
         .back-home-container {
-            margin-top: 35px;
+            margin-top: 38px;
         }
 
         .back-home {
@@ -136,27 +143,6 @@
             color: var(--text-main);
             text-decoration: underline;
         }
-
-        /* 2. 카드 밖 하단 푸터 */
-        .footer-info {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 50px;
-            gap: 12px;
-        }
-
-        .footer-logo {
-            width: 30px;
-            height: auto;
-        }
-
-        .footer-text {
-            font-size: 1rem;
-            font-weight: 700;
-            color: var(--text-main);
-            letter-spacing: -0.3px;
-        }
     </style>
 </head>
 <body>
@@ -166,59 +152,8 @@
 
     <div class="input-group">
         <label for="email">ID</label>
-        <input type="email" id="email" placeholder="ID를 입력하세요." required spellcheck="false" autocomplete="off">
+        <input type="email" id="email" placeholder="ID를 입력하세요." required spellcheck="false" autocomplete="username">
     </div>
 
     <div class="input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="비밀번호를 입력하세요." required>
-    </div>
-
-    <button id="login-btn">Login</button>
-
-    <div class="find-group">
-        <a id="find-id">ID 찾기</a> &nbsp; | &nbsp; <a id="find-pw">비밀번호 찾기</a>
-    </div>
-
-    <div class="back-home-container">
-        <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
-    </div>
-</div>
-
-<footer class="footer-info">
-    <img src="images/logo.png" alt="" class="footer-logo" onerror="this.style.display='none'">
-    <span class="footer-text">대전대흥교회 청소년부</span>
-</footer>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-    const firebaseConfig = {
-        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-        authDomain: "dhchurch-cf85f.firebaseapp.com",
-        projectId: "dhchurch-cf85f",
-        storageBucket: "dhchurch-cf85f.firebasestorage.app",
-        messagingSenderId: "718998916531",
-        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
-        measurementId: "G-KKT2TX7SZ9"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const loginBtn = document.getElementById('login-btn');
-    const emailInput = document.getElementById('email');
-    const passwordInput = document.getElementById('password');
-
-    const handleLogin = () => {
-        const email = emailInput.value;
-        const password = passwordInput.value;
-        if(!email || !password) return;
-
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                window.location.href = "admin.html"; 
-            })
-            .catch((error) => {
-                console.error(
