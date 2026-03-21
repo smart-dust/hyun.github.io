@@ -8,38 +8,53 @@
         /* 1. 디자인 (CSS) */
         :root {
             --main-color: #6fa8dc;     /* 지정하신 메인 컬러 */
-            --point-color: #4a90e2;    /* 좀 더 쨍한 포인트 컬러 */
+            --hover-color: #5a94c8;    /* 호버 시 약간 어둡게 */
             --bg-color: #f0f4f8;
-            --text-color: #2c3e50;
+            --text-color: #333333;     /* 진한 검정색 */
+            --border-color: #e1e8ed;
         }
 
         body {
-            font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: var(--text-color);
         }
 
         .login-card {
             background: #ffffff;
-            padding: 60px 40px;
-            border-radius: 20px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 50px 35px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
             width: 100%;
-            max-width: 380px;
+            max-width: 340px; /* 창 크기를 조금 더 작게 조절 */
             text-align: center;
         }
 
-        /* 폰트 크기 키우고 메인 컬러 적용 */
+        /* 로고와 제목 가로 배치 */
+        .header-group {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            gap: 10px; /* 로고와 글자 사이 간격 */
+        }
+
+        .login-logo {
+            width: 40px; /* 로고 크기 조절 */
+            height: auto;
+        }
+
         .login-card h2 {
-            color: var(--main-color); 
-            margin-bottom: 45px;
-            font-size: 1.8rem; /* 폰트 크기 대폭 확대 */
-            font-weight: 800;
-            letter-spacing: -1px;
+            color: var(--text-color); /* 글자색 검정 */
+            margin: 0;
+            font-size: 1.4rem; /* 적절한 크기로 조절 */
+            font-weight: 700;
+            letter-spacing: -0.5px;
         }
 
         .input-group {
@@ -49,68 +64,73 @@
 
         .input-group label {
             display: block;
-            font-size: 0.9rem;
-            color: #444;
+            font-size: 0.85rem;
+            color: #555;
             margin-bottom: 8px;
-            font-weight: 700;
+            font-weight: 600;
         }
 
         input {
             width: 100%;
-            padding: 15px;
-            border: 2px solid #e1e8ed; /* 테두리 조금 더 선명하게 */
-            border-radius: 12px;
+            padding: 14px 16px;
+            border: 1px solid var(--border-color); /* 테두리 선명하게 */
+            border-radius: 8px;
             font-size: 1rem;
             box-sizing: border-box;
-            transition: all 0.2s;
+            transition: border-color 0.2s; /* 부드러운 전환 */
             background-color: #fff;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--main-color);
-            box-shadow: 0 0 0 4px rgba(111, 168, 220, 0.2);
+            border-color: var(--main-color); /* 선택 시 메인 컬러로 테두리 변경 */
+            /* Glow(그림자) 효과 제거 */
         }
 
-        /* 쨍한 색감의 LOGIN 버튼 */
         button {
             width: 100%;
-            padding: 16px;
+            padding: 15px;
             background-color: var(--main-color);
             color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1.1rem;
-            font-weight: 800;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 20px;
-            transition: all 0.2s;
-            letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(111, 168, 220, 0.3);
+            margin-top: 15px;
+            transition: background 0.2s, transform 0.1s;
         }
 
         button:hover {
-            background-color: var(--point-color); /* 호버 시 더 쨍한 색상 */
-            transform: translateY(-2px); /* 살짝 떠오르는 효과 */
+            background-color: var(--hover-color);
+        }
+
+        button:active {
+            transform: scale(0.98); /* 클릭 시 살짝 눌리는 효과 */
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 35px;
-            color: #bdc3c7;
+            margin-top: 30px;
+            color: #aaa;
             text-decoration: none;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            transition: color 0.2s;
         }
 
         .back-home:hover {
             color: var(--text-color);
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
 <div class="login-card">
-    <h2>대전대흥교회 청소년부</h2>
+    <div class="header-group">
+        <img src="images/logo.png" alt="Logo" class="login-logo" onerror="this.style.display='none'">
+        <h2>대전대흥교회 청소년부</h2>
+    </div>
 
     <div class="input-group">
         <label for="email">ID</label>
@@ -122,15 +142,16 @@
         <input type="password" id="password" required>
     </div>
 
-    <button id="login-btn">LOGIN</button>
+    <button id="login-btn">Login</button>
     
-    <a href="index.html" class="back-home">← Home</a>
+    <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
 </div>
 
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
+    // Firebase 설정 (기존과 동일)
     const firebaseConfig = {
         apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
         authDomain: "dhchurch-cf85f.firebaseapp.com",
@@ -161,7 +182,12 @@
             })
             .catch((error) => {
                 console.error(error);
-                alert("정보가 일치하지 않습니다.");
+                // 비밀번호가 틀렸을 때만 알림
+                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
+                    alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+                } else {
+                    alert("로그인 중 오류가 발생했습니다.");
+                }
             });
     };
 
