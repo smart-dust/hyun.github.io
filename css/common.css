@@ -4,12 +4,12 @@
   --main-hover: rgba(111, 168, 220, 0.12); 
   --glass-bg: rgba(255, 255, 255, 0.85); 
   --glass-blur: blur(12px);
-  --nav-text: #333;
+  --nav-text: #444; /* 글자색을 아주 살짝 부드럽게 변경 */
   --footer-bg: #f8fbfe; 
   --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===== 2. 기본 스타일 (동일) ===== */
+/* ===== 2. 기본 스타일 ===== */
 body {
   margin: 0;
   padding: 0;
@@ -18,16 +18,16 @@ body {
 }
 a { text-decoration: none !important; color: inherit; }
 
-/* ===== 3. 메뉴바 (NAV) - 두께 역전 및 위치 조정 ===== */
+/* ===== 3. 메뉴바 (NAV) - 슬림 피팅 조정 ===== */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 65px;
+  height: 60px; /* 높이를 다시 60px로 슬림하게 줄임 */
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid rgba(111, 168, 220, 0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -50,44 +50,42 @@ nav {
 }
 
 .nav-logo {
-  height: 32px;
+  height: 28px; /* 로고 크기를 살짝 줄여 여백 확보 */
   width: auto;
 }
 
-/* [수정] 로고 옆 이름: 더 두껍게 */
+/* [수정] 로고 옆 이름: 크기 줄이고 두께는 유지(단단한 느낌) */
 .nav-title {
-  font-size: 19px;
-  font-weight: 700; /* Bold로 강조 */
-  color: #111;
-  letter-spacing: -0.5px;
+  font-size: 16px; /* 19px -> 16px로 대폭 축소 */
+  font-weight: 700; 
+  color: #222;
+  letter-spacing: -0.3px;
 }
 
 .nav-menu {
   display: flex;
-  gap: 2px;
+  gap: 4px;
   align-items: center;
 }
 
-/* [수정] 메인메뉴: 폰트 크기는 유지하되 두께를 얇게 */
+/* [수정] 메인메뉴: 크기 줄이고 더 얇게(세련된 느낌) */
 .nav-menu > a, 
 .menu-item > a {
-  padding: 8px 14px;
-  font-size: 19px; 
-  font-weight: 400; /* 슬림하게 변경 */
+  padding: 6px 12px;
+  font-size: 15px; /* 19px -> 15px로 축소 */
+  font-weight: 400; 
   color: var(--nav-text);
   border-radius: 6px;
   transition: var(--transition);
-  display: block;
 }
 
-/* 서브메뉴 폰트 */
+/* 서브메뉴 폰트도 함께 축소 */
 .submenu a {
-  font-size: 15px;
-  font-weight: 400; /* 서브메뉴도 슬림하게 */
-  padding: 10px 12px;
+  font-size: 14px; /* 15px -> 14px */
+  font-weight: 400;
+  padding: 8px 12px;
   border-radius: 6px;
   transition: var(--transition);
-  display: block;
 }
 
 /* [공통 호버 효과] */
@@ -96,26 +94,24 @@ nav {
 .submenu a:hover {
   color: var(--main-color) !important;
   background: var(--main-hover);
-  transform: translateY(-2px);
-  font-weight: 500; /* 호버 시에만 살짝 두꺼워지며 강조 */
+  transform: translateY(-1.5px); /* 움직임 폭도 살짝 줄임 */
 }
 
-/* ===== 4. 서브메뉴 (위치 위로 올림) ===== */
+/* ===== 4. 서브메뉴 (위치 최적화) ===== */
 .menu-item { position: relative; }
 
 .submenu {
   position: absolute;
-  top: calc(100% + 5px); /* [수정] 15px -> 5px로 올려서 메뉴바와 밀착 */
+  top: calc(100% + 5px); 
   left: 50%;
-  transform: translateX(-50%) translateY(10px);
-  min-width: 160px;
+  transform: translateX(-50%) translateY(8px);
+  min-width: 140px;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border-radius: 10px;
-  padding: 6px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
-  border: 1px solid rgba(111, 168, 220, 0.1);
+  border-radius: 8px;
+  padding: 5px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.03);
   opacity: 0;
   visibility: hidden;
   transition: var(--transition);
@@ -127,33 +123,26 @@ nav {
   transform: translateX(-50%) translateY(0);
 }
 
-/* ===== 5. 하단 정보 (푸터 - 높이 축소 완료) ===== */
+/* ===== 5. 하단 정보 (푸터) ===== */
 .footer {
   background: var(--footer-bg);
-  color: #555;
-  padding: 35px 20px; /* 조금 더 축소 */
+  color: #666;
+  padding: 35px 20px;
   text-align: center;
-  border-top: 2.5px solid var(--main-color); 
-  margin-top: 80px;
+  border-top: 2px solid var(--main-color); 
+  margin-top: 60px;
 }
 
 .footer .highlight {
   font-weight: 700;
   color: var(--main-color);
-  font-size: 16px;
+  font-size: 15px;
   display: block;
   margin-bottom: 8px;
 }
 
 .footer p {
-  margin: 5px 0;
-  font-size: 14px;
-  line-height: 1.5;
-  color: #666;
-}
-
-.footer-copy {
-  margin-top: 15px;
-  font-size: 12px;
-  color: #999;
+  margin: 4px 0;
+  font-size: 13px;
+  color: #777;
 }
