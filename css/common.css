@@ -1,4 +1,4 @@
-/* ===== 1. 공통 변수 (사용자님의 기존 설정 유지) ===== */
+/* ===== 공통 변수 (어디서든 이 색을 씀) ===== */
 :root {
   --main-color: #6fa8dc;
   --main-dark: #5c90c2;
@@ -7,17 +7,17 @@
   --footer-bg: linear-gradient(145deg, #2c2c3d, #3a3a50);
 }
 
-/* ===== 2. 기본 스타일 ===== */
+/* ===== 기본 초기화 ===== */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  font-family: 'Noto Sans KR', sans-serif;
   background: #f5f7fa;
   color: #333;
 }
 a { text-decoration: none !important; color: inherit; }
 
-/* ===== 3. 메뉴바 (로고 왼쪽 정렬 + 수평 맞춤) ===== */
+/* ===== 메뉴바 (NAV) - 공통 디자인 ===== */
 nav {
   position: fixed;
   top: 0;
@@ -27,14 +27,14 @@ nav {
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
   box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  z-index: 10000; /* 최상단 고정 */
+  z-index: 10000;
   display: flex;
   align-items: center;
 }
 
 .nav-container {
   display: flex;
-  justify-content: space-between; /* 로고 왼쪽, 메뉴 오른쪽 */
+  justify-content: space-between;
   align-items: center;
   width: 100%;
   max-width: 1200px;
@@ -42,31 +42,16 @@ nav {
   padding: 0 30px;
 }
 
-.nav-left { display: flex; align-items: center; }
-
-.nav-home {
+.nav-left, .nav-home {
   display: flex;
-  align-items: center; /* 로고와 글자 수직 중앙 */
+  align-items: center;
   gap: 12px;
 }
 
-.nav-logo {
-  height: 36px;
-  width: auto;
-}
+.nav-logo { height: 36px; width: auto; }
+.nav-title { font-size: 19px; font-weight: 600; color: #000; line-height: 1; }
 
-.nav-title {
-  font-size: 19px;
-  font-weight: 600; /* 굵기 살짝 조정 */
-  color: #000;
-  line-height: 1;
-}
-
-.nav-menu {
-  display: flex;
-  gap: 5px;
-  align-items: center;
-}
+.nav-menu { display: flex; gap: 5px; align-items: center; }
 
 .nav-menu > a, .menu-item > a {
   padding: 10px 18px;
@@ -76,13 +61,12 @@ nav {
   transition: 0.25s;
 }
 
-/* 호버 시에만 강조 */
 .nav-menu a:hover, .menu-item:hover > a {
   color: var(--main-color);
   background: rgba(111,168,220,0.1);
 }
 
-/* 서브메뉴 디자인 (반투명 유리효과 통일) */
+/* 서브메뉴 디자인 */
 .menu-item { position: relative; }
 .submenu {
   position: absolute;
@@ -106,91 +90,10 @@ nav {
   transform: translateX(-50%) translateY(5px);
 }
 
-.submenu a {
-  display: block;
-  padding: 10px 15px;
-  font-size: 14px;
-  border-radius: 6px;
-}
-
+.submenu a { display: block; padding: 10px 15px; font-size: 14px; border-radius: 6px; }
 .submenu a:hover { background: var(--main-color); color: #fff; }
 
-/* ===== 4. 히어로 섹션 (오버레이 및 버튼 사라짐 해결) ===== */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh; /* 창 가득 */
-  overflow: hidden;
-}
-
-.hero img {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  z-index: 0; /* 배경 이미지 가장 뒤로 */
-}
-
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: rgba(0,0,0,0.5); /* 검은 오버레이 복구 */
-  z-index: 1; /* 이미지 바로 위 */
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2; /* 오버레이보다 위로 (버튼 사라짐 방지 핵심) */
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.hero-content h1 {
-  font-family: 'Nanum Brush Script', cursive;
-  font-size: 70px;
-  color: #fff;
-  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin-bottom: 10px; /* 간격 살짝 조정 */
-}
-
-.hero-content p {
-  font-size: 18px;
-  font-weight: 500;
-  color: #fff;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
-  margin-bottom: 30px;
-}
-
-/* ===== 5. 버튼 스타일 (사용자님 원본 스타일 강화) ===== */
-.btn {
-  display: inline-block;
-  padding: 12px 28px;
-  border-radius: 10px;
-  background: var(--main-color);
-  color: #fff !important;
-  font-weight: 500;
-  font-size: 16px;
-  transition: all 0.3s ease;
-  position: relative;
-  z-index: 3; /* 버튼 클릭 확실하게 */
-}
-
-.btn:hover {
-  background: var(--main-dark);
-  transform: scale(1.05);
-  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
-}
-
-.btn.kakao { background: #fee500; color: #3c1e1e !important; }
-.btn.naver { background: #03c75a; color: #fff !important; }
-
-/* ===== 6. 하단 정보 (푸터 - 사용자님 선호 스타일 복구) ===== */
+/* ===== 하단 정보 (FOOTER) - 공통 디자인 ===== */
 .footer {
   background: var(--footer-bg);
   color: #f5f5f5;
@@ -199,12 +102,7 @@ nav {
   border-top: 2px solid #444;
 }
 
-.footer p {
-  margin: 10px 0;
-  font-size: 14px;
-  line-height: 1.6;
-}
-
+.footer p { margin: 10px 0; font-size: 14px; line-height: 1.6; }
 .footer .highlight {
   font-weight: 700;
   color: #fff;
@@ -212,25 +110,3 @@ nav {
   display: block;
   margin-bottom: 10px;
 }
-
-/* ===== 7. 섹션 박스/카드 ===== */
-.section-container {
-  display: flex; flex-wrap: wrap; justify-content: center;
-  gap: 30px; padding: 60px 20px;
-}
-
-.section-box {
-  background: #fff;
-  border-radius: 20px;
-  width: 260px;
-  padding: 35px;
-  text-align: center;
-  box-shadow: 0 6px 25px rgba(0,0,0,0.09);
-  border-top: 3px solid var(--main-color);
-  border-left: 3px solid var(--main-color);
-  transition: all 0.45s ease;
-  opacity: 0; transform: translateY(30px);
-}
-
-.section-box.visible { opacity: 1; transform: translateY(0); }
-.section-box:hover { transform: translateY(-8px); background: #f0f3f6; }
