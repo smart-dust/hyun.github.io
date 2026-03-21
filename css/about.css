@@ -1,7 +1,7 @@
-/* [1] 히어로 섹션 - 문구 노출 보장 및 높이 최적화 */
+/* [1] 히어로 섹션 - 문구 노출 및 높이 고정 */
 .hero {
     position: relative;
-    height: 35vh; /* 높이 소폭 축소 */
+    height: 38vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -15,52 +15,36 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.45); /* 글자를 살리기 위해 배경을 조금 더 어둡게 */
+    filter: brightness(0.45); 
 }
 
-/* 문구가 안 보일 때를 대비한 레이어 설정 */
 .hero-content {
     position: relative;
-    z-index: 10; /* 이미지보다 확실히 위로 */
+    z-index: 10;
     text-align: center;
-    color: #fff !important;
 }
 
 .hero-content h2 {
     font-family: 'Nanum Brush Script', cursive !important;
-    font-size: 48px !important; /* 가독성을 위해 살짝 조절 */
+    font-size: 52px !important;
     font-weight: 400 !important;
     color: #fff !important;
     margin-bottom: 5px;
-    text-shadow: 0 2px 15px rgba(0,0,0,0.7); /* 글자 뒤에 그림자 강화 */
+    text-shadow: 0 2px 15px rgba(0,0,0,0.6);
 }
 
 .hero-bible {
-    font-size: 18px !important;
+    font-size: 19px !important;
     font-weight: 300 !important;
     color: rgba(255, 255, 255, 0.9) !important;
-    margin-top: 0 !important;
 }
 
-/* [2] 교육 주제 - Glow 제거 및 폰트 다이어트 */
-.edu-topic {
-    display: block !important;
-    font-size: 24px !important; /* 28px -> 24px 축소 */
-    font-weight: 800 !important;
-    color: #2c3e50 !important;
-    text-align: center;
-    margin: 20px 0 !important; /* 간격 축소 */
-    padding: 0 !important;
-    background: none !important;
-    text-shadow: none !important; /* Glow 제거 */
-    white-space: nowrap;
-}
-
-/* [3] 카드 섹션 - 높이 및 패딩 축소 (콤팩트하게) */
+/* [2] 섹션 카드 - 답답함 해소 (간격 확대) */
 .section {
     max-width: 1000px;
-    margin: 60px auto !important; /* 섹션 상하 간격 축소 */
-    padding: 40px 50px; /* 내부 여백 축소로 높이 조절 */
+    /* 요구사항: 섹션 간 간격을 100px 이상으로 벌려 답답함 해소 */
+    margin: 110px auto !important; 
+    padding: 65px 50px; /* 내부 여백도 충분히 주어 강조 효과 극대화 */
     background: #fff;
     border-radius: 24px;
     border: 1px solid #eee;
@@ -69,16 +53,16 @@
 }
 
 .section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(111, 168, 220, 0.15);
     border-color: #6fa8dc;
 }
 
-/* 제목 하단 선 간격 조정 */
+/* 제목 하단 포인트 선 */
 .section h2 {
     color: #2c3e50;
-    font-size: 26px; /* 28px -> 26px 축소 */
-    margin-bottom: 15px;
+    font-size: 28px;
+    margin-bottom: 25px;
     display: inline-block;
     position: relative;
 }
@@ -87,25 +71,46 @@
     content: '';
     display: block;
     width: 35px;
-    height: 4px;
+    height: 5px;
     background: #6fa8dc;
-    margin-top: 8px;
+    margin-top: 10px;
+    border-radius: 10px;
 }
 
-/* [4] 유튜브 영상 (크기 유지) */
+/* [3] 교육 주제 - 텍스트 중심의 깔끔한 강조 */
+.edu-topic {
+    display: block !important;
+    font-size: 26px !important;
+    font-weight: 800 !important;
+    color: #2c3e50 !important;
+    text-align: center;
+    margin: 30px 0 !important;
+    white-space: nowrap;
+}
+
+/* [4] 유튜브 영상 - 요구사항: 크기 원상복구 (폭 100% 사용) */
 .video-wrapper {
-    margin-top: 30px;
+    width: 100%; /* 너비를 꽉 채움 */
+    margin-top: 40px;
     position: relative;
-    padding-bottom: 56.25%; 
+    padding-bottom: 56.25%; /* 16:9 비율 유지 */
     height: 0;
     border-radius: 24px;
     overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
 }
 
-/* [5] 표(Table) 가독성 유지 */
+.video-wrapper iframe {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    border: none;
+}
+
+/* [5] 표(Table) - 디자인 완성본 유지 */
 .worship-table, .staff-table {
     width: 100%;
-    margin-top: 20px;
+    margin-top: 30px;
     border-collapse: separate !important;
     border-spacing: 0;
     border: 1.5px solid #6fa8dc !important;
@@ -116,19 +121,23 @@
 
 .worship-table th, .staff-table th {
     background: #6fa8dc !important;
-    color: #ffffff !important;
-    padding: 15px 10px;
-    font-size: 18px;
+    color: #fff !important;
+    padding: 18px 10px;
+    font-size: 19px;
     font-weight: 900;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .worship-table td, .staff-table td {
-    padding: 12px 10px;
-    border-bottom: 1px solid #f0f0f0 !important;
-    border-right: 1.5px solid rgba(111, 168, 220, 0.15) !important;
+    padding: 16px 10px;
+    border-bottom: 1px solid #f2f2f2 !important;
+    border-right: 1.5px solid rgba(111, 168, 220, 0.1) !important;
     text-align: center;
     color: #333;
     font-size: 17px;
     font-weight: 450;
+}
+
+.worship-table td:last-child, .staff-table td:last-child {
+    border-right: none !important;
 }
