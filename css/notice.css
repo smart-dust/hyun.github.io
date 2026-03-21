@@ -1,1 +1,115 @@
+/* ============================================================
+   공지사항 페이지 전용 디자인 (notice.css)
+   대상: 행사 안내, 주보 다운로드 리스트
+   ============================================================ */
 
+/* [1] 페이지 레이아웃 컨테이너 */
+.notice-container {
+    max-width: 900px;           /* 본문 너비 제한 */
+    margin: 100px auto 60px;    /* 상단 메뉴바(60px) 고려하여 여백 설정 */
+    padding: 0 20px;
+    min-height: 70vh;           /* 콘텐츠가 적어도 푸터가 너무 올라가지 않게 */
+}
+
+/* [2] 섹션 제목 (행사 안내, 주보) */
+.notice-container h2 {
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--text-main);
+    margin: 50px 0 25px;
+    padding-left: 15px;
+    border-left: 5px solid var(--main-color); /* 제목 옆 하늘색 포인트 선 */
+    display: flex;
+    align-items: center;
+}
+
+/* [3] 공지사항 카드 스타일 */
+.notice-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px 30px;
+    margin-bottom: 20px;
+    border: 1px solid rgba(111, 168, 220, 0.12);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* 카드 호버 효과 */
+.notice-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(111, 168, 220, 0.15);
+    border-color: var(--main-color);
+}
+
+/* 카드 내 제목 */
+.notice-card h3 {
+    margin: 0;
+    font-size: 19px;
+    font-weight: 700;
+    color: #333;
+}
+
+/* 카드 내 본문 및 날짜 정보 */
+.notice-card p {
+    margin: 0;
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+/* [4] 주보 PDF 다운로드 링크 스타일 */
+.notice-card p a {
+    display: inline-flex;
+    align-items: center;
+    color: var(--main-color) !important;
+    font-weight: 600;
+    padding: 6px 16px;
+    background: var(--main-hover);
+    border-radius: 30px;
+    margin-top: 5px;
+    font-size: 14px;
+}
+
+.notice-card p a:hover {
+    background: var(--main-color);
+    color: #ffffff !important;
+    transform: none; /* 부모 카드와 별개로 살짝만 강조 */
+}
+
+/* [5] 반응형 처리 (모바일) */
+@media (max-width: 768px) {
+    .notice-container {
+        margin-top: 80px;
+    }
+    
+    .notice-container h2 {
+        font-size: 24px;
+    }
+
+    .notice-card {
+        padding: 20px;
+    }
+
+    .notice-card h3 {
+        font-size: 17px;
+    }
+}
+
+/* [6] 애니메이션 (common.css의 section-box와 동일한 효과 적용을 원할 경우) */
+.notice-card {
+    animation: fadeInSlide 0.6s ease forwards;
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
