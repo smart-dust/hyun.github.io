@@ -5,7 +5,7 @@
   --nav-bg: rgba(255,255,255,0.85);
   --nav-text: #222;
   --submenu-bg: rgba(255,255,255,0.85);
-  --footer-bg: linear-gradient(145deg, #3a3a50, #2c2c3d);
+  --footer-bg: linear-gradient(145deg, #2c2c3d, #3a3a50);
   --footer-text: #f5f5f5; 
 }
 
@@ -31,14 +31,27 @@ nav {
 .nav-container {
   display: flex;
   justify-content: space-between;
+  align-items: center; /* 수직 중앙 정렬 */
   padding: 10px 40px;
 }
 
+/* 로고 + 타이틀 */
+.nav-logo {
+  display: flex;
+  align-items: center; /* 수직 중앙 맞춤 */
+  gap: 10px; /* 로고와 글자 사이 공간 */
+}
+
+.nav-logo img {
+  height: 36px; /* 로고 크기 조절 */
+  width: auto;
+}
+
 .nav-title {
-  font-weight: 550; /* 조금 더 얇게 */
-  font-size: 17px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1; /* 로고와 수평 맞춤 */
   color: #000;
-  line-height: 1;
 }
 
 /* 메뉴 오른쪽 정렬 */
@@ -107,32 +120,39 @@ nav {
   color: var(--main-color);
 }
 
-/* ===== 하단 ===== */
+/* ===== 하단 (푸터) ===== */
 .footer {
   background: var(--footer-bg);
   color: var(--footer-text);
-  padding: 28px 20px; /* 살짝 낮춤 */
+  padding: 40px 20px; 
   text-align: center;
   font-weight: 400;
   letter-spacing: 0.5px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-top: none;
-
-  /* 고급스럽게 그림자/패널 느낌 */
-  box-shadow: 0 -4px 12px rgba(0,0,0,0.2) inset;
-  border-radius: 8px 8px 0 0;
+  border-top: 2px solid #444;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
 }
 
 .footer p {
-  margin: 5px 0;
+  margin: 8px 0;
   font-size: 15px;
   line-height: 1.6;
 }
 
-.footer a { color: var(--footer-text); }
+.footer a { 
+  color: #e0e0ff;
+  transition: color 0.25s ease;
+}
+
+.footer a:hover {
+  color: var(--main-color);
+}
+
 .footer .highlight {
-  font-weight: 600;
+  font-weight: 700;
   color: #fff;
+  font-size: 16px;
 }
