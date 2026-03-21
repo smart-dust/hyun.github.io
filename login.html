@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Login - 대전대흥교회 청소년부</title>
+    <title>Member Login</title>
     <style>
         :root {
             --main-color: #6fa8dc;
@@ -170,8 +170,7 @@
         projectId: "dhchurch-cf85f",
         storageBucket: "dhchurch-cf85f.firebasestorage.app",
         messagingSenderId: "718998916531",
-        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
-        measurementId: "G-KKT2TX7SZ9"
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
     };
 
     const app = initializeApp(firebaseConfig);
@@ -189,11 +188,17 @@
 
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-                window.location.href = "admin.html"; 
+                // [수정된 부분] 저장된 이전 페이지가 있다면 그곳으로, 없으면 index.html로 이동
+                const prevPage = sessionStorage.getItem('redirectURL');
+                if (prevPage) {
+                    sessionStorage.removeItem('redirectURL'); // 사용 후 삭제
+                    window.location.href = prevPage;
+                } else {
+                    window.location.href = "index.html";
+                }
             })
             .catch((error) => {
                 console.error("로그인 실패:", error.code);
-                // 모든 에러 메시지를 하나로 통일
                 alert("아이디 또는 비밀번호가 일치하지 않습니다.");
             });
     };
