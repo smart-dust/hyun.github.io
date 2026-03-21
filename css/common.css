@@ -37,8 +37,6 @@ nav {
 
 /* 로고 + 글자 (메뉴 기준 라인에 맞춤) */
 .nav-left {
-  display: flex;
-  align-items: center; /* 메뉴라인 기준 */
   gap: 12px;
 }
 
@@ -48,7 +46,7 @@ nav {
 }
 
 .nav-title {
-  font-weight: 500; /* 조금 더 얇게 */
+  font-weight: 550; /* 조금 더 얇게 */
   font-size: 17px;
   color: #000;
   line-height: 1;
