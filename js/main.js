@@ -1,28 +1,34 @@
-/* 모든 페이지 공통 등장 애니메이션 스크립트 (main.js) */
+/* js/main.js */
 document.addEventListener("DOMContentLoaded", () => {
-    // 1. 요소가 화면에 15% 정도 보일 때 애니메이션을 시작하도록 설정
-    const observerOptions = {
-        threshold: 0.15 
-    };
+    const observerOptions = { threshold: 0.15 };
 
-    // 2. 요소가 감지되었을 때 실행할 규칙 정의
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // 화면에 들어오면 'visible' 클래스를 태그에 자동으로 붙여줌
-                entry.target.classList.add("visible");
-                // 한 번 나타났으면 다시 감시하지 않음 (성능 최적화)
-                observer.unobserve(entry.target); 
+                // 1. 카드 섹션: 왼쪽부터 차례대로 또로록 등장
+                if (entry.target.classList.contains('section-container')) {
+                    const cards = entry.target.querySelectorAll('.section-box');
+                    cards.forEach((card, index) => {
+                        setTimeout(() => card.classList.add('visible'), index * 150);
+                    });
+                } 
+                // 2. 히어로 섹션: 글자 먼저 나오고 버튼은 0.4초 뒤에 팝!
+                else if (entry.target.classList.contains('hero-content')) {
+                    entry.target.classList.add('visible');
+                    const heroBtn = entry.target.querySelector('.hero-btn');
+                    if(heroBtn) {
+                        setTimeout(() => heroBtn.classList.add('pop'), 400);
+                    }
+                }
+                // 3. 기타 (지도 등): 그냥 스르륵 등장
+                else {
+                    entry.target.classList.add('visible');
+                }
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);
 
-    // 3. 애니메이션을 적용할 대상들을 한꺼번에 지정
-    // (카드 박스, 지도 섹션, 히어로 문구, 그리고 앞으로 쓸 'fade-in' 클래스들)
-    const animateElements = document.querySelectorAll('.section-box, .map-section, .hero-content, .fade-in');
-
-    // 4. 각각의 요소들을 감시 시작!
-    animateElements.forEach((el) => {
-        observer.observe(el);
-    });
+    const animateElements = document.querySelectorAll('.section-container, .map-section, .hero-content');
+    animateElements.forEach((el) => observer.observe(el));
 });
