@@ -1,8 +1,8 @@
 /* ============================================================
-   교회소개 전용 디자인 (about.css) - 최종 개선본
+   교회소개 전용 디자인 (about.css) - 통합 완결판
    ============================================================ */
 
-/* [1] 서브 히어로 섹션 - 밝고 깨끗한 느낌 (음영 제거) */
+/* [1] 서브 히어로 섹션 - 메인과 통일감 있는 밝은 톤 */
 .hero {
     position: relative;
     height: 40vh;
@@ -12,7 +12,7 @@
     justify-content: center;
     overflow: hidden;
     margin-top: 60px;
-    background: #f8fbfe;
+    background: #000;
 }
 
 .hero img {
@@ -21,15 +21,15 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.95); /* 어두운 필터 제거 */
+    filter: brightness(0.8); /* 글자가 잘 보이도록 적절한 어두움 유지 */
 }
 
 .overlay {
     position: absolute;
     top: 0; left: 0;
     width: 100%; height: 100%;
-    /* 상단 검은 음영 제거, 아주 연한 푸른빛 그라데이션만 유지 */
-    background: linear-gradient(to bottom, rgba(255,255,255,0.1), rgba(111, 168, 220, 0.15));
+    /* 푸른 톤의 세련된 그라데이션 */
+    background: linear-gradient(to bottom, rgba(0,0,0,0.2), rgba(111, 168, 220, 0.3));
     z-index: 2;
 }
 
@@ -41,26 +41,28 @@
 
 .hero-content h2 {
     font-family: 'Nanum Brush Script', cursive;
-    font-size: 54px;
-    color: #1a3a5f; /* 가독성을 위해 어두운 네이비 톤으로 변경 */
+    font-size: 56px;
+    color: #fff;
     margin-bottom: 10px;
+    text-shadow: 0 4px 15px rgba(0,0,0,0.3);
 }
 
 .hero-content p {
-    font-size: 19px;
-    color: #4a5568;
+    font-size: 20px;
+    color: #e3f2fd;
     font-weight: 500;
 }
 
-/* [2] 섹션 공통 스타일 */
+/* [2] 섹션 공통 스타일 - index.css 카드 스타일 계승 */
 .section {
     max-width: 1000px;
     margin: 60px auto;
     padding: 60px 50px;
     background: #fff;
-    border-radius: 24px;
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
-    border: 1px solid #e1ecf7;
+    border-radius: 24px; /* 메인 카드와 동일 */
+    box-shadow: 0 10px 40px rgba(111, 168, 220, 0.08);
+    border: 1px solid rgba(111, 168, 220, 0.15);
+    transition: var(--transition);
 }
 
 .section h2 {
@@ -68,34 +70,47 @@
     font-size: 30px;
     font-weight: 800;
     margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
 }
 
-/* 본문 글자 크기 키우기 */
+/* 제목 아래 포인트 선 복구 */
+.section h2::after {
+    content: '';
+    display: block;
+    width: 40px;
+    height: 4px;
+    background: var(--main-color);
+    border-radius: 10px;
+    margin-top: 8px;
+}
+
 .section p {
-    font-size: 18px; 
-    line-height: 1.8;
-    color: #333;
-    font-weight: 400; /* 기본 두께는 보통으로 */
+    font-size: 18px; /* 가독성 위해 키움 */
+    line-height: 1.85;
+    color: #333; /* index.css와 동일 */
     word-break: keep-all;
 }
 
-/* 성경 구절이나 보조 설명 (두께를 얇게 처리) */
-.section .bible-verse, .section p.small {
-    font-size: 17px;
+/* 성경 구절 - 얇고 차분하게 */
+.bible-verse {
+    font-weight: 300 !important;
     color: #666;
-    font-weight: 300; /* 성경 말씀이 너무 두껍지 않게 조절 */
+    font-size: 17px;
+    display: block;
+    margin-top: 15px;
 }
 
-/* [3] 유튜브 영상 박스 - 상단 음영 제거 및 깔끔한 테두리 */
+/* [3] 유튜브 영상 박스 */
 .video-wrapper {
     margin-top: 35px;
     position: relative;
     padding-bottom: 56.25%; 
     height: 0;
-    border-radius: 15px;
+    border-radius: 20px;
     overflow: hidden;
-    border: 1px solid #d1d9e0; /* 명확한 경계선 */
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    border: 1px solid rgba(111, 168, 220, 0.1);
 }
 
 .video-wrapper iframe {
@@ -105,40 +120,52 @@
     border: none;
 }
 
-/* [4] 테이블 디자인 - 시인성 강화 (실제 표처럼 보이게) */
+/* [4] 테이블 디자인 - "표"이면서 "카드"같은 세련된 느낌 */
 .table, .staff-table {
     width: 100%;
     margin-top: 30px;
-    border-collapse: collapse; /* 테두리 겹침으로 선명하게 */
-    border: 2px solid #cbd5e0; /* 외곽선 강화 */
+    border-collapse: separate; /* 둥근 모서리 유지 */
+    border-spacing: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1.5px solid rgba(111, 168, 220, 0.2); /* index.css 스타일 테두리 */
 }
 
 .table th, .staff-table th {
-    background: #f1f5f9;
-    color: #1a3a5f;
+    background: #f8fbfe;
+    color: var(--main-color);
     padding: 20px 15px;
-    font-weight: 700;
-    font-size: 18px; /* 표 제목 키움 */
-    border: 1px solid #cbd5e0;
+    font-weight: 800;
+    font-size: 17px;
+    border-bottom: 2px solid rgba(111, 168, 220, 0.1);
 }
 
 .table td, .staff-table td {
     padding: 18px 15px;
-    border: 1px solid #cbd5e0; /* 칸 구분 명확하게 */
-    color: #2d3748;
-    font-size: 17.5px; /* 표 내용 키움 */
+    border-bottom: 1px solid #f0f0f0;
+    color: #444;
+    font-size: 17px; /* 교육주제 등을 위해 큼직하게 */
     text-align: center;
+    transition: var(--transition);
 }
 
-/* 과한 효과 제거 - 아주 연한 배경색 변화만 유지 */
+/* 테이블 마지막 행 선 제거 */
+.table tr:last-child td, .staff-table tr:last-child td {
+    border-bottom: none;
+}
+
+/* 과하지 않은 선택 효과 (공통 hover 효과 계승) */
 .table tr:hover td, .staff-table tr:hover td {
-    background-color: #f7fafc;
-    transition: background 0.2s ease;
+    background-color: #f4f9ff;
+    color: var(--main-color);
+    cursor: default;
 }
 
-/* 교육주제 등 특별히 강조할 텍스트 클래스 */
+/* 교육주제 등 특별 강조 텍스트 */
 .highlight-text {
-    font-size: 20px !important;
-    font-weight: 700 !important;
+    font-size: 19px;
+    font-weight: 700;
     color: var(--main-color);
+    display: block;
+    margin-top: 5px;
 }
