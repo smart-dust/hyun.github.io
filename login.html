@@ -6,54 +6,54 @@
     <title>관리자 로그인 - 대전대흥교회 청소년부</title>
     <style>
         /* 1. 디자인 (CSS) */
+        :root {
+            /* 지정하신 메인 컬러 */
+            --main-color: #6fa8dc; 
+            --hover-color: #5a94c8; /* 호버 시 약간 어둡게 */
+            --bg-color: #f4f7f9;
+            --text-color: #333;
+            --border-color: #dcdde1;
+        }
+
         body {
             font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
-            background-color: #f4f7f9;
+            background-color: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: var(--text-color);
         }
 
         .login-card {
             background: #ffffff;
-            padding: 40px 30px;
+            padding: 50px 40px; /* 위아래 여백을 더 늘려 담백함 강조 */
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); /* 더 은은한 그림자 */
             width: 100%;
-            max-width: 380px;
+            max-width: 360px;
             text-align: center;
         }
 
-        .login-logo {
-            width: 60px;
-            margin-bottom: 15px;
-        }
-
         .login-card h2 {
-            color: #2c3e50;
-            margin-bottom: 8px;
-            font-size: 1.4rem;
+            color: var(--text-color);
+            margin-bottom: 40px; /* 입력창과의 간격 넓힘 */
+            font-size: 1.3rem; /* 너무 크지 않게 조절 */
             font-weight: 700;
-        }
-
-        .login-card p {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 30px;
+            letter-spacing: -0.5px; /* 글자 간격 살짝 좁힘 */
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 25px;
             text-align: left;
         }
 
         .input-group label {
             display: block;
-            font-size: 0.8rem;
-            color: #34495e;
-            margin-bottom: 6px;
+            font-size: 0.85rem;
+            color: #555;
+            margin-bottom: 8px;
             font-weight: 600;
             margin-left: 2px;
         }
@@ -61,50 +61,50 @@
         input {
             width: 100%;
             padding: 14px 16px;
-            border: 1px solid #dcdde1;
-            border-radius: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px; /* 약간만 둥글게 */
             font-size: 1rem;
             box-sizing: border-box;
             transition: all 0.2s ease-in-out;
-            background-color: #fafafa;
+            background-color: #fff; /* 완전 흰색 배경 */
         }
 
         input:focus {
             outline: none;
-            border-color: #007bff;
-            background-color: #fff;
-            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+            border-color: var(--main-color); /* 지정하신 색상으로 강조 */
+            box-shadow: 0 0 0 3px rgba(111, 168, 220, 0.15); /* 강조색 기반 은은한 효과 */
         }
 
         button {
             width: 100%;
-            padding: 14px;
-            background-color: #007bff;
+            padding: 15px;
+            background-color: var(--main-color); /* 지정하신 색상 */
             color: white;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600;
+            font-weight: 700;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 15px;
             transition: background 0.2s;
+            letter-spacing: 1px; /* LOGIN 글자 간격 살짝 넓힘 */
         }
 
         button:hover {
-            background-color: #0056b3;
+            background-color: var(--hover-color);
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 25px;
-            color: #95a5a6;
+            margin-top: 30px;
+            color: #aaa; /* 더 연한 회색 */
             text-decoration: none;
             font-size: 0.85rem;
             transition: color 0.2s;
         }
 
         .back-home:hover {
-            color: #2c3e50;
+            color: var(--text-color);
             text-decoration: underline;
         }
     </style>
@@ -112,21 +112,19 @@
 <body>
 
 <div class="login-card">
-    <img src="images/logo.png" alt="Logo" class="login-logo" onerror="this.style.display='none'">
-    <h2>Admin Login</h2>
-    <p>관리자 계정으로 로그인하세요.</p>
+    <h2>대전대흥교회 청소년부</h2>
 
     <div class="input-group">
-        <label for="email">ID (Email)</label>
-        <input type="email" id="email" placeholder="admin@example.com" required>
+        <label for="email">ID</label>
+        <input type="email" id="email" required>
     </div>
 
     <div class="input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="••••••••" required>
+        <input type="password" id="password" required>
     </div>
 
-    <button id="login-btn">로그인하기</button>
+    <button id="login-btn">LOGIN</button>
     
     <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
 </div>
@@ -135,7 +133,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Firebase 설정
+    // Firebase 설정 (기존과 동일)
     const firebaseConfig = {
         apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
         authDomain: "dhchurch-cf85f.firebaseapp.com",
