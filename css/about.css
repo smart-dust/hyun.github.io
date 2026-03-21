@@ -33,23 +33,24 @@
     margin-top: 0 !important;
 }
 
-/* [2] 교육 주제 - 박스 제거 / 글자색 변경 / 글자 자체에 은은한 광원 효과 */
+/* [2] 교육 주제 - 검은 계열 글자색 + 강화된 은은한 하늘색 효과 */
 .edu-topic {
     display: block !important;
     font-size: 28px !important;
     font-weight: 800 !important;
-    color: #6fa8dc !important; /* 글자색 하늘색으로 교체 */
+    color: #2c3e50 !important; /* 검은색 계열(네이비 믹스)로 변경 */
     text-align: center;
     margin: 40px 0 !important;
-    padding: 0 !important;
-    background: none !important; /* 이상한 박스 제거 */
-    border: none !important;      /* 테두리 제거 */
-    
-    /* 글자 자체에 주는 은은한 효과 (Glow) */
-    text-shadow: 0 0 10px rgba(111, 168, 220, 0.3); 
+    padding: 10px 0 !important;
+    background: none !important;
+    border: none !important;
     white-space: nowrap;
-}
 
+    /* 요구사항: 뒤에 은은한 하늘색 효과 강화 (이중 그림자로 깊이감 부여) */
+    text-shadow: 
+        0 0 15px rgba(111, 168, 220, 0.4), 
+        0 0 30px rgba(111, 168, 220, 0.2); 
+}
 /* [3] 유튜브 영상 - 크기 원상복구 (100%) */
 .video-wrapper {
     margin-top: 40px;
@@ -67,45 +68,45 @@
     border: none;
 }
 
-/* [4] 표(Table) - 사용자 요청대로 색상 및 곡률 스타일 복구 */
+/* [4] 표(Table) - 헤더 흰 글자 가독성 극대화 */
 .worship-table, .staff-table {
     width: 100%;
     margin-top: 30px;
-    border-collapse: separate !important; /* 곡률(radius) 적용을 위해 필수 */
+    border-collapse: separate !important;
     border-spacing: 0;
-    border: 1.5px solid #6fa8dc !important; /* 메인 컬러 테두리 */
-    border-radius: 15px; /* 표 전체 모서리 둥글게 */
+    border: 1.5px solid #6fa8dc !important;
+    border-radius: 15px;
     overflow: hidden;
-    table-layout: fixed; /* 등간격 유지 */
+    table-layout: fixed;
 }
 
-/* 표 헤더 - 하늘색 배경 + 흰색 글씨 가독성 강화 */
 .worship-table th, .staff-table th {
     background: #6fa8dc !important;
-    color: #fff !important;
-    padding: 16px 10px;
-    font-weight: 700;
-    font-size: 18px;
-    border-bottom: 1.5px solid #6fa8dc !important;
+    padding: 18px 10px;
+    font-size: 19px;
+    
+    /* 요구사항: 흰 글씨 가독성 개선 */
+    color: #ffffff !important;
+    font-weight: 900 !important; /* 두께를 최대로 높임 */
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.25); /* 그림자를 조금 더 진하게 설정 */
     border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 표 내부 - 요청하신 글자 스펙(17px, 450두께) 적용 */
 .worship-table td, .staff-table td {
     padding: 15px 10px;
     border-bottom: 1px solid #f0f0f0 !important;
-    border-right: 1.5px solid rgba(111, 168, 220, 0.15) !important; /* 연한 세로 구분선 */
+    border-right: 1.5px solid rgba(111, 168, 220, 0.15) !important;
     text-align: center;
     color: #333;
     background: #fff;
     
-    /* 사용자 지정 글자 스펙 */
+    /* 이전 요청 유지: 17px / 450두께 */
     font-size: 17px !important;
     font-weight: 450 !important; 
     transition: background 0.2s;
 }
 
-/* 마지막 열과 행의 불필요한 선 제거 (곡률 보호) */
+/* 마지막 열/행 정리 */
 .worship-table th:last-child, .staff-table th:last-child,
 .worship-table td:last-child, .staff-table td:last-child {
     border-right: none !important;
