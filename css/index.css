@@ -1,37 +1,33 @@
-/* ===== 히어로 ===== */
+/* ===== 히어로 섹션 (오버레이 및 버튼 클릭 해결 버전) ===== */
 .hero {
   position: relative;
   width: 100%;
-  height: 100vh; /* 창 가득 */
+  height: 100vh;
   overflow: hidden;
 }
 
 .hero img {
   position: absolute;
-  top:50%;
-  left:50%;
-  width:100%;
-  height:100%;
+  top: 50%; left: 50%;
+  width: 100%; height: 100%;
   object-fit: cover;
   transform: translate(-50%, -50%);
-  z-index:0;
+  z-index: 0;
 }
 
-/* 검은 오버레이 */
 .overlay {
   position: absolute;
-  width:100%;
-  height:100%;
-  background: rgba(0,0,0,0.5); /* 기존 검은색 반투명 */
-  z-index:1;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
 }
 
-/* 히어로 컨텐츠 */
 .hero-content {
   position: relative;
-  z-index:2;
-  height:100%;
-  display:flex;
+  z-index: 2; /* 오버레이보다 위 */
+  height: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -41,118 +37,66 @@
 .hero-content h1 {
   font-family: 'Nanum Brush Script', cursive;
   font-size: 70px;
-  font-weight: 300;
-  color: #fff; /* 흰색 글자 */
+  color: #fff;
   text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
-  margin-bottom: -30px;
+  margin-bottom: 10px;
 }
 
 .hero-content p {
   font-size: 18px;
   font-weight: 500;
-  color: #fff; /* 흰색 */
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  color: #fff;
   margin-bottom: 30px;
 }
 
-/* ===== 버튼 ===== */
+/* 메인 페이지 전용 버튼 (btn 클래스는 공통으로 써도 되지만 디자인은 여기서) */
 .btn {
-  padding:12px 24px;
-  border-radius:10px;
+  display: inline-block;
+  padding: 12px 28px;
+  border-radius: 10px;
   background: var(--main-color);
-  color:#fff;
-  font-weight:500;
-  font-size:16px;
-  transition: all 0.3s ease;
-  text-decoration:none;
+  color: #fff !important;
+  font-weight: 500;
+  transition: 0.3s;
+  position: relative;
+  z-index: 3;
 }
-.btn:hover {
-  background: var(--main-dark);
-  transform: scale(1.05);
-  box-shadow:0 8px 16px rgba(0,0,0,0.18);
-}
-.btn:active {
-  transform: scale(0.97);
-}
+.btn:hover { transform: scale(1.05); background: var(--main-dark); }
 
 /* 카카오/네이버 버튼 */
-.btn.kakao { background:#f7e600; color:#222; }
-.btn.kakao:hover { background:#ffe812; transform: scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.1); }
-.btn.kakao:active { transform: scale(0.97); }
+.btn.kakao { background: #fee500; color: #3c1e1e !important; }
+.btn.naver { background: #03c75a; color: #fff !important; }
 
-.btn.naver { background:#03c75a; color:#fff; }
-.btn.naver:hover { background:#02b351; transform: scale(1.03); box-shadow:0 6px 12px rgba(0,0,0,0.1); }
-.btn.naver:active { transform: scale(0.97); }
-
-/* ===== 카드/섹션 ===== */
-.section-container { 
-  display:flex; 
-  flex-wrap:wrap; 
-  justify-content:center; 
-  gap:30px; 
-  padding:60px 20px;
+/* ===== 섹션 카드/박스 ===== */
+.section-container {
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 30px; padding: 60px 20px;
 }
 
 .section-box {
-  background:#fff;
-  border-radius:20px;
-  width:260px;
-  padding:35px;
-  text-align:center;
-  box-shadow:0 6px 25px rgba(0,0,0,0.09);
-  border-top:3px solid var(--main-color);
-  border-left:3px solid var(--main-color);
-  transition: all 0.45s cubic-bezier(0.4,0,0.2,1), opacity 0.6s ease, background 0.25s ease;
-  opacity:0;
-  transform: translateY(30px);
+  background: #fff;
+  border-radius: 20px;
+  width: 260px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.09);
+  border-top: 3px solid var(--main-color);
+  border-left: 3px solid var(--main-color);
+  transition: 0.45s;
+  opacity: 0; transform: translateY(30px);
 }
-
-.section-box.visible { opacity:1; transform: translateY(0); }
-
-.section-box:hover { 
-  transform: translateY(-8px);
-  box-shadow:0 12px 35px rgba(0,0,0,0.15);
-  background: #f0f3f6;
-}
-
-.section-box h2 { 
-  font-size:21px; 
-  margin-bottom:12px; 
-  color:#1d1d1f; 
-  font-weight:600;
-}
-
-.section-box p { 
-  color:#1d1d1f; 
-  font-size:15px; 
-  line-height:1.7; 
-}
-
-/* 카드 클릭 시 하늘색 음영 처리 */
-.section-box:active {
-  background: #8fc2ff;
-  transform: translateY(-2px);
-}
+.section-box.visible { opacity: 1; transform: translateY(0); }
+.section-box:hover { transform: translateY(-8px); background: #f0f3f6; }
 
 /* ===== 지도 섹션 ===== */
 .map-section {
   background: #fff;
-  border-radius:20px;
-  padding:45px;
-  max-width:750px;
-  margin:60px auto;
-  box-shadow:0 6px 25px rgba(0,0,0,0.09);
-  border-top:3px solid var(--main-color);
-  border-left:3px solid var(--main-color);
-  transition: all 0.5s cubic-bezier(0.4,0,0.2,1), opacity 0.6s ease, transform 0.5s ease;
-  opacity:0;
-  transform: translateY(30px);
+  border-radius: 20px;
+  padding: 45px;
+  max-width: 750px;
+  margin: 60px auto;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.09);
+  border-top: 3px solid var(--main-color);
+  border-left: 3px solid var(--main-color);
 }
-
-.map-section.visible { opacity:1; transform: translateY(0); }
-
-.map-section h2 { margin-bottom:15px; font-size:22px; color:#1d1d1f; }
-.map-section p { color:#1d1d1f; margin-bottom:30px; }
-.map-section iframe { width:100%; height:450px; border-radius:12px; border:none; margin-bottom:25px; }
-
-.map-buttons { display:flex; justify-content:flex-start; gap:20px; flex-wrap:wrap; }
+.map-section iframe { width: 100%; height: 450px; border-radius: 12px; border: none; }
