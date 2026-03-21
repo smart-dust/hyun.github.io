@@ -1,95 +1,64 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+<script type="module">
+    // 1. Firebase 라이브러리 불러오기
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-const firebaseConfig = {
-    apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-    authDomain: "dhchurch-cf85f.firebaseapp.com",
-    projectId: "dhchurch-cf85f",
-    storageBucket: "dhchurch-cf85f.firebasestorage.app",
-    messagingSenderId: "718998916531",
-    appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
-};
+    // 2. 사용자가 제공한 진짜 서버 설정값 (열쇠)
+    const firebaseConfig = {
+        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+        authDomain: "dhchurch-cf85f.firebaseapp.com",
+        projectId: "dhchurch-cf85f",
+        storageBucket: "dhchurch-cf85f.firebasestorage.app",
+        messagingSenderId: "718998916531",
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
+        measurementId: "G-KKT2TX7SZ9"
+    };
 
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
+    // 3. Firebase 초기화
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-const authBtn = document.getElementById('admin-auth-btn');
-const adminFab = document.getElementById('admin-fab');
+    // 4. 로그인 상태 감지 및 화면 UI 변경
+    onAuthStateChanged(auth, (user) => {
+        const authBtn = document.getElementById('admin-auth-btn'); // Login/Logout 버튼
+        const adminFab = document.getElementById('admin-fab');     // 글쓰기(＋) 버튼
 
-// 로그인 상태 감지
-onAuthStateChanged(auth, (user) => {
-    if (user) {
-        // [관리자 상태]
-        if (authBtn) {
-            authBtn.innerText = "Logout";
-            authBtn.href = "#";
-            authBtn.onclick = (e) => {
-                e.preventDefault();
-                if(confirm("로그아웃 하시겠습니까?")) {
-                    signOut(auth).then(() => location.reload());
-                }
-            };
+        if (user) {
+            // [관리자가 로그인한 상태]
+            console.log("관리자 로그인 성공:", user.email);
+            if (authBtn) {
+                authBtn.innerText = "Logout";
+                authBtn.href = "#"; // 페이지 이동 방지
+                authBtn.onclick = (e) => {
+                    e.preventDefault();
+                    if(confirm("로그아웃 하시겠습니까?")) {
+                        signOut(auth).then(() => {
+                            alert("로그아웃 되었습니다.");
+                            location.reload();
+                        });
+                    }
+                };
+            }
+            // 글쓰기 버튼 보여주기
+            if (adminFab) adminFab.style.display = "block";
+            
+            // 만약 notice.html에 'write-section'이 있다면 그것도 보여주기
+            const writeSection = document.getElementById('write-section');
+            if (writeSection) writeSection.style.display = "block";
+
+        } else {
+            // [로그인이 안 된 상태]
+            console.log("로그인되지 않음");
+            if (authBtn) {
+                authBtn.innerText = "Login";
+                authBtn.href = "login.html";
+                authBtn.onclick = () => {
+                    // 로그인 후 다시 이 페이지로 돌아오기 위해 현재 주소 저장
+                    sessionStorage.setItem('redirectURL', window.location.href);
+                };
+            }
+            // 글쓰기 버튼 숨기기
+            if (adminFab) adminFab.style.display = "none";
         }
-        if (adminFab) adminFab.style.display = "block";
-    } else {
-        // [일반 사용자 상태]
-        if (authBtn) {
-            authBtn.innerText = "Login";
-            authBtn.href = "login.html";
-            authBtn.onclick = () => {
-                // 로그인 직전의 현재 페이지 주소를 메모리에 저장 (404 방지)
-                sessionStorage.setItem('redirectURL', window.location.href);
-            };
-        }
-        if (adminFab) adminFab.style.display = "none";
-    }
-});
-if (adminFab) {
-    adminFab.style.setProperty('display', 'block', 'important');
-}
-alert("auth.js 연결 성공!");
-alert("스크립트 연결 성공!"); // 이 창이 뜨는지 꼭 확인하세요!
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-const firebaseConfig = {
-    apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-    authDomain: "dhchurch-cf85f.firebaseapp.com",
-    projectId: "dhchurch-cf85f",
-    storageBucket: "dhchurch-cf85f.firebasestorage.app",
-    messagingSenderId: "718998916531",
-    appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
-};
-
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-onAuthStateChanged(auth, (user) => {
-    const authBtn = document.getElementById('admin-auth-btn');
-    const adminFab = document.getElementById('admin-fab');
-
-    if (user) {
-        // 로그인 된 상태
-        if (authBtn) {
-            authBtn.innerText = "Logout";
-            authBtn.style.color = "#6fa8dc"; // 파란색 강조
-            authBtn.onclick = (e) => {
-                e.preventDefault();
-                if(confirm("로그아웃 하시겠습니까?")) {
-                    signOut(auth).then(() => location.reload());
-                }
-            };
-        }
-        if (adminFab) adminFab.style.display = "block";
-    } else {
-        // 로그인 안 된 상태
-        if (authBtn) {
-            authBtn.innerText = "Login";
-            authBtn.onclick = () => {
-                sessionStorage.setItem('redirectURL', window.location.href);
-            };
-        }
-        if (adminFab) adminFab.style.display = "none";
-    }
-});
+    });
+</script>
