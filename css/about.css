@@ -1,8 +1,7 @@
-/* [1] 히어로 섹션 - 높이 축소 및 간격 최적화 */
+/* [1] 히어로 섹션 - 말씀 크기 및 두께 미세 조정 */
 .hero {
     position: relative;
-    height: 35vh; /* 45vh -> 35vh로 축소하여 콤팩트하게 변경 */
-    min-height: 300px;
+    height: 38vh; /* 높이는 너무 작지 않게 적절히 유지 */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -16,59 +15,121 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.5); 
+    filter: brightness(0.55); 
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
     text-align: center;
-    padding: 0 20px;
 }
 
-/* 붓글씨 메인 문구 */
 .hero-content h2 {
     font-family: 'Nanum Brush Script', cursive !important;
     font-size: 52px !important;
     font-weight: 400 !important;
     color: #fff !important;
-    line-height: 1.1; /* 줄간격 밀착 */
-    margin-bottom: 5px; /* 하단 p태그와의 간격 대폭 축소 */
-    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    margin-bottom: 2px; /* 간격 더 밀착 */
+    line-height: 1.2;
 }
 
-/* 요구사항: 에베소서 문구 크기 키우고 두께 보강 */
+/* 요구사항: 에베소서 문구 조금 작게, 두께도 적당히 슬림하게 */
 .hero-bible {
-    font-size: 22px !important; /* 18px -> 22px 확대 */
-    font-weight: 500 !important; /* 200 -> 500 두께 보강 */
-    color: rgba(255, 255, 255, 0.95) !important;
-    margin-top: 0 !important; /* h2와의 간격 최소화 */
+    font-size: 19px !important; /* 22px -> 19px로 축소 */
+    font-weight: 300 !important; /* 500 -> 300으로 얇게 조절 */
+    color: rgba(255, 255, 255, 0.85) !important;
     letter-spacing: 0.5px;
+    margin-top: 0 !important;
 }
 
-/* [2] 섹션 카드 & 호버 효과 (유지) */
+/* [2] 교육 주제 - 밑줄 제거, 색상 교체, 은은한 강조 추가 */
+.edu-topic {
+    display: block !important;
+    font-size: 28px !important;
+    font-weight: 800 !important;
+    color: #6fa8dc !important; /* 글자 색상 하늘색으로 교체 */
+    text-align: center;
+    margin: 40px 0 !important;
+    padding: 20px !important;
+    border-bottom: none !important; /* 밑줄 제거 */
+    white-space: nowrap;
+    /* 은은한 강조 효과: 아주 연한 배경색과 부드러운 외곽광 */
+    background: rgba(111, 168, 220, 0.05);
+    border-radius: 50px;
+    box-shadow: inset 0 0 15px rgba(111, 168, 220, 0.1);
+}
+
+/* [3] 유튜브 영상 - 크기 원상복구 (100% 활용) */
+.video-wrapper {
+    margin-top: 40px;
+    position: relative;
+    padding-bottom: 56.25%; 
+    height: 0;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid #eee;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08); /* 영상 존재감 부여 */
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    width: 100%; height: 100%;
+    top: 0; left: 0;
+    border: none;
+}
+
+/* [4] 표(Table) - 흰색 칸 글자 크기 및 두께 강화 */
+.worship-table, .staff-table {
+    width: 100%;
+    table-layout: fixed;
+    margin-top: 30px;
+    border-collapse: separate !important;
+    border-spacing: 0;
+    border: 2px solid #6fa8dc !important;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.worship-table th, .staff-table th {
+    background: #6fa8dc !important;
+    color: #fff !important;
+    padding: 18px 10px;
+    font-weight: 800;
+    font-size: 19px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+/* 요구사항: 표 내부(흰색 부분) 글자 폰트 업 & 두께 보강 */
+.worship-table td, .staff-table td {
+    padding: 16px 10px;
+    border-bottom: 1px solid #f0f0f0 !important;
+    border-right: 1px solid rgba(111, 168, 220, 0.2) !important;
+    text-align: center;
+    color: #222 !important; /* 더 진한 검정으로 교체 */
+    font-size: 18px !important; /* 17px -> 18px 확대 */
+    font-weight: 500 !important; /* 두께 보강 */
+    background: #fff;
+}
+
+.staff-table tbody tr:hover td {
+    background-color: #f0f7ff !important;
+    color: #6fa8dc !important;
+}
+
+/* [5] 섹션 카드 및 제목 하단 선 (유지) */
 .section {
     max-width: 1000px;
-    margin: 80px auto !important;
-    padding: 60px 50px;
+    margin: 100px auto !important;
+    padding: 70px 50px;
     background: #fff;
     border-radius: 24px;
     border: 1px solid rgba(111, 168, 220, 0.15);
-    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: all 0.4s ease;
 }
 
 .section:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(111, 168, 220, 0.15);
-    border-color: #6fa8dc;
-}
-
-.section h2 {
-    color: #2c3e50;
-    font-size: 28px;
-    margin-bottom: 25px;
-    display: inline-block;
-    position: relative;
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(111, 168, 220, 0.18);
 }
 
 .section h2::after {
@@ -79,61 +140,4 @@
     background: #6fa8dc;
     border-radius: 10px;
     margin-top: 10px;
-}
-
-/* [3] 교육 주제 (유지) */
-.edu-topic {
-    display: block !important;
-    font-size: 28px !important;
-    font-weight: 700 !important;
-    color: #333 !important;
-    text-align: center;
-    margin: 30px 0 !important;
-    padding-bottom: 15px !important;
-    border-bottom: 3px solid #6fa8dc;
-    white-space: nowrap;
-}
-
-/* [4] 표 디자인 - 가독성 개선 (헤더 글자 선명화) */
-.worship-table, .staff-table {
-    width: 100%;
-    table-layout: fixed;
-    margin-top: 25px;
-    border-collapse: separate !important;
-    border-spacing: 0;
-    border: 1.5px solid #6fa8dc !important;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
-.worship-table th, .staff-table th {
-    background: #6fa8dc !important;
-    /* 요구사항: 흰색 글씨 가독성 개선 (어두운 그림자 추가 및 폰트 강조) */
-    color: #fff !important;
-    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3); /* 글자에 미세한 그림자를 주어 배경과 분리 */
-    padding: 18px 10px;
-    font-weight: 800; /* 더 두껍게 */
-    font-size: 19px;
-    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-.worship-table td, .staff-table td {
-    padding: 15px 10px;
-    border-bottom: 1px solid #f2f2f2 !important;
-    border-right: 1.5px solid rgba(111, 168, 220, 0.1) !important;
-    text-align: center;
-    color: #333;
-    font-size: 17px;
-}
-
-/* 표 마지막 선 정리 */
-.worship-table th:last-child, .staff-table th:last-child,
-.worship-table td:last-child, .staff-table td:last-child {
-    border-right: none !important;
-}
-
-.staff-table tbody tr:hover td {
-    background-color: #f0f7ff !important;
-    color: #6fa8dc !important;
-    font-weight: 600;
 }
