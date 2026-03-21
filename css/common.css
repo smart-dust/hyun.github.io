@@ -1,106 +1,77 @@
+/* ===== 기본 컬러 ===== */
 :root {
-  --main-color: #6fa8dc; /* 메인 하늘색 */
+  --main-color: #6fa8dc; /* 메인톤다운 하늘색 */
   --main-dark: #5c90c2;
-  --btn-hover: #4a90e2;
+  --nav-bg: #f5f5f5; /* 메뉴바 밝은 회색 */
+  --nav-text: #333;  /* 메뉴바 글자 짙은 회색 */
+  --footer-bg: #1a2a4f; /* 하단 남색 */
+  --footer-text: #fdf6e3; /* 하단 아이보리 */
 }
-
-body {
-  margin: 0;
-  font-family: 'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif;
-  background: #f9f9f9;
-  color: #333;
-  line-height: 1.6;
-}
-
-a { text-decoration: none; }
 
 /* ===== 메뉴 ===== */
 nav {
   position: fixed;
-  top: 0; left:0;
-  width: 100%;
-  background: rgba(255,255,255,0.95);
-  z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  top:0; width:100%;
+  background: var(--nav-bg);
+  z-index:1000;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
-
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 30px;
-}
-
-/* 로고 텍스트 */
-.nav-home {
-  display:flex;
-  align-items:center;
-  gap:10px;
-}
+.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
+.nav-home { display:flex; align-items:center; gap:10px; }
 .nav-logo { height:35px; width:auto; }
-.nav-title { 
-  color: #000;       /* 검은색 */
-  font-weight: 400;  /* 얇게 */
-  font-size:18px; 
-}
-
-/* 메뉴 항목 */
-.nav-menu {
-  display:flex; 
-  gap:25px; 
-  align-items:center;
-}
+.nav-title { color:#000; font-weight:300; font-size:18px; } /* 로고 글자 얇게, 검은색 */
+.nav-menu { display:flex; gap:25px; align-items:center; }
 .nav-menu a, .menu-item > a {
-  color: #333;
-  font-weight: 700; /* 두껍게 */
+  color: var(--nav-text);
+  font-weight:700;
   padding:10px 12px;
   border-radius:6px;
-  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+  transition: transform 0.25s ease, background 0.25s ease, color 0.25s ease;
+  text-decoration:none;
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
   transform: translateY(-2px);
-  color: var(--main-color); /* 선택/호버 시 글자 색 변화 */
-  background: rgba(111,168,220,0.15);
+  background: rgba(0,0,0,0.05); /* 약간 강조 */
+  color: var(--main-color);
 }
 
 /* 서브메뉴 */
-.menu-item { position: relative; }
+.menu-item { position:relative; }
 .submenu {
   position:absolute; top:100%; left:0;
-  min-width:220px; padding:10px 0;
-  background: rgba(255,255,255,0.95); /* 거의 불투명 */
-  border-radius:10px;
-  box-shadow:0 8px 20px rgba(0,0,0,0.12);
-  opacity:0; visibility:hidden; transform: translateY(8px);
+  min-width:220px; max-width:260px; padding:10px 0;
+  background: rgba(0,0,0,0.9); /* 거의 불투명 */
+  border-radius:12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  opacity:0; visibility:hidden; transform:translateY(8px);
   transition: opacity 0.3s ease, transform 0.3s ease;
-  pointer-events:none;
-  z-index:1001;
+  pointer-events:none; z-index:1001;
 }
 .submenu a {
-  display:block;
-  padding:12px 20px;
-  color:#333;
-  font-weight:500;
+  display:block; padding:12px 20px;
+  color:#fff; font-weight:400;
   border-radius:6px;
-  transition: background 0.2s ease, color 0.2s ease;
+  transition:background 0.2s ease, transform 0.2s ease;
+  text-decoration:none;
 }
 .submenu a:hover {
-  background: rgba(111,168,220,0.2);
-  color: var(--main-color);
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.12);
 }
 .menu-item:hover .submenu {
   opacity:1;
   visibility:visible;
-  transform: translateY(0);
+  transform:translateY(0);
   pointer-events:auto;
 }
 
-/* ===== Footer ===== */
+/* ===== 하단 ===== */
 .footer {
-  background:#e0e0e0; /* 일반보다 조금 진하게 */
-  color:#333;
+  background: var(--footer-bg);
+  color: var(--footer-text);
   padding:40px 20px;
   text-align:center;
-  border-top: 3px solid var(--main-color);
+  font-weight:400;
 }
-.footer a { color: var(--main-color); }
+.footer p { margin:5px 0; }
+.footer a { color: var(--footer-text); text-decoration:underline; }
