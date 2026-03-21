@@ -1,3 +1,13 @@
+html {
+    scroll-behavior: smooth;
+}
+
+/* JS가 중앙 정렬을 계산하므로, 
+   CSS의 scroll-margin-top은 제거하거나 0으로 만듭니다. */
+section {
+    scroll-margin-top: 0; 
+}
+
 /* [1] 히어로 섹션 - 문구 노출 및 높이 최적화 */
 .hero {
     position: relative;
