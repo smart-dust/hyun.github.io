@@ -3,10 +3,10 @@
 /* 기본 색상 정의 */
 :root {
   --main-color: #6fa8dc;
-  --nav-bg: #ededed;       /* 약한 밝은 회색 */
+  --nav-bg: #ededed;        /* 밝은 회색 느낌 */
   --nav-text: #333;
   --submenu-bg: #fdfdfd;
-  --footer-bg: #16213e;    /* 진한 네이비 */
+  --footer-bg: #16213e;     /* 진한 네이비 */
   --footer-text: #ffffff;
   --footer-accent: #4d6fa9; /* footer 포인트 */
 }
@@ -32,17 +32,18 @@ nav {
   background: var(--nav-bg);
   z-index: 1000;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 로고 ↔ 메뉴 */
   align-items: center;
   padding: 10px 30px;
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-/* 로고 정렬 */
+/* 로고 */
 .nav-home {
   display: flex;
   align-items: center;
   gap: 8px;
+  text-decoration: none; /* 밑줄 제거 */
 }
 .nav-logo {
   height: 36px;
@@ -53,20 +54,24 @@ nav {
   font-weight: 600;
   font-size: 18px;
   margin: 0;
-  text-decoration: none; /* underline 제거 */
+  text-decoration: none; /* 밑줄 제거 */
 }
 
-/* 메뉴 텍스트 */
+/* 메뉴 오른쪽 정렬 */
 .nav-menu {
   display: flex;
   gap: 24px;
   align-items: center;
+  justify-content: flex-end; /* 오른쪽 정렬 */
 }
+
+/* 메뉴 텍스트 */
 .nav-menu a, .menu-item > a {
   color: var(--nav-text);
   font-weight: 700;
   padding: 8px 12px;
   border-radius: 6px;
+  text-decoration: none; /* 밑줄 제거 */
   transition: background 0.3s ease, color 0.3s ease;
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
@@ -95,6 +100,7 @@ nav {
   padding: 10px 18px;
   color: var(--nav-text);
   font-weight: 500;
+  text-decoration: none; /* 밑줄 제거 */
 }
 .menu-item:hover .submenu {
   opacity: 1;
@@ -115,5 +121,5 @@ nav {
 }
 .footer a {
   color: var(--footer-text);
-  text-decoration: underline;
+  text-decoration: none; /* 밑줄 제거 */
 }
