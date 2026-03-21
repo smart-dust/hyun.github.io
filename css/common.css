@@ -5,8 +5,9 @@
   --nav-bg: #f5f5f5;            /* 메뉴바 밝은 회색 */
   --nav-text: #333;             /* 메뉴바 글자 짙은 회색 */
   --submenu-bg: rgba(245,245,245,0.95); /* 서브메뉴 밝은 회색, 거의 불투명 */
-  --footer-bg: #1a2a4f;         /* 하단 남색 */
+  --footer-bg: #0f2540;         /* 하단 남색 계열 */
   --footer-text: #fdf6e3;       /* 하단 아이보리 */
+  --footer-accent: #6fa8dc;     /* 하단 포인트 */
 }
 
 /* ===== 메뉴 ===== */
@@ -15,12 +16,17 @@ nav {
   top: 0; width: 100%;
   background: var(--nav-bg);
   z-index: 1000;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 .nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; max-width:1200px; margin:0 auto; }
-.nav-home { display:flex; align-items:center; gap:10px; }
+.nav-left { display:flex; align-items:center; }
+.nav-home { display:flex; align-items:center; gap:10px; text-decoration:none; }
 .nav-logo { height:35px; width:auto; }
-.nav-title { color:#000; font-weight:300; font-size:18px; text-decoration:none; } /* 밑줄 제거 */
+.nav-title { 
+  color:#000; font-weight:500; font-size:18px; 
+  text-decoration:none; /* 밑줄 제거 */ 
+  margin-left:0; /* 왼쪽 정렬 유지 */
+}
 .nav-menu { display:flex; gap:25px; align-items:center; }
 .nav-menu a, .menu-item > a {
   color: var(--nav-text);
@@ -32,7 +38,7 @@ nav {
 }
 .nav-menu a:hover, .menu-item > a:hover, .menu-item.active > a {
   transform: translateY(-2px);
-  background: rgba(0,0,0,0.05);
+  background: rgba(0,0,0,0.05); /* 흰색 테두리 제거 */
   color: var(--main-color);
 }
 
@@ -72,20 +78,23 @@ nav {
 .footer {
   background: var(--footer-bg);
   color: var(--footer-text);
-  padding:50px 20px;
+  padding:60px 20px;
   text-align:center;
   font-weight:400;
   position: relative;
+  border-top: 4px solid var(--footer-accent); /* 상단 포인트 선 */
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.2); /* 입체감 */
+  border-radius:12px 12px 0 0; /* 상단 라운드 */
 }
-.footer p { margin:5px 0; }
+.footer p { margin:8px 0; line-height:1.5; }
 .footer a { color: var(--footer-text); text-decoration:underline; }
 .footer::before {
   content:'';
   position:absolute;
-  top:0; left:50%;
+  top:10px; left:50%;
   transform:translateX(-50%);
   width:80px;
   height:2px;
-  background: var(--main-color); /* 상단 포인트 라인 */
+  background: var(--main-color); /* 포인트 라인 */
   border-radius:1px;
 }
