@@ -113,6 +113,45 @@
 </footer>
 
 <script src="js/main.js"></script>
-    
+<script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+            authDomain: "dhchurch-cf85f.firebaseapp.com",
+            projectId: "dhchurch-cf85f",
+            storageBucket: "dhchurch-cf85f.firebasestorage.app",
+            appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const authBtn = document.getElementById('admin-auth-btn');
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                // [로그인 상태]
+                authBtn.innerText = "Logout";
+                authBtn.removeAttribute('href');
+                authBtn.onclick = (e) => {
+                    e.preventDefault();
+                    // 물어보고 확인 누르면 바로 로그아웃 & 새로고침 (알림창 생략)
+                    if (confirm("정말 로그아웃하시겠습니까?")) {
+                        signOut(auth).then(() => {
+                            location.reload(); 
+                        });
+                    }
+                };
+                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+            } else {
+                // [로그아웃 상태]
+                authBtn.innerText = "Login";
+                authBtn.setAttribute('href', 'login.html');
+                authBtn.onclick = null;
+                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+            }
+        });
+    </script>    
 </body>
 </html>
