@@ -1,12 +1,12 @@
 /* ===== 1. 공통 변수 ===== */
 :root {
   --main-color: #6fa8dc;
-  --main-hover: rgba(111, 168, 220, 0.15); /* 마우스 올렸을 때 배경 */
+  --main-hover: rgba(111, 168, 220, 0.15); 
   --glass-bg: rgba(255, 255, 255, 0.85); 
   --glass-blur: blur(12px);
   --nav-text: #333;
-  --footer-bg: #f8fbfe; /* 단조로움을 피하기 위한 아주 연한 푸른빛 배경 */
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* 부드러운 애니메이션 공통 */
+  --footer-bg: #f8fbfe; 
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== 2. 기본 스타일 ===== */
@@ -19,16 +19,16 @@ body {
 }
 a { text-decoration: none !important; color: inherit; }
 
-/* ===== 3. 메뉴바 (NAV) - 폭 조정 및 정렬 ===== */
+/* ===== 3. 메뉴바 (NAV) - 로고 및 폰트 크기 조정 ===== */
 nav {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 60px; /* 높이를 살짝 줄여 더 슬림하게 */
+  height: 60px; /* 폰트가 커짐에 따라 높이도 소폭 조정 */
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid rgba(111, 168, 220, 0.2); /* 구분선에 메인컬러 살짝 추가 */
+  border-bottom: 1px solid rgba(111, 168, 220, 0.2);
   z-index: 10000;
   display: flex;
   align-items: center;
@@ -47,58 +47,68 @@ nav {
 .nav-left, .nav-home {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px; /* 로고와 이름 간격 축소 */
 }
 
 .nav-logo {
-  height: 30px; /* 로고 크기 최적화 */
+  height: 32px; /* 로고 크기 2px 업 */
   width: auto;
 }
 
 .nav-title {
-  font-size: 17px;
+  font-size: 19px; /* 타이틀 크기 소폭 업 */
   font-weight: 500;
   color: #222;
   letter-spacing: -0.5px;
 }
 
-/* 메뉴 간격 축소 및 통일된 애니메이션 */
+/* 메뉴 영역 및 폰트 강화 */
 .nav-menu {
   display: flex;
-  gap: 2px; /* 간격을 좁게 조정 */
+  gap: 2px;
   align-items: center;
 }
 
-/* 메인메뉴와 서브메뉴의 호버 효과를 일치시킴 */
+/* 메인메뉴 스타일: 폰트 크기 2px 키우고 굵게 */
 .nav-menu > a, 
-.menu-item > a,
-.submenu a {
+.menu-item > a {
   padding: 8px 14px;
-  font-weight: 500;
+  font-size: 19px; /* 폰트 크기 업 */
+  font-weight: 600; /* 메인메뉴 두껍게 */
   color: var(--nav-text);
   border-radius: 6px;
   transition: var(--transition);
   display: block;
 }
 
-/* [공통 호버 효과] 모든 메뉴 동일하게 적용 */
+/* 서브메뉴 스타일: 폰트 크기 1.5px 키움 */
+.submenu a {
+  font-size: 15px; /* 서브메뉴 가독성 업 */
+  font-weight: 500;
+  padding: 10px 12px;
+  border-radius: 6px;
+  transition: var(--transition);
+  display: block;
+}
+
+/* [공통 호버 효과] */
 .nav-menu a:hover, 
 .menu-item:hover > a,
 .submenu a:hover {
   color: var(--main-color) !important;
   background: var(--main-hover);
-  transform: translateY(-2px); /* 모든 메뉴가 동일하게 떠오름 */
+  transform: translateY(-2px);
 }
 
-/* ===== 4. 서브메뉴 (디자인 및 효과 통일) ===== */
+/* ===== 4. 서브메뉴 (위치 및 간격) ===== */
 .menu-item { position: relative; }
 
 .submenu {
   position: absolute;
-  top: calc(100% + 15px); /* 메뉴바와 적당한 간격 */
+  top: calc(100% + 15px);
   left: 50%;
   transform: translateX(-50%) translateY(10px);
-  min-width: 150px;
+  min-width: 160px;
   background: var(--glass-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
@@ -117,41 +127,33 @@ nav {
   transform: translateX(-50%) translateY(0);
 }
 
-/* 서브메뉴 폰트 크기 살짝 조정 */
-.submenu a {
-  font-size: 13.5px;
-  padding: 10px 12px;
-}
-
-/* ===== 5. 하단 정보 (밝고 세련된 푸터) ===== */
+/* ===== 5. 하단 정보 (푸터 - 높이 축소) ===== */
 .footer {
   background: var(--footer-bg);
   color: #555;
-  padding: 60px 20px;
+  padding: 40px 20px; /* 상하 패딩 축소 (60px -> 40px) */
   text-align: center;
-  /* 상단 구분선에 포인트를 줌 */
   border-top: 3px solid var(--main-color); 
   margin-top: 80px;
 }
 
 .footer .highlight {
   font-weight: 700;
-  color: var(--main-color); /* 제목에 색상 추가 */
+  color: var(--main-color);
   font-size: 16px;
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 10px; /* 간격 살짝 축소 */
 }
 
 .footer p {
-  margin: 8px 0;
+  margin: 6px 0;
   font-size: 14px;
-  line-height: 1.6;
+  line-height: 1.5;
   color: #666;
 }
 
 .footer-copy {
-  margin-top: 25px;
+  margin-top: 15px; /* 간격 축소 */
   font-size: 12px;
   color: #999;
-  letter-spacing: 0.5px;
 }
