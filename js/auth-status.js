@@ -16,13 +16,13 @@ const auth = getAuth(app);
 const authBtn = document.getElementById('admin-auth-btn');
 const adminFab = document.getElementById('admin-fab');
 
-// 로그인 상태 감지
+// 로그인 상태 실시간 감지
 onAuthStateChanged(auth, (user) => {
     if (user) {
-        // [관리자 상태]
+        // [관리자 로그인 상태]
         if (authBtn) {
             authBtn.innerText = "Logout";
-            authBtn.style.color = "#6fa8dc"; // 로그아웃은 파란색으로 강조 가능
+            authBtn.href = "#"; // 링크 이동 방지
             authBtn.onclick = (e) => {
                 e.preventDefault();
                 if(confirm("로그아웃 하시겠습니까?")) {
@@ -30,13 +30,19 @@ onAuthStateChanged(auth, (user) => {
                 }
             };
         }
+        // 관리자 전용 버튼 표시
         if (adminFab) adminFab.style.display = "block";
     } else {
         // [일반 사용자 상태]
         if (authBtn) {
             authBtn.innerText = "Login";
-            authBtn.onclick = null; // 기본 링크 동작(login.html 이동) 허용
+            authBtn.href = "login.html";
+            authBtn.onclick = (e) => {
+                // 로그인 페이지로 가기 전, 현재 페이지 주소를 저장!
+                sessionStorage.setItem('redirectURL', window.location.href);
+            };
         }
+        // 관리자 전용 버튼 숨김
         if (adminFab) adminFab.style.display = "none";
     }
 });
