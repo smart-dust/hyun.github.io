@@ -1,240 +1,236 @@
-/* ===== 1. 공통 변수 (여기서 투명도와 색상을 한 번에 조절) ===== */
+/* ===== 1. 공통 변수 (사용자님의 기존 설정 유지) ===== */
 :root {
-  --main-blue: #6fa8dc;
-  --glass-bg: rgba(255, 255, 255, 0.7);  /* 전체적인 반투명도 */
-  --glass-blur: blur(12px);             /* 배경 흐림 효과 */
-  --nav-height: 70px;
-  --text-dark: #333;
-  --text-light: #777;
-  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --main-color: #6fa8dc;
+  --main-dark: #5c90c2;
+  --nav-bg: rgba(255, 255, 255, 0.8);
+  --glass-blur: blur(10px);
+  --footer-bg: linear-gradient(145deg, #2c2c3d, #3a3a50);
 }
 
-/* ===== 2. 기본 설정 ===== */
+/* ===== 2. 기본 스타일 ===== */
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Noto Sans KR', sans-serif;
-  background: #f8f9fa;
-  color: var(--text-dark);
-  line-height: 1.6;
+  font-family: 'Noto Sans KR', 'Apple SD Gothic Neo', sans-serif;
+  background: #f5f7fa;
+  color: #333;
 }
+a { text-decoration: none !important; color: inherit; }
 
-/* ===== 3. 네비게이션 (상단 고정 및 유리 효과) ===== */
+/* ===== 3. 메뉴바 (로고 왼쪽 정렬 + 수평 맞춤) ===== */
 nav {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
-  height: var(--nav-height);
-  background: var(--glass-bg);
+  height: 65px;
+  background: var(--nav-bg);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-  z-index: 10000; /* 모든 요소보다 위에 배치 */
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  z-index: 10000; /* 최상단 고정 */
   display: flex;
   align-items: center;
 }
 
 .nav-container {
-  width: 100%;
-  max-width: 1300px; /* 사이트 전체 폭 */
-  margin: 0 auto;
-  padding: 0 30px;
   display: flex;
   justify-content: space-between; /* 로고 왼쪽, 메뉴 오른쪽 */
   align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
 }
 
-/* 로고 그룹 (왼쪽 정렬 완료) */
-.nav-left {
-  display: flex;
-  align-items: center;
-}
+.nav-left { display: flex; align-items: center; }
 
 .nav-home {
   display: flex;
-  align-items: center;
+  align-items: center; /* 로고와 글자 수직 중앙 */
   gap: 12px;
-  text-decoration: none;
 }
 
 .nav-logo {
-  height: 38px;
+  height: 36px;
   width: auto;
 }
 
 .nav-title {
-  font-size: 20px;
-  font-weight: 600; /* 너무 두껍지 않게 조정 */
-  color: #111;
-  letter-spacing: -0.5px;
+  font-size: 19px;
+  font-weight: 600; /* 굵기 살짝 조정 */
+  color: #000;
+  line-height: 1;
 }
 
-/* 메뉴 영역 (오른쪽 정렬) */
 .nav-menu {
   display: flex;
-  align-items: center;
   gap: 5px;
+  align-items: center;
 }
 
-.nav-menu > a, 
-.menu-item > a {
+.nav-menu > a, .menu-item > a {
   padding: 10px 18px;
   font-weight: 500;
-  color: var(--text-dark);
+  color: #222;
   border-radius: 8px;
-  transition: var(--transition);
-  display: block;
+  transition: 0.25s;
 }
 
-/* 메뉴 호버 (강조 효과 제거 및 깔끔한 배경만) */
-.nav-menu a:hover, 
-.menu-item:hover > a {
-  color: var(--main-blue);
-  background: rgba(111, 168, 220, 0.1);
+/* 호버 시에만 강조 */
+.nav-menu a:hover, .menu-item:hover > a {
+  color: var(--main-color);
+  background: rgba(111,168,220,0.1);
 }
 
-/* ===== 4. 서브메뉴 (메뉴와 디자인 통일) ===== */
-.menu-item {
-  position: relative;
-}
-
+/* 서브메뉴 디자인 (반투명 유리효과 통일) */
+.menu-item { position: relative; }
 .submenu {
   position: absolute;
-  top: calc(100% + 5px);
+  top: 100%;
   left: 50%;
   transform: translateX(-50%) translateY(10px);
   min-width: 160px;
-  background: var(--glass-bg); /* 메인 메뉴와 동일한 투명도 */
+  background: var(--nav-bg);
   backdrop-filter: var(--glass-blur);
-  -webkit-backdrop-filter: var(--glass-blur);
-  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 12px;
   padding: 8px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   opacity: 0;
   visibility: hidden;
-  transition: var(--transition);
+  transition: 0.3s;
 }
 
 .menu-item:hover .submenu {
   opacity: 1;
   visibility: visible;
-  transform: translateX(-50%) translateY(0);
+  transform: translateX(-50%) translateY(5px);
 }
 
 .submenu a {
+  display: block;
   padding: 10px 15px;
   font-size: 14px;
-  color: #444;
   border-radius: 6px;
-  transition: var(--transition);
 }
 
-.submenu a:hover {
-  background: var(--main-blue);
-  color: #fff;
-}
+.submenu a:hover { background: var(--main-color); color: #fff; }
 
-/* ===== 5. 히어로 & 버튼 (사라짐 현상 해결) ===== */
+/* ===== 4. 히어로 섹션 (오버레이 및 버튼 사라짐 해결) ===== */
 .hero {
   position: relative;
-  height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+  width: 100%;
+  height: 100vh; /* 창 가득 */
   overflow: hidden;
 }
 
 .hero img {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 50%; left: 50%;
+  width: 100%; height: 100%;
   object-fit: cover;
-  z-index: -1; /* 이미지를 뒤로 보냄 */
+  transform: translate(-50%, -50%);
+  z-index: 0; /* 배경 이미지 가장 뒤로 */
 }
 
-.hero .overlay {
+.overlay {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
-  background: rgba(0,0,0,0.4);
-  z-index: 0;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5); /* 검은 오버레이 복구 */
+  z-index: 1; /* 이미지 바로 위 */
 }
 
 .hero-content {
   position: relative;
-  z-index: 1; /* 글자와 버튼이 위로 오게 함 */
-  color: #fff;
+  z-index: 2; /* 오버레이보다 위로 (버튼 사라짐 방지 핵심) */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }
 
-/* 버튼 디자인 (z-index 충돌 방지) */
+.hero-content h1 {
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 70px;
+  color: #fff;
+  text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+  margin-bottom: 10px; /* 간격 살짝 조정 */
+}
+
+.hero-content p {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+  margin-bottom: 30px;
+}
+
+/* ===== 5. 버튼 스타일 (사용자님 원본 스타일 강화) ===== */
 .btn {
   display: inline-block;
   padding: 12px 28px;
-  background: var(--main-blue);
-  color: #fff;
-  border-radius: 50px;
-  font-weight: 600;
-  transition: var(--transition);
-  border: none;
-  cursor: pointer;
+  border-radius: 10px;
+  background: var(--main-color);
+  color: #fff !important;
+  font-weight: 500;
+  font-size: 16px;
+  transition: all 0.3s ease;
   position: relative;
-  z-index: 2; /* 버튼이 확실히 클릭되도록 설정 */
+  z-index: 3; /* 버튼 클릭 확실하게 */
 }
 
 .btn:hover {
-  background: #5c90c2;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(111, 168, 220, 0.4);
+  background: var(--main-dark);
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
 }
 
-/* ===== 6. 하단 정보 (푸터) 가독성 수정 ===== */
+.btn.kakao { background: #fee500; color: #3c1e1e !important; }
+.btn.naver { background: #03c75a; color: #fff !important; }
+
+/* ===== 6. 하단 정보 (푸터 - 사용자님 선호 스타일 복구) ===== */
 .footer {
-  background: #2c2c3d; /* 배경과 확실히 구분되도록 어두운 색상 채택 */
-  color: #eee;
-  padding: 60px 20px;
+  background: var(--footer-bg);
+  color: #f5f5f5;
+  padding: 50px 20px;
   text-align: center;
-  border-top: none;
+  border-top: 2px solid #444;
 }
 
 .footer p {
-  margin: 8px 0;
+  margin: 10px 0;
   font-size: 14px;
-  opacity: 0.8;
+  line-height: 1.6;
 }
 
-.footer p:first-child {
-  font-weight: 600;
-  font-size: 16px;
+.footer .highlight {
+  font-weight: 700;
   color: #fff;
-  opacity: 1;
-  margin-bottom: 15px;
+  font-size: 17px;
+  display: block;
+  margin-bottom: 10px;
 }
 
-.footer-bottom-text {
-  margin-top: 25px;
-  font-size: 12px;
-  color: #888;
-}
-
-/* ===== 7. 섹션 박스 보완 ===== */
+/* ===== 7. 섹션 박스/카드 ===== */
 .section-container {
-  max-width: 1200px;
-  margin: 60px auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 25px;
-  padding: 0 20px;
+  display: flex; flex-wrap: wrap; justify-content: center;
+  gap: 30px; padding: 60px 20px;
 }
 
 .section-box {
   background: #fff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-  transition: var(--transition);
+  border-radius: 20px;
+  width: 260px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.09);
+  border-top: 3px solid var(--main-color);
+  border-left: 3px solid var(--main-color);
+  transition: all 0.45s ease;
+  opacity: 0; transform: translateY(30px);
 }
 
-.section-box:hover {
-  transform: translateY(-5px);
-}
+.section-box.visible { opacity: 1; transform: translateY(0); }
+.section-box:hover { transform: translateY(-8px); background: #f0f3f6; }
