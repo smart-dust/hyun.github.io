@@ -7,57 +7,40 @@
     <style>
         :root {
             --main-color: #6fa8dc;
-            --dark-color: #5a94c8;
-            --bg-color: #f5f7fa;
-            --card-bg: #ffffff;
-            --border-color: #e6e9ed;
-            --text-main: #2d3436;
-            --text-sub: #636e72;
+            --hover-color: #5a94c8;
+            --bg-color: #f4f7f9;
+            --text-color: #333;
+            --sub-text: #888;
         }
 
         body {
-            font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
+            font-family: 'Pretendard', sans-serif;
             background-color: var(--bg-color);
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            -webkit-font-smoothing: antialiased;
         }
 
+        /* 로그인 카드 (유지) */
         .login-card {
-            background: var(--card-bg);
+            background: #ffffff;
+            padding: 50px 35px;
+            border-radius: 12px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
             width: 100%;
-            max-width: 330px; /* 더 슬림하고 단단하게 조절 */
-            padding: 45px 35px;
-            border-radius: 12px; /* 너무 둥글지 않게 세련된 곡률 */
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
+            max-width: 320px; /* 창 크기 슬림화 */
             text-align: center;
-        }
-
-        /* 헤더 부분: 로고와 글자 가로 정렬 및 밀도 조절 */
-        .header-group {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 35px;
-            gap: 12px;
-        }
-
-        .login-logo {
-            width: 32px; /* 로고 크기 최적화 */
-            height: auto;
-            object-fit: contain;
+            z-index: 1;
         }
 
         .login-card h2 {
-            color: var(--text-main);
-            margin: 0;
-            font-size: 1.25rem; /* 과하지 않은 크기 */
+            color: var(--text-color);
+            margin-bottom: 35px;
+            font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: -0.8px;
         }
 
         .input-group {
@@ -67,80 +50,103 @@
 
         .input-group label {
             display: block;
-            font-size: 0.8rem;
-            color: var(--text-sub);
+            font-size: 0.85rem;
+            color: #555;
             margin-bottom: 7px;
             font-weight: 600;
-            letter-spacing: 0.2px;
         }
 
         input {
             width: 100%;
             padding: 13px 15px;
-            border: 1.5px solid var(--border-color);
-            border-radius: 8px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
             font-size: 0.95rem;
-            color: var(--text-main);
             box-sizing: border-box;
-            background-color: #fff;
-            transition: all 0.2s ease;
+            transition: border-color 0.2s;
         }
 
+        /* Glow 효과 제거, 선택 시 기본색 테두리 */
         input:focus {
             outline: none;
             border-color: var(--main-color);
-            background-color: #fff;
         }
 
-        /* 버튼: 쨍한 색감과 단단한 느낌 */
         button {
             width: 100%;
             padding: 14px;
             background-color: var(--main-color);
             color: white;
             border: none;
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: 6px;
+            font-size: 1rem;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 12px;
-            transition: background 0.2s ease;
+            margin-top: 10px;
+            transition: background 0.2s;
         }
 
         button:hover {
-            background-color: var(--dark-color);
+            background-color: var(--hover-color);
         }
 
-        button:active {
-            transform: scale(0.98);
+        /* ID / PW 찾기 영역 */
+        .find-links {
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--sub-text);
+        }
+
+        .find-links a {
+            color: var(--sub-text);
+            text-decoration: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .find-links a:hover {
+            color: var(--main-color);
+            text-decoration: underline;
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 25px;
-            color: #b2bec3;
+            margin-top: 30px;
+            color: #bbb;
             text-decoration: none;
             font-size: 0.8rem;
-            transition: color 0.2s;
         }
 
-        .back-home:hover {
-            color: var(--text-sub);
-            text-decoration: underline;
+        /* 카드 밖 하단 로고 및 교회명 */
+        .footer-info {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 40px;
+            gap: 10px;
+            opacity: 0.6;
+        }
+
+        .footer-logo {
+            width: 25px;
+            height: auto;
+        }
+
+        .footer-text {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--text-color);
         }
     </style>
 </head>
 <body>
 
 <div class="login-card">
-    <div class="header-group">
-        <img src="images/logo.png" alt="" class="login-logo" onerror="this.style.display='none'">
-        <h2>대전대흥교회 청소년부</h2>
-    </div>
+    <h2>Member Login</h2>
 
     <div class="input-group">
         <label for="email">ID</label>
-        <input type="email" id="email" required spellcheck="false" autocomplete="off">
+        <input type="email" id="email" required spellcheck="false">
     </div>
 
     <div class="input-group">
@@ -150,7 +156,16 @@
 
     <button id="login-btn">Login</button>
     
+    <div class="find-links">
+        <a id="find-id">ID 찾기</a> &nbsp;|&nbsp; <a id="find-pw">비밀번호 찾기</a>
+    </div>
+
     <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
+</div>
+
+<div class="footer-info">
+    <img src="images/logo.png" alt="" class="footer-logo" onerror="this.style.display='none'">
+    <span class="footer-text">대전대흥교회 청소년부</span>
 </div>
 
 <script type="module">
@@ -185,7 +200,7 @@
             })
             .catch((error) => {
                 console.error(error);
-                alert("정보가 일치하지 않습니다.");
+                alert("아이디 또는 비밀번호가 일치하지 않습니다.");
             });
     };
 
@@ -193,6 +208,10 @@
     window.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') handleLogin();
     });
+
+    // 찾기 버튼 클릭 시 이벤트 전파 방지 (기능 구현 전)
+    document.getElementById('find-id').onclick = (e) => e.preventDefault();
+    document.getElementById('find-pw').onclick = (e) => e.preventDefault();
 </script>
 
 </body>
