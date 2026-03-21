@@ -4,18 +4,17 @@
 <meta charset="utf-8">
 <title>교회소개</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/common.css">
-<link rel="stylesheet" href="css/about.css">
-
+<link rel="stylesheet" href="css/common.css"> <!-- 공통 nav/footer, 폰트, 기본 색상 -->
+<link rel="stylesheet" href="css/about.css">  <!-- 페이지 전용 스타일 -->
 </head>
 
 <body class="about">
 
-<!-- ===== 메뉴 ===== -->
+<!-- ===== NAVIGATION (공통) ===== -->
 <nav>
   <div class="nav-container">
     <div class="nav-left">
-      <a href="about.html" class="nav-home">
+      <a href="index.html" class="nav-home">
         <img src="images/logo.png" class="nav-logo">
         <span class="nav-title">대전대흥교회 청소년부</span>
       </a>
@@ -23,7 +22,7 @@
     <div class="nav-menu">
       <a href="index.html">Home</a>
       <div class="menu-item">
-        <a href="about.html">교회소개</a>
+        <a href="about.html" class="active">교회소개</a>
         <div class="submenu">
           <a href="#mission">사명과 비전</a>
           <a href="#worship">예배 안내</a>
@@ -55,7 +54,7 @@
   </div>
 </nav>
 
-<!-- ===== Hero ===== -->
+<!-- ===== HERO ===== -->
 <div class="hero">
   <img src="images/hero-bg.jpg" alt="히어로 이미지">
   <div class="overlay"></div>
@@ -65,6 +64,7 @@
   </div>
 </div>
 
+<!-- ===== SECTIONS ===== -->
 <section id="mission" class="section">
   <h2>교회 소개</h2>
   <p class="small">
@@ -89,7 +89,7 @@
   </table>
 </section>
 
-<section class="section">
+<section id="student" class="section">
   <h2>학생 임원</h2>
   <table class="table">
     <tr><th>이름</th><th>구분</th></tr>
@@ -117,43 +117,28 @@
     <tr><td>황소영 성도</td><td>교사</td><td>드보라</td></tr>
   </table>
 </section>
-<section class="section" id="mission">
-  <h2>사명과 비전</h2>
-  <p>...</p>
-</section>
 
-<section class="section" id="worship">
-  <h2>예배 안내</h2>
-  <div class="table-wrapper">
-    <table class="table">
-      ...
-    </table>
-  </div>
-</section>
-
-<section class="section" id="staff">
-  <h2>섬기는 사람들</h2>
-  <div class="card-grid">
-    <div class="profile-card">...</div>
-  </div>
-</section>
+<!-- ===== FOOTER (공통) ===== -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
-  
+
+<!-- ===== JS: 스크롤 시 섹션 fade-in ===== -->
 <script>
-// ===== 스크롤 시 순차 등장 =====
-const observers = document.querySelectorAll('.section, .table, .section-box');
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      entry.target.classList.add('visible');
-    }
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.section, .table, .video-wrapper').forEach(el => {
+    observer.observe(el);
   });
-},{ threshold: 0.2 });
-observers.forEach(el => observer.observe(el));
 </script>
+
 </body>
 </html>
