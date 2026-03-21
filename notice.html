@@ -6,107 +6,49 @@
 
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
 
-<style>
-/* 🔥 index랑 동일 */
-body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
-html { scroll-behavior:smooth; }
-a { text-decoration:none; }
-
-/* 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
-.nav-home { display:flex; align-items:center; gap:10px; }
-.nav-logo { height:35px; }
-.nav-title { color:white; font-weight:400; font-size:18px; }
-
-.nav-menu { display:flex; gap:25px; align-items:center; }
-.nav-menu a, .menu-item > a {
-  color:white; font-weight:600; padding:10px 12px; border-radius:6px;
-  transition:transform 0.25s ease, background 0.25s ease;
-}
-.nav-menu a:hover, .menu-item > a:hover { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
-
-/* 서브메뉴 */
-.menu-item { position:relative; }
-.submenu {
-  position:absolute; top:100%; left:0; min-width:220px; background:rgba(0,0,0,0.95); border-radius:12px; padding:10px 0; box-shadow:0 8px 20px rgba(0,0,0,0.3);
-  opacity:0; visibility:hidden; transform:translateY(8px); transition:0.25s;
-}
-.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); }
-.submenu a { display:block; padding:12px 20px; color:white; }
-
-/* 🔥 공지사항 전용 디자인 */
-.notice-container { padding-top:120px; max-width:900px; margin:auto; }
-.notice-card {
-  background:white;
-  border-radius:12px;
-  margin-bottom:30px;
-  padding:20px;
-  box-shadow:0 4px 15px rgba(0,0,0,0.1);
-  transition:transform 0.2s ease;
-}
-.notice-card:hover { transform:translateY(-3px); }
-.notice-card h3 { margin:0 0 10px 0; color:#6fa8dc; }
-.notice-card p { margin:0; color:#555; }
-
-/* footer 동일 */
-.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px; }
-.footer p { margin:5px 0; }
-
-</style>
-</head>
-
-<body>
-
-<!-- ✅ 메뉴 -->
 <nav>
-  <div class="nav-container">
-
-    <a href="index.html" class="nav-home">
-      <img src="logo.png" class="nav-logo">
-      <span class="nav-title">대전대흥교회 청소년부</span>
-    </a>
-
-    <div class="nav-menu">
-      <a href="index.html">Home</a>
-
-      <div class="menu-item">
-        <a href="about.html">교회소개</a>
-        <div class="submenu">
-          <a href="about.html#1">사명과 비전</a>
-          <a href="about.html#2">예배 안내</a>
-          <a href="about.html#3">섬기는 사람들</a>
+    <div class="nav-container">
+        <div class="nav-left">
+            <a href="notice.html" class="nav-home">
+                <img src="images/logo.png" class="nav-logo" alt="로고">
+                <span class="nav-title">대전대흥교회 청소년부</span>
+            </a>
         </div>
-      </div>
-
-      <div class="menu-item">
-        <a href="sermon.html">설교</a>
-        <div class="submenu">
-          <a href="sermon.html#1">설교영상</a>
-          <a href="sermon.html#2">공과공부</a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="menu-item">
+                <a href="about.html">교회소개</a>
+                <div class="submenu">
+                    <a href="about.html#mission">사명과 비전</a>
+                    <a href="about.html#worship">예배 안내</a>
+                    <a href="about.html#student-leaders">학생 임원</a>
+                    <a href="about.html#staff">섬기는 사람들</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="sermon.html">설교</a>
+                <div class="submenu">
+                    <a href="sermon.html#1">설교영상</a>
+                    <a href="sermon.html#2">공과공부</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="notice.html">공지사항</a>
+                <div class="submenu">
+                    <a href="#1">행사 안내</a>
+                    <a href="#2">주보</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="community.html">커뮤니티</a>
+                <div class="submenu">
+                    <a href="community.html#1">사진 갤러리</a>
+                    <a href="community.html#2">게시판</a>
+                </div>
+            </div>
         </div>
-      </div>
-
-      <div class="menu-item">
-        <a href="notice.html">공지사항</a>
-        <div class="submenu">
-          <a href="#1">행사 안내</a>
-          <a href="#2">주보</a>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <a href="community.html">커뮤니티</a>
-        <div class="submenu">
-          <a href="community.html#1">사진 갤러리</a>
-          <a href="community.html#2">게시판</a>
-        </div>
-      </div>
-
     </div>
-  </div>
 </nav>
-
 <!-- ✅ 콘텐츠 -->
 <div class="notice-container">
 
