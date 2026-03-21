@@ -67,39 +67,58 @@
     border: none;
 }
 
-/* [4] 표(Table) - 원래 상태로 복구 + 글자 스펙만 수정 */
+/* [4] 표(Table) - 사용자 요청대로 색상 및 곡률 스타일 복구 */
 .worship-table, .staff-table {
     width: 100%;
     margin-top: 30px;
-    border-collapse: collapse !important; /* 기본 상태로 복구 */
-    border: 1px solid #ddd;
+    border-collapse: separate !important; /* 곡률(radius) 적용을 위해 필수 */
+    border-spacing: 0;
+    border: 1.5px solid #6fa8dc !important; /* 메인 컬러 테두리 */
+    border-radius: 15px; /* 표 전체 모서리 둥글게 */
+    overflow: hidden;
+    table-layout: fixed; /* 등간격 유지 */
 }
 
+/* 표 헤더 - 하늘색 배경 + 흰색 글씨 가독성 강화 */
 .worship-table th, .staff-table th {
-    background: #f8f9fa;
-    color: #333;
-    padding: 15px;
-    border: 1px solid #ddd;
+    background: #6fa8dc !important;
+    color: #fff !important;
+    padding: 16px 10px;
     font-weight: 700;
+    font-size: 18px;
+    border-bottom: 1.5px solid #6fa8dc !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
 }
 
-/* 요청사항: 표 내부 글자 17px, 두께 450으로 고정 */
+/* 표 내부 - 요청하신 글자 스펙(17px, 450두께) 적용 */
 .worship-table td, .staff-table td {
-    padding: 15px;
-    border: 1px solid #ddd;
+    padding: 15px 10px;
+    border-bottom: 1px solid #f0f0f0 !important;
+    border-right: 1.5px solid rgba(111, 168, 220, 0.15) !important; /* 연한 세로 구분선 */
     text-align: center;
     color: #333;
     background: #fff;
     
-    /* 정밀 수정 부분 */
+    /* 사용자 지정 글자 스펙 */
     font-size: 17px !important;
     font-weight: 450 !important; 
+    transition: background 0.2s;
 }
 
-/* 섬기는 사람들 호버 효과 유지 */
+/* 마지막 열과 행의 불필요한 선 제거 (곡률 보호) */
+.worship-table th:last-child, .staff-table th:last-child,
+.worship-table td:last-child, .staff-table td:last-child {
+    border-right: none !important;
+}
+.worship-table tr:last-child td, .staff-table tr:last-child td {
+    border-bottom: none !important;
+}
+
+/* 섬기는 사람들 표 - 선택 효과 유지 */
 .staff-table tbody tr:hover td {
-    background-color: #f8fbfe;
-    color: #6fa8dc;
+    background-color: #f0f7ff !important;
+    color: #6fa8dc !important;
+    font-weight: 600;
 }
 
 /* [5] 섹션 카드 - Index 페이지와 동일한 효과 완벽 복구 */
