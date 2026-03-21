@@ -2,59 +2,188 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>관리자 로그인 - DHchurch</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>관리자 로그인 - 대전대흥교회 청소년부</title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background: #f0f2f5; margin: 0; }
-        .login-card { background: white; padding: 40px; border-radius: 10px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); width: 300px; text-align: center; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold; }
-        button:hover { background: #0056b3; }
-        .back-home { margin-top: 15px; display: block; color: #666; text-decoration: none; font-size: 13px; }
+        /* 1. 디자인 (CSS) */
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            background-color: #f4f7f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background: #ffffff;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 380px;
+            text-align: center;
+        }
+
+        .login-logo {
+            width: 60px;
+            margin-bottom: 15px;
+        }
+
+        .login-card h2 {
+            color: #2c3e50;
+            margin-bottom: 8px;
+            font-size: 1.4rem;
+            font-weight: 700;
+        }
+
+        .login-card p {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            margin-bottom: 30px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.8rem;
+            color: #34495e;
+            margin-bottom: 6px;
+            font-weight: 600;
+            margin-left: 2px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #dcdde1;
+            border-radius: 10px;
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: all 0.2s ease-in-out;
+            background-color: #fafafa;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #007bff;
+            background-color: #fff;
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .back-home {
+            display: inline-block;
+            margin-top: 25px;
+            color: #95a5a6;
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.2s;
+        }
+
+        .back-home:hover {
+            color: #2c3e50;
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
 <div class="login-card">
+    <img src="images/logo.png" alt="Logo" class="login-logo" onerror="this.style.display='none'">
     <h2>Admin Login</h2>
-    <input type="text" id="email" placeholder="아이디(이메일 형식)">
-    <input type="password" id="password" placeholder="비밀번호">
-    <button id="login-btn">로그인</button>
-    <a href="index.html" class="back-home">홈으로 돌아가기</a>
+    <p>관리자 계정으로 로그인하세요.</p>
+
+    <div class="input-group">
+        <label for="email">ID (Email)</label>
+        <input type="email" id="email" placeholder="admin@example.com" required>
+    </div>
+
+    <div class="input-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="••••••••" required>
+    </div>
+
+    <button id="login-btn">로그인하기</button>
+    
+    <a href="index.html" class="back-home">← 홈페이지로 돌아가기</a>
 </div>
 
 <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-  import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-  // 본인의 설정값 (이미 복사해두신 것과 동일)
-  const firebaseConfig = {
-    apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-    authDomain: "dhchurch-cf85f.firebaseapp.com",
-    projectId: "dhchurch-cf85f",
-    storageBucket: "dhchurch-cf85f.firebasestorage.app",
-    messagingSenderId: "718998916531",
-    appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
-    measurementId: "G-KKT2TX7SZ9"
-  };
+    // Firebase 설정
+    const firebaseConfig = {
+        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+        authDomain: "dhchurch-cf85f.firebaseapp.com",
+        projectId: "dhchurch-cf85f",
+        storageBucket: "dhchurch-cf85f.firebasestorage.app",
+        messagingSenderId: "718998916531",
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
+        measurementId: "G-KKT2TX7SZ9"
+    };
 
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
+    // Firebase 초기화
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
 
-  document.getElementById('login-btn').addEventListener('click', () => {
-    const email = document.getElementById('email').value;
-    const password = document.getElementById('password').value;
+    const loginBtn = document.getElementById('login-btn');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
 
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        alert("성공! 관리자 페이지로 이동합니다.");
-        // 로그인 성공 시 'admin.html'로 이동 (다음에 만들 페이지)
-        window.location.href = "admin.html"; 
-      })
-      .catch((error) => {
-        alert("로그인 실패: 정보를 확인하세요.");
-        console.error(error.message);
-      });
-  });
+    // 로그인 실행 함수
+    const handleLogin = () => {
+        const email = emailInput.value;
+        const password = passwordInput.value;
+
+        if(!email || !password) {
+            alert("아이디와 비밀번호를 모두 입력해주세요.");
+            return;
+        }
+
+        signInWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // 로그인 성공 시
+                alert("반갑습니다, 관리자님!");
+                window.location.href = "admin.html"; // 관리자 페이지로 이동
+            })
+            .catch((error) => {
+                // 로그인 실패 시
+                console.error(error.code, error.message);
+                alert("로그인에 실패했습니다. 아이디 또는 비밀번호를 확인해주세요.");
+            });
+    };
+
+    // 버튼 클릭 시 로그인
+    loginBtn.addEventListener('click', handleLogin);
+
+    // 엔터키 눌렀을 때도 로그인 되게 추가
+    window.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') handleLogin();
+    });
 </script>
 
 </body>
