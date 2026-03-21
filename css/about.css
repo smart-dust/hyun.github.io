@@ -1,4 +1,4 @@
-/* [1] 히어로 섹션 - 얇은 폰트 및 선명도 */
+/* [1, 2, 3] Hero 섹션 - 얇은 폰트 및 영상 오버레이 완전 제거 */
 .hero {
     position: relative;
     height: 40vh;
@@ -15,114 +15,148 @@
     width: 100%; height: 100%;
     object-fit: cover;
     z-index: 1;
-    filter: brightness(0.6); /* 배경을 어둡게 하여 얇은 흰색 글자 보호 */
+    filter: brightness(0.6); /* 이미지 자체를 어둡게 하여 흰 글씨 가독성 확보 */
+}
+
+/* 3번: 영상 위 붕 뜨는 검은 그라데이션 완전 제거 */
+.overlay {
+    display: none !important;
 }
 
 .hero-content {
     position: relative;
     z-index: 10;
     text-align: center;
+    padding: 0 20px;
 }
 
 .hero-content h2 {
     font-family: 'Nanum Brush Script', cursive;
     font-size: 52px;
     color: #fff;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    line-height: 1.2;
 }
 
-/* 히어로 말씀 - 요청대로 아주 얇게 조절 */
+/* 1번: Hero 말씀 폰트 두께 극도로 얇게 수정 */
 .hero-bible {
     font-size: 19px !important;
-    font-weight: 200 !important;
+    font-weight: 200 !important; /* 얇은 폰트 강제 적용 */
     color: rgba(255, 255, 255, 0.9) !important;
     letter-spacing: 1px;
 }
 
-/* [2] 교육 주제 - 한 줄 디자인 (박스 제거) */
+/* [5] 교육 주제 - 깔끔한 한 줄 디자인 (박스 제거) */
 .edu-topic {
     display: block !important;
-    font-size: 22px !important;
+    font-size: 22px !important; /* 가독성 좋은 크기로 조정 */
     font-weight: 700 !important;
     color: #333 !important;
     text-align: center;
     margin: 30px 0 !important;
     padding-bottom: 12px !important;
-    border-bottom: 2px solid #6fa8dc; /* 세련된 밑선 처리 */
-    white-space: nowrap;
+    border-bottom: 2px solid #6fa8dc; /* 세련된 포인트 밑선 */
+    white-space: nowrap; /* 한 줄 유지 */
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-/* [3] 유튜브 영상 - 그림자 제거 및 곡률 유지 */
+/* [4] 유튜브 영상 - 그림자 제거 및 밀착형 테두리 */
 .video-wrapper {
-    margin-top: 30px;
+    margin-top: 35px;
     position: relative;
     padding-bottom: 56.25%; 
     height: 0;
     border-radius: 24px;
     overflow: hidden;
-    border: 1.5px solid #d1d9e0; /* 붕 뜨지 않는 연한 테두리 */
-    box-shadow: none !important;
+    border: 1.5px solid #d1d9e0; /* 붕 뜨지 않는 차분한 선 */
+    box-shadow: none !important; /* 4번: 그림자 제거 */
 }
 
-/* [4] 표(Table) - 곡률과 테두리, 선택 효과 통합 */
+.video-wrapper iframe {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border: none;
+}
+
+/* [6, 7] 표(Table) - 곡률을 유지하면서 진한 외곽선 적용 */
 .worship-table, .staff-table {
     width: 100%;
     margin-top: 25px;
-    border-collapse: separate !important; /* 곡률을 위해 separate 사용 */
+    border-collapse: separate !important; /* 곡률(radius) 적용을 위해 필수 */
     border-spacing: 0;
-    border: 1.5px solid #444 !important; /* 너무 검지 않은 명확한 외곽선 */
-    border-radius: 15px; /* 표 모서리 곡률 적용 */
+    border: 1.5px solid #444 !important; /* 6번: 명확한 외부 테두리 */
+    border-radius: 16px; /* 둥근 곡률 유지 */
     overflow: hidden;
 }
 
 .worship-table th, .staff-table th {
-    background: #6fa8dc !important;
+    background: #6fa8dc !important; /* 표 헤더 색상 부여 */
     color: #fff !important;
     padding: 16px 10px;
     font-weight: 700;
+    font-size: 18px;
     border-bottom: 1.5px solid #444 !important;
-    border-right: 1.5px solid #444 !important; /* 세로 구분선 */
-}
-
-/* 마지막 열의 세로선 제거 */
-.worship-table th:last-child, .staff-table th:last-child,
-.worship-table td:last-child, .staff-table td:last-child {
-    border-right: none !important;
+    border-right: 1.5px solid #444 !important;
 }
 
 .worship-table td, .staff-table td {
     padding: 14px 10px;
-    border-bottom: 1px solid #d1d9e0 !important; /* 내부 가로선은 연하게 */
-    border-right: 1.5px solid #444 !important; /* 세로 구분선 명확히 */
+    border-bottom: 1px solid #eee !important; /* 내부 가로선은 부드럽게 */
+    border-right: 1.5px solid #444 !important; /* 세로 구분선은 명확하게 */
     text-align: center;
     color: #333;
-    transition: background 0.2s;
+    font-size: 17px;
+    background: #fff;
+    transition: background 0.2s ease;
 }
 
-/* 마지막 행의 바닥선 제거 (곡률 보호) */
+/* 마지막 열과 행의 불필요한 선 제거 (곡률 깨짐 방지) */
+.worship-table th:last-child, .staff-table th:last-child,
+.worship-table td:last-child, .staff-table td:last-child {
+    border-right: none !important;
+}
 .worship-table tr:last-child td, .staff-table tr:last-child td {
     border-bottom: none !important;
 }
 
-/* [5] 섬기는 사람들 표 - 선택 효과(Hover) 복구 */
-.staff-table tr:hover td {
+/* 7번: 섬기는 사람들 표 전용 선택 효과 복구 */
+.staff-table tbody tr:hover td {
     background-color: #f0f7ff !important;
     color: #6fa8dc !important;
     font-weight: 600;
 }
 
-/* [6] 섹션 및 카드 호버 (index.css 계승) */
+/* [8] 섹션 간 간격 확대 (답답함 해소) */
 .section {
     max-width: 1000px;
-    margin: 100px auto !important;
+    margin: 100px auto !important; /* 8번: 섹션 사이를 벌림 */
     padding: 60px 50px;
     background: #fff;
     border-radius: 24px;
     border: 1px solid #eee;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: transform 0.3s ease;
 }
 
 .section:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+}
+
+.section h2 {
+    color: #2c3e50;
+    font-size: 28px;
+    margin-bottom: 20px;
+    display: inline-block;
+}
+
+/* 제목 하단 포인트 선 */
+.section h2::after {
+    content: '';
+    display: block;
+    width: 35px;
+    height: 4px;
+    background: #6fa8dc;
+    margin-top: 8px;
+    border-radius: 10px;
 }
