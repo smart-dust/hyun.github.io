@@ -1,145 +1,173 @@
 /* ============================================================
-   메인 페이지 전용 디자인 (index.css)
-   수정사항: 카드 중앙정렬 복구, 버튼 곡률 조정, 히어로 간격 밀착
+   메인 페이지 전용 디자인 (index.css) - 전면 재설계 버전
    ============================================================ */
 
-/* ===== 1. 히어로 섹션 (슬로건 & 문구 초밀착) ===== */
+/* [1] 히어로 섹션 - 버튼 사라짐 방지 및 슬로건 밀착 */
 .hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-  background-color: #f0f2f5;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: #000;
 }
 
-.hero img {
-  position: absolute;
-  top: 50%; left: 50%;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  transform: translate(-50%, -50%);
-  z-index: 1;
-}
-
-.overlay {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  background: linear-gradient(to bottom, rgba(44, 62, 80, 0.2), rgba(0, 0, 0, 0.5));
-  z-index: 2;
+.hero-bg {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: 1; /* 배경 이미지 */
+    opacity: 0.7; /* 별도의 오버레이 태그 없이 투명도로 조절 가능 */
 }
 
 .hero-content {
-  position: relative;
-  z-index: 10;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+    position: relative;
+    z-index: 10; /* [필독] 배경(1)보다 높게 설정하여 버튼 클릭 보장 */
+    text-align: center;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-/* 슬로건: 두껍지 않게(400), 간격 최소화 */
 .hero-content h1 {
-  font-family: 'Nanum Brush Script', cursive;
-  font-size: 56px;
-  font-weight: 400;             /* [수정] 다시 얇고 감성적으로 */
-  color: #fff;
-  text-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-  margin-bottom: -5px;         /* [수정] 음수 마진으로 위아래 간격 파격적으로 좁힘 */
+    font-family: 'Nanum Brush Script', cursive;
+    font-size: 56px;
+    font-weight: 400;
+    margin: 0; /* 마진 제거로 밀착 준비 */
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
 }
 
-/* 대전대흥교회 청소년부: 크기 줄이고 슬로건과 밀착 */
 .hero-content p {
-  font-size: 19px;             /* [수정] 22px -> 19px로 축소 */
-  font-weight: 700;
-  color: #e3f2fd;
-  margin-bottom: 25px;         /* 버튼과의 간격만 적당히 유지 */
-  letter-spacing: -0.5px;
+    font-size: 19px;
+    font-weight: 700;
+    color: #e3f2fd; /* 은은한 포인트 블루 */
+    margin: 0 0 25px 0; /* 위쪽 마진 0으로 슬로건과 초밀착 */
+    letter-spacing: -0.5px;
 }
 
-/* 메인 바로가기 버튼 (기존 곡률 유지) */
+/* [2] 버튼 공통 및 효과 (Hero & Map 버튼) */
+.btn {
+    display: inline-block;
+    padding: 12px 32px;
+    font-weight: 700;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    transition: all 0.25s ease;
+    text-decoration: none !important;
+}
+
+/* 메인 바로가기 버튼 (둥글게) */
 .hero-content .btn {
-  border-radius: 50px;         /* 메인 버튼은 둥글게 유지 */
+    background: var(--main-color);
+    color: #fff !important;
+    border-radius: 50px;
+    box-shadow: 0 4px 15px rgba(111, 168, 220, 0.4);
 }
 
-/* ===== 2. 카드 섹션 (중앙 정렬 및 효과 복구) ===== */
+.btn:hover {
+    transform: translateY(-4px); /* 떠오르는 효과 */
+    filter: brightness(1.1);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(1px); /* 클릭 시 눌리는 효과 */
+}
+
+/* [3] 카드 섹션 - 크기 고정 및 중앙 정렬 */
 .section-container {
-  display: flex;               /* flex 설정 */
-  flex-wrap: wrap;             /* 줄바꿈 허용 */
-  justify-content: center;     /* [수정] 카드들을 화면 중앙으로 정렬 */
-  align-items: center;
-  gap: 30px;                   /* 카드 사이 간격 */
-  padding: 100px 20px;
-  background: #fdfdfd;
+    display: flex;
+    justify-content: center;
+    align-items: stretch; /* [중요] 모든 카드의 높이를 동일하게 맞춤 */
+    gap: 30px;
+    padding: 100px 20px;
+    background: #fdfdfd;
+    flex-wrap: wrap;
 }
 
 .section-box {
-  background: #fff;
-  border-radius: 24px;
-  width: 270px;
-  padding: 45px 30px;
-  text-align: center;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(111, 168, 220, 0.15);
-  transition: var(--transition); /* common.css의 트랜지션 사용 */
+    background: #fff;
+    border-radius: 24px;
+    width: 280px; /* 가로 고정 */
+    min-height: 320px; /* 최소 높이 고정 */
+    padding: 40px 30px;
+    text-align: center;
+    display: flex;
+    flex-direction: column; /* 내부 요소 세로 정렬 */
+    justify-content: center;
+    border: 1px solid rgba(111, 168, 220, 0.15);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
 }
 
-/* [복구] 카드 호버 효과 */
 .section-box:hover {
-  transform: translateY(-10px);
-  background: #f8fbfe;
-  border-color: var(--main-color);
-  box-shadow: 0 15px 45px rgba(111, 168, 220, 0.1);
+    transform: translateY(-10px);
+    border-color: var(--main-color);
+    background: #f8fbfe;
 }
 
 .section-box h2 {
-  font-size: 20px;
-  margin-bottom: 15px;
-  color: var(--main-color);
-  font-weight: 800;
+    color: var(--main-color); /* 타이틀 포인트 컬러 */
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 15px;
 }
 
-/* ===== 3. 오시는 길 (지도 곡률에 맞춘 버튼 디자인) ===== */
+.section-box p {
+    color: #555;
+    font-size: 15px;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* [4] 오시는 길 - 지도 곡률 및 버튼 정렬 */
 .map-section {
-  background: #fff;
-  border-radius: 30px;
-  padding: 50px 30px;
-  max-width: 820px;
-  margin: 0 auto 100px;
-  text-align: center;
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
-  border: 1px solid rgba(111, 168, 220, 0.15);
+    max-width: 820px;
+    margin: 0 auto 100px;
+    padding: 50px 30px;
+    background: #fff;
+    border-radius: 30px;
+    border: 1px solid rgba(111, 168, 220, 0.15);
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+/* 오시는길 호버 효과 추가 */
+.map-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 45px rgba(111, 168, 220, 0.1);
+}
+
+.map-section h2 {
+    color: var(--main-color); /* 타이틀 포인트 컬러 복구 */
+    font-size: 22px;
+    font-weight: 800;
+    margin-bottom: 20px;
 }
 
 .map-section iframe {
-  width: 100%;
-  height: 400px;
-  border-radius: 20px;         /* 지도의 곡률 20px */
-  border: none;
-  margin-bottom: 30px;
+    width: 100%;
+    height: 400px;
+    border-radius: 20px; /* 지도 곡률 */
+    border: none;
+    margin-bottom: 30px;
 }
 
-/* 길찾기 버튼 그룹 */
 .map-buttons {
-  display: flex;
-  justify-content: center;
-  gap: 25px;                   /* [수정] 버튼 사이 간격 더 벌림 */
+    display: flex;
+    justify-content: center;
+    gap: 25px; /* 버튼 간격 확보 */
 }
 
-/* 길찾기 버튼 전용: 지도의 곡률(20px)과 통일 */
+/* 길찾기 버튼 전용 (지도 곡률 20px 반영) */
 .map-buttons .btn {
-  border-radius: 18px;         /* [수정] 지도의 20px와 시각적으로 어울리는 18px */
-  padding: 12px 35px;          /* 버튼 폭도 약간 넓힘 */
-  font-weight: 700;
-  transition: var(--transition);
-}
-
-/* 길찾기 버튼 호버 효과 */
-.map-buttons .btn:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.05);
+    border-radius: 18px; /* 지도와 어울리는 곡률 */
+    padding: 12px 40px;
 }
 
 .btn.kakao { background: #fee500; color: #3c1e1e !important; }
