@@ -21,3 +21,22 @@ document.addEventListener("DOMContentLoaded", () => {
     const container = document.querySelector('.section-container');
     if(container) observer.observe(container);
 });
+document.addEventListener("DOMContentLoaded", () => {
+    // 1. 감시 옵션 설정 (섹션이 15% 정도 보일 때 실행)
+    const observerOptions = { threshold: 0.15 }; 
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+                // 2. 화면에 들어오면 visible 클래스 추가
+                entry.target.classList.add('visible');
+                // 3. 한 번 나타난 뒤에는 감시 종료 (성능 최적화)
+                observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    // 4. 모든 .section-box 요소들을 찾아서 감시 시작
+    const sections = document.querySelectorAll('.section-box');
+    sections.forEach(sec => observer.observe(sec));
+});
