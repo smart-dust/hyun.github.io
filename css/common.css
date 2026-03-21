@@ -35,14 +35,8 @@ nav {
   padding: 10px 40px;
 }
 
-/* 로고 + 글자 (메뉴 기준 라인에 맞춤) */
-.nav-left {
-  gap: 12px;
-}
-
 .nav-logo { 
   height: 35px; 
-  width: auto; 
 }
 
 .nav-title {
