@@ -1,0 +1,171 @@
+/* ===== 기본 설정 ===== */
+:root {
+  --main-color: #3b82f6;
+  --main-dark: #2563eb;
+  --bg-color: #f9fafb;
+  --text-main: #111827;
+  --text-sub: #6b7280;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--bg-color);
+  color: var(--text-main);
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ===== NAV ===== */
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: rgba(255,255,255,0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 1000;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+}
+
+.nav-home {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-logo {
+  height: 36px;
+}
+
+.nav-title {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+/* 메뉴 */
+.nav-menu {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.nav-menu a,
+.menu-item > a {
+  font-weight: 500;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.nav-menu a:hover,
+.menu-item > a:hover {
+  background: rgba(59,130,246,0.08);
+  color: var(--main-color);
+}
+
+/* 드롭다운 */
+.menu-item {
+  position: relative;
+}
+
+.submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 200px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+}
+
+.submenu a {
+  display: block;
+  padding: 10px 16px;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.submenu a:hover {
+  background: rgba(59,130,246,0.08);
+}
+
+.menu-item:hover .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+/* ===== 버튼 ===== */
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  border-radius: 10px;
+  background: var(--main-color);
+  color: white;
+  font-weight: 500;
+  transition: all 0.25s ease;
+}
+
+.btn:hover {
+  background: var(--main-dark);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
+
+/* ===== footer ===== */
+.footer {
+  background: #111827;
+  color: #9ca3af;
+  text-align: center;
+  padding: 40px 20px;
+  margin-top: 80px;
+}
+
+.footer p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* ===== 반응형 (기본만) ===== */
+@media (max-width: 768px) {
+
+  .nav-container {
+    padding: 12px 20px;
+  }
+
+  .nav-menu {
+    gap: 15px;
+  }
+
+  .nav-title {
+    font-size: 16px;
+  }
+
+}
