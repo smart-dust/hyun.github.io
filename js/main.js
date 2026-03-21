@@ -1,34 +1,23 @@
-/* js/main.js */
+/* js/main.js - 필요한 것만 딱 움직이게 */
 document.addEventListener("DOMContentLoaded", () => {
-    const observerOptions = { threshold: 0.15 };
+    const observerOptions = { threshold: 0.2 }; // 20% 보일 때 작동
 
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
             if (entry.isIntersecting) {
-                // 1. 카드 섹션: 왼쪽부터 차례대로 또로록 등장
-                if (entry.target.classList.contains('section-container')) {
-                    const cards = entry.target.querySelectorAll('.section-box');
-                    cards.forEach((card, index) => {
-                        setTimeout(() => card.classList.add('visible'), index * 150);
-                    });
-                } 
-                // 2. 히어로 섹션: 글자 먼저 나오고 버튼은 0.4초 뒤에 팝!
-                else if (entry.target.classList.contains('hero-content')) {
-                    entry.target.classList.add('visible');
-                    const heroBtn = entry.target.querySelector('.hero-btn');
-                    if(heroBtn) {
-                        setTimeout(() => heroBtn.classList.add('pop'), 400);
-                    }
-                }
-                // 3. 기타 (지도 등): 그냥 스르륵 등장
-                else {
-                    entry.target.classList.add('visible');
-                }
-                observer.unobserve(entry.target);
+                // 카드 컨테이너가 보이면 내부 카드들만 0.1초 간격으로 등장
+                const cards = entry.target.querySelectorAll('.section-box');
+                cards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('visible');
+                    }, index * 100); 
+                });
+                observer.unobserve(entry.target); // 한 번 실행 후 끝
             }
         });
     }, observerOptions);
 
-    const animateElements = document.querySelectorAll('.section-container, .map-section, .hero-content');
-    animateElements.forEach((el) => observer.observe(el));
+    // 카드들이 들어있는 'section-container' 하나만 감시합니다.
+    const container = document.querySelector('.section-container');
+    if(container) observer.observe(container);
 });
