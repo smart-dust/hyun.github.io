@@ -1,23 +1,172 @@
-body.about .hero-content h2 { font-size:48px; color:#1d1d1f; }
-body.about .hero-content p { font-size:18px; color:#333; }
-
-.section {
-  max-width:900px;
-  margin:60px auto 90px auto;
-  padding:40px;
-  background:#fff;
-  border-radius:18px;
-  box-shadow:0 10px 28px rgba(0,0,0,0.08);
-  border-left:6px solid #6fa8dc;
-  border-top:6px solid #6fa8dc;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+/* ===== about.css ===== */
+/* body.about 기준 페이지별 스타일 */
+body.about {
+  background-color: #f9f9f9;
+  color: #333;
+  font-family: 'Noto Sans KR', sans-serif;
 }
-.section:hover { transform:translateY(-2px) scale(1.005); box-shadow:0 14px 28px rgba(0,0,0,0.12); }
-.section h2 { text-align:center; color:#2a3b4d; margin:20px 0 30px 0; }
-.section p { text-align:center; color:#2a3b4d; line-height:1.8; }
 
-.table-wrapper { overflow-x:auto; margin:30px 0; text-align:center; }
-.table { margin:0 auto; border-collapse:collapse; font-family:'Noto Sans KR','Arial',sans-serif; font-size:15px; color:#222; width:90%; table-layout:fixed; background:#fff; }
-.table th, .table td { border:1px solid #bbb; padding:10px; text-align:center; }
-.table th { background:#3f7fbf; color:white; font-weight:600; }
-.table tr:hover td { background:#f0f4f9; transition:0.3s; }
+/* ===== Hero 영역 ===== */
+body.about .hero {
+  position: relative;
+  height: 60vh;
+  overflow: hidden;
+}
+
+body.about .hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+body.about .hero .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+body.about .hero .hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  text-align: center;
+  color: #fff;
+}
+
+body.about .hero .hero-content h2 {
+  font-family: 'Nanum Brush Script', cursive;
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+body.about .hero .hero-content p {
+  font-size: 20px;
+}
+
+/* ===== 섹션 ===== */
+body.about .section {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease, opacity 0.6s ease;
+}
+
+body.about .section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.about .section h2 {
+  font-size: 26px;
+  margin-bottom: 15px;
+  color: #1d1d1f;
+}
+
+body.about .section p,
+body.about .section .small {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #333;
+}
+
+/* ===== 테이블 ===== */
+body.about .table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+body.about .table th,
+body.about .table td {
+  border: 1px solid #ccc;
+  padding: 12px 15px;
+  text-align: center;
+}
+
+body.about .table th {
+  background-color: #6fa8dc;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* ===== 동영상 ===== */
+body.about .video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 비율 유지 */
+  height: 0;
+  overflow: hidden;
+  border-radius: 12px;
+  margin-top: 30px;
+  max-width: 1000px; /* 최대 넓이 제한 */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+body.about .video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 1024px) {
+  body.about .video-wrapper {
+    padding-bottom: 56.25%; /* 여전히 16:9 유지 */
+  }
+}
+
+@media (max-width: 768px) {
+  body.about .video-wrapper {
+    padding-bottom: 56.25%;
+    margin-top: 20px;
+  }
+}
+/* ===== 카드 그리드 ===== */
+body.about .card-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+body.about .profile-card {
+  background: #f0f3f6;
+  border-radius: 14px;
+  padding: 20px;
+  width: 220px;
+  text-align: center;
+  box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.about .profile-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+body.about .profile-card h3 {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #1d1d1f;
+}
+
+body.about .profile-card p {
+  font-size: 14px;
+  color: #555;
+  margin-top: 6px;
+}
