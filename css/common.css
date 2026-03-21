@@ -243,3 +243,15 @@ nav {
     font-weight: bold;
     font-size: 14px;
 }
+/* common.css 맨 마지막에 추가 */
+#admin-auth-btn {
+    display: inline-block;
+    width: 70px;            /* Logout이 들어갈 적당한 크기 */
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    
+    /* ⭐ 핵심: 처음엔 투명하게, 나타날 땐 0.3초 동안 부드럽게 */
+    opacity: 0; 
+    transition: opacity 0.3s ease-in-out; 
+}
