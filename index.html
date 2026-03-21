@@ -108,7 +108,43 @@
 </footer>
     <script src="js/main.js"></script>
     
-<script type="module" src="/js/auth-status.js"></script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+        authDomain: "dhchurch-cf85f.firebaseapp.com",
+        projectId: "dhchurch-cf85f",
+        storageBucket: "dhchurch-cf85f.firebasestorage.app",
+        messagingSenderId: "718998916531",
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
+        measurementId: "G-KKT2TX7SZ9"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // 로그인 상태 감지
+    onAuthStateChanged(auth, (user) => {
+        const authBtn = document.getElementById('admin-auth-btn');
+        if (user) {
+            console.log("로그인 성공!", user.email);
+            if (authBtn) {
+                authBtn.innerText = "Logout";
+                authBtn.onclick = () => signOut(auth).then(() => location.reload());
+            }
+            // 관리자 전용 버튼(글쓰기 등) 보여주기
+            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
+        } else {
+            if (authBtn) {
+                authBtn.innerText = "Login";
+                authBtn.href = "login.html";
+            }
+            document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
+        }
+    });
+</script>
 
 </body>
 </html>
