@@ -5,121 +5,127 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - 대전대흥교회 청소년부</title>
     <style>
-        /* 1. 디자인 (CSS) */
         :root {
-            --main-color: #6fa8dc;     /* 지정하신 메인 컬러 */
-            --hover-color: #5a94c8;    /* 호버 시 약간 어둡게 */
-            --bg-color: #f0f4f8;
-            --text-color: #333333;     /* 진한 검정색 */
-            --border-color: #e1e8ed;
+            --main-color: #6fa8dc;
+            --dark-color: #5a94c8;
+            --bg-color: #f5f7fa;
+            --card-bg: #ffffff;
+            --border-color: #e6e9ed;
+            --text-main: #2d3436;
+            --text-sub: #636e72;
         }
 
         body {
-            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+            font-family: 'Pretendard', -apple-system, system-ui, sans-serif;
             background-color: var(--bg-color);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: var(--text-color);
+            -webkit-font-smoothing: antialiased;
         }
 
         .login-card {
-            background: #ffffff;
-            padding: 50px 35px;
-            border-radius: 16px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+            background: var(--card-bg);
             width: 100%;
-            max-width: 340px; /* 창 크기를 조금 더 작게 조절 */
+            max-width: 330px; /* 더 슬림하고 단단하게 조절 */
+            padding: 45px 35px;
+            border-radius: 12px; /* 너무 둥글지 않게 세련된 곡률 */
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03), 0 1px 3px rgba(0, 0, 0, 0.02);
             text-align: center;
         }
 
-        /* 로고와 제목 가로 배치 */
+        /* 헤더 부분: 로고와 글자 가로 정렬 및 밀도 조절 */
         .header-group {
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 40px;
-            gap: 10px; /* 로고와 글자 사이 간격 */
+            margin-bottom: 35px;
+            gap: 12px;
         }
 
         .login-logo {
-            width: 40px; /* 로고 크기 조절 */
+            width: 32px; /* 로고 크기 최적화 */
             height: auto;
+            object-fit: contain;
         }
 
         .login-card h2 {
-            color: var(--text-color); /* 글자색 검정 */
+            color: var(--text-main);
             margin: 0;
-            font-size: 1.4rem; /* 적절한 크기로 조절 */
+            font-size: 1.25rem; /* 과하지 않은 크기 */
             font-weight: 700;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.8px;
         }
 
         .input-group {
-            margin-bottom: 20px;
+            margin-bottom: 18px;
             text-align: left;
         }
 
         .input-group label {
             display: block;
-            font-size: 0.85rem;
-            color: #555;
-            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: var(--text-sub);
+            margin-bottom: 7px;
             font-weight: 600;
+            letter-spacing: 0.2px;
         }
 
         input {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--border-color); /* 테두리 선명하게 */
+            padding: 13px 15px;
+            border: 1.5px solid var(--border-color);
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
+            color: var(--text-main);
             box-sizing: border-box;
-            transition: border-color 0.2s; /* 부드러운 전환 */
             background-color: #fff;
+            transition: all 0.2s ease;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--main-color); /* 선택 시 메인 컬러로 테두리 변경 */
-            /* Glow(그림자) 효과 제거 */
+            border-color: var(--main-color);
+            background-color: #fff;
         }
 
+        /* 버튼: 쨍한 색감과 단단한 느낌 */
         button {
             width: 100%;
-            padding: 15px;
+            padding: 14px;
             background-color: var(--main-color);
             color: white;
             border: none;
             border-radius: 8px;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 15px;
-            transition: background 0.2s, transform 0.1s;
+            margin-top: 12px;
+            transition: background 0.2s ease;
         }
 
         button:hover {
-            background-color: var(--hover-color);
+            background-color: var(--dark-color);
         }
 
         button:active {
-            transform: scale(0.98); /* 클릭 시 살짝 눌리는 효과 */
+            transform: scale(0.98);
         }
 
         .back-home {
             display: inline-block;
-            margin-top: 30px;
-            color: #aaa;
+            margin-top: 25px;
+            color: #b2bec3;
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             transition: color 0.2s;
         }
 
         .back-home:hover {
-            color: var(--text-color);
+            color: var(--text-sub);
             text-decoration: underline;
         }
     </style>
@@ -128,13 +134,13 @@
 
 <div class="login-card">
     <div class="header-group">
-        <img src="images/logo.png" alt="Logo" class="login-logo" onerror="this.style.display='none'">
+        <img src="images/logo.png" alt="" class="login-logo" onerror="this.style.display='none'">
         <h2>대전대흥교회 청소년부</h2>
     </div>
 
     <div class="input-group">
         <label for="email">ID</label>
-        <input type="email" id="email" required spellcheck="false">
+        <input type="email" id="email" required spellcheck="false" autocomplete="off">
     </div>
 
     <div class="input-group">
@@ -151,7 +157,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Firebase 설정 (기존과 동일)
     const firebaseConfig = {
         apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
         authDomain: "dhchurch-cf85f.firebaseapp.com",
@@ -172,22 +177,15 @@
     const handleLogin = () => {
         const email = emailInput.value;
         const password = passwordInput.value;
-
         if(!email || !password) return;
 
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
-                // 성공 시 바로 이동 (alert 없음)
                 window.location.href = "admin.html"; 
             })
             .catch((error) => {
                 console.error(error);
-                // 비밀번호가 틀렸을 때만 알림
-                if (error.code === 'auth/wrong-password' || error.code === 'auth/user-not-found') {
-                    alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-                } else {
-                    alert("로그인 중 오류가 발생했습니다.");
-                }
+                alert("정보가 일치하지 않습니다.");
             });
     };
 
