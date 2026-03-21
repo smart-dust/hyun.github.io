@@ -200,15 +200,3 @@ nav {
     opacity: 1 !important;
     transform: none !important;
 }
-/* 메뉴바가 깨지는 걸 방지하는 강제 교정 코드 */
-nav, .navbar, .menu { /* 메뉴를 감싸는 태그가 무엇이든 적용되게 */
-    display: flex !important;
-    justify-content: center !important; /* 가운데 정렬 */
-}
-
-nav a, .navbar a, .menu a {
-    margin: 0 12px !important; /* 메뉴 사이 간격을 12px로 고정 */
-    font-size: 16px !important;  /* 글자 크기 살짝 조절 */
-    white-space: nowrap !important; /* 절대 줄바꿈 금지 */
-    display: inline-block !important;
-}
