@@ -186,21 +186,16 @@
 
         if(!email || !password) return;
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                // [수정된 부분] 저장된 이전 페이지가 있다면 그곳으로, 없으면 index.html로 이동
-                const prevPage = sessionStorage.getItem('redirectURL');
-                if (prevPage) {
-                    sessionStorage.removeItem('redirectURL'); // 사용 후 삭제
-                    window.location.href = prevPage;
-                } else {
-                    window.location.href = "index.html";
-                }
-            })
-            .catch((error) => {
-                console.error("로그인 실패:", error.code);
-                alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-            });
+     // login.html 하단 <script> 부분의 로그인 성공 로직만 이렇게 바꿔보세요!
+signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+        // 일단 무조건 index.html로 보내서 404를 해결합니다.
+        window.location.href = "index.html"; 
+    })
+    .catch((error) => {
+        console.error("로그인 실패:", error.code);
+        alert("아이디 또는 비밀번호가 일치하지 않습니다.");
+    });
     };
 
     loginBtn.addEventListener('click', handleLogin);
