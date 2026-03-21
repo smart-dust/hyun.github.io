@@ -4,22 +4,22 @@
 <meta charset="utf-8">
 <title>대전대흥교회 청소년부</title>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/common.css">  <!-- 공통 메뉴/푸터 스타일 -->
-<link rel="stylesheet" href="css/index.css">   <!-- 페이지 전용 스타일 -->
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/index.css">
 </head>
 <body>
 
-<!-- ===== NAVIGATION (공통) ===== -->
+<!-- ===== 메뉴 ===== -->
 <nav>
   <div class="nav-container">
-    <a href="index.html" class="nav-home">
-      <img src="images/logo.png" alt="로고" class="nav-logo">
-      <span class="nav-title">대전대흥교회 청소년부</span>
-    </a>
-
+    <div class="nav-left">
+      <a href="index.html" class="nav-home">
+        <img src="images/logo.png" class="nav-logo">
+        <span class="nav-title">대전대흥교회 청소년부</span>
+      </a>
+    </div>
     <div class="nav-menu">
       <a href="#home" class="active">Home</a>
-
       <div class="menu-item">
         <a href="about.html">교회소개</a>
         <div class="submenu">
@@ -28,35 +28,14 @@
           <a href="about.html#staff">섬기는 사람들</a>
         </div>
       </div>
-
-      <div class="menu-item">
-        <a href="sermon.html">설교</a>
-        <div class="submenu">
-          <a href="sermon.html#1">설교영상</a>
-          <a href="sermon.html#2">공과공부</a>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <a href="notice.html">공지사항</a>
-        <div class="submenu">
-          <a href="notice.html#1">행사 안내</a>
-          <a href="notice.html#2">주보</a>
-        </div>
-      </div>
-
-      <div class="menu-item">
-        <a href="community.html">커뮤니티</a>
-        <div class="submenu">
-          <a href="community.html#1">사진 갤러리</a>
-          <a href="community.html#2">게시판</a>
-        </div>
-      </div>
+      <div class="menu-item"><a href="sermon.html">설교</a></div>
+      <div class="menu-item"><a href="notice.html">공지사항</a></div>
+      <div class="menu-item"><a href="community.html">커뮤니티</a></div>
     </div>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
+<!-- ===== 히어로 ===== -->
 <div class="hero" id="home">
   <div class="overlay"></div>
   <img src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="church">
@@ -98,26 +77,22 @@
   </div>
 </section>
 
-<!-- ===== FOOTER (공통) ===== -->
+<!-- ===== 하단 ===== -->
 <footer class="footer">
   <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
   <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
-<!-- ===== JS: 카드 fade-in ===== -->
 <script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-      }
-    });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.section-box, .map-section').forEach(box => {
-    observer.observe(box);
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
   });
+},{ threshold: 0.1 });
+document.querySelectorAll('.section-box, .map-section').forEach(el => observer.observe(el));
 </script>
 
 </body>
