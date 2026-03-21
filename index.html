@@ -124,7 +124,6 @@
         const auth = getAuth(app);
         const authBtn = document.getElementById('admin-auth-btn');
 
-        // 로그인 상태 감지 및 버튼 제어
         onAuthStateChanged(auth, (user) => {
             if (user) {
                 // [로그인 상태]
@@ -132,26 +131,22 @@
                 authBtn.removeAttribute('href');
                 authBtn.onclick = (e) => {
                     e.preventDefault();
-                    // ⭐ 로그아웃 확인 창 추가
+                    // 물어보고 확인 누르면 바로 로그아웃 & 새로고침 (알림창 생략)
                     if (confirm("정말 로그아웃하시겠습니까?")) {
                         signOut(auth).then(() => {
-                            alert("로그아웃 되었습니다.");
-                            location.reload();
+                            location.reload(); 
                         });
                     }
                 };
-                // 관리자 버튼 표시
                 document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
             } else {
                 // [로그아웃 상태]
                 authBtn.innerText = "Login";
                 authBtn.setAttribute('href', 'login.html');
                 authBtn.onclick = null;
-                // 관리자 버튼 숨김
                 document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
             }
         });
     </script>
-
 </body>
 </html>
