@@ -40,3 +40,30 @@ document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll('.section-box');
     sections.forEach(sec => observer.observe(sec));
 });
+// [Smooth Scroll to Center] 메뉴 클릭 시 섹션을 화면 중앙으로!
+document.querySelectorAll('a[href^="about.html#"], a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
+        const targetId = href.includes('#') ? href.split('#')[1] : null;
+        const targetElement = document.getElementById(targetId);
+
+        if (targetElement) {
+            e.preventDefault(); // 기본 점프 동작 방지
+
+            // 대상 섹션의 위치 계산
+            const elementRect = targetElement.getBoundingClientRect();
+            const absoluteElementTop = elementRect.top + window.pageYOffset;
+            
+            // 핵심: (섹션 위치) - (화면 높이의 절반) + (섹션 높이의 절반) = 화면 중앙
+            const middleOffset = absoluteElementTop - (window.innerHeight / 2) + (elementRect.height / 2);
+
+            window.scrollTo({
+                top: middleOffset,
+                behavior: 'smooth'
+            });
+            
+            // URL 바에 ID 표시 (선택사항)
+            history.pushState(null, null, `#${targetId}`);
+        }
+    });
+});
