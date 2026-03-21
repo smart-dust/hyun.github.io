@@ -95,7 +95,7 @@ nav {
 
 .submenu {
   position: absolute;
-  top: calc(100% + 40px); /* 메뉴바와 겹치지 않게 간격 추가 */
+  top: calc(100% + 20px); /* 메뉴바와 겹치지 않게 간격 추가 */
   left: 50%;
   transform: translateX(-50%) translateY(10px);
   min-width: 160px;
