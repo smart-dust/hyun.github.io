@@ -9,105 +9,147 @@
         :root {
             --main-color: #add8e6;
             --primary-blue: #007bff;
-            --footer-bg: #f8fbff;
-            --text-main: #555;
-            --border-color: #dee2e6;
+            --dark-blue: #0056b3;
+            --bg-soft: #f8fbff;
+            --text-main: #444;
+            --text-dark: #222;
+            --border-color: #e2e8f0;
         }
 
-        html, body {
-            height: 100%;
+        /* 레이아웃 안정화: 꿀렁임 방지 */
+        * { box-sizing: border-box; transition: none; } 
+        
+        body {
             margin: 0;
-            padding: 0;
-            overflow: hidden; 
+            padding: 40px 20px;
             font-family: 'Noto Sans KR', sans-serif;
-            background: linear-gradient(180deg, #ffffff 0%, var(--footer-bg) 100%);
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-soft) 100%);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
         }
-
-        body { display: flex; justify-content: center; align-items: center; }
 
         .signup-container {
             width: 100%;
-            max-width: 700px;
-            padding: 50px 40px;
+            max-width: 680px;
             background: #ffffff;
-            border-top: 4px solid var(--main-color);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.07);
+            border-top: 5px solid var(--main-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.05);
             border-radius: 0 0 20px 20px;
+            padding: 60px 50px;
         }
 
-        header { text-align: center; margin-bottom: 40px; }
-        header h1 { font-size: 2.2rem; font-weight: 900; color: var(--primary-blue); margin: 0; }
-        header p { font-size: 1rem; color: var(--text-main); margin-top: 10px; }
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 { font-size: 2.4rem; font-weight: 900; color: var(--primary-blue); margin: 0; letter-spacing: -1.5px; }
+        header p { font-size: 1.1rem; color: #777; margin-top: 12px; font-weight: 300; }
 
-        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 25px 35px; }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 35px 40px; }
         .field.full { grid-column: span 2; }
 
-        .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        label { font-size: 0.9rem; font-weight: 700; color: #333; }
+        .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        label { font-size: 0.95rem; font-weight: 700; color: var(--text-dark); }
 
-        .optional-tag { font-size: 0.75rem; color: #aaa; font-weight: 400; margin-left: 5px; }
+        /* 중복확인 버튼 효과 */
+        .check-btn {
+            font-size: 0.8rem;
+            color: var(--primary-blue);
+            background: #fff;
+            border: 1px solid var(--primary-blue);
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .check-btn:hover { background: var(--primary-blue); color: #fff; }
+        .check-btn:active { transform: scale(0.95); }
 
+        /* 입력창 스타일: 꿀렁임 제거를 위해 border-bottom 대신 전체 border 사용 권장 혹은 고정 높이 사용 */
         input, select {
             width: 100%;
-            padding: 12px 0;
-            border: none;
-            border-bottom: 1.5px solid var(--border-color);
+            padding: 14px 16px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
             font-size: 1rem;
-            background: transparent;
-            transition: all 0.3s;
+            background: #fdfdfd;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+        input:focus {
+            outline: none;
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            background: #fff;
         }
 
-        input:focus, select:focus { outline: none; border-bottom: 2px solid var(--main-color); }
+        /* 출석교회 그룹 */
+        .church-group { display: flex; gap: 10px; }
+        #other-church-input { display: none; }
 
-        /* 출석교회 입력 영역 */
-        .church-select-group { display: flex; gap: 15px; align-items: flex-end; }
-        #other-church-input { display: none; } /* 기본적으로 숨김 */
-
+        /* 개인정보 처리방침 (법적 보완) */
         .privacy-box {
             grid-column: span 2;
-            background: var(--footer-bg);
-            padding: 15px;
-            border-radius: 8px;
+            background: #f9fafb;
+            padding: 20px;
+            border-radius: 10px;
             font-size: 0.85rem;
+            line-height: 1.7;
             color: #666;
-            height: 80px;
+            height: 130px;
             overflow-y: auto;
-            border: 1px solid #eee;
+            border: 1px solid #edf2f7;
+            margin-top: 10px;
         }
+        .privacy-box strong { color: #333; display: block; margin-bottom: 5px; }
 
         .agreement-row {
             grid-column: span 2;
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            padding: 10px 0;
         }
+        .agreement-row span { font-weight: 500; cursor: pointer; }
+        .agreement-row input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary-blue); }
 
+        /* 가입하기 버튼 효과 */
         .submit-btn {
             grid-column: span 2;
-            padding: 18px;
-            background-color: var(--primary-blue);
+            padding: 20px;
+            background: var(--primary-blue);
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 20px;
+            transition: all 0.3s ease;
         }
+        .submit-btn:hover { background: var(--dark-blue); box-shadow: 0 8px 20px rgba(0,123,255,0.25); }
+        .submit-btn:active { transform: scale(0.98); }
 
+        /* 하단 네비게이션 효과 */
         .nav-links {
             grid-column: span 2;
             text-align: center;
-            margin-top: 25px;
+            margin-top: 40px;
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
-
-        .nav-links a { color: #888; text-decoration: none; font-size: 0.9rem; }
-        .divider { width: 1px; height: 12px; background-color: #ccc; }
+        .nav-links a {
+            color: #999;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 5px 10px;
+            transition: color 0.2s ease, background 0.2s ease;
+            border-radius: 6px;
+        }
+        .nav-links a:hover { color: var(--primary-blue); background: rgba(0,123,255,0.05); }
+        .divider { width: 1px; height: 14px; background-color: #ddd; }
     </style>
 </head>
 <body>
@@ -115,21 +157,21 @@
     <div class="signup-container">
         <header>
             <h1>대전대흥교회 청소년부</h1>
-            <p>공동체의 일원이 되신 것을 환영합니다.</p>
+            <p>함께 성장하는 기쁨, 청소년부 멤버십</p>
         </header>
 
         <div class="form-grid">
             <div class="field full">
                 <div class="label-row">
                     <label>아이디 (이메일)</label>
-                    <button type="button" style="font-size: 0.8rem; color: var(--primary-blue); background:none; border:1px solid var(--primary-blue); padding:2px 8px; border-radius:4px; cursor:pointer;" id="check-id">중복확인</button>
+                    <button type="button" class="check-btn" id="check-id">중복확인</button>
                 </div>
-                <input type="email" id="email" placeholder="이메일을 입력해주세요" required>
+                <input type="email" id="email" placeholder="이메일 주소를 입력해주세요" required>
             </div>
 
             <div class="field">
                 <label>비밀번호</label>
-                <input type="password" id="password" placeholder="6자리 이상" required>
+                <input type="password" id="password" placeholder="6자리 이상 입력" required>
             </div>
             <div class="field">
                 <label>비밀번호 재확인</label>
@@ -138,40 +180,43 @@
 
             <div class="field">
                 <label>이름</label>
-                <input type="text" id="name" placeholder="실명 입력" required>
+                <input type="text" id="name" placeholder="실명을 입력해주세요" required>
             </div>
             <div class="field">
                 <label>닉네임</label>
-                <input type="text" id="nickname" placeholder="닉네임 입력" required>
+                <input type="text" id="nickname" placeholder="활동할 닉네임" required>
             </div>
 
             <div class="field full">
                 <label>출석 교회</label>
-                <div class="church-select-group">
+                <div class="church-group">
                     <select id="church-select">
                         <option value="대전대흥교회" selected>대전대흥교회</option>
                         <option value="기타">기타 (직접 입력)</option>
                     </select>
-                    <input type="text" id="other-church-input" placeholder="교회 이름을 입력해주세요">
+                    <input type="text" id="other-church-input" placeholder="교회명을 입력해주세요">
                 </div>
             </div>
 
             <div class="field full">
-                <label>관리자 인증코드<span class="optional-tag">(선택항목: 관리자 가입 시에만 입력)</span></label>
-                <input type="text" id="admin-code" placeholder="인증코드를 입력하면 관리자 권한이 부여됩니다">
+                <label>인증코드 <span style="font-weight:400; color:#aaa; font-size:0.8rem;">(선택: 스태프 권한 필요시 입력)</span></label>
+                <input type="text" id="auth-code" placeholder="전달받으신 코드가 있다면 입력해주세요">
             </div>
 
             <div class="privacy-box">
-                <strong>개인정보 수집 및 이용 안내</strong><br>
-                수집항목: 이메일, 이름, 닉네임, 출석교회 / 보유기간: 회원 탈퇴 시까지
+                <strong>개인정보 수집 및 이용 동의 (필수)</strong>
+                1. 수집 및 이용 목적: 회원 식별, 서비스 공지사항 전달, 신앙 공동체 내 원활한 소통 및 게시판 작성 권한 부여<br>
+                2. 수집 항목: 이메일(ID), 비밀번호, 이름, 닉네임, 출석교회 정보<br>
+                3. 보유 및 이용 기간: 회원 탈퇴 시 즉시 파기 (단, 법령에 따른 보존 필요 시 해당 기간 준수)<br>
+                4. 동의 거부 권리: 귀하는 동의를 거부할 권리가 있으며, 거부 시 회원 서비스 이용이 제한될 수 있습니다.
             </div>
 
             <div class="agreement-row">
-                <span style="font-size:0.9rem;">개인정보 이용에 동의합니다.</span>
-                <input type="checkbox" id="agree" style="width:18px; height:18px; cursor:pointer;">
+                <span onclick="document.getElementById('agree').click()">개인정보 수집 및 이용에 동의합니다.</span>
+                <input type="checkbox" id="agree">
             </div>
 
-            <button id="signup-btn" class="submit-btn">가입하기</button>
+            <button id="signup-btn" class="submit-btn">가입 완료하기</button>
 
             <div class="nav-links">
                 <a href="index.html">홈페이지로 돌아가기</a>
@@ -201,22 +246,22 @@
 
         let isChecked = false;
 
-        // 교회 선택 이벤트 (기타 선택 시 입력칸 표시)
-        const churchSelect = document.getElementById('church-select');
+        // 기타 교회 입력 제어
+        const select = document.getElementById('church-select');
         const otherInput = document.getElementById('other-church-input');
-        churchSelect.addEventListener('change', (e) => {
+        select.addEventListener('change', (e) => {
             otherInput.style.display = e.target.value === '기타' ? 'block' : 'none';
         });
 
-        // 아이디 중복확인
+        // 중복확인
         document.getElementById('check-id').addEventListener('click', async () => {
             const email = document.getElementById('email').value;
-            if(!email) { alert("이메일을 입력해주세요."); return; }
+            if(!email) { alert("이메일을 먼저 입력해주세요."); return; }
             try {
                 const methods = await fetchSignInMethodsForEmail(auth, email);
-                if(methods.length > 0) { alert("이미 가입된 아이디입니다."); isChecked = false; }
-                else { alert("사용 가능한 아이디입니다."); isChecked = true; }
-            } catch(e) { alert("중복확인 오류가 발생했습니다."); }
+                if(methods.length > 0) { alert("이미 사용 중인 이메일입니다."); isChecked = false; }
+                else { alert("사용 가능한 이메일입니다."); isChecked = true; }
+            } catch(e) { alert("오류가 발생했습니다. 다시 시도해주세요."); }
         });
 
         document.getElementById('signup-btn').addEventListener('click', async () => {
@@ -225,32 +270,31 @@
             const passwordConfirm = document.getElementById('password-confirm').value;
             const name = document.getElementById('name').value;
             const nickname = document.getElementById('nickname').value;
-            const adminCode = document.getElementById('admin-code').value;
+            const authCode = document.getElementById('auth-code').value;
             const agree = document.getElementById('agree').checked;
             
-            // 출석교회 값 결정
-            let finalChurch = churchSelect.value === '기타' ? otherInput.value : churchSelect.value;
+            let church = select.value === '기타' ? otherInput.value : select.value;
 
-            if(!email || !password || !name || !nickname || !finalChurch) { alert("필수 항목을 모두 입력해주세요."); return; }
-            if(!isChecked) { alert("아이디 중복확인을 해주세요."); return; }
-            if(password !== passwordConfirm) { alert("비밀번호가 다릅니다."); return; }
-            if(!agree) { alert("개인정보 이용에 동의해주세요."); return; }
+            if(!email || !password || !name || !nickname || !church) { alert("필수 정보를 모두 입력해주세요."); return; }
+            if(!isChecked) { alert("아이디 중복확인을 완료해주세요."); return; }
+            if(password !== passwordConfirm) { alert("비밀번호가 서로 일치하지 않습니다."); return; }
+            if(!agree) { alert("개인정보 이용 동의가 필요합니다."); return; }
 
-            // 권한 설정 (코드가 맞으면 admin, 아니면 user)
-            const userRole = (adminCode === "1234") ? "admin" : "user";
+            // 권한 부여 (코드 'staff123' 예시)
+            let role = (authCode === "staff123") ? "staff" : "user";
 
             try {
                 const cred = await createUserWithEmailAndPassword(auth, email, password);
                 await setDoc(doc(db, "users", cred.user.uid), {
-                    email, name, nickname, 
-                    churchName: finalChurch,
-                    role: userRole,
+                    email, name, nickname, church, role,
                     createdAt: new Date().toISOString()
                 });
-                alert(userRole === "admin" ? "관리자 계정으로 가입되었습니다." : "가입을 진심으로 환영합니다");
+                alert(role === "staff" ? "스태프 계정으로 가입되었습니다." : "가입을 진심으로 축하드립니다");
                 window.location.href = "login.html";
-            } catch(e) { alert("가입 실패: " + e.message); }
+            } catch(e) { alert("가입 중 오류 발생: " + e.message); }
         });
+
+        document.getElementById('email').addEventListener('input', () => isChecked = false);
     </script>
 </body>
 </html>
