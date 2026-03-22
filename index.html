@@ -123,38 +123,52 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // ⭐ [추가] 만약 3초 뒤에도 안 나타나면 강제로 보여주는 안전장치
-    setTimeout(() => {
-        const btn = document.getElementById('admin-auth-btn');
-        if (btn && btn.style.opacity !== "1") {
-            btn.style.opacity = "1";
-            console.log("안전장치에 의해 버튼이 표시됨");
-        }
-    }, 3000);
+   // ⭐ [추가] 만약 3초 뒤에도 안 나타나면 강제로 보여주는 안전장치
+setTimeout(() => {
+    const btn = document.getElementById('admin-auth-btn');
+    if (btn && btn.style.opacity !== "1") {
+        btn.style.opacity = "1";
+        console.log("안전장치에 의해 버튼이 표시됨");
+    }
+}, 3000);
 
-    onAuthStateChanged(auth, (user) => {
-        const authBtn = document.getElementById('admin-auth-btn');
-        if (!authBtn) return; // 버튼을 못 찾으면 실행 중단
+onAuthStateChanged(auth, (user) => {
+    const authBtn = document.getElementById('admin-auth-btn');
+    if (!authBtn) return; 
 
-        if (user) {
-            authBtn.innerText = "Logout";
-            authBtn.onclick = (e) => {
-                e.preventDefault();
-                if (confirm("정말 로그아웃하시겠습니까?")) {
-                    signOut(auth).then(() => location.reload());
-                }
-            };
-        } else {
-            authBtn.innerText = "Login";
-            const currentPage = window.location.pathname.split("/").pop() || "index.html";
-            authBtn.setAttribute('href', `login.html?redirect=${currentPage}`);
-            authBtn.onclick = null;
-        }
+    if (user) {
+        // [로그인 상태]
+        authBtn.innerText = "Logout";
+        authBtn.removeAttribute('href'); // <a> 태그 기본 이동 방지
+        authBtn.onclick = (e) => {
+            e.preventDefault();
+            if (confirm("정말 로그아웃하시겠습니까?")) {
+                signOut(auth).then(() => {
+                    // 로그아웃 후에도 현재 페이지 유지하며 새로고침
+                    window.location.href = window.location.pathname;
+                });
+            }
+        };
+    } else {
+        // [로그아웃 상태]
+        authBtn.innerText = "Login";
+        authBtn.removeAttribute('href'); // 클릭 이벤트를 위해 href 제거
+        
+        authBtn.onclick = (e) => {
+            e.preventDefault();
+            // ⭐ 핵심: 로그인하러 가기 전, 현재 주소를 세션에 저장!
+            const currentURL = window.location.href;
+            sessionStorage.setItem('redirectURL', currentURL);
+            
+            // 로그인 페이지로 이동
+            window.location.href = "login.html";
+        };
+    }
 
-        // ⭐ 핵심: 여기서 투명도를 1로 바꿉니다.
-        authBtn.style.opacity = "1";
-        console.log("Firebase 확인 후 버튼 표시 완료");
-    });
+    // ⭐ 핵심: 판단 완료 후 버튼 표시
+    authBtn.style.opacity = "1";
+    console.log("Firebase 확인 및 리다이렉트 설정 완료");
+});
 </script>
 </body>
 </html>
