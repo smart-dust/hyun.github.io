@@ -2,197 +2,151 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>로그인 | 대전대흥교회 청소년부</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-color: #add8e6; 
-            --primary-blue: #007bff;
-            --footer-bg: #f8fbff; 
-            --text-main: #212529;
-            --text-sub: #6c757d;
-            --border-color: #dee2e6;
+            --primary-blue: #0062ff;
+            --text-dark: #1d1d1f;
+            --text-gray: #86868b;
+            --border-color: #d2d2d7;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        /* 1080*1920 기준 스크롤 억제 */
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow: hidden; 
+        * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+        
+        body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #ffffff;
-        }
-
-        body {
+            color: var(--text-dark);
             display: flex;
-            flex-direction: column;
-        }
-
-        .main-container {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 40px;
+            min-height: 100vh;
+            padding: 20px;
         }
 
-        .header-section {
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .container { width: 100%; max-width: 400px; }
 
-        .header-section h1 {
-            font-size: 2.3rem;
-            font-weight: 900;
+        header { text-align: center; margin-bottom: 45px; }
+        header h1 { 
+            font-size: 2rem; 
+            font-weight: 900; 
+            letter-spacing: -1px; 
+            margin-bottom: 12px;
             color: var(--primary-blue);
-            margin: 0;
-            letter-spacing: -1.5px;
         }
+        header p { font-size: 0.95rem; color: var(--text-gray); font-weight: 500; }
 
-        .header-section p {
-            color: var(--text-sub);
-            margin-top: 8px;
-            font-size: 1.05rem;
+        .login-form { display: flex; flex-direction: column; gap: 22px; }
+
+        .field { display: flex; flex-direction: column; gap: 8px; }
+        
+        label { 
+            font-size: 0.9rem; 
+            font-weight: 800; 
+            position: relative; 
+            padding-left: 14px;
+            color: #333;
         }
-
-        .login-form {
-            width: 100%;
-            max-width: 450px; /* 로그인창은 조금 더 컴팩트하게 */
-            display: flex;
-            flex-direction: column;
-            gap: 25px;
-        }
-
-        .field {
-            display: flex;
-            flex-direction: column;
-        }
-
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--text-main);
+        label::before {
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            top: 50%; 
+            transform: translateY(-50%);
+            width: 4px; 
+            height: 14px; 
+            background-color: var(--primary-blue); 
+            border-radius: 2px;
         }
 
         input {
-            width: 100%;
-            padding: 12px 0;
-            border: none;
-            border-bottom: 1.5px solid var(--border-color);
-            font-size: 1.05rem;
-            box-sizing: border-box;
-            transition: border-color 0.3s;
-            background-color: transparent;
-        }
-
-        input:focus {
+            width: 100%; 
+            padding: 16px; 
+            border: 1px solid var(--border-color);
+            border-radius: 12px; 
+            font-size: 1rem; 
+            background-color: #fff;
+            transition: var(--transition); 
             outline: none;
-            border-bottom: 2px solid var(--primary-blue);
+        }
+        input:focus { 
+            border-color: var(--primary-blue); 
+            box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.1); 
         }
 
-        .submit-btn {
-            padding: 16px;
-            background-color: var(--primary-blue);
-            color: white;
-            border: none;
-            border-radius: 8px;
+        .login-btn {
+            padding: 18px; 
+            background: linear-gradient(135deg, #0062ff 0%, #004dc7 100%);
+            color: white; 
+            border: none; 
+            border-radius: 12px; 
             font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: 0.3s;
+            font-weight: 700; 
+            cursor: pointer; 
+            margin-top: 10px; 
+            transition: var(--transition);
+            box-shadow: 0 4px 12px rgba(0, 98, 255, 0.2);
+        }
+        .login-btn:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 6px 16px rgba(0, 98, 255, 0.3); 
         }
 
-        .submit-btn:hover {
-            background-color: #0056b3;
+        .nav-links {
+            text-align: center; 
+            margin-top: 25px;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            gap: 12px;
         }
-
-        .sub-nav {
-            text-align: center;
-            margin-top: 15px;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
+        .nav-links a { 
+            color: var(--text-gray); 
+            text-decoration: none; 
+            font-size: 0.85rem; 
+            font-weight: 500; 
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: var(--transition);
         }
-
-        .sub-nav a {
-            color: #aaa;
-            text-decoration: none;
-            font-size: 0.85rem;
+        .nav-links a:hover { 
+            background-color: #f2f2f7; 
+            color: var(--primary-blue); 
         }
-
-        .sub-nav span {
-            color: #eee;
-            font-size: 0.85rem;
-        }
-
-        .sub-nav a:hover {
-            color: var(--primary-blue);
-            text-decoration: underline;
-        }
-
-        /* Footer 스타일 (회원가입 페이지와 동일) */
-        .footer {
-            background: var(--footer-bg);
-            color: #555;
-            padding: 35px 20px;
-            text-align: center;
-            border-top: 2.5px solid var(--main-color);
-        }
-
-        .footer p {
-            margin: 5px 0;
-            font-size: 13.5px;
-            line-height: 1.5;
-            color: #666;
-        }
-
-        .footer-copy {
-            margin-top: 15px;
-            font-size: 12px;
-            color: #aaa;
-        }
+        .divider { width: 1px; height: 10px; background-color: var(--border-color); }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="header-section">
+    <div class="container">
+        <header>
             <h1>대전대흥교회 청소년부</h1>
             <p>서비스 이용을 위해 로그인을 해주세요.</p>
-        </div>
+        </header>
 
         <div class="login-form">
             <div class="field">
-                <label for="email">아이디 (이메일)</label>
+                <label>아이디 ID</label>
                 <input type="email" id="email" placeholder="아이디를 입력해주세요" required>
             </div>
 
             <div class="field">
-                <label for="password">비밀번호</label>
+                <label>비밀번호 Password</label>
                 <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required>
             </div>
 
-            <button id="login-btn" class="submit-btn">로그인</button>
+            <button id="login-btn" class="login-btn">로그인하기</button>
 
-            <div class="sub-nav">
-                <a href="signup.html" style="color: var(--primary-blue); font-weight: 700;">회원가입</a>
-                <span>|</span>
-                <a href="index.html">홈페이지로 돌아가기</a>
+            <div class="nav-links">
+                <a href="signup.html">회원가입 하기</a>
+                <span class="divider"></span>
+                <a href="index.html">홈페이지 돌아가기</a>
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
-        <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
-        <p class="footer-copy">© 2026 대전대흥교회 청소년부. All rights reserved.</p>
-    </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -210,31 +164,23 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        const loginBtn = document.getElementById('login-btn');
-        const emailInput = document.getElementById('email');
-        const passwordInput = document.getElementById('password');
+        document.getElementById('login-btn').addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
 
-        const handleLogin = () => {
-            const email = emailInput.value;
-            const password = passwordInput.value;
-
-            if (!email || !password) {
-                alert("아이디와 비밀번호를 입력해주세요.");
+            if(!email || !password) {
+                alert("아이디와 비밀번호를 모두 입력해주세요.");
                 return;
             }
 
-            signInWithEmailAndPassword(auth, email, password)
-                .then(() => {
-                    const prevPage = sessionStorage.getItem('redirectURL');
-                    window.location.href = prevPage || "index.html"; 
-                })
-                .catch((error) => {
-                    alert("아이디 또는 비밀번호가 일치하지 않습니다.");
-                });
-        };
-
-        loginBtn.addEventListener('click', handleLogin);
-        window.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleLogin(); });
+            try {
+                // '성공했습니다' 팝업 없이 바로 페이지 이동
+                await signInWithEmailAndPassword(auth, email, password);
+                window.location.href = "index.html"; 
+            } catch(e) {
+                alert("로그인 실패: 이메일 또는 비밀번호를 확인해주세요.");
+            }
+        });
     </script>
 </body>
 </html>
