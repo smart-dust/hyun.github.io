@@ -8,10 +8,12 @@
     <style>
         :root {
             --primary-blue: #007bff;
+            --dark-blue: #0056b3;
             --text-dark: #1d1d1f;
             --text-gray: #6e6e73;
             --border-color: #d2d2d7;
             --input-bg: #ffffff;
+            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -24,116 +26,92 @@
             justify-content: center;
             align-items: flex-start;
             min-height: 100vh;
-            padding: 60px 20px;
+            padding: 80px 20px;
         }
 
-        .container {
-            width: 100%;
-            max-width: 600px;
-        }
+        .container { width: 100%; max-width: 600px; }
 
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+        header { text-align: center; margin-bottom: 50px; }
+        header h1 { font-size: 2.6rem; font-weight: 900; margin-bottom: 15px; letter-spacing: -1.5px; }
+        header p { font-size: 1.15rem; color: var(--text-gray); }
 
-        header h1 {
-            font-size: 2.4rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            letter-spacing: -1.5px;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-        }
-
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px 20px;
-        }
-
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 20px; }
         .field.full { grid-column: span 2; }
 
         @media (max-width: 600px) {
             .form-grid { grid-template-columns: 1fr; }
             .field { grid-column: span 2; }
-            header h1 { font-size: 1.8rem; }
         }
 
-        .label-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
+        .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+        label { font-size: 0.95rem; font-weight: 700; }
 
-        label {
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: var(--text-dark);
-        }
-
+        /* 중복확인 버튼 효과 */
         .check-btn {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--primary-blue);
             background: #fff;
             border: 1px solid var(--primary-blue);
-            padding: 3px 10px;
-            border-radius: 4px;
+            padding: 4px 12px;
+            border-radius: 6px;
             cursor: pointer;
+            transition: var(--transition);
         }
+        .check-btn:hover { background: var(--primary-blue); color: #fff; transform: translateY(-1px); }
 
-        /* 입력창 및 셀렉트 박스 스타일 통일 */
+        /* 입력창 및 드롭다운 효과 */
         input, select {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 0.95rem;
+            border-radius: 12px;
+            font-size: 1rem;
             background-color: var(--input-bg);
-            color: var(--text-dark);
+            transition: var(--transition);
             outline: none;
         }
 
-        /* 출석교회 드롭다운(서브메뉴) 디자인 보강 */
-        select {
-            cursor: pointer;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23888' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'%3E%3C/path%3E%3C/svg%3E");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            padding-right: 40px;
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-        }
-
-        select option {
-            padding: 10px;
+        input:focus, select:focus {
+            border-color: var(--primary-blue);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
             background: #fff;
-            color: var(--text-dark);
         }
 
-        #other-church-input { margin-top: 10px; display: none; }
+        /* 드롭다운 커스텀 디자인 */
+        .select-wrapper { position: relative; }
+        .select-wrapper::after {
+            content: "▼";
+            font-size: 0.7rem;
+            color: #888;
+            position: absolute;
+            right: 18px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            transition: var(--transition);
+        }
+        .select-wrapper:focus-within::after { color: var(--primary-blue); transform: translateY(-50%) rotate(180deg); }
 
-        /* 개인정보 처리방침 (법적 문구 강화) */
+        select { appearance: none; cursor: pointer; padding-right: 45px; }
+
+        #other-church-input { margin-top: 12px; display: none; animation: fadeIn 0.3s ease-in-out; }
+
+        /* 개인정보 처리방침 (법적 보강) */
         .privacy-box {
             grid-column: span 2;
-            background: #f8fafc;
-            padding: 18px;
-            border-radius: 8px;
-            font-size: 0.82rem;
-            line-height: 1.6;
+            background: #f9f9fb;
+            padding: 22px;
+            border-radius: 14px;
+            font-size: 0.88rem;
+            line-height: 1.8;
             color: #555;
-            height: 150px;
+            height: 160px;
             overflow-y: auto;
-            border: 1px solid #e2e8f0;
+            border: 1px solid #eee;
             margin-top: 10px;
         }
-
-        .privacy-box strong { color: #333; display: block; margin-bottom: 4px; }
+        .privacy-box p { margin-bottom: 8px; }
+        .privacy-box strong { color: #222; }
 
         /* 체크박스 영역: 기능 중심 */
         .agreement-row {
@@ -141,54 +119,51 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 10px;
-            padding: 10px 0;
-            position: relative; /* 레이어 간섭 방지 */
-            z-index: 10;
+            gap: 12px;
+            padding: 15px 0;
         }
-        
-        .agreement-text {
-            font-size: 0.9rem;
-            color: var(--text-dark);
-            cursor: default;
-        }
+        .agreement-text { font-size: 0.95rem; font-weight: 500; cursor: default; }
 
-        /* 체크박스가 확실히 보이도록 스타일링 */
         input[type="checkbox"]#agree {
-            width: 20px;
-            height: 20px;
+            width: 24px;
+            height: 24px;
             cursor: pointer;
             accent-color: var(--primary-blue);
-            /* 다른 요소가 덮지 못하도록 설정 */
-            position: relative;
-            z-index: 11;
+            transition: transform 0.2s;
         }
+        input[type="checkbox"]#agree:hover { transform: scale(1.1); }
 
+        /* 버튼 효과 */
         .submit-btn {
             grid-column: span 2;
-            padding: 18px;
-            background-color: #1a1a1a;
+            padding: 20px;
+            background-color: #111;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1.1rem;
+            border-radius: 14px;
+            font-size: 1.2rem;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
+            transition: var(--transition);
         }
+        .submit-btn:hover { background-color: #000; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .submit-btn:active { transform: translateY(0); }
 
-        /* 하단 링크 간격 축소 */
         .nav-links {
             grid-column: span 2;
             text-align: center;
-            margin-top: 20px; /* 간격 축소 */
+            margin-top: 30px;
             display: flex;
             justify-content: center;
             align-items: center;
             gap: 15px;
         }
-        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.85rem; }
-        .divider { width: 1px; height: 10px; background-color: var(--border-color); }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.95rem; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--primary-blue); }
+        .divider { width: 1px; height: 12px; background-color: var(--border-color); }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-5px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
@@ -205,12 +180,12 @@
                     <label>아이디 (이메일)</label>
                     <button type="button" class="check-btn" id="check-id">중복확인</button>
                 </div>
-                <input type="email" id="email" placeholder="email@example.com" required>
+                <input type="email" id="email" placeholder="example@email.com" required>
             </div>
 
             <div class="field">
                 <label>비밀번호</label>
-                <input type="password" id="password" placeholder="6자리 이상" required>
+                <input type="password" id="password" placeholder="6자리 이상 입력" required>
             </div>
             <div class="field">
                 <label>비밀번호 재확인</label>
@@ -219,20 +194,22 @@
 
             <div class="field">
                 <label>이름</label>
-                <input type="text" id="name" placeholder="실명 입력" required>
+                <input type="text" id="name" placeholder="실명을 입력해주세요" required>
             </div>
             <div class="field">
                 <label>닉네임</label>
-                <input type="text" id="nickname" placeholder="닉네임 입력" required>
+                <input type="text" id="nickname" placeholder="사용할 닉네임" required>
             </div>
 
             <div class="field full">
                 <label>출석 교회</label>
-                <select id="church-select">
-                    <option value="대전대흥교회">대전대흥교회</option>
-                    <option value="기타">기타 (직접 입력)</option>
-                </select>
-                <input type="text" id="other-church-input" placeholder="교회 이름을 입력해주세요">
+                <div class="select-wrapper">
+                    <select id="church-select">
+                        <option value="대전대흥교회">대전대흥교회</option>
+                        <option value="기타">기타 (직접 입력)</option>
+                    </select>
+                </div>
+                <input type="text" id="other-church-input" placeholder="교회 이름을 직접 입력해주세요">
             </div>
 
             <div class="field full">
@@ -241,15 +218,20 @@
             </div>
 
             <div class="privacy-box">
-                <strong>개인정보 수집 및 제3자 제공 동의 (필수)</strong>
-                1. <strong>정보 공유 및 권리:</strong> 대전대흥교회 청소년부는 대전대흥교회의 산하 기관으로서, 수집된 모든 개인정보(이름, 연락처, 소속 등)는 운영 관리 및 신앙 지도를 위해 본부인 '대전대흥교회'와 공유됩니다. 대전대흥교회는 수집된 정보에 대해 본 기관과 동등한 관리 권한 및 보호 의무를 가집니다.<br><br>
-                2. <strong>서비스 이용 제한:</strong> 국가 비상사태, 천재지변, 재난 상황 또는 교회 운영위원회의 중대한 결정 사유 발생 시, 서비스의 전체 혹은 일부 이용을 예고 없이 제한하거나 중단할 수 있습니다.<br><br>
-                3. <strong>수집 항목 및 목적:</strong> 사용자 식별 및 공동체 서비스 제공.<br>
-                4. <strong>보유 기간:</strong> 회원 탈퇴 시 즉시 파기.
+                <p><strong>1. 개인정보 수집 및 제3자 제공 동의 (필수)</strong><br>
+                대전대흥교회 청소년부(이하 '본부')는 대전대흥교회의 산하 기관으로서, 원활한 공동체 관리 및 신앙 지도를 위해 수집된 모든 개인정보(이름, 이메일, 닉네임, 소속 등)를 본 교회와 공유합니다. 대전대흥교회는 해당 정보에 대해 본부와 동등한 관리 권한 및 보호 의무를 가집니다.</p>
+                
+                <p><strong>2. 서비스 이용 제한 및 면책 조항</strong><br>
+                국가 비상사태, 천재지변, 재난 상황 또는 교회 운영위원회의 정책적 결정에 따라 서비스 전체 혹은 일부 기능을 예고 없이 제한하거나 중단할 수 있습니다. 사용자는 이에 대해 이의를 제기하지 않음에 동의합니다.</p>
+                
+                <p><strong>3. 정보의 보유 및 파기</strong><br>
+                수집된 정보는 회원 탈퇴 시 혹은 공동체 해산 시까지 보유하며, 목적 달성 시 즉시 복구 불가능한 방법으로 파기합니다.</p>
+                
+                <p>귀하는 본 동의를 거부할 권리가 있으나, 거부 시 가입 및 공동체 서비스 이용이 불가함을 안내드립니다.</p>
             </div>
 
             <div class="agreement-row">
-                <span class="agreement-text">개인정보 수집 및 이용에 동의합니다.</span>
+                <span class="agreement-text">내용을 확인했으며 이에 동의합니다.</span>
                 <input type="checkbox" id="agree">
             </div>
 
@@ -283,14 +265,12 @@
 
         let isChecked = false;
 
-        // 드롭다운 로직
         const select = document.getElementById('church-select');
         const otherInput = document.getElementById('other-church-input');
         select.addEventListener('change', (e) => {
             otherInput.style.display = e.target.value === '기타' ? 'block' : 'none';
         });
 
-        // 중복 확인
         document.getElementById('check-id').addEventListener('click', async () => {
             const email = document.getElementById('email').value;
             if(!email) { alert("이메일을 입력해주세요."); return; }
@@ -298,10 +278,9 @@
                 const methods = await fetchSignInMethodsForEmail(auth, email);
                 if(methods.length > 0) { alert("이미 사용 중인 아이디입니다."); isChecked = false; }
                 else { alert("사용 가능한 아이디입니다."); isChecked = true; }
-            } catch(e) { alert("오류가 발생했습니다."); }
+            } catch(e) { alert("중복 확인 오류 발생"); }
         });
 
-        // 회원가입
         document.getElementById('signup-btn').addEventListener('click', async () => {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
@@ -313,10 +292,10 @@
             
             let church = select.value === '기타' ? otherInput.value : select.value;
 
-            if(!email || !password || !name || !nickname || !church) { alert("모든 항목을 입력해주세요."); return; }
-            if(!isChecked) { alert("아이디 중복확인을 완료해주세요."); return; }
+            if(!email || !password || !name || !nickname || !church) { alert("모든 정보를 입력해주세요."); return; }
+            if(!isChecked) { alert("아이디 중복확인을 해주세요."); return; }
             if(password !== passwordConfirm) { alert("비밀번호가 일치하지 않습니다."); return; }
-            if(!agree) { alert("개인정보 이용 동의가 필요합니다."); return; }
+            if(!agree) { alert("개인정보 이용 동의 박스를 체크해주세요."); return; }
 
             let role = (authCode === "staff123") ? "staff" : "user";
 
