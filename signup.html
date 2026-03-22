@@ -3,275 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>회원가입 | DH Church</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <title>회원가입 | 대전대흥교회 청소년부</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #007bff;
-            --primary-hover: #0056b3;
-            --text-dark: #333;
-            --text-muted: #666;
-            --border: #ddd;
-            --bg: #f4f7f9;
+            --primary-blue: #007bff;
+            --dark-blue: #0056b3;
+            --text-main: #212529;
+            --text-sub: #6c757d;
+            --line-color: #dee2e6;
+            --bg-color: #ffffff;
         }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: var(--bg);
+            background-color: var(--bg-color);
             margin: 0;
+            color: var(--text-main);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
-            min-height: 100vh;
         }
 
-        .signup-container {
+        /* 상단 브랜드 헤더 */
+        .brand-header {
             width: 100%;
-            max-width: 600px; /* 가로 폭 확대 */
-            background: #fff;
-            padding: 40px 50px;
-            border-radius: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            max-width: 700px;
+            padding: 60px 20px 40px;
+            text-align: center;
+        }
+
+        .brand-header h1 {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--primary-blue);
+            margin: 0;
+            letter-spacing: -1.5px;
+        }
+
+        .brand-header p {
+            font-size: 1.1rem;
+            color: var(--text-sub);
+            margin-top: 10px;
+            font-weight: 500;
+        }
+
+        /* 메인 폼 영역 */
+        .signup-content {
+            width: 100%;
+            max-width: 700px;
+            padding: 0 20px 100px;
             box-sizing: border-box;
         }
 
-        h2 {
-            font-size: 1.8rem;
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--text-main);
             margin-bottom: 30px;
-            text-align: center;
-            color: var(--primary);
-            letter-spacing: -1px;
         }
 
         .form-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr; /* 2단 배열로 스크롤 감소 */
-            gap: 15px 25px;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px 30px;
         }
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .form-group.full {
+        .field.full {
             grid-column: span 2;
         }
 
         label {
-            font-size: 0.85rem;
+            display: block;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-bottom: 6px;
-            color: var(--text-dark);
+            margin-bottom: 10px;
         }
 
         input {
-            padding: 12px;
-            border: 1px solid var(--border);
-            border-radius: 6px;
-            font-size: 0.95rem;
-            transition: border-color 0.2s;
+            width: 100%;
+            padding: 14px 0;
+            border: none;
+            border-bottom: 1px solid var(--line-color);
+            font-size: 1rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s;
+            background-color: transparent;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--primary);
+            border-bottom: 2px solid var(--primary-blue);
         }
 
-        /* 개인정보 동의 영역 (우측 체크박스) */
-        .agreement-area {
+        input::placeholder {
+            color: #adb5bd;
+            font-size: 0.9rem;
+        }
+
+        /* 동의 섹션 */
+        .agreement-row {
             grid-column: span 2;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: 10px;
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
+            margin-top: 20px;
+            padding: 20px 0;
+            border-top: 1px solid var(--line-color);
         }
 
-        .agreement-text {
-            font-size: 0.85rem;
-            color: var(--text-muted);
+        .agreement-row span {
+            font-size: 0.95rem;
+            font-weight: 500;
         }
 
-        .agreement-area input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
+        .agreement-row input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin: 0;
             cursor: pointer;
         }
 
-        /* 버튼 및 하단 링크 */
-        .action-area {
+        /* 버튼 영역 */
+        .action-btns {
             grid-column: span 2;
+            margin-top: 40px;
             text-align: center;
-            margin-top: 20px;
         }
 
-        .btn-submit {
+        .submit-btn {
             width: 100%;
-            padding: 15px;
-            background-color: var(--primary);
+            padding: 18px;
+            background-color: var(--primary-blue);
             color: white;
             border: none;
-            border-radius: 6px;
+            border-radius: 8px;
             font-size: 1.1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .btn-submit:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .footer-links {
-            margin-top: 20px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-            color: var(--primary);
-        }
-
-        .highlight-link {
             font-weight: 700;
-            color: var(--primary) !important;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--dark-blue);
+        }
+
+        .sub-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .sub-links a {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .sub-links a:hover {
+            color: var(--text-main);
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<div class="signup-container">
-    <h2>회원가입</h2>
-    
-    <div class="form-grid">
-        <div class="form-group full">
-            <label for="email">아이디 (이메일)</label>
-            <input type="email" id="email" placeholder="사용하실 이메일 주소를 입력해주세요" required>
-        </div>
+    <header class="brand-header">
+        <h1>대전대흥교회 청소년부</h1>
+        <p>함께 성장하는 신앙 공동체에 오신 것을 환영합니다.</p>
+    </header>
 
-        <div class="form-group">
-            <label for="password">비밀번호</label>
-            <input type="password" id="password" placeholder="6자리 이상 입력해주세요" required>
-        </div>
-        <div class="form-group">
-            <label for="password-confirm">비밀번호 재확인</label>
-            <input type="password" id="password-confirm" placeholder="한 번 더 입력해주세요" required>
-        </div>
+    <main class="signup-content">
+        <div class="section-title">회원정보 입력</div>
+        
+        <div class="form-grid">
+            <div class="field full">
+                <label>아이디 (이메일)</label>
+                <input type="email" id="email" placeholder="사용하실 이메일 주소를 입력해주세요" required>
+            </div>
 
-        <div class="form-group">
-            <label for="name">이름</label>
-            <input type="text" id="name" placeholder="실명을 입력해주세요" required>
-        </div>
-        <div class="form-group">
-            <label for="nickname">닉네임</label>
-            <input type="text" id="nickname" placeholder="닉네임을 입력해주세요" required>
-        </div>
+            <div class="field">
+                <label>비밀번호</label>
+                <input type="password" id="password" placeholder="6자리 이상 입력해주세요" required>
+            </div>
+            <div class="field">
+                <label>비밀번호 재확인</label>
+                <input type="password" id="password-confirm" placeholder="한 번 더 입력해주세요" required>
+            </div>
 
-        <div class="form-group full">
-            <label for="church-code">교회코드</label>
-            <input type="text" id="church-code" placeholder="발급받으신 교회코드를 입력해주세요" required>
-        </div>
+            <div class="field">
+                <label>이름</label>
+                <input type="text" id="name" placeholder="실명을 입력해주세요" required>
+            </div>
+            <div class="field">
+                <label>닉네임</label>
+                <input type="text" id="nickname" placeholder="닉네임을 입력해주세요" required>
+            </div>
 
-        <div class="agreement-area">
-            <span class="agreement-text">개인정보 수집 및 서비스 이용약관에 동의합니다. </span>
-            <input type="checkbox" id="agree">
-        </div>
+            <div class="field full">
+                <label>교회코드</label>
+                <input type="text" id="church-code" placeholder="발급받으신 교회코드를 입력해주세요" required>
+            </div>
 
-        <div class="action-area">
-            <button id="signup-btn" class="btn-submit">가입하기</button>
-            <div class="footer-links">
-                <a href="login.html">이미 계정이 있나요?</a>
-                |
-                <a href="index.html">홈페이지로 돌아가기</a>
-                |
-                <a href="login.html" class="highlight-link">로그인</a>
+            <div class="agreement-row">
+                <span>개인정보 수집 및 이용에 동의합니다.</span>
+                <input type="checkbox" id="agree">
+            </div>
+
+            <div class="action-btns">
+                <button id="signup-btn" class="submit-btn">가입하기</button>
+                <div class="sub-links">
+                    <a href="index.html">홈페이지로 돌아가기</a>
+                    <a href="login.html">로그인 페이지</a>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </main>
 
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-    const firebaseConfig = {
-        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-        authDomain: "dhchurch-cf85f.firebaseapp.com",
-        projectId: "dhchurch-cf85f",
-        storageBucket: "dhchurch-cf85f.firebasestorage.app",
-        messagingSenderId: "718998916531",
-        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
-    };
+        const firebaseConfig = {
+            apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+            authDomain: "dhchurch-cf85f.firebaseapp.com",
+            projectId: "dhchurch-cf85f",
+            storageBucket: "dhchurch-cf85f.firebasestorage.app",
+            messagingSenderId: "718998916531",
+            appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
+        };
 
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const db = getFirestore(app);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
 
-    const signupBtn = document.getElementById('signup-btn');
+        const signupBtn = document.getElementById('signup-btn');
 
-    signupBtn.addEventListener('click', async () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const passwordConfirm = document.getElementById('password-confirm').value;
-        const name = document.getElementById('name').value;
-        const nickname = document.getElementById('nickname').value;
-        const churchCode = document.getElementById('church-code').value;
-        const agree = document.getElementById('agree').checked;
+        signupBtn.addEventListener('click', async () => {
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const passwordConfirm = document.getElementById('password-confirm').value;
+            const name = document.getElementById('name').value;
+            const nickname = document.getElementById('nickname').value;
+            const churchCode = document.getElementById('church-code').value;
+            const agree = document.getElementById('agree').checked;
 
-        if (!email || !password || !name || !nickname || !churchCode) {
-            alert("모든 필수 항목을 입력해주세요.");
-            return;
-        }
-
-        if (password !== passwordConfirm) {
-            alert("비밀번호가 서로 일치하지 않습니다. 다시 확인해주세요.");
-            return;
-        }
-
-        if (!agree) {
-            alert("이용약관에 동의해주세요.");
-            return;
-        }
-
-        if (churchCode !== "1234") {
-            alert("교회코드가 올바르지 않습니다. 다시 확인해주세요.");
-            return;
-        }
-
-        try {
-            const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-            const user = userCredential.user;
-
-            await setDoc(doc(db, "users", user.uid), {
-                email: email,
-                name: name,
-                nickname: nickname,
-                churchMember: true,
-                createdAt: new Date().toISOString()
-            });
-
-            alert("회원가입이 완료되었습니다! 로그인을 진행해주세요.");
-            window.location.href = "login.html";
-
-        } catch (error) {
-            if (error.code === 'auth/email-already-in-use') {
-                alert("이미 등록된 아이디입니다.");
-            } else {
-                alert("오류가 발생했습니다: " + error.message);
+            if (!email || !password || !name || !nickname || !churchCode) {
+                alert("모든 필수 항목을 입력해주세요.");
+                return;
             }
-        }
-    });
-</script>
 
+            if (password !== passwordConfirm) {
+                alert("비밀번호가 서로 일치하지 않습니다. 다시 확인해주세요.");
+                return;
+            }
+
+            if (!agree) {
+                alert("개인정보 이용 동의가 필요합니다.");
+                return;
+            }
+
+            if (churchCode !== "1234") {
+                alert("교회코드가 올바르지 않습니다. 다시 확인해주세요.");
+                return;
+            }
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                await setDoc(doc(db, "users", user.uid), {
+                    email: email,
+                    name: name,
+                    nickname: nickname,
+                    churchMember: true,
+                    createdAt: new Date().toISOString()
+                });
+
+                alert("대전대흥교회 청소년부의 가족이 되신 것을 환영합니다!");
+                window.location.href = "login.html";
+
+            } catch (error) {
+                if (error.code === 'auth/email-already-in-use') {
+                    alert("이미 가입된 아이디입니다.");
+                } else {
+                    alert("가입 중 오류가 발생했습니다: " + error.message);
+                }
+            }
+        });
+    </script>
 </body>
 </html>
