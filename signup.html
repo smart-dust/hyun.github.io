@@ -3,196 +3,190 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Member Join</title>
+    <title>회원가입 | DH Church</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --brand-color: #007bff;
-            --brand-hover: #0062cc;
-            --text-dark: #2d3436;
-            --text-light: #636e72;
-            --bg-soft: #fbfcfd;
+            --primary: #007bff;
+            --primary-dark: #0056b3;
+            --bg-gray: #f8f9fa;
+            --text-main: #212529;
+            --text-sub: #6c757d;
+            --border: #dee2e6;
             --white: #ffffff;
-            --input-border: #e9ecef;
         }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f1f3f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: var(--bg-gray);
+            color: var(--text-main);
             margin: 0;
-            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
         }
 
-        .signup-card {
+        /* 상단 네비게이션 느낌의 여백 */
+        .header-spacer {
+            height: 60px;
+        }
+
+        .signup-wrapper {
             width: 100%;
-            max-width: 350px;
-            padding: 50px 40px;
+            max-width: 500px; /* 일반적인 회원가입 폼 너비 */
             background: var(--white);
-            border-radius: 24px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 20px 60px rgba(0, 0, 0, 0.03);
-            text-align: center;
-            box-sizing: border-box;
+            padding: 50px 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            margin-bottom: 50px;
         }
 
-        .signup-card h2 {
-            font-size: 1.7rem;
+        .signup-wrapper h2 {
+            font-size: 2rem;
             font-weight: 700;
-            margin-bottom: 35px;
-            color: var(--text-dark);
-            letter-spacing: -1px;
+            text-align: center;
+            margin-bottom: 10px;
+            color: var(--primary);
         }
 
-        .input-group {
-            margin-bottom: 20px;
-            text-align: left;
-        }
-
-        .input-group label {
-            display: block;
-            font-size: 0.8rem;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-dark);
-            padding-left: 2px;
-        }
-
-        input {
-            width: 100%;
-            padding: 13px 18px;
-            border: 1.5px solid var(--input-border);
-            border-radius: 12px;
+        .signup-wrapper p.desc {
+            text-align: center;
+            color: var(--text-sub);
+            margin-bottom: 40px;
             font-size: 0.95rem;
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-section label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 1rem;
             box-sizing: border-box;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            background-color: var(--bg-soft);
+            transition: all 0.2s;
+            background-color: #fff;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--brand-color);
-            background-color: var(--white);
-            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.08);
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.1);
         }
 
-        .btn-signup {
-            width: 100%;
+        /* 개인정보 동의 영역 */
+        .agreement-box {
+            background-color: #f1f3f5;
             padding: 15px;
-            background-color: var(--brand-color);
-            color: var(--white);
+            border-radius: 8px;
+            margin-bottom: 25px;
+            font-size: 0.85rem;
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .checkbox-group input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+
+        /* 버튼 그룹 */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .btn-submit {
+            padding: 16px;
+            background-color: var(--primary);
+            color: white;
             border: none;
-            border-radius: 12px;
-            font-size: 1rem;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
+            transition: all 0.2s;
         }
 
-        .btn-signup:hover {
-            background-color: var(--brand-hover);
+        .btn-submit:hover {
+            background-color: var(--primary-dark);
             transform: translateY(-1px);
         }
 
-        .footer {
-            margin-top: 30px;
-            font-size: 0.85rem;
-            color: var(--text-light);
-        }
-
-        .footer a {
-            color: var(--brand-color);
+        .btn-home {
+            padding: 14px;
+            background-color: transparent;
+            color: var(--text-sub);
+            border: 1px solid var(--border);
+            border-radius: 8px;
             text-decoration: none;
-            font-weight: 700;
-            margin-left: 5px;
+            text-align: center;
+            font-size: 0.95rem;
+            transition: all 0.2s;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        .btn-home:hover {
+            background-color: #f8f9fa;
+            color: var(--text-main);
+        }
+
+        .footer-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--text-sub);
+        }
+
+        .footer-link a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
 
-<div class="signup-card">
-    <h2>회원가입</h2>
+    <div class="header-spacer"></div>
 
-    <div class="input-group">
-        <label for="email">ID (이메일)</label>
-        <input type="email" id="email" placeholder="아이디를 입력해주세요" required>
-    </div>
+    <div class="signup-wrapper">
+        <h2>회원가입</h2>
+        <p class="desc">서비스 이용을 위해 회원정보를 입력해주세요.</p>
 
-    <div class="input-group">
-        <label for="password">Password</label>
-        <input type="password" id="password" placeholder="6자리 이상 입력해주세요" required>
-    </div>
+        <div class="form-section">
+            <label for="email">아이디 (이메일)</label>
+            <input type="email" id="email" placeholder="이메일 주소를 입력하세요" required>
+        </div>
 
-    <div class="input-group">
-        <label for="password-confirm">Confirm Password</label>
-        <input type="password" id="password-confirm" placeholder="비밀번호를 다시 입력해주세요" required>
-    </div>
+        <div class="form-section">
+            <label for="password">비밀번호</label>
+            <input type="password" id="password" placeholder="6자리 이상 비밀번호" required>
+        </div>
 
-    <button id="signup-btn" class="btn-signup">가입하기</button>
-
-    <div class="footer">
-        이미 계정이 있으신가요? <a href="login.html">로그인</a>
-    </div>
-</div>
-
-<script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-    // 사용중이신 기존 설정값
-    const firebaseConfig = {
-        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-        authDomain: "dhchurch-cf85f.firebaseapp.com",
-        projectId: "dhchurch-cf85f",
-        storageBucket: "dhchurch-cf85f.firebasestorage.app",
-        messagingSenderId: "718998916531",
-        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    const signupBtn = document.getElementById('signup-btn');
-
-    signupBtn.addEventListener('click', () => {
-        const email = document.getElementById('email').value;
-        const password = document.getElementById('password').value;
-        const passwordConfirm = document.getElementById('password-confirm').value;
-
-        if (!email || !password) {
-            alert("아이디와 비밀번호를 입력해주세요.");
-            return;
-        }
-
-        if (password !== passwordConfirm) {
-            alert("비밀번호가 일치하지 않습니다.");
-            return;
-        }
-
-        createUserWithEmailAndPassword(auth, email, password)
-            .then(() => {
-                alert("회원가입이 완료되었습니다!");
-                window.location.href = "login.html"; 
-            })
-            .catch((error) => {
-                if (error.code === 'auth/email-already-in-use') {
-                    alert("이미 가입된 아이디입니다.");
-                } else if (error.code === 'auth/weak-password') {
-                    alert("비밀번호는 최소 6자리 이상이어야 합니다.");
-                } else {
-                    alert("가입 중 오류가 발생했습니다: " + error.message);
-                }
-            });
-    });
-</script>
-
-</body>
-</html>
+        <div class="form-section">
+            <label for="name">이름</label>
+            <input type="text" id="name"
