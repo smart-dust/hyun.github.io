@@ -140,73 +140,54 @@
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 <script src="js/main.js"></script>
- <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        const firebaseConfig = {
-            apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-            authDomain: "dhchurch-cf85f.firebaseapp.com",
-            projectId: "dhchurch-cf85f",
-            storageBucket: "dhchurch-cf85f.firebasestorage.app",
-            appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
-        };
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-        const app = initializeApp(firebaseConfig);
-        const auth = getAuth(app);
+    const firebaseConfig = {
+        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+        authDomain: "dhchurch-cf85f.firebaseapp.com",
+        projectId: "dhchurch-cf85f",
+        storageBucket: "dhchurch-cf85f.firebasestorage.app",
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+    // ⭐ [추가] 만약 3초 뒤에도 안 나타나면 강제로 보여주는 안전장치
+    setTimeout(() => {
+        const btn = document.getElementById('admin-auth-btn');
+        if (btn && btn.style.opacity !== "1") {
+            btn.style.opacity = "1";
+            console.log("안전장치에 의해 버튼이 표시됨");
+        }
+    }, 3000);
+
+    onAuthStateChanged(auth, (user) => {
         const authBtn = document.getElementById('admin-auth-btn');
+        if (!authBtn) return; // 버튼을 못 찾으면 실행 중단
 
-        onAuthStateChanged(auth, (user) => {
-            if (user) {
-                // [로그인 상태]
-                authBtn.innerText = "Logout";
-                authBtn.removeAttribute('href');
-                authBtn.onclick = (e) => {
-                    e.preventDefault();
-                    // 물어보고 확인 누르면 바로 로그아웃 & 새로고침 (알림창 생략)
-                    if (confirm("정말 로그아웃하시겠습니까?")) {
-                        signOut(auth).then(() => {
-                            location.reload(); 
-                        });
-                    }
-                };
-                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'block');
-            } else {
-                // [로그아웃 상태]
-                authBtn.innerText = "Login";
-                authBtn.setAttribute('href', 'login.html');
-                authBtn.onclick = null;
-                document.querySelectorAll('.admin-only').forEach(el => el.style.display = 'none');
-            }
-        });
-    </script>   
-    // index.html (및 다른 모든 페이지의 스크립트 부분)
+        if (user) {
+            authBtn.innerText = "Logout";
+            authBtn.onclick = (e) => {
+                e.preventDefault();
+                if (confirm("정말 로그아웃하시겠습니까?")) {
+                    signOut(auth).then(() => location.reload());
+                }
+            };
+        } else {
+            authBtn.innerText = "Login";
+            const currentPage = window.location.pathname.split("/").pop() || "index.html";
+            authBtn.setAttribute('href', `login.html?redirect=${currentPage}`);
+            authBtn.onclick = null;
+        }
 
-onAuthStateChanged(auth, (user) => {
-    const authBtn = document.getElementById('admin-auth-btn');
-    const adminElements = document.querySelectorAll('.admin-only');
-
-    if (user) {
-        // [로그인 상태일 때]
-        authBtn.innerText = "Logout";
-        authBtn.onclick = (e) => {
-            e.preventDefault();
-            if (confirm("정말 로그아웃하시겠습니까?")) {
-                signOut(auth).then(() => location.reload());
-            }
-        };
-        adminElements.forEach(el => el.style.display = 'block');
-    } else {
-        // [로그아웃 상태일 때]
-        authBtn.innerText = "Login";
-        const currentPage = window.location.pathname.split("/").pop() || "index.html";
-        authBtn.setAttribute('href', `login.html?redirect=${currentPage}`);
-        authBtn.onclick = null;
-        adminElements.forEach(el => el.style.display = 'none');
-    }
-
-    // ⭐ 핵심: 로그인이든 아니든 '판단'이 끝났으므로 이제 버튼을 보여줍니다.
-    authBtn.style.opacity = "1";
-});
+        // ⭐ 핵심: 여기서 투명도를 1로 바꿉니다.
+        authBtn.style.opacity = "1";
+        console.log("Firebase 확인 후 버튼 표시 완료");
+    });
+</script>
 </body>
 </html>
