@@ -7,17 +7,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --text-main: #2d3436;
-            --text-sub: #636e72;
+            --brand-color: #007bff;
+            --brand-hover: #0062cc;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --bg-soft: #fbfcfd;
             --white: #ffffff;
+            --input-border: #e9ecef;
         }
 
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background: var(--bg-gradient);
+            background-color: #f1f3f5;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -27,84 +28,90 @@
         }
 
         .signup-card {
-            background: var(--white);
             width: 100%;
-            max-width: 380px;
-            padding: 40px; 
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            max-width: 350px;
+            padding: 50px 40px;
+            background: var(--white);
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 20px 60px rgba(0, 0, 0, 0.03);
             text-align: center;
             box-sizing: border-box;
         }
 
         .signup-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 30px;
-            font-size: 1.5rem;
+            font-size: 1.7rem;
             font-weight: 700;
+            margin-bottom: 35px;
+            color: var(--text-dark);
+            letter-spacing: -1px;
         }
 
         .input-group {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
             text-align: left;
         }
 
         .input-group label {
             display: block;
             font-size: 0.8rem;
-            color: var(--text-sub);
-            margin-bottom: 6px;
-            font-weight: 500;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+            padding-left: 2px;
         }
 
         input {
             width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #dfe6e9;
-            border-radius: 10px;
-            font-size: 0.9rem;
+            padding: 13px 18px;
+            border: 1.5px solid var(--input-border);
+            border-radius: 12px;
+            font-size: 0.95rem;
             box-sizing: border-box;
-            background-color: #fbfcfc;
-            transition: all 0.3s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--bg-soft);
         }
 
         input:focus {
             outline: none;
-            border-color: var(--accent-color);
-            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+            border-color: var(--brand-color);
+            background-color: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.08);
         }
 
-        button {
+        .btn-signup {
             width: 100%;
-            padding: 14px;
-            background-color: var(--accent-color);
-            color: white;
+            padding: 15px;
+            background-color: var(--brand-color);
+            color: var(--white);
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 1rem;
-            font-weight: 600; 
+            font-weight: 600;
             cursor: pointer;
-            margin-top: 15px;
+            margin-top: 10px;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
         }
 
-        button:hover {
-            background-color: #2980b9;
-            transform: translateY(-2px);
+        .btn-signup:hover {
+            background-color: var(--brand-hover);
+            transform: translateY(-1px);
         }
 
-        .footer-links {
-            margin-top: 25px;
-            font-size: 0.8rem;
+        .footer {
+            margin-top: 30px;
+            font-size: 0.85rem;
+            color: var(--text-light);
         }
 
-        .footer-links a {
-            color: var(--text-sub);
+        .footer a {
+            color: var(--brand-color);
             text-decoration: none;
+            font-weight: 700;
+            margin-left: 5px;
         }
 
-        .footer-links a:hover {
-            color: var(--primary-color);
+        .footer a:hover {
             text-decoration: underline;
         }
     </style>
@@ -115,23 +122,23 @@
     <h2>회원가입</h2>
 
     <div class="input-group">
-        <label for="email">이메일 계정</label>
-        <input type="email" id="email" placeholder="example@email.com" required>
+        <label for="email">ID (이메일)</label>
+        <input type="email" id="email" placeholder="아이디를 입력해주세요" required>
     </div>
 
     <div class="input-group">
-        <label for="password">비밀번호</label>
-        <input type="password" id="password" placeholder="6자리 이상 입력" required>
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="6자리 이상 입력해주세요" required>
     </div>
 
     <div class="input-group">
-        <label for="password-confirm">비밀번호 확인</label>
-        <input type="password" id="password-confirm" placeholder="비밀번호 재입력" required>
+        <label for="password-confirm">Confirm Password</label>
+        <input type="password" id="password-confirm" placeholder="비밀번호를 다시 입력해주세요" required>
     </div>
 
-    <button id="signup-btn">가입하기</button>
+    <button id="signup-btn" class="btn-signup">가입하기</button>
 
-    <div class="footer-links">
+    <div class="footer">
         이미 계정이 있으신가요? <a href="login.html">로그인</a>
     </div>
 </div>
@@ -140,7 +147,7 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-    // Firebase 설정 (기존 설정과 동일하게 유지)
+    // 사용중이신 기존 설정값
     const firebaseConfig = {
         apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
         authDomain: "dhchurch-cf85f.firebaseapp.com",
@@ -161,7 +168,7 @@
         const passwordConfirm = document.getElementById('password-confirm').value;
 
         if (!email || !password) {
-            alert("정보를 모두 입력해주세요.");
+            alert("아이디와 비밀번호를 입력해주세요.");
             return;
         }
 
@@ -171,17 +178,17 @@
         }
 
         createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(() => {
                 alert("회원가입이 완료되었습니다!");
-                window.location.href = "login.html"; // 가입 후 로그인 페이지로 이동
+                window.location.href = "login.html"; 
             })
             .catch((error) => {
                 if (error.code === 'auth/email-already-in-use') {
-                    alert("이미 가입된 이메일입니다.");
+                    alert("이미 가입된 아이디입니다.");
                 } else if (error.code === 'auth/weak-password') {
-                    alert("비밀번호는 6자리 이상이어야 합니다.");
+                    alert("비밀번호는 최소 6자리 이상이어야 합니다.");
                 } else {
-                    alert("가입 실패: " + error.message);
+                    alert("가입 중 오류가 발생했습니다: " + error.message);
                 }
             });
     });
