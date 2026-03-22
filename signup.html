@@ -8,7 +8,7 @@
     <style>
         :root {
             --primary-blue: #007bff;
-            --gradient-blue: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            --deep-blue: #004a99; /* 차분한 블루 */
             --text-dark: #1d1d1f;
             --text-gray: #86868b;
             --border-color: #d2d2d7;
@@ -28,16 +28,14 @@
 
         .container { width: 100%; max-width: 580px; }
 
-        /* 상단 타이틀 색상 추가 */
+        /* 제목: 차분한 블루 적용 */
         header { text-align: center; margin-bottom: 45px; }
         header h1 { 
             font-size: 2.2rem; 
             font-weight: 900; 
             letter-spacing: -1px; 
             margin-bottom: 8px;
-            background: var(--gradient-blue);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            color: var(--deep-blue);
         }
         header p { font-size: 1rem; color: var(--text-gray); }
 
@@ -50,13 +48,28 @@
             body { padding: 40px 15px; }
         }
 
-        /* 소제목 디자인 */
+        /* 소제목 포인트 바 유지 및 코드 오류(간섭) 방지 */
         .label-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        label { font-size: 0.95rem; font-weight: 800; position: relative; padding-left: 12px; }
-        label::before {
-            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-            width: 3.5px; height: 14px; background-color: var(--primary-blue); border-radius: 2px;
+        label { 
+            font-size: 0.95rem; 
+            font-weight: 800; 
+            position: relative; 
+            padding-left: 14px; /* 포인트 바 자리 확보 */
+            display: inline-block;
         }
+        label::before {
+            content: ''; 
+            position: absolute; 
+            left: 0; 
+            top: 50%; 
+            transform: translateY(-50%);
+            width: 4px; 
+            height: 14px; 
+            background-color: var(--primary-blue); 
+            border-radius: 2px;
+            pointer-events: none; /* 클릭 간섭 원천 차단 */
+        }
+        
         .sub-text { font-weight: 400; color: #b0b0b5; font-size: 0.75rem; margin-left: 4px; }
 
         .check-btn {
@@ -92,7 +105,7 @@
         .privacy-box h4 { color: #1d1d1f; font-weight: 800; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
         .privacy-box strong { color: #111; display: block; margin-top: 10px; }
 
-        /* 체크박스 한 줄 배치 */
+        /* 동의 항목 한 줄 배치 */
         .agreement-group {
             grid-column: span 2;
             display: flex;
@@ -102,22 +115,23 @@
             padding: 10px 0;
         }
         .agreement-item { display: flex; align-items: center; gap: 8px; }
-        .agreement-text { font-size: 0.85rem; font-weight: 600; color: #333; cursor: pointer; }
+        /* 체크박스용 라벨은 포인트 바 디자인 제외 */
+        .agreement-text { font-size: 0.85rem; font-weight: 600; color: #333; cursor: pointer; padding-left: 0; }
+        .agreement-text::before { display: none; } 
+
         input[type="checkbox"] { width: 20px; height: 20px; cursor: pointer; accent-color: var(--primary-blue); }
 
-        /* 가입 완료하기 버튼 그라데이션 적용 */
+        /* 가입 버튼 그라데이션 */
         .submit-btn {
             grid-column: span 2; padding: 18px; 
-            background: var(--gradient-blue);
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
             color: white; border: none; border-radius: 12px; font-size: 1.15rem;
             font-weight: 700; cursor: pointer; margin-top: 15px; 
             transition: var(--transition);
             box-shadow: 0 4px 12px rgba(0, 123, 255, 0.2);
         }
         .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 123, 255, 0.3); opacity: 0.95; }
-        .submit-btn:active { transform: translateY(0); }
 
-        /* 하단 링크 효과 추가 */
         .nav-links {
             grid-column: span 2; text-align: center; margin-top: 15px;
             display: flex; justify-content: center; align-items: center; gap: 12px;
@@ -131,11 +145,7 @@
             border-radius: 6px;
             transition: var(--transition);
         }
-        .nav-links a:hover { 
-            background-color: #f2f2f7; 
-            color: var(--primary-blue);
-            transform: scale(1.05);
-        }
+        .nav-links a:hover { background-color: #f2f2f7; color: var(--primary-blue); }
         .divider { width: 1px; height: 10px; background-color: var(--border-color); }
     </style>
 </head>
@@ -158,20 +168,20 @@
 
             <div class="field">
                 <label>비밀번호</label>
-                <input type="password" id="password" placeholder="6자리 이상" required>
+                <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required>
             </div>
             <div class="field">
                 <label>비밀번호 확인</label>
-                <input type="password" id="password-confirm" placeholder="동일 입력" required>
+                <input type="password" id="password-confirm" placeholder="동일하게 입력해주세요" required>
             </div>
 
             <div class="field">
                 <label>이름</label>
-                <input type="text" id="name" placeholder="실명 입력" required>
+                <input type="text" id="name" placeholder="실명을 입력해주세요" required>
             </div>
             <div class="field">
                 <label>닉네임</label>
-                <input type="text" id="nickname" placeholder="닉네임" required>
+                <input type="text" id="nickname" placeholder="사용하실 닉네임을 입력해주세요" required>
             </div>
 
             <div class="field full">
@@ -208,11 +218,11 @@
             <div class="agreement-group">
                 <div class="agreement-item">
                     <input type="checkbox" id="agree-privacy">
-                    <label for="agree-privacy" class="agreement-text" style="padding-left:0; border:none; margin:0; position:static;">개인정보 수집 및 이용 동의</label>
+                    <label for="agree-privacy" class="agreement-text">개인정보 수집 및 이용 동의</label>
                 </div>
                 <div class="agreement-item">
                     <input type="checkbox" id="agree-service">
-                    <label for="agree-service" class="agreement-text" style="padding-left:0; border:none; margin:0; position:static;">서비스 약관 동의</label>
+                    <label for="agree-service" class="agreement-text">서비스 약관 동의</label>
                 </div>
             </div>
 
@@ -227,7 +237,6 @@
     </div>
 
     <script type="module">
-        /* 파이어베이스 연동 및 중복확인 로직 (이전과 동일하게 유지) */
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
         import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -260,7 +269,7 @@
                 const methods = await fetchSignInMethodsForEmail(auth, email);
                 if(methods.length > 0) { alert("이미 가입된 아이디입니다."); isEmailVerified = false; }
                 else { alert("사용 가능한 아이디입니다."); isEmailVerified = true; }
-            } catch(e) { alert("중복 확인 중 오류가 발생했습니다."); }
+            } catch(e) { alert("중복 확인 오류 발생"); }
         });
 
         document.getElementById('signup-btn').addEventListener('click', async () => {
