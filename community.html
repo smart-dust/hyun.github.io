@@ -3,112 +3,84 @@
 <head>
 <meta charset="utf-8">
 <title>커뮤니티</title>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&display=swap" rel="stylesheet">
-<style>
-body { margin:0; font-family:'Noto Sans KR','Apple SD Gothic Neo',Arial,sans-serif; background:#f5f7fa; color:#333; }
-html { scroll-behavior:smooth; }
-a { text-decoration:none; }
-
-/* 메뉴 */
-nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:1000; box-shadow:0 2px 6px rgba(0,0,0,0.2); }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:10px 30px; }
-.nav-home { display:flex; align-items:center; gap:10px; }
-.nav-logo { height:35px; }
-.nav-title { color:white; font-weight:400; font-size:18px; }
-.nav-menu { display:flex; gap:25px; align-items:center; }
-.nav-menu a, .menu-item > a { color:white; font-weight:600; padding:10px 12px; border-radius:6px; transition:0.25s; }
-.nav-menu a:hover, .menu-item > a:hover { transform:translateY(-2px); background:rgba(255,255,255,0.08); }
-
-/* 서브메뉴 */
-.menu-item { position:relative; }
-.submenu { position:absolute; top:100%; left:0; min-width:220px; background:rgba(0,0,0,0.95); border-radius:12px; padding:10px 0; box-shadow:0 8px 20px rgba(0,0,0,0.3); opacity:0; visibility:hidden; transform:translateY(8px); transition:0.25s; }
-.menu-item:hover .submenu { opacity:1; visibility:visible; transform:translateY(0); }
-.submenu a { display:block; padding:12px 20px; color:white; }
-
-/* 섹션 */
-.section { padding:120px 20px 60px; max-width:1000px; margin:auto; }
-.section h2 { font-size:26px; color:#6fa8dc; margin-bottom:20px; text-align:center; }
-
-/* 갤러리 */
-.gallery-container { display:flex; gap:30px; flex-wrap:wrap; justify-content:center; }
-.gallery-card { background:white; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); width:220px; text-align:center; padding:10px; transition:0.2s; }
-.gallery-card img { width:100%; border-radius:10px; margin-bottom:10px; }
-.gallery-card:hover { transform:translateY(-3px); }
-
-/* 게시판 */
-.board-container { max-width:700px; margin:auto; display:flex; flex-direction:column; gap:20px; }
-.board-card { background:white; padding:15px 20px; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.1); transition:0.2s; }
-.board-card h3 { margin:0 0 5px 0; color:#6fa8dc; }
-.board-card p { margin:0; font-size:14px; color:#555; }
-
-/* footer */
-.footer { background:#222; color:#ccc; padding:40px 20px; text-align:center; font-size:14px; }
-.footer p { margin:5px 0; }
-</style>
-</head>
-<body>
-
-<!-- 메뉴 -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/common.css">
+<link rel="stylesheet" href="css/community.css">
+<body> </head>
 <nav>
-  <div class="nav-container">
-    <a href="index.html" class="nav-home">
-      <img src="logo.png" class="nav-logo">
-      <span class="nav-title">대전대흥교회 청소년부</span>
-    </a>
-    <div class="nav-menu">
-      <a href="index.html">Home</a>
-      <div class="menu-item">
-        <a href="about.html">교회소개</a>
-        <div class="submenu">
-          <a href="about.html#1">사명과 비전</a>
-          <a href="about.html#2">예배 안내</a>
-          <a href="about.html#3">섬기는 사람들</a>
+    <div class="nav-container">
+        <div class="nav-left">
+            <a href="community.html" class="nav-home">
+                <img src="images/logo.png" class="nav-logo" alt="로고">
+                <span class="nav-title">대전대흥교회 청소년부</span>
+            </a>
         </div>
-      </div>
-      <div class="menu-item">
-        <a href="sermon.html">설교</a>
-        <div class="submenu">
-          <a href="sermon.html#1">설교영상</a>
-          <a href="sermon.html#2">공과공부</a>
+        <div class="nav-menu">
+            <a href="index.html">Home</a>
+            <div class="menu-item">
+                <a href="about.html">교회소개</a>
+                <div class="submenu">
+                    <a href="about.html#mission">사명과 비전</a>
+                    <a href="about.html#worship">예배 안내</a>
+                    <a href="about.html#student-leaders">학생 임원</a>
+                    <a href="about.html#staff">섬기는 사람들</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="sermon.html">설교</a>
+                <div class="submenu">
+                    <a href="sermon.html#1">설교영상</a>
+                    <a href="sermon.html#2">공과공부</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="notice.html">공지사항</a>
+                <div class="submenu">
+                    <a href="#1">행사 안내</a>
+                    <a href="#2">주보</a>
+                </div>
+            </div>
+            <div class="menu-item">
+                <a href="community.html">커뮤니티</a>
+                <div class="submenu">
+            <a href="community.html#1">사진 갤러리</a>
+            <a href="community.html#2">게시판</a>
         </div>
-      </div>
-      <div class="menu-item">
-        <a href="notice.html">공지사항</a>
-        <div class="submenu">
-          <a href="notice.html#1">행사 안내</a>
-          <a href="notice.html#2">주보</a>
-        </div>
-      </div>
-      <div class="menu-item">
-        <a href="community.html" class="active">커뮤니티</a>
-        <div class="submenu">
-          <a href="#gallery">사진 갤러리</a>
-          <a href="#board">게시판</a>
-        </div>
-      </div>
     </div>
-  </div>
+
+    <div class="menu-item">
+        <a href="login.html" id="admin-auth-btn">Login</a>
+    </div>
+</div>
 </nav>
+<!-- ✅ 콘텐츠 -->
+<div class="notice-container">
 
-<!-- 섹션: 갤러리 -->
-<section id="gallery" class="section">
-  <h2>사진 갤러리</h2>
-  <div class="gallery-container">
-    <div class="gallery-card"><img src="gallery1.jpg" alt="갤러리1"><p>청소년부 여름 수련회</p></div>
-    <div class="gallery-card"><img src="gallery2.jpg" alt="갤러리2"><p>주일 예배 모습</p></div>
-    <div class="gallery-card"><img src="gallery3.jpg" alt="갤러리3"><p>봄 캠프 활동</p></div>
-  </div>
-</section>
+  <h2 id="1">행사 안내</h2>
 
-<!-- 섹션: 게시판 -->
-<section id="board" class="section">
-  <h2>게시판</h2>
-  <div class="board-container">
-    <div class="board-card"><h3>다음 주 예배 공지</h3><p>2026.03.22 | 주일예배 안내</p></div>
-    <div class="board-card"><h3>청소년부 모임 안내</h3><p>2026.03.20 | 성경공부 모임</p></div>
-    <div class="board-card"><h3>봉사활동 모집</h3><p>2026.03.18 | 지역 봉사활동 참여 안내</p></div>
+  <div class="notice-card">
+    <h3>청소년부 봄 캠프</h3>
+    <p>2026.04.10 ~ 2026.04.12 | 교육선교관 2층</p>
   </div>
-</section>
+
+  <div class="notice-card">
+    <h3>주일예배 특별 프로그램</h3>
+    <p>2026.03.28 | 주일 11시 | 교육선교관 2층</p>
+  </div>
+
+  <h2 id="2">주보</h2>
+
+  <div class="notice-card">
+    <h3>2026년 3월 3주차 주보</h3>
+    <p><a href="주보-2026-03-15.pdf" target="_blank">PDF 다운로드</a></p>
+  </div>
+
+  <div class="notice-card">
+    <h3>2026년 3월 2주차 주보</h3>
+    <p><a href="주보-2026-03-08.pdf" target="_blank">PDF 다운로드</a></p>
+  </div>
+
+</div>
 
 <!-- footer -->
 <footer class="footer">
@@ -117,5 +89,67 @@ nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); z-index:10
   <p>© 2026 대전대흥교회 청소년부</p>
 </footer>
 
+    <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+    const firebaseConfig = {
+        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
+        authDomain: "dhchurch-cf85f.firebaseapp.com",
+        projectId: "dhchurch-cf85f",
+        storageBucket: "dhchurch-cf85f.firebasestorage.app",
+        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+
+   // ⭐ [추가] 만약 3초 뒤에도 안 나타나면 강제로 보여주는 안전장치
+setTimeout(() => {
+    const btn = document.getElementById('admin-auth-btn');
+    if (btn && btn.style.opacity !== "1") {
+        btn.style.opacity = "1";
+        console.log("안전장치에 의해 버튼이 표시됨");
+    }
+}, 3000);
+
+onAuthStateChanged(auth, (user) => {
+    const authBtn = document.getElementById('admin-auth-btn');
+    if (!authBtn) return; 
+
+    if (user) {
+        // [로그인 상태]
+        authBtn.innerText = "Logout";
+        authBtn.removeAttribute('href'); // <a> 태그 기본 이동 방지
+        authBtn.onclick = (e) => {
+            e.preventDefault();
+            if (confirm("정말 로그아웃하시겠습니까?")) {
+                signOut(auth).then(() => {
+                    // 로그아웃 후에도 현재 페이지 유지하며 새로고침
+                    window.location.href = window.location.pathname;
+                });
+            }
+        };
+    } else {
+        // [로그아웃 상태]
+        authBtn.innerText = "Login";
+        authBtn.removeAttribute('href'); // 클릭 이벤트를 위해 href 제거
+        
+        authBtn.onclick = (e) => {
+            e.preventDefault();
+            // ⭐ 핵심: 로그인하러 가기 전, 현재 주소를 세션에 저장!
+            const currentURL = window.location.href;
+            sessionStorage.setItem('redirectURL', currentURL);
+            
+            // 로그인 페이지로 이동
+            window.location.href = "login.html";
+        };
+    }
+
+    // ⭐ 핵심: 판단 완료 후 버튼 표시
+    authBtn.style.opacity = "1";
+    console.log("Firebase 확인 및 리다이렉트 설정 완료");
+});
+</script>
 </body>
 </html>
