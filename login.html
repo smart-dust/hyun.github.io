@@ -7,159 +7,184 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 홈페이지 메인 블루 및 라이트 그레이 */
-            --hp-blue: #007bff;
-            --hp-dark-blue: #0056b3;
-            --hp-bg: #f8f9fa;
-            --hp-text: #333333;
-            --hp-border: #dee2e6;
+            --brand-color: #007bff; /* 홈페이지 메인 블루 */
+            --brand-hover: #0062cc;
+            --text-dark: #2d3436;
+            --text-light: #636e72;
+            --bg-soft: #fbfcfd;
+            --white: #ffffff;
+            --input-border: #e9ecef;
         }
 
         body {
-            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--hp-bg);
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f1f3f5;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            color: var(--hp-text);
+            -webkit-font-smoothing: antialiased;
         }
 
-        .login-container {
+        .login-card {
             width: 100%;
-            max-width: 360px; /* 조금 더 컴팩트하게 조절 */
-            padding: 40px 30px;
-            background: #ffffff;
-            border-radius: 16px; /* 홈페이지 버튼 스타일 반영 */
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
-            border: 1px solid var(--hp-border);
-        }
-
-        .login-container h2 {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: var(--hp-blue);
+            max-width: 350px; /* 더 컴팩트하고 고급스러운 비율 */
+            padding: 50px 40px;
+            background: var(--white);
+            border-radius: 24px; /* 더 둥글고 부드러운 모서리 */
+            /* 프리미엄 소프트 쉐도우 */
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), 0 20px 60px rgba(0, 0, 0, 0.03);
             text-align: center;
+            box-sizing: border-box;
         }
 
-        .form-group {
-            margin-bottom: 18px;
+        .login-card h2 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            margin-bottom: 40px;
+            color: var(--text-dark);
+            letter-spacing: -1px;
+        }
+
+        .input-group {
+            margin-bottom: 22px;
             text-align: left;
         }
 
-        .form-group label {
+        .input-group label {
             display: block;
-            font-size: 0.85rem;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #666;
+            font-size: 0.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--text-dark);
+            padding-left: 2px;
         }
 
         input {
             width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--hp-border);
-            border-radius: 8px;
+            padding: 14px 18px;
+            border: 1.5px solid var(--input-border);
+            border-radius: 12px;
             font-size: 0.95rem;
             box-sizing: border-box;
-            transition: all 0.2s ease-in-out;
-            background-color: #ffffff;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            background-color: var(--bg-soft);
+            color: var(--text-dark);
+        }
+
+        input::placeholder {
+            color: #adb5bd;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--hp-blue);
-            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+            border-color: var(--brand-color);
+            background-color: var(--white);
+            box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.08);
         }
 
-        .login-btn {
+        .btn-login {
             width: 100%;
-            padding: 13px;
-            background-color: var(--hp-blue);
-            color: #fff;
+            padding: 15px;
+            background-color: var(--brand-color);
+            color: var(--white);
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s, transform 0.1s;
+            margin-top: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 123, 255, 0.15);
         }
 
-        .login-btn:hover {
-            background-color: var(--hp-dark-blue);
+        .btn-login:hover {
+            background-color: var(--brand-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.2);
         }
 
-        .login-btn:active {
-            transform: scale(0.98);
+        .btn-login:active {
+            transform: translateY(0);
         }
 
-        .links {
-            margin-top: 25px;
+        .options {
+            margin-top: 30px;
             display: flex;
             justify-content: center;
-            gap: 12px;
-            font-size: 0.8rem;
-            color: #888;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.78rem;
+            color: #adb5bd;
         }
 
-        .links a {
-            color: #888;
+        .options a {
+            color: var(--text-light);
             text-decoration: none;
             transition: color 0.2s;
         }
 
-        .links a:hover {
-            color: var(--hp-blue);
-            text-decoration: underline;
+        .options a:hover {
+            color: var(--brand-color);
         }
 
-        .back-link {
-            display: block;
-            margin-top: 30px;
-            text-align: center;
-            font-size: 0.8rem;
+        .options span {
+            font-size: 0.6rem;
+            color: #dee2e6;
+        }
+
+        .footer {
+            margin-top: 40px;
+            padding-top: 25px;
+            border-top: 1px solid #f8f9fa;
+        }
+
+        .back-home {
             color: #adb5bd;
             text-decoration: none;
+            font-size: 0.8rem;
+            transition: color 0.2s;
         }
 
-        .back-link:hover {
-            color: var(--hp-text);
+        .back-home:hover {
+            color: var(--text-dark);
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
 
-<div class="login-container">
-    <h2>Login</h2>
+<div class="login-card">
+    <h2>로그인</h2>
 
-    <div class="form-group">
-        <label for="email">Email address</label>
-        <input type="email" id="email" placeholder="이메일을 입력하세요" required>
+    <div class="input-group">
+        <label for="email">ID</label>
+        <input type="email" id="email" placeholder="아이디를 입력해주세요" required spellcheck="false">
     </div>
 
-    <div class="form-group">
+    <div class="input-group">
         <label for="password">Password</label>
-        <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
+        <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required>
     </div>
 
-    <button id="login-btn" class="login-btn">로그인</button>
+    <button id="login-btn" class="btn-login">로그인</button>
 
-    <div class="links">
+    <div class="options">
         <a href="#" id="find-id">아이디 찾기</a>
-        <span>|</span>
+        <span>●</span>
         <a href="#" id="find-pw">비밀번호 찾기</a>
-        <span>|</span>
-        <a href="signup.html" style="font-weight: 700; color: var(--hp-blue);">회원가입</a>
+        <span>●</span>
+        <a href="signup.html" style="font-weight: 700; color: var(--brand-color);">회원가입</a>
     </div>
 
-    <a href="index.html" class="back-link">홈페이지로 돌아가기</a>
+    <div class="footer">
+        <a href="index.html" class="back-home">홈페이지로 돌아가기</a>
+    </div>
 </div>
 
 <script type="module">
-    /* Firebase 로직은 기존 코드를 그대로 사용하세요 (설정값 동일) */
+    // Firebase 로직은 기존 설정을 그대로 유지합니다.
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
