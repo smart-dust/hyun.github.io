@@ -7,188 +7,159 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            /* 고급스러운 딥 네이비 & 포인트 컬러 */
-            --primary-color: #2c3e50;
-            --accent-color: #3498db;
-            --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            --text-main: #2d3436;
-            --text-sub: #636e72;
-            --white: #ffffff;
-            --error-color: #e74c3c;
+            /* 홈페이지 메인 블루 및 라이트 그레이 */
+            --hp-blue: #007bff;
+            --hp-dark-blue: #0056b3;
+            --hp-bg: #f8f9fa;
+            --hp-text: #333333;
+            --hp-border: #dee2e6;
         }
 
         body {
-            font-family: 'Noto Sans KR', sans-serif;
-            background: var(--bg-gradient);
+            font-family: 'Noto Sans KR', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--hp-bg);
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
-            -webkit-font-smoothing: antialiased;
+            color: var(--hp-text);
         }
 
-        .login-card {
-            background: var(--white);
+        .login-container {
             width: 100%;
-            max-width: 380px; /* 크기를 소폭 줄임 */
-            padding: 45px 40px; 
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            box-sizing: border-box;
-            transition: transform 0.3s ease;
+            max-width: 360px; /* 조금 더 컴팩트하게 조절 */
+            padding: 40px 30px;
+            background: #ffffff;
+            border-radius: 16px; /* 홈페이지 버튼 스타일 반영 */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05); /* 은은한 그림자 */
+            border: 1px solid var(--hp-border);
         }
 
-        .login-card h2 {
-            color: var(--primary-color);
-            margin-bottom: 35px;
-            font-size: 1.6rem;
+        .login-container h2 {
+            font-size: 1.5rem;
             font-weight: 700;
-            letter-spacing: -0.5px;
-            position: relative;
+            margin-bottom: 30px;
+            color: var(--hp-blue);
+            text-align: center;
         }
 
-        /* 제목 하단 짧은 강조선 */
-        .login-card h2::after {
-            content: '';
-            display: block;
-            width: 30px;
-            height: 3px;
-            background: var(--accent-color);
-            margin: 10px auto 0;
-            border-radius: 2px;
-        }
-
-        .input-group {
-            margin-bottom: 20px;
+        .form-group {
+            margin-bottom: 18px;
             text-align: left;
         }
 
-        .input-group label {
+        .form-group label {
             display: block;
             font-size: 0.85rem;
-            color: var(--text-sub);
             margin-bottom: 8px;
             font-weight: 500;
-            padding-left: 4px;
+            color: #666;
         }
 
         input {
             width: 100%;
-            padding: 14px 16px;
-            border: 1px solid #dfe6e9;
-            border-radius: 10px;
+            padding: 12px 16px;
+            border: 1px solid var(--hp-border);
+            border-radius: 8px;
             font-size: 0.95rem;
             box-sizing: border-box;
-            background-color: #fbfcfc;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease-in-out;
+            background-color: #ffffff;
         }
 
         input:focus {
             outline: none;
-            border-color: var(--accent-color);
-            background-color: #fff;
-            box-shadow: 0 0 0 4px rgba(52, 152, 219, 0.1);
+            border-color: var(--hp-blue);
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
         }
 
-        button {
+        .login-btn {
             width: 100%;
-            padding: 15px;
-            background-color: var(--primary-color);
-            color: white;
+            padding: 13px;
+            background-color: var(--hp-blue);
+            color: #fff;
             border: none;
-            border-radius: 10px;
+            border-radius: 8px;
             font-size: 1rem;
-            font-weight: 600; 
+            font-weight: 600;
             cursor: pointer;
             margin-top: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(44, 62, 80, 0.2);
-            letter-spacing: 1px;
+            transition: background 0.2s, transform 0.1s;
         }
 
-        button:hover {
-            background-color: #1a252f;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(44, 62, 80, 0.3);
+        .login-btn:hover {
+            background-color: var(--hp-dark-blue);
         }
 
-        button:active {
-            transform: translateY(0);
+        .login-btn:active {
+            transform: scale(0.98);
         }
 
-        .find-group {
+        .links {
             margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
             font-size: 0.8rem;
-            color: var(--text-sub);
+            color: #888;
         }
 
-        .find-group a {
-            color: var(--text-sub);
+        .links a {
+            color: #888;
             text-decoration: none;
             transition: color 0.2s;
-            cursor: pointer;
-            padding: 0 5px;
         }
 
-        .find-group a:hover {
-            color: var(--accent-color);
+        .links a:hover {
+            color: var(--hp-blue);
+            text-decoration: underline;
         }
 
-        .divider {
-            color: #eee;
-            font-weight: 200;
-        }
-
-        .back-home-container {
-            margin-top: 35px;
-            border-top: 1px solid #f1f2f6;
-            padding-top: 20px;
-        }
-
-        .back-home {
-            color: #b2bec3;
-            text-decoration: none;
+        .back-link {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
             font-size: 0.8rem;
-            font-weight: 500;
-            transition: all 0.2s;
+            color: #adb5bd;
+            text-decoration: none;
         }
 
-        .back-home:hover {
-            color: var(--text-main);
+        .back-link:hover {
+            color: var(--hp-text);
         }
     </style>
 </head>
 <body>
 
-<div class="login-card">
-    <h2>로그인</h2>
+<div class="login-container">
+    <h2>Login</h2>
 
-    <div class="input-group">
-        <label for="email">아이디 (이메일)</label>
-        <input type="email" id="email" placeholder="example@email.com" required spellcheck="false" autocomplete="username">
+    <div class="form-group">
+        <label for="email">Email address</label>
+        <input type="email" id="email" placeholder="이메일을 입력하세요" required>
     </div>
 
-    <div class="input-group">
-        <label for="password">비밀번호</label>
-        <input type="password" id="password" placeholder="비밀번호를 입력하세요" required autocomplete="current-password">
+    <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" placeholder="비밀번호를 입력하세요" required>
     </div>
 
-    <button id="login-btn">LOGIN</button>
+    <button id="login-btn" class="login-btn">로그인</button>
 
-    <div class="find-group">
-        <a id="find-id">아이디 찾기</a> 
-        <span class="divider">|</span> 
-        <a id="find-pw">비밀번호 찾기</a>
+    <div class="links">
+        <a href="#" id="find-id">아이디 찾기</a>
+        <span>|</span>
+        <a href="#" id="find-pw">비밀번호 찾기</a>
+        <span>|</span>
+        <a href="signup.html" style="font-weight: 700; color: var(--hp-blue);">회원가입</a>
     </div>
 
-    <div class="back-home-container">
-        <a href="index.html" class="back-home">홈페이지로 돌아가기</a>
-    </div>
+    <a href="index.html" class="back-link">홈페이지로 돌아가기</a>
 </div>
 
 <script type="module">
+    /* Firebase 로직은 기존 코드를 그대로 사용하세요 (설정값 동일) */
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
@@ -211,32 +182,20 @@
     const handleLogin = () => {
         const email = emailInput.value;
         const password = passwordInput.value;
-
         if(!email || !password) return;
 
         signInWithEmailAndPassword(auth, email, password)
             .then(() => {
                 const prevPage = sessionStorage.getItem('redirectURL');
-                if (prevPage) {
-                    sessionStorage.removeItem('redirectURL');
-                    window.location.href = prevPage;
-                } else {
-                    window.location.href = "index.html"; 
-                }
+                window.location.href = prevPage || "index.html"; 
             })
             .catch((error) => {
-                console.error("로그인 실패:", error.code);
                 alert("아이디 또는 비밀번호가 일치하지 않습니다.");
             });
     };
 
     loginBtn.addEventListener('click', handleLogin);
-    window.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') handleLogin();
-    });
-
-    document.getElementById('find-id').onclick = (e) => e.preventDefault();
-    document.getElementById('find-pw').onclick = (e) => e.preventDefault();
+    window.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleLogin(); });
 </script>
 
 </body>
