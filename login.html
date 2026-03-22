@@ -13,109 +13,41 @@
             --border-color: #d2d2d7;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
-
         * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
-        
         body {
             font-family: 'Noto Sans KR', sans-serif;
             background-color: #ffffff;
             color: var(--text-dark);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
+            display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; padding: 20px;
         }
-
         .container { width: 100%; max-width: 400px; }
-
         header { text-align: center; margin-bottom: 45px; }
-        header h1 { 
-            font-size: 2rem; 
-            font-weight: 900; 
-            letter-spacing: -1px; 
-            margin-bottom: 12px;
-            color: var(--primary-blue);
-        }
+        header h1 { font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 12px; color: var(--primary-blue); }
         header p { font-size: 0.95rem; color: var(--text-gray); font-weight: 500; }
-
         .login-form { display: flex; flex-direction: column; gap: 22px; }
-
         .field { display: flex; flex-direction: column; gap: 8px; }
-        
-        label { 
-            font-size: 0.9rem; 
-            font-weight: 800; 
-            position: relative; 
-            padding-left: 14px;
-            color: #333;
-        }
+        label { font-size: 0.9rem; font-weight: 800; position: relative; padding-left: 14px; color: #333; }
         label::before {
-            content: ''; 
-            position: absolute; 
-            left: 0; 
-            top: 50%; 
-            transform: translateY(-50%);
-            width: 4px; 
-            height: 14px; 
-            background-color: var(--primary-blue); 
-            border-radius: 2px;
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+            width: 4px; height: 14px; background-color: var(--primary-blue); border-radius: 2px;
         }
-
         input {
-            width: 100%; 
-            padding: 16px; 
-            border: 1px solid var(--border-color);
-            border-radius: 12px; 
-            font-size: 1rem; 
-            background-color: #fff;
-            transition: var(--transition); 
-            outline: none;
+            width: 100%; padding: 16px; border: 1px solid var(--border-color);
+            border-radius: 12px; font-size: 1rem; background-color: #fff;
+            transition: var(--transition); outline: none;
         }
-        input:focus { 
-            border-color: var(--primary-blue); 
-            box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.1); 
-        }
-
+        input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.1); }
         .login-btn {
-            padding: 18px; 
-            background: linear-gradient(135deg, #0062ff 0%, #004dc7 100%);
-            color: white; 
-            border: none; 
-            border-radius: 12px; 
-            font-size: 1.1rem;
-            font-weight: 700; 
-            cursor: pointer; 
-            margin-top: 10px; 
-            transition: var(--transition);
+            padding: 18px; background: linear-gradient(135deg, #0062ff 0%, #004dc7 100%);
+            color: white; border: none; border-radius: 12px; font-size: 1.1rem;
+            font-weight: 700; cursor: pointer; margin-top: 10px; transition: var(--transition);
             box-shadow: 0 4px 12px rgba(0, 98, 255, 0.2);
         }
-        .login-btn:hover { 
-            transform: translateY(-2px); 
-            box-shadow: 0 6px 16px rgba(0, 98, 255, 0.3); 
-        }
-
-        .nav-links {
-            text-align: center; 
-            margin-top: 25px;
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 12px;
-        }
-        .nav-links a { 
-            color: var(--text-gray); 
-            text-decoration: none; 
-            font-size: 0.85rem; 
-            font-weight: 500; 
-            padding: 6px 12px;
-            border-radius: 8px;
-            transition: var(--transition);
-        }
-        .nav-links a:hover { 
-            background-color: #f2f2f7; 
-            color: var(--primary-blue); 
-        }
+        .login-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 16px rgba(0, 98, 255, 0.3); }
+        .nav-links { text-align: center; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 6px 12px; border-radius: 8px; transition: var(--transition); }
+        .nav-links a:hover { background-color: #f2f2f7; color: var(--primary-blue); }
         .divider { width: 1px; height: 10px; background-color: var(--border-color); }
     </style>
 </head>
@@ -138,19 +70,20 @@
                 <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required>
             </div>
 
-            <button id="login-btn" class="login-btn">로그인하기</button>
+            <button id="login-btn" class="login-btn">로그인</button>
 
             <div class="nav-links">
                 <a href="signup.html">회원가입 </a>
                 <span class="divider"></span>
-                <a href="index.html">홈페이지 돌아가기</a>
+                <a href="index.html">홈페이지로 돌아가기</a>
             </div>
         </div>
     </div>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+        // setPersistence와 browserSessionPersistence 추가
+        import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
             apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
@@ -174,11 +107,17 @@
             }
 
             try {
-                // '성공했습니다' 팝업 없이 바로 페이지 이동
+                // [로그인 전 설정] 브라우저를 닫으면 세션이 종료되도록 설정
+                await setPersistence(auth, browserSessionPersistence);
+                
+                // 로그인 진행
                 await signInWithEmailAndPassword(auth, email, password);
+                
+                // 성공 시 별도 알림창 없이 바로 이동
                 window.location.href = "index.html"; 
             } catch(e) {
                 alert("로그인 실패: 이메일 또는 비밀번호를 확인해주세요.");
+                console.error(e.message);
             }
         });
     </script>
