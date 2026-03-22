@@ -4,203 +4,187 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입 | 대전대흥교회 청소년부</title>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Nanum+Myeongjo:wght@700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --main-color: #add8e6; 
             --primary-blue: #007bff;
             --dark-blue: #0056b3;
-            --footer-bg: #f8fbff; 
+            --soft-blue: #f0f7ff;
             --text-main: #2d3436;
             --text-sub: #636e72;
             --border-color: #e9ecef;
         }
 
+        /* 1080*1920 전체 화면 최적화 */
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
             overflow: hidden; 
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
             color: var(--text-main);
         }
 
-        body { display: flex; flex-direction: column; }
-
-        .main-container {
-            flex: 1;
+        body {
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding: 0 40px;
-            background: radial-gradient(circle at top right, #f8fbff 0%, #ffffff 40%);
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 700px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        /* 상단 성경 문구 및 헤더 */
+        .bible-verse {
+            font-family: 'Nanum Myeongjo', serif;
+            font-size: 1.1rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            opacity: 0.8;
+            letter-spacing: 1px;
         }
 
         .header-section {
-            text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 60px; /* 여유 있는 간격 */
         }
 
         .header-section h1 {
-            font-size: 2.6rem;
+            font-size: 3rem;
             font-weight: 900;
-            color: var(--primary-blue);
+            color: var(--text-main);
             margin: 0;
             letter-spacing: -2px;
-            text-shadow: 0 2px 4px rgba(0,123,255,0.1);
         }
 
         .header-section p {
             color: var(--text-sub);
-            margin-top: 10px;
-            font-size: 1.1rem;
-            font-weight: 400;
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 300;
         }
 
+        /* 가입 폼 그리드 */
         .signup-form {
-            width: 100%;
-            max-width: 600px; /* 가로폭 최적화 */
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 20px 35px;
+            gap: 40px 50px; /* 요소 간의 넓은 간격 */
+            text-align: left;
         }
 
         .field.full { grid-column: span 2; }
 
         label {
             display: block;
-            font-size: 0.85rem;
+            font-size: 0.9rem;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             color: var(--primary-blue);
-            text-transform: uppercase;
             letter-spacing: 0.5px;
         }
 
         input {
             width: 100%;
-            padding: 12px 0;
+            padding: 15px 0;
             border: none;
-            border-bottom: 1.5px solid var(--border-color);
-            font-size: 1.05rem;
+            border-bottom: 2px solid var(--border-color);
+            font-size: 1.1rem;
             box-sizing: border-box;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
             background-color: transparent;
         }
 
         input:focus {
             outline: none;
             border-bottom: 2px solid var(--primary-blue);
-            padding-left: 5px;
         }
 
-        /* 개인정보 동의 영역 - 문구와 체크박스 밀착 수정 */
+        /* 개인정보 동의 영역 - 우측 체크박스 배치 */
         .agreement-box {
             grid-column: span 2;
             display: flex;
-            justify-content: center; /* 중앙 정렬로 변경 */
+            justify-content: space-between;
             align-items: center;
-            gap: 12px; /* 간격 좁게 조정 */
-            padding: 20px 0;
-            margin-top: 10px;
+            padding: 30px 0;
+            margin-top: 20px;
+            border-top: 1px solid var(--border-color);
         }
 
         .agreement-box span { 
-            font-size: 0.95rem; 
+            font-size: 1rem; 
             font-weight: 500; 
-            color: var(--text-main); 
-            cursor: pointer;
+            color: var(--text-main);
         }
 
         .agreement-box input[type="checkbox"] { 
-            width: 18px; 
-            height: 18px; 
+            width: 24px; 
+            height: 24px; 
             cursor: pointer;
             accent-color: var(--primary-blue);
         }
 
-        /* 가입하기 버튼 - 홈페이지 스타일 고급화 */
+        /* 가입하기 버튼 - 고해상도 디자인 */
         .submit-btn {
             grid-column: span 2;
-            padding: 18px;
+            padding: 22px;
             background: linear-gradient(135deg, var(--primary-blue) 0%, var(--dark-blue) 100%);
             color: white;
             border: none;
-            border-radius: 50px; /* 둥근 스타일로 변경 */
-            font-size: 1.15rem;
+            border-radius: 12px;
+            font-size: 1.3rem;
             font-weight: 700;
             cursor: pointer;
-            margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+            margin-top: 30px;
+            box-shadow: 0 10px 20px rgba(0, 123, 255, 0.2);
             transition: all 0.3s ease;
         }
 
         .submit-btn:hover { 
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.4);
-            filter: brightness(1.1);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(0, 123, 255, 0.3);
         }
 
-        .submit-btn:active { transform: translateY(0); }
-
-        /* 하단 네비게이션 효과 추가 */
+        /* 하단 링크 효과 */
         .sub-nav {
             grid-column: span 2;
             text-align: center;
-            margin-top: 20px;
+            margin-top: 40px;
         }
 
         .sub-nav a {
             color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.9rem;
-            margin: 0 15px;
-            position: relative;
-            padding-bottom: 2px;
-            transition: color 0.3s ease;
+            font-size: 1rem;
+            margin: 0 20px;
+            padding-bottom: 5px;
+            border-bottom: 1.5px solid transparent;
+            transition: all 0.3s ease;
         }
 
-        .sub-nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1.5px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--primary-blue);
-            transition: width 0.3s ease;
+        .sub-nav a:hover { 
+            color: var(--primary-blue);
+            border-bottom: 1.5px solid var(--primary-blue);
         }
-
-        .sub-nav a:hover { color: var(--primary-blue); }
-        .sub-nav a:hover::after { width: 100%; }
-
-        /* Footer 스타일 고정 */
-        .footer {
-            background: var(--footer-bg);
-            color: #555;
-            padding: 35px 20px;
-            text-align: center;
-            border-top: 2.5px solid var(--main-color);
-        }
-
-        .footer p { margin: 5px 0; font-size: 13.5px; line-height: 1.5; color: #666; }
-        .footer-copy { margin-top: 15px; font-size: 12px; color: #aaa; }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <div class="header-section">
-            <h1>대전대흥교회 청소년부</h1>
-            <p>새로운 가족이 되신 것을 환영합니다.</p>
-        </div>
+    <div class="main-wrapper">
+        <div class="bible-verse">“너의 행사를 여호와께 맡기라 그리하면 네가 경영하는 것이 이루어지리라” (잠언 16:3)</div>
+        
+        <header class="header-section">
+            <h1>회원가입</h1>
+            <p>대전대흥교회 청소년부의 새로운 가족을 기다립니다.</p>
+        </header>
 
         <div class="signup-form">
             <div class="field full">
                 <label>아이디 (이메일)</label>
-                <input type="email" id="email" placeholder="이메일 주소를 입력해주세요" required>
+                <input type="email" id="email" placeholder="사용하실 이메일을 입력해주세요" required>
             </div>
 
             <div class="field">
@@ -209,7 +193,7 @@
             </div>
             <div class="field">
                 <label>비밀번호 재확인</label>
-                <input type="password" id="password-confirm" placeholder="한 번 더 입력해주세요" required>
+                <input type="password" id="password-confirm" placeholder="동일하게 입력해주세요" required>
             </div>
 
             <div class="field">
@@ -223,28 +207,22 @@
 
             <div class="field full">
                 <label>교회코드</label>
-                <input type="text" id="church-code" placeholder="발급받으신 교회코드를 입력해주세요" required>
+                <input type="text" id="church-code" placeholder="전달받으신 교회코드를 입력해주세요" required>
             </div>
 
             <div class="agreement-box">
+                <span>개인정보 수집 및 이용에 동의합니다.</span>
                 <input type="checkbox" id="agree">
-                <span onclick="document.getElementById('agree').click()">개인정보 수집 및 이용에 동의합니다.</span>
             </div>
 
             <button id="signup-btn" class="submit-btn">가입하기</button>
 
             <div class="sub-nav">
                 <a href="index.html">홈페이지로 돌아가기</a>
-                <a href="login.html">로그인 하러가기</a>
+                <a href="login.html">로그인 하기</a>
             </div>
         </div>
     </div>
-
-    <footer class="footer">
-        <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
-        <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
-        <p class="footer-copy">© 2026 대전대흥교회 청소년부. All rights reserved.</p>
-    </footer>
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
@@ -273,10 +251,22 @@
             const churchCode = document.getElementById('church-code').value;
             const agree = document.getElementById('agree').checked;
 
-            if (!email || !password || !name || !nickname || !churchCode) { alert("모든 항목을 입력해주세요."); return; }
-            if (password !== passwordConfirm) { alert("비밀번호가 일치하지 않습니다."); return; }
-            if (!agree) { alert("개인정보 수집 및 이용에 동의해주세요."); return; }
-            if (churchCode !== "1234") { alert("교회코드를 입력해주세요."); return; }
+            if (!email || !password || !name || !nickname || !churchCode) { 
+                alert("모든 필수 항목을 입력해주세요."); 
+                return; 
+            }
+            if (password !== passwordConfirm) { 
+                alert("비밀번호가 일치하지 않습니다."); 
+                return; 
+            }
+            if (!agree) { 
+                alert("개인정보 수집 및 이용에 동의해주세요."); 
+                return; 
+            }
+            if (churchCode !== "1234") { 
+                alert("교회코드를 입력해주세요."); 
+                return; 
+            }
 
             try {
                 const userCredential = await createUserWithEmailAndPassword(auth, email, password);
@@ -286,7 +276,7 @@
                 alert("대전대흥교회 청소년부 가입을 진심으로 환영합니다");
                 window.location.href = "login.html";
             } catch (e) {
-                alert("가입 실패: " + e.message);
+                alert("가입 중 오류가 발생했습니다: " + e.message);
             }
         });
     </script>
