@@ -27,6 +27,10 @@
         header p { font-size: 0.95rem; color: var(--text-gray); font-weight: 500; }
         .login-form { display: flex; flex-direction: column; gap: 22px; }
         .field { display: flex; flex-direction: column; gap: 8px; }
+        
+        /* 비밀번호 필드 위치 조정을 위한 상대 위치 설정 */
+        .password-wrapper { position: relative; width: 100%; }
+        
         label { font-size: 0.9rem; font-weight: 800; position: relative; padding-left: 14px; color: #333; }
         label::before {
             content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
@@ -37,7 +41,19 @@
             border-radius: 12px; font-size: 1rem; background-color: #fff;
             transition: var(--transition); outline: none;
         }
+        /* 비밀번호 인풋은 우측 버튼 공간(오른쪽 패딩) 확보 */
+        #password { padding-right: 50px; }
         input:focus { border-color: var(--primary-blue); box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.1); }
+        
+        /* 비밀번호 보기/숨기기 토글 버튼 스타일 */
+        .toggle-password {
+            position: absolute; right: 16px; top: 50%; transform: translateY(-50%);
+            background: none; border: none; font-size: 1.2rem; cursor: pointer;
+            padding: 4px; display: flex; align-items: center; justify-content: center;
+            user-select: none; transition: var(--transition); opacity: 0.6;
+        }
+        .toggle-password:hover { opacity: 1; }
+
         .login-btn {
             padding: 18px; background: linear-gradient(135deg, #0062ff 0%, #004dc7 100%);
             color: white; border: none; border-radius: 12px; font-size: 1.1rem;
@@ -61,13 +77,16 @@
 
         <div class="login-form">
             <div class="field">
-                <label>ID</label>
+                <label for="email">ID</label>
                 <input type="email" id="email" placeholder="아이디를 입력해주세요" required>
             </div>
 
             <div class="field">
-                <label>Password</label>
-                <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required>
+                <label for="password">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required>
+                    <button type="button" id="toggle-password" class="toggle-password" title="비밀번호 보기">👁️</button>
+                </div>
             </div>
 
             <button id="login-btn" class="login-btn">로그인</button>
@@ -82,7 +101,6 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        // setPersistence와 browserSessionPersistence 추가
         import { getAuth, signInWithEmailAndPassword, setPersistence, browserSessionPersistence } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
         const firebaseConfig = {
@@ -97,7 +115,8 @@
         const app = initializeApp(firebaseConfig);
         const auth = getAuth(app);
 
-        document.getElementById('login-btn').addEventListener('click', async () => {
+        // 중복 코드를 줄이기 위해 로그인 로직을 하나의 함수로 분리
+        async function handleLogin() {
             const email = document.getElementById('email').value;
             const password = document.getElementById('password').value;
 
@@ -107,17 +126,40 @@
             }
 
             try {
-                // [로그인 전 설정] 브라우저를 닫으면 세션이 종료되도록 설정
                 await setPersistence(auth, browserSessionPersistence);
-                
-                // 로그인 진행
                 await signInWithEmailAndPassword(auth, email, password);
-                
-                // 성공 시 별도 알림창 없이 바로 이동
                 window.location.href = "index.html"; 
             } catch(e) {
                 alert("로그인 실패: 이메일 또는 비밀번호를 확인해주세요.");
                 console.error(e.message);
+            }
+        }
+
+        // 1. 로그인 버튼 클릭 이벤트
+        document.getElementById('login-btn').addEventListener('click', handleLogin);
+
+        // 2. ID 및 비밀번호 입력창에서 엔터(Enter)키 누를 시 로그인 실행
+        document.getElementById('email').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+        document.getElementById('password').addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') handleLogin();
+        });
+
+        // 3. 비밀번호 보기 / 숨기기 토글 이벤트
+        const passwordInput = document.getElementById('password');
+        const togglePasswordBtn = document.getElementById('toggle-password');
+
+        togglePasswordBtn.addEventListener('click', () => {
+            // 현재 타입이 password면 text로, text면 password로 변경
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                togglePasswordBtn.textContent = '🔒'; // 보일 때는 잠금 아이콘으로 변경 (또는 다른 이모지)
+                togglePasswordBtn.setAttribute('title', '비밀번호 숨기기');
+            } else {
+                passwordInput.type = 'password';
+                togglePasswordBtn.textContent = '👁️'; // 숨겨졌을 때는 눈 아이콘으로 변경
+                togglePasswordBtn.setAttribute('title', '비밀번호 보기');
             }
         });
     </script>
