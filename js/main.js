@@ -88,3 +88,48 @@ window.addEventListener('load', () => {
         }
     }
 });
+document.addEventListener('DOMContentLoaded', function() {
+    // [1] 로그인/로그아웃 권한 관리
+    const isAdmin = sessionStorage.getItem('isAdmin');
+    const authBtn = document.getElementById('admin-auth-btn');
+    const adminFab = document.getElementById('admin-fab');
+
+    if (isAdmin === 'true') {
+        if (authBtn) {
+            authBtn.innerText = "Logout";
+            authBtn.href = "#";
+            authBtn.onclick = (e) => {
+                e.preventDefault();
+                sessionStorage.removeItem('isAdmin');
+                alert("로그아웃 되었습니다.");
+                location.reload();
+            };
+        }
+        if (adminFab) adminFab.style.display = "block";
+    } else {
+        if (authBtn) {
+            authBtn.innerText = "Login";
+            authBtn.href = "login.html";
+            authBtn.onclick = null;
+        }
+        if (adminFab) adminFab.style.display = "none";
+    }
+
+    // [2] 햄버거 메뉴 기능
+    let hamBtn = document.querySelector('.hamburger-menu');
+    if (!hamBtn) {
+        hamBtn = document.createElement('button');
+        hamBtn.className = 'hamburger-menu';
+        hamBtn.innerHTML = '☰';
+        const navLeft = document.querySelector('.nav-left');
+        if (navLeft) navLeft.after(hamBtn);
+    }
+
+    const navMenu = document.querySelector('.nav-menu');
+    if (hamBtn && navMenu) {
+        hamBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            navMenu.classList.toggle('show-mobile');
+        });
+    }
+});
