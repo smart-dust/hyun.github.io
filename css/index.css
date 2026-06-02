@@ -218,13 +218,31 @@
     transform: translateY(1px) scale(0.98); /* 실제 버튼을 누르는 것처럼 쑥 들어가고 작아짐 */
 }
 @media (max-width: 768px) {
-    /* ... 이전 코드들 유지 ... */
+    /* 1. 히어로 섹션 최적화 */
+    .hero { height: 80vh !important; } /* 화면이 너무 길어지지 않게 조정 */
+    .hero-content h1 { 
+        font-size: 45px !important; 
+        padding: 0 15px; 
+    }
+    .hero-content p { font-size: 17px !important; }
 
-    /* 지도 및 버튼 섹션 최적화 */
+    /* 2. 카드 섹션 최적화 */
+    .section-container {
+        padding: 50px 15px !important;
+        gap: 20px !important;
+    }
+    
+    .section-box {
+        width: 100% !important; /* 모바일에서는 카드가 한 줄씩 꽉 차게 */
+        min-height: auto !important;
+        padding: 25px 20px !important;
+    }
+
+    /* 3. 오시는 길 섹션 및 지도 최적화 */
     .map-section {
-        max-width: 92% !important; /* 약간 더 여유를 줌 */
-        margin: 0 auto 30px !important;
-        padding: 15px !important;
+        max-width: 90% !important;
+        margin: 20px auto 50px !important;
+        padding: 20px !important;
     }
     
     .map-section iframe {
@@ -232,19 +250,19 @@
         margin-bottom: 20px !important;
     }
     
-    /* 길찾기 버튼 영역을 박스 너비에 딱 맞게 강제 조정 */
+    /* 4. 길찾기 버튼 영역 */
     .map-buttons {
         flex-direction: column !important;
-        gap: 12px !important;
+        gap: 10px !important;
         width: 100% !important;
     }
     
     .map-btn {
         width: 100% !important;
-        display: flex !important; /* 중앙 정렬을 위해 추가 */
+        display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         padding: 14px 0 !important;
-        box-sizing: border-box !important; /* 패딩이 너비를 넘치지 않게 함 */
+        box-sizing: border-box !important;
     }
 }
