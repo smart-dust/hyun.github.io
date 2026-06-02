@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>대전대흥교회 청소년부</title>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/common.css">
@@ -18,7 +19,7 @@
             z-index: 10001;    
             background-color: #1d1d1f;
             color: #ffffff;
-            padding: 0 20px;
+            padding: 0 10px;
             display: none;     
             justify-content: space-between;
             align-items: center;
@@ -35,7 +36,7 @@
         }
         .admin-only-bar .admin-btn-group {
             display: flex;
-            gap: 10px;
+            gap: 5px;
         }
         .admin-only-bar a {
             color: #fff;
@@ -143,10 +144,11 @@
 <div id="admin-top-bar" class="admin-only-bar">
     <span class="admin-title">관리자 모드 활성화됨</span>
     <div class="admin-btn-group">
-        <a href="#" id="edit-main-btn" style="background:#0062ff;">내용 수정하기</a>
+        <a href="#" id="edit-main-btn">내용 수정하기</a>
         <a href="notice_write.html">공지 작성</a>
         <a href="sermon_manage.html">공과/설교 관리</a>
-        <a href="user_manage.html" style="background:#d35400;">회원 관리</a> </div>
+        <a href="user_manage.html">회원 관리</a>
+    </div>
 </div>
 
 <div id="admin-edit-modal" class="admin-modal-overlay">
@@ -229,7 +231,6 @@
                     <a href="community.html#2">게시판</a>
                 </div>
             </div>
-
             <div class="menu-item">
                 <a href="login.html" id="admin-auth-btn" style="opacity: 0; transition: opacity 0.3s ease;">Login</a>
             </div>
@@ -269,13 +270,7 @@
 <section class="map-section">
     <h2>오시는 길</h2>
     <p>대전대흥교회 교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
- 
-    <iframe 
-        src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" 
-        allowfullscreen 
-        loading="lazy">
-    </iframe>
-    
+    <iframe src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" allowfullscreen loading="lazy"></iframe>
     <div class="map-buttons">
         <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="map-btn kakao">카카오 길찾기</a>
         <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" target="_blank" class="map-btn naver">네이버 길찾기</a>
@@ -289,7 +284,6 @@
 </footer>
 
 <script src="js/main.js"></script>
-    
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -391,7 +385,6 @@
                 hero_image: finalImageUrl
             });
 
-            // alert 제거 및 페이지 새로고침
             window.location.reload();
         } catch (err) {
             console.error(err);
