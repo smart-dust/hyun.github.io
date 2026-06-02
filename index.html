@@ -365,7 +365,7 @@
         e.preventDefault();
         
         const submitBtn = document.getElementById('form-submit-btn');
-        submitBtn.innerText = "클라우드에 사진 업로드 중...";
+        submitBtn.innerText = "이미지를 변경합니다";
         submitBtn.disabled = true;
 
         const newTitle = document.getElementById('form-intro-title').value;
@@ -397,7 +397,7 @@
                 }
             }
 
-            submitBtn.innerText = "데이터베이스 동기화 중...";
+            submitBtn.innerText = "변경사항을 저장합니다";
 
             await setDoc(doc(db, "homepage", "main_content"), {
                 intro_title: newTitle,
