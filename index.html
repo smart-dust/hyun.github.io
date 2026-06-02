@@ -8,7 +8,6 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-        /* 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
         .admin-only-bar {
             position: fixed;   
             top: 0;
@@ -50,8 +49,6 @@
         .admin-only-bar a:hover {
             background: #0062ff;
         }
-
-        /* 관리자 바 활성화 시 본문 밀어내기 */
         body.admin-mode-active {
             padding-top: 40px !important; 
         }
@@ -61,8 +58,6 @@
         nav {
             transition: top 0.3s ease-out; 
         }
-
-        /* 대시보드 수정 모달창 고급 CSS 스타일링 */
         .admin-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -159,27 +154,27 @@
         </div>
         <form id="admin-content-form">
             <div class="admin-form-group">
-                <label>메인 슬로건 </label>
+                <label for="form-intro-title">메인 슬로건</label>
                 <input type="text" id="form-intro-title" required>
             </div>
             <div class="admin-form-group">
-                <label>교회소개</label>
+                <label for="form-box1-text">교회소개</label>
                 <textarea id="form-box1-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>예배 안내</label>
+                <label for="form-box2-text">예배 안내</label>
                 <textarea id="form-box2-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>공지사항</label>
+                <label for="form-box3-text">공지사항</label>
                 <textarea id="form-box3-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>Play list</label>
+                <label for="form-box4-text">Play list</label>
                 <textarea id="form-box4-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>배경 이미지</label>
+                <label for="form-hero-file">배경 이미지</label>
                 <input type="file" id="form-hero-file" accept="image/*">
                 <span class="file-helper">사진을 새로 바꾸실 때만 파일을 선택 해주세요.</span>
             </div>
@@ -199,7 +194,6 @@
                 <span class="nav-title">대전대흥교회 청소년부</span>
             </a>
         </div>
-          
         <div class="nav-menu">
             <a href="index.html">Home</a>
             <div class="menu-item">
@@ -311,127 +305,15 @@
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 if(data.intro_title) document.getElementById('db-intro-title').innerText = data.intro_title;
-                if(data.box1_text) document.getElementById('db-box1-text').innerHTML = data.box1_text.replace(/\n/g, '<br>');
-                if(data.box2_text) document.getElementById('db-box2-text').innerHTML = data.box2_text.replace(/\n/g, '<br>');
-                if(data.box3_text) document.getElementById('db-box3-text').innerHTML = data.box3_text.replace(/\n/g, '<br>');
-                if(data.box4_text) document.getElementById('db-box4-text').innerHTML = data.box4_text.replace(/\n/g, '<br>');
-                if(data.hero_image) {
-                    document.getElementById('db-hero-img').src = data.hero_image;
-                    currentHeroImageUrl = data.hero_image;
-                }
-            }
-        } catch (error) {
-            console.error("데이터 로드 실패:", error);
-        }
-    }
+                
+                const boxes = [
+                    {id: 'db-box1-text', val: data.box1_text},
+                    {id: 'db-box2-text', val: data.box2_text},
+                    {id: 'db-box3-text', val: data.box3_text},
+                    {id: 'db-box4-text', val: data.box4_text}
+                ];
 
-    loadMainContent();
-
-    const modal = document.getElementById('admin-edit-modal');
-    const closeModal = () => { modal.style.display = 'none'; };
-    document.getElementById('modal-close-x').onclick = closeModal;
-    document.getElementById('modal-close-btn').onclick = closeModal;
-    window.onclick = (e) => { if (e.target === modal) closeModal(); };
-
-    document.getElementById('edit-main-btn').onclick = (e) => {
-        e.preventDefault();
-        document.getElementById('form-intro-title').value = document.getElementById('db-intro-title').innerText;
-        document.getElementById('form-box1-text').value = document.getElementById('db-box1-text').innerHTML.replace(/<br>/g, '\n');
-        document.getElementById('form-box2-text').value = document.getElementById('db-box2-text').innerHTML.replace(/<br>/g, '\n');
-        document.getElementById('form-box3-text').value = document.getElementById('db-box3-text').innerHTML.replace(/<br>/g, '\n');
-        document.getElementById('form-box4-text').value = document.getElementById('db-box4-text').innerHTML.replace(/<br>/g, '\n');
-        document.getElementById('form-hero-file').value = ""; 
-        modal.style.display = 'flex';
-    };
-
-    document.getElementById('admin-content-form').onsubmit = async (e) => {
-        e.preventDefault();
-        const submitBtn = document.getElementById('form-submit-btn');
-        submitBtn.innerText = "저장 중...";
-        submitBtn.disabled = true;
-
-        const newTitle = document.getElementById('form-intro-title').value;
-        const newBox1 = document.getElementById('form-box1-text').value;
-        const newBox2 = document.getElementById('form-box2-text').value;
-        const newBox3 = document.getElementById('form-box3-text').value;
-        const newBox4 = document.getElementById('form-box4-text').value;
-        
-        const fileInput = document.getElementById('form-hero-file');
-        let finalImageUrl = currentHeroImageUrl; 
-
-        try {
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const formData = new FormData();
-                formData.append("image", file);
-                const apiResponse = await fetch("https://api.imgbb.com/1/upload?key=6df75908f97232e01dfdb6a40efbb9b1", {
-                    method: "POST",
-                    body: formData
-                });
-                const apiResult = await apiResponse.json();
-                if (apiResult.success) {
-                    finalImageUrl = apiResult.data.url;
-                } else {
-                    throw new Error("이미지 전송 실패");
-                }
-            }
-
-            await setDoc(doc(db, "homepage", "main_content"), {
-                intro_title: newTitle,
-                box1_text: newBox1,
-                box2_text: newBox2,
-                box3_text: newBox3,
-                box4_text: newBox4,
-                hero_image: finalImageUrl
-            });
-
-            window.location.reload();
-        } catch (err) {
-            console.error(err);
-            submitBtn.innerText = "저장하기";
-            submitBtn.disabled = false;
-        }
-    };
-
-    onAuthStateChanged(auth, async (user) => {
-        const authBtn = document.getElementById('admin-auth-btn');
-        const adminBar = document.getElementById('admin-top-bar');
-        if (!authBtn) return; 
-
-        if (user) {
-            authBtn.innerText = "Logout";
-            authBtn.setAttribute('href', '#');
-            
-            try {
-                const userDocRef = doc(db, "users", user.uid);
-                const userDocSnap = await getDoc(userDocRef);
-                if (userDocSnap.exists() && userDocSnap.data().role === 'staff') {
-                    if (adminBar) {
-                        adminBar.style.display = 'flex';
-                        document.body.classList.add('admin-mode-active'); 
-                    }
-                }
-            } catch (error) {
-                console.error("권한 오류:", error);
-            }
-
-            authBtn.onclick = (e) => {
-                e.preventDefault();
-                if (confirm("정말 로그아웃하시겠습니까?")) {
-                    signOut(auth).then(() => { window.location.reload(); });
-                }
-            };
-        } else {
-            authBtn.innerText = "Login";
-            authBtn.setAttribute('href', 'login.html');
-            if (adminBar) {
-                adminBar.style.display = 'none';
-                document.body.classList.remove('admin-mode-active');
-            }
-        }
-        authBtn.style.opacity = "1";
-    });
-</script>
-
-</body>
-</html>
+                boxes.forEach(b => {
+                    const el = document.getElementById(b.id);
+                    if(el && b.val) {
+                        el.innerHTML = b.val.replace(/\
