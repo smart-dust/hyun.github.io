@@ -199,7 +199,6 @@
                 <span class="nav-title">대전대흥교회 청소년부</span>
             </a>
         </div>
-        
         <div class="nav-menu">
             <a href="index.html">Home</a>
             <div class="menu-item">
@@ -252,19 +251,19 @@
 <section class="section-container">
     <div class="section-box">
         <h2>교회소개</h2>
-        <p id="db-box1-text">데이터를 불러오는 중입니다</p>
+        <p id="db-box1-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>예배 안내</h2>
-        <p id="db-box2-text">데이터를 불러오는 중입니다</p>
+        <p id="db-box2-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>공지사항</h2>
-        <p id="db-box3-text">데이터를 불러오는 중입니다</p>
+        <p id="db-box3-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>Play list</h2>
-        <p id="db-box4-text">데이터를 불러오는 중입니다</p>
+        <p id="db-box4-text">데이터를 불러오는 중입니다...</p>
     </div>
 </section>
 
@@ -284,6 +283,7 @@
     <p class="footer-copy">© 2026 대전대흥교회 청소년부.</p>
 </footer>
 
+<script src="js/main.js"></script>
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -311,26 +311,10 @@
             if (docSnap.exists()) {
                 const data = docSnap.data();
                 if(data.intro_title) document.getElementById('db-intro-title').innerText = data.intro_title;
-                if(data.box1_text) {
-                    const el1 = document.getElementById('db-box1-text');
-                    el1.innerHTML = data.box1_text.replace(/\n/g, '<br>');
-                    el1.style.opacity = '1';
-                }
-                if(data.box2_text) {
-                    const el2 = document.getElementById('db-box2-text');
-                    el2.innerHTML = data.box2_text.replace(/\n/g, '<br>');
-                    el2.style.opacity = '1';
-                }
-                if(data.box3_text) {
-                    const el3 = document.getElementById('db-box3-text');
-                    el3.innerHTML = data.box3_text.replace(/\n/g, '<br>');
-                    el3.style.opacity = '1';
-                }
-                if(data.box4_text) {
-                    const el4 = document.getElementById('db-box4-text');
-                    el4.innerHTML = data.box4_text.replace(/\n/g, '<br>');
-                    el4.style.opacity = '1';
-                }
+                if(data.box1_text) document.getElementById('db-box1-text').innerHTML = data.box1_text.replace(/\n/g, '<br>');
+                if(data.box2_text) document.getElementById('db-box2-text').innerHTML = data.box2_text.replace(/\n/g, '<br>');
+                if(data.box3_text) document.getElementById('db-box3-text').innerHTML = data.box3_text.replace(/\n/g, '<br>');
+                if(data.box4_text) document.getElementById('db-box4-text').innerHTML = data.box4_text.replace(/\n/g, '<br>');
                 if(data.hero_image) {
                     document.getElementById('db-hero-img').src = data.hero_image;
                     currentHeroImageUrl = data.hero_image;
@@ -341,7 +325,7 @@
         }
     }
 
-    document.addEventListener('DOMContentLoaded', loadMainContent);
+    loadMainContent();
 
     const modal = document.getElementById('admin-edit-modal');
     const closeModal = () => { modal.style.display = 'none'; };
@@ -448,6 +432,5 @@
         authBtn.style.opacity = "1";
     });
 </script>
-
 </body>
 </html>
