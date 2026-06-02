@@ -255,3 +255,62 @@ nav {
     opacity: 0; 
     transition: opacity 0.1s ease-in-out; 
 }
+/* ============================================================
+   모바일 반응형 대응 (공통 레이아웃 - common.css용)
+   ============================================================ */
+@media (max-width: 768px) {
+    /* 내비게이션 바 높이 및 패딩 조정 */
+    nav {
+        height: 50px;
+    }
+    .nav-container {
+        padding: 0 15px; /* 모바일에서는 양옆 여백을 줄여 공간 확보 */
+    }
+    
+    /* 로고 크기 조정 */
+    .nav-logo {
+        height: 24px;
+    }
+    .nav-title {
+        font-size: 15px;
+    }
+
+    /* 메뉴 글자 크기 축소 */
+    .nav-menu > a, .menu-item > a {
+        font-size: 13px;
+        padding: 6px 8px;
+    }
+
+    /* 서브메뉴 너비 및 정렬 조정 */
+    .submenu {
+        min-width: 120px;
+        padding: 5px;
+    }
+    .submenu a {
+        font-size: 13px;
+        padding: 8px 10px;
+    }
+
+    /* 푸터(Footer) 영역 조정 */
+    .footer {
+        padding: 25px 15px;
+        margin-top: 40px;
+    }
+    .footer p {
+        font-size: 12px;
+    }
+    .footer-copy {
+        font-size: 11px;
+    }
+
+    /* 관리자 플로팅 버튼(FAB) 크기/위치 최적화 */
+    #admin-fab {
+        bottom: 20px;
+        right: 20px;
+    }
+    .fab-btn {
+        width: 100px;
+        height: 45px;
+        font-size: 0.9rem;
+    }
+}
