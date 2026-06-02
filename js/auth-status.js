@@ -62,3 +62,14 @@
         }
     });
 </script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    const hamBtn = document.querySelector('.hamburger-menu');
+    const navMenu = document.querySelector('.nav-menu');
+
+    if (hamBtn) { // 버튼이 있을 때만 실행되도록 안전장치
+        hamBtn.addEventListener('click', function() {
+            navMenu.classList.toggle('show');
+        });
+    }
+});
