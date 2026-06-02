@@ -139,3 +139,20 @@ document.querySelectorAll('.back-btn').forEach(btn => {
         btn.parentElement.style.display = 'none';
     });
 });
+const ham = document.querySelector('.hamburger-menu');
+const overlay = document.getElementById('mobile-overlay');
+
+ham.addEventListener('click', () => {
+    ham.classList.toggle('active');
+    overlay.style.display = (overlay.style.display === 'block') ? 'none' : 'block';
+});
+
+function showSub(id) {
+    document.querySelector('.main-list').style.display = 'none';
+    document.getElementById(id).style.display = 'block';
+}
+
+function hideSub() {
+    document.querySelector('.main-list').style.display = 'block';
+    document.querySelectorAll('.sub-list').forEach(el => el.style.display = 'none');
+}
