@@ -217,3 +217,53 @@
 .hero-btn:active, .map-btn:active {
     transform: translateY(1px) scale(0.98); /* 실제 버튼을 누르는 것처럼 쑥 들어가고 작아짐 */
 }
+/* ============================================================
+   모바일 반응형 대응 (화면 너비 768px 이하)
+   ============================================================ */
+@media (max-width: 768px) {
+    /* 히어로 섹션 조정 */
+    .hero {
+        height: 80vh;
+    }
+    .hero-content h1 {
+        font-size: 40px !important;
+    }
+    .hero-content p {
+        font-size: 16px;
+    }
+
+    /* 카드 섹션 (세로 배치) */
+    .section-container {
+        padding: 40px 15px;
+        gap: 15px;
+    }
+    .section-box {
+        width: 100% !important;
+        min-height: auto;
+        padding: 25px 20px;
+    }
+    .section-box h2 {
+        font-size: 22px;
+    }
+
+    /* 지도 및 버튼 섹션 */
+    .map-section {
+        max-width: 95%;
+        margin: 0 auto 50px;
+        padding: 20px 15px;
+    }
+    .map-section iframe {
+        height: 250px;
+    }
+    
+    /* 길찾기 버튼 세로 배치 */
+    .map-buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .map-btn {
+        width: 100%;
+        text-align: center;
+        padding: 15px;
+    }
+}
