@@ -48,7 +48,6 @@
 
         header { text-align: center; margin-bottom: 45px; }
         header h1 { font-size: 2rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 12px; color: var(--primary-blue); }
-        /* [변경] 한 줄로 이어지며 단정한 마침표로 끝나는 환영 멘트 */
         header p { font-size: 0.95rem; color: var(--text-gray); font-weight: 500; }
 
         .login-form { display: flex; flex-direction: column; gap: 22px; }
@@ -144,7 +143,6 @@
         .nav-links { text-align: center; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 12px; }
         .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 6px 12px; border-radius: 8px; transition: var(--transition); }
         
-        /* [복구] 하단 링크 메뉴들의 원본 마우스 호버 및 모바일 터치 액션 효과 */
         .nav-links a:hover { 
             background-color: var(--bg-gray); 
             color: var(--primary-blue); 
@@ -160,7 +158,6 @@
     <div class="container">
         <header>
             <h1>대전대흥교회 청소년부</h1>
-            <!-- [변경] <br> 제거, ! 대신 . 마침표 적용 완료 -->
             <p>대전대흥교회 청소년부에 오신 것을 환영합니다.</p>
         </header>
 
@@ -231,18 +228,18 @@
 
                 if (userDoc.exists()) {
                     const userData = userDoc.data();
-                    if (userData.role === 'admin') {
+                    
+                    // [변경] 환영 메시지 팝업창(alert) 전체 제거, 세션만 세팅
+                    if (userData.role === 'staff') {
                         sessionStorage.setItem('isAdmin', 'true');
-                        alert("관리자님, 환영합니다!");
                     } else {
                         sessionStorage.removeItem('isAdmin');
-                        alert("로그인되었습니다.");
                     }
                 } else {
                     sessionStorage.removeItem('isAdmin');
-                    alert("로그인되었습니다.");
                 }
 
+                // 성공 시 딜레이 없이 즉시 메인 페이지로 이동합니다.
                 window.location.href = "index.html"; 
             } catch(e) {
                 alert("로그인 실패: 이메일 또는 비밀번호를 확인해주세요.");
