@@ -249,3 +249,22 @@
     .map-section { max-width: 95% !important; padding: 15px !important; }
     .map-btn { width: 100% !important; margin-bottom: 10px; }
 }
+/* --- 통합 반응형 레이아웃 --- */
+
+/* PC 설정 */
+@media (min-width: 769px) {
+    .hamburger-menu { display: none !important; }
+    .nav-menu { display: flex !important; position: static !important; box-shadow: none !important; width: auto !important; }
+}
+
+/* 모바일 설정 */
+@media (max-width: 768px) {
+    .hamburger-menu { display: block !important; background: none; border: none; font-size: 28px; cursor: pointer; z-index: 9999; }
+    .nav-menu { display: none !important; position: absolute; top: 60px; left: 0; width: 100%; background: #fff; flex-direction: column; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+    .nav-menu.show-mobile { display: flex !important; }
+    
+    .section-container { display: flex !important; flex-direction: column !important; align-items: center !important; padding: 40px 15px !important; }
+    .section-box { width: 90% !important; margin-bottom: 20px !important; display: block !important; opacity: 1 !important; transform: none !important; }
+    .map-section { max-width: 95% !important; padding: 15px !important; }
+    .map-btn { width: 100% !important; margin-bottom: 10px; }
+}
