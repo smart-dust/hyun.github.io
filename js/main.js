@@ -115,22 +115,33 @@ document.addEventListener('DOMContentLoaded', function() {
         if (adminFab) adminFab.style.display = "none";
     }
 
-document.addEventListener('DOMContentLoaded', function() {
-    // 햄버거 메뉴 동작
-    const hamBtn = document.querySelector('.hamburger-menu');
-    const navMenu = document.querySelector('.nav-menu');
+const ham = document.querySelector('.hamburger-menu');
+const nav = document.querySelector('.nav-menu');
+const mainList = document.querySelector('.main-menu-list');
 
-    if (hamBtn && navMenu) {
-        hamBtn.addEventListener('click', function(e) {
-            e.stopPropagation();
-            navMenu.classList.toggle('show-mobile');
-        });
-    }
+// 햄버거 클릭
+ham.addEventListener('click', () => {
+    ham.classList.toggle('active');
+    nav.classList.toggle('active');
+});
 
-    // 문서 클릭 시 메뉴 닫기
-    document.addEventListener('click', function() {
-        if (navMenu && navMenu.classList.contains('show-mobile')) {
-            navMenu.classList.remove('show-mobile');
-        }
+// 서브메뉴 진입
+document.querySelectorAll('.has-submenu').forEach(item => {
+    item.addEventListener('click', (e) => {
+        e.preventDefault();
+        mainList.style.display = 'none'; // 메인 숨김
+        const sub = item.querySelector('.submenu');
+        sub.style.display = 'block'; // 서브 노출
+        
+        // 뒤로가기 버튼 생성
+        const back = document.createElement('div');
+        back.innerHTML = '< 다시';
+        back.className = 'back-btn';
+        back.onclick = () => {
+            sub.style.display = 'none';
+            mainList.style.display = 'block';
+            back.remove();
+        };
+        sub.prepend(back);
     });
 });
