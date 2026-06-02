@@ -268,3 +268,16 @@
     .map-section { max-width: 95% !important; padding: 15px !important; }
     .map-btn { width: 100% !important; margin-bottom: 10px; }
 }
+/* PC/모바일 상관없이 카드 섹션과 박스를 강제로 항상 보이게 설정 */
+.section-container {
+    opacity: 1 !important; 
+    visibility: visible !important;
+    height: auto !important;
+}
+
+.section-box {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important; /* 애니메이션 충돌 방지 */
+    display: flex !important;   /* 내용이 없어도 박스 형태 유지 */
+}
