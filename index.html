@@ -433,7 +433,19 @@
         }
         authBtn.style.opacity = "1";
     });
+    // [햄버거 메뉴 및 이벤트 관리]
+document.addEventListener('DOMContentLoaded', () => {
+    const ham = document.querySelector('.hamburger-menu');
+    const menu = document.querySelector('.nav-menu');
+    
+    if (ham) {
+        ham.addEventListener('click', (e) => {
+            e.preventDefault();
+            menu.classList.toggle('show-mobile');
+        });
+    }
+});
 </script>
-<script src="js/main.js"></script>
+
 </body>
 </html>
