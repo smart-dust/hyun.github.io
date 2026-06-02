@@ -200,7 +200,7 @@
             </a>
         </div>
         
-        <button class="hamburger-menu">=</button>
+        <button class="hamburger-menu"><span></span><span></span></button>
         
         <div class="nav-menu">
             <a href="index.html">Home</a>
@@ -240,6 +240,19 @@
         </div>
     </div>
 </nav>
+
+<div id="mobile-overlay">
+    <div class="mobile-content">
+        <div class="main-list">
+            <div class="m-item" onclick="showSub('sub-about')">교회소개</div>
+            <div class="m-item" onclick="showSub('sub-sermon')">설교</div>
+            <div class="m-item" onclick="showSub('sub-notice')">공지사항</div>
+            <div class="m-item" onclick="showSub('sub-community')">커뮤니티</div>
+        </div>
+        <div id="sub-about" class="sub-list"><div class="back" onclick="hideSub()">◀ 교회소개</div><a href="about.html#mission">사명과 비전</a><a href="about.html#worship">예배 안내</a></div>
+        <div id="sub-sermon" class="sub-list"><div class="back" onclick="hideSub()">◀ 설교</div><a href="sermon.html#1">설교영상</a><a href="sermon.html#2">공과공부</a></div>
+    </div>
+</div>
 
 <div class="hero" id="home">
     <div class="overlay"></div>
