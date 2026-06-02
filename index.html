@@ -6,8 +6,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Brush+Script&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
+    <style>
+        .admin-only-bar {
+            background-color: #1d1d1f;
+            color: #ffffff;
+            padding: 10px 20px;
+            font-size: 0.85rem;
+            display: none; 
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            border-bottom: 2px solid var(--primary-blue, #0062ff);
+            animation: slideDown 0.3s ease-out;
+        }
+        .admin-only-bar .admin-title {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 700;
+            color: #0062ff;
+        }
+        .admin-only-bar .admin-btn-group {
+            display: flex;
+            gap: 10px;
+        }
+        .admin-only-bar a {
+            color: #fff;
+            text-decoration: none;
+            background: #333;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            transition: background 0.2s;
+        }
+        .admin-only-bar a:hover {
+            background: #0062ff;
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+    </style>
 </head>
 <body>
+
+<div id="admin-top-bar" class="admin-only-bar">
+    <span class="admin-title">🛠️ 청소년부 관리자 모드 활성화됨</span>
+    <div class="admin-btn-group">
+        <!-- 💡 메인 수정을 누르면 프롬프트나 모달 창을 띄워 바로 수정하게 만들 수 있습니다 -->
+        <a href="#" id="edit-main-btn" style="background:#0062ff;">✏️ 메인 내용 수정하기</a>
+        <a href="notice_write.html">📢 공지 작성</a>
+        <a href="sermon_manage.html">📖 공과/설교 관리</a>
+    </div>
+</div>
 
 <nav>
     <div class="nav-container">
@@ -45,22 +96,25 @@
             <div class="menu-item">
                 <a href="community.html">커뮤니티</a>
                 <div class="submenu">
-            <a href="community.html#1">사진 갤러리</a>
-            <a href="community.html#2">게시판</a>
+                    <a href="community.html#1">사진 갤러리</a>
+                    <a href="community.html#2">게시판</a>
+                </div>
+            </div>
+
+            <div class="menu-item">
+                <a href="login.html" id="admin-auth-btn" style="opacity: 0; transition: opacity 0.3s ease;">Login</a>
+            </div>
         </div>
     </div>
-
-    <div class="menu-item">
-        <a href="login.html" id="admin-auth-btn">Login</a>
-    </div>
-</div>
 </nav>
 
 <div class="hero" id="home">
     <div class="overlay"></div>
-    <img src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="교회 전경">
+    <!-- 💡 ID 부여: 데이터베이스에 등록된 사진 주소로 교체됨 -->
+    <img id="db-hero-img" src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="교회 전경">
     <div class="hero-content">
-        <h1>"하나님이 보시기에 기쁘신 교회"</h1>
+        <!-- 💡 ID 부여: 데이터베이스 내용으로 교체됨 -->
+        <h1 id="db-intro-title">"하나님이 보시기에 기쁘신 교회"</h1>
         <p>대전대흥교회 청소년부</p>
         <a href="http://www.dhchurch.org/" target="_blank" class="hero-btn">대전대흥교회 바로가기</a>
     </div>
@@ -69,19 +123,23 @@
 <section class="section-container">
     <div class="section-box">
         <h2>교회소개</h2>
-        <p>대전대흥교회(예장통합)에 소속된 청소년부서로 중·고등학생들이 하나님을 예배하고 사랑을 나누는 공동체입니다.</p>
+        <!-- 💡 ID 부여 -->
+        <p id="db-box1-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>예배 안내</h2>
-        <p>주일 11시부터 12시까지<br>교육선교관 2층에서 예배드립니다.</p>
+        <!-- 💡 ID 부여 -->
+        <p id="db-box2-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>공지사항</h2>
-        <p>새로운 소식과 공지사항을<br>이곳에서 확인해주세요.</p>
+        <!-- 💡 ID 부여 -->
+        <p id="db-box3-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>Play list</h2>
-        <p>내몸은 구주의 성전이니<br>- Gifted -</p>
+        <!-- 💡 ID 부여 -->
+        <p id="db-box4-text">데이터를 불러오는 중입니다...</p>
     </div>
 </section>
 
@@ -89,11 +147,11 @@
     <h2>오시는 길</h2>
     <p>대전대흥교회 교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
  
-<iframe 
-    src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" 
-    allowfullscreen 
-    loading="lazy">
-</iframe>
+    <iframe 
+        src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" 
+        allowfullscreen 
+        loading="lazy">
+    </iframe>
     
     <div class="map-buttons">
         <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="map-btn kakao">카카오 길찾기</a>
@@ -106,11 +164,14 @@
     <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
     <p class="footer-copy">© 2026 대전대흥교회 청소년부.</p>
 </footer>
-    <script src="js/main.js"></script>
+
+<script src="js/main.js"></script>
     
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+    // 👑 Firestore에서 읽기(getDoc), 쓰기(setDoc) 기능 추가 임포트
+    import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
         apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
@@ -122,53 +183,132 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getFirestore(app); // 👑 데이터베이스 객체 선언
 
-   // ⭐ [추가] 만약 3초 뒤에도 안 나타나면 강제로 보여주는 안전장치
-setTimeout(() => {
-    const btn = document.getElementById('admin-auth-btn');
-    if (btn && btn.style.opacity !== "1") {
-        btn.style.opacity = "1";
-        console.log("안전장치에 의해 버튼이 표시됨");
-    }
-}, 3000);
+    // =========================================================
+    // 📥 [기능 1] 데이터베이스에서 실시간 내용 읽어와 화면에 뿌리기
+    // =========================================================
+    async function loadMainContent() {
+        try {
+            const docRef = doc(db, "homepage", "main_content");
+            const docSnap = await getDoc(docRef);
 
-onAuthStateChanged(auth, (user) => {
-    const authBtn = document.getElementById('admin-auth-btn');
-    if (!authBtn) return; 
-
-    if (user) {
-        // [로그인 상태]
-        authBtn.innerText = "Logout";
-        authBtn.removeAttribute('href'); // <a> 태그 기본 이동 방지
-        authBtn.onclick = (e) => {
-            e.preventDefault();
-            if (confirm("정말 로그아웃하시겠습니까?")) {
-                signOut(auth).then(() => {
-                    // 로그아웃 후에도 현재 페이지 유지하며 새로고침
-                    window.location.href = window.location.pathname;
-                });
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                // 형식을 유지한 채 내부 글자와 이미지 소스만 교체합니다.
+                if(data.intro_title) document.getElementById('db-intro-title').innerText = data.intro_title;
+                // 줄바꿈(\n)을 브라우저가 인식할 수 있게 <br> 조치하거나 innerHTML 처리합니다.
+                if(data.box1_text) document.getElementById('db-box1-text').innerHTML = data.box1_text.replace(/\n/g, '<br>');
+                if(data.box2_text) document.getElementById('db-box2-text').innerHTML = data.box2_text.replace(/\n/g, '<br>');
+                if(data.box3_text) document.getElementById('db-box3-text').innerHTML = data.box3_text.replace(/\n/g, '<br>');
+                if(data.box4_text) document.getElementById('db-box4-text').innerHTML = data.box4_text.replace(/\n/g, '<br>');
+                if(data.hero_image) document.getElementById('db-hero-img').src = data.hero_image;
+            } else {
+                // 만약 DB에 데이터가 한 번도 안 만들어졌다면 기본값 배치
+                document.getElementById('db-box1-text').innerText = "교회소개 내용을 입력해 주세요.";
+                document.getElementById('db-box2-text').innerText = "예배 안내 내용을 입력해 주세요.";
+                document.getElementById('db-box3-text').innerText = "공지사항 내용을 입력해 주세요.";
+                document.getElementById('db-box4-text').innerText = "Play list 내용을 입력해 주세요.";
             }
-        };
-    } else {
-        // [로그아웃 상태]
-        authBtn.innerText = "Login";
-        authBtn.removeAttribute('href'); // 클릭 이벤트를 위해 href 제거
-        
-        authBtn.onclick = (e) => {
-            e.preventDefault();
-            // ⭐ 핵심: 로그인하러 가기 전, 현재 주소를 세션에 저장!
-            const currentURL = window.location.href;
-            sessionStorage.setItem('redirectURL', currentURL);
-            
-            // 로그인 페이지로 이동
-            window.location.href = "login.html";
-        };
+        } catch (error) {
+            console.error("데이터 로드 실패:", error);
+        }
     }
 
-    // ⭐ 핵심: 판단 완료 후 버튼 표시
-    authBtn.style.opacity = "1";
-    console.log("Firebase 확인 및 리다이렉트 설정 완료");
-});
+    // 페이지 열리자마자 데이터 자동 로딩
+    loadMainContent();
+
+    // =========================================================
+    // 📤 [기능 2] 관리자용 즉석 수정 기능 (인라인 업데이트)
+    // =========================================================
+    document.getElementById('edit-main-btn').onclick = async (e) => {
+        e.preventDefault();
+        
+        // 현재 화면에 적힌 기존 텍스트 추출 (줄바꿈 원상복구)
+        const currentTitle = document.getElementById('db-intro-title').innerText;
+        const currentBox1 = document.getElementById('db-box1-text').innerHTML.replace(/<br>/g, '\n');
+        const currentBox2 = document.getElementById('db-box2-text').innerHTML.replace(/<br>/g, '\n');
+        const currentBox3 = document.getElementById('db-box3-text').innerHTML.replace(/<br>/g, '\n');
+        const currentBox4 = document.getElementById('db-box4-text').innerHTML.replace(/<br>/g, '\n');
+        const currentImg = document.getElementById('db-hero-img').src;
+
+        // 브라우저 프롬프트 창으로 초간단 수정 접수
+        const newTitle = prompt("메인 슬로건 문구를 입력하세요:", currentTitle);
+        const newBox1 = prompt("1번 상자 (교회소개) 내용을 입력하세요:", currentBox1);
+        const newBox2 = prompt("2번 상자 (예배안내) 내용을 입력하세요:", currentBox2);
+        const newBox3 = prompt("3번 상자 (공지사항) 내용을 입력하세요:", currentBox3);
+        const newBox4 = prompt("4번 상자 (Play list) 내용을 입력하세요:", currentBox4);
+        const newImg = prompt("메인 배경 이미지 URL을 입력하세요:", currentImg);
+
+        if (newTitle && newBox1 && newBox2 && newBox3 && newBox4 && newImg) {
+            try {
+                await setDoc(doc(db, "homepage", "main_content"), {
+                    intro_title: newTitle,
+                    box1_text: newBox1,
+                    box2_text: newBox2,
+                    box3_text: newBox3,
+                    box4_text: newBox4,
+                    hero_image: newImg
+                });
+                alert("홈페이지 내용이 성공적으로 업데이트되었습니다!");
+                window.location.reload();
+            } catch (err) {
+                alert("저장 실패: 권한이 없거나 오류가 발생했습니다.");
+                console.error(err);
+            }
+        }
+    };
+
+    // =========================================================
+    // 🔐 인증 및 권한 확인 파트
+    // =========================================================
+    setTimeout(() => {
+        const btn = document.getElementById('admin-auth-btn');
+        if (btn && btn.style.opacity !== "1") {
+            btn.style.opacity = "1";
+        }
+    }, 1500);
+
+    onAuthStateChanged(auth, (user) => {
+        const authBtn = document.getElementById('admin-auth-btn');
+        const adminBar = document.getElementById('admin-top-bar');
+        if (!authBtn) return; 
+
+        if (user) {
+            authBtn.innerText = "Logout";
+            authBtn.setAttribute('href', '#');
+            
+            if (sessionStorage.getItem('isAdmin') === 'true') {
+                if (adminBar) adminBar.style.display = 'flex';
+            } else {
+                if (adminBar) adminBar.style.display = 'none';
+            }
+
+            authBtn.onclick = (e) => {
+                e.preventDefault();
+                if (confirm("정말 로그아웃하시겠습니까?")) {
+                    signOut(auth).then(() => {
+                        sessionStorage.removeItem('isAdmin');
+                        sessionStorage.removeItem('redirectURL');
+                        window.location.reload();
+                    });
+                }
+            };
+        } else {
+            authBtn.innerText = "Login";
+            authBtn.setAttribute('href', 'login.html');
+            if (adminBar) adminBar.style.display = 'none';
+            
+            authBtn.onclick = (e) => {
+                const currentURL = window.location.href;
+                if(!currentURL.includes('login.html')) {
+                    sessionStorage.setItem('redirectURL', currentURL);
+                }
+                sessionStorage.removeItem('isAdmin');
+            };
+        }
+        authBtn.style.opacity = "1";
+    });
 </script>
 </body>
 </html>
