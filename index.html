@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-        /* 👑 [교정] 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
+        /* 👑 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
         .admin-only-bar {
             position: fixed;   /* 화면 최상단에 고정 */
             top: 0;
@@ -15,17 +15,16 @@
             width: 100%;
             height: 40px;      /* 높이를 40px로 고정 */
             box-sizing: border-box;
-            z-index: 10001;    /* 기존 고정 nav(보통 z-index: 1000 내외)보다 무조건 높게 설정 */
+            z-index: 10001;    /* 기존 고정 nav보다 무조건 높게 설정 */
             background-color: #1d1d1f;
             color: #ffffff;
             padding: 0 20px;
-            font-size: 0.85rem;
             display: none;     /* 자바스크립트가 확인하기 전엔 숨김 */
             justify-content: space-between;
             align-items: center;
+            font-size: 0.85rem;
             font-weight: 500;
-            border-bottom: 2px solid var(--primary-blue, #0062ff);
-            animation: slideDown 0.3s ease-out;
+            border-bottom: 2px solid #0062ff;
         }
         .admin-only-bar .admin-title {
             display: flex;
@@ -50,21 +49,16 @@
         .admin-only-bar a:hover {
             background: #0062ff;
         }
-        @keyframes slideDown {
-            from { transform: translateY(-100%); }
-            to { transform: translateY(0); }
-        }
 
-        /* 👑 [추가] 관리자 바가 열릴 때 기존 고정 nav와 웹페이지를 40px 밀어내는 규칙 */
+        /* 👑 관리자 바가 열릴 때 기존 고정 nav와 웹페이지를 40px 밀어내는 규칙 */
         body.admin-mode-active {
             padding-top: 40px !important; 
         }
         body.admin-mode-active nav {
             top: 40px !important; /* 고정 nav의 시작 위치를 하단으로 40px 밀어냄 */
-            transition: top 0.3s ease-out;
         }
         nav {
-            transition: top 0.3s ease-out; /* 부드러운 전환 효과 추가 */
+            transition: top 0.3s ease-out; /* 부드러운 전환 효과 */
         }
     </style>
 </head>
@@ -164,9 +158,7 @@
         src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" 
         allowfullscreen 
         loading="lazy">
-    </table>
-    
-    <div class="map-buttons">
+    </iframe> <div class="map-buttons">
         <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="map-btn kakao">카카오 길찾기</a>
         <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" target="_blank" class="map-btn naver">네이버 길찾기</a>
     </div>
@@ -198,7 +190,7 @@
     const db = getFirestore(app);
 
     // =========================================================
-    // 📥 [기능 1] 데이터베이스에서 실시간 내용 읽어와 화면에 뿌리기
+    // 📥 [기능 1] Firestore 실시간 데이터 바인딩
     // =========================================================
     async function loadMainContent() {
         try {
@@ -227,7 +219,7 @@
     loadMainContent();
 
     // =========================================================
-    // 📤 [기능 2] 관리자용 즉석 수정 기능
+    // 📤 [기능 2] 관리자 인라인 원격 수정 기능
     // =========================================================
     document.getElementById('edit-main-btn').onclick = async (e) => {
         e.preventDefault();
@@ -266,7 +258,7 @@
     };
 
     // =========================================================
-    // 🔐 [교정 완료] 실시간 권한 동기화 및 겹침 제어 시스템
+    // 🔐 [기능 3] 유저 상태에 따른 UI 분기 제어 엔진
     // =========================================================
     onAuthStateChanged(auth, async (user) => {
         const authBtn = document.getElementById('admin-auth-btn');
@@ -278,7 +270,6 @@
             authBtn.setAttribute('href', '#');
             
             try {
-                // 🔍 로그인 완료 시 세션스토리지에 속지 않고, DB에서 실제 권한 데이터를 즉시 조회합니다.
                 const userDocRef = doc(db, "users", user.uid);
                 const userDocSnap = await getDoc(userDocRef);
                 
@@ -286,10 +277,9 @@
                     sessionStorage.setItem('isAdmin', 'true');
                     if (adminBar) {
                         adminBar.style.display = 'flex';
-                        document.body.classList.add('admin-mode-active'); // 👈 탑바가 나오면 화면 전체를 40px 밀어내어 가려짐 해결
+                        document.body.classList.add('admin-mode-active'); 
                     }
                 } else {
-                    // 관리자가 아닐 때 처리
                     sessionStorage.removeItem('isAdmin');
                     if (adminBar) {
                         adminBar.style.display = 'none';
@@ -312,7 +302,6 @@
                 }
             };
         } else {
-            // 비로그인 상태 원상복구
             authBtn.innerText = "Login";
             authBtn.setAttribute('href', 'login.html');
             if (adminBar) {
