@@ -256,29 +256,25 @@ nav {
     transition: opacity 0.1s ease-in-out; 
 }
 
-/* PC에서는 버튼을 완전히 숨김 */
-.hamburger-menu {
-    display: none !important;
-}
+/* PC에서는 버튼 숨김 */
+.hamburger-menu { display: none !important; }
 
 /* 모바일 전용 */
 @media (max-width: 768px) {
     .hamburger-menu {
         display: block !important;
         background: none; border: none; font-size: 28px; cursor: pointer;
-        margin-right: 15px; /* 로고와 적당한 간격 */
+        padding: 5px 15px; color: var(--text-menu);
     }
-    
+    .nav-container { padding: 0 20px !important; }
     .nav-menu {
-        display: none; /* 평소엔 숨김 */
+        display: none;
         position: absolute; top: 60px; left: 0;
         width: 100%; background: #fff;
         flex-direction: column; z-index: 999;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        padding: 10px 0;
     }
-    
-    /* 메뉴가 열렸을 때 */
-    .nav-menu.show-mobile {
-        display: flex !important;
-    }
+    .nav-menu.show-mobile { display: flex !important; }
+    .nav-menu .menu-item { width: 100%; text-align: center; }
 }
