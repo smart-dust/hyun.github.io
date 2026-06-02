@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
-        /* 👑 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
+        /* 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
         .admin-only-bar {
             position: fixed;   
             top: 0;
@@ -50,7 +50,7 @@
             background: #0062ff;
         }
 
-        /* 👑 관리자 바 활성화 시 본문 밀어내기 */
+        /* 관리자 바 활성화 시 본문 밀어내기 */
         body.admin-mode-active {
             padding-top: 40px !important; 
         }
@@ -61,7 +61,7 @@
             transition: top 0.3s ease-out; 
         }
 
-        /* 👑 대시보드 수정 모달창 고급 CSS 스타일링 */
+        /* 대시보드 수정 모달창 고급 CSS 스타일링 */
         .admin-modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -140,59 +140,55 @@
 </head>
 <body>
 
-<!-- 🛠️ 관리자 탑바 -->
 <div id="admin-top-bar" class="admin-only-bar">
-    <span class="admin-title">🛠️ 청소년부 관리자 모드 활성화됨</span>
+    <span class="admin-title">청소년부 관리자 모드 활성화됨</span>
     <div class="admin-btn-group">
-        <a href="#" id="edit-main-btn" style="background:#0062ff;">✏️ 메인 내용 수정하기</a>
-        <a href="notice_write.html">📢 공지 작성</a>
-        <a href="sermon_manage.html">📖 공과/설교 관리</a>
+        <a href="#" id="edit-main-btn" style="background:#0062ff;"> 내용 수정하기</a>
+        <a href="notice_write.html">공지 작성</a>
+        <a href="sermon_manage.html">공과/설교 관리</a>
     </div>
 </div>
 
-<!-- 📦 메인 통합 수정 모달 (스토리지가 필요 없는 우회형 파일 업로드 장착) -->
 <div id="admin-edit-modal" class="admin-modal-overlay">
     <div class="admin-modal-box">
         <div class="admin-modal-header">
-            <h3>✏️ 홈페이지 통합 수정 콘솔</h3>
+            <h3>홈페이지 통합 수정 콘솔</h3>
             <button class="admin-modal-close" id="modal-close-x">×</button>
         </div>
         <form id="admin-content-form">
             <div class="admin-form-group">
-                <label>메인 대슬로건 문구</label>
+                <label>메인 슬로건 </label>
                 <input type="text" id="form-intro-title" required>
             </div>
             <div class="admin-form-group">
-                <label>1번 상자 내용 (교회소개)</label>
+                <label>교회소개</label>
                 <textarea id="form-box1-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>2번 상자 내용 (예배 안내)</label>
+                <label>예배 안내</label>
                 <textarea id="form-box2-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>3번 상자 내용 (공지사항)</label>
+                <label>공지사항</label>
                 <textarea id="form-box3-text" required></textarea>
             </div>
             <div class="admin-form-group">
-                <label>4번 상자 내용 (Play list)</label>
+                <label>Play list</label>
                 <textarea id="form-box4-text" required></textarea>
             </div>
-            <!-- 📸 [혁신] 결제 유도 없는 파일 선택 인터페이스 배치 -->
             <div class="admin-form-group">
-                <label>메인 배경 이미지 변경</label>
+                <label>배경 이미지</label>
                 <input type="file" id="form-hero-file" accept="image/*">
-                <span class="file-helper">💡 사진을 새로 바꾸실 때만 파일을 골라주세요. (비워두면 기존 사진이 유지됩니다)</span>
+                <span class="file-helper">사진을 새로 바꾸실 때만 파일을 선택 해주세요.</span>
             </div>
             <div class="admin-modal-footer">
                 <button type="button" class="admin-btn admin-btn-cancel" id="modal-close-btn">취소</button>
-                <button type="submit" class="admin-btn admin-btn-save" id="form-submit-btn">변동사항 저장하기</button>
+                <button type="submit" class="admin-btn admin-btn-save" id="form-submit-btn"> 저장하기</button>
             </div>
         </form>
     </div>
 </div>
 
-<!-- 🧭 네비게이션 메뉴바 -->
 <nav>
     <div class="nav-container">
         <div class="nav-left">
@@ -241,7 +237,6 @@
     </div>
 </nav>
 
-<!-- 📸 히어로 섹션 -->
 <div class="hero" id="home">
     <div class="overlay"></div>
     <img id="db-hero-img" src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="교회 전경">
@@ -252,7 +247,6 @@
     </div>
 </div>
 
-<!-- 📦 4칸 그리드 박스 섹션 -->
 <section class="section-container">
     <div class="section-box">
         <h2>교회소개</h2>
@@ -272,7 +266,6 @@
     </div>
 </section>
 
-<!-- 🗺️ 지도 섹션 -->
 <section class="map-section">
     <h2>오시는 길</h2>
     <p>대전대흥교회 교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
@@ -289,7 +282,6 @@
     </div>
 </section>
 
-<!-- 👣 푸터 섹션 -->
 <footer class="footer">
     <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
     <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
@@ -298,7 +290,6 @@
 
 <script src="js/main.js"></script>
     
-<!-- 🔐 파이어베이스 핵심 로직 스크립트 -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -318,9 +309,7 @@
 
     let currentHeroImageUrl = "";
 
-    // =========================================================
-    // 📥 [기능 1] Firestore 실시간 데이터 바인딩
-    // =========================================================
+    // [기능 1] Firestore 실시간 데이터 바인딩
     async function loadMainContent() {
         try {
             const docRef = doc(db, "homepage", "main_content");
@@ -350,9 +339,7 @@
 
     loadMainContent();
 
-    // =========================================================
-    // 📤 [기능 2] 고급형 원페이지 모달 제어 및 API 자동 업로드 시스템
-    // =========================================================
+    // [기능 2] 원페이지 모달 제어 및 API 업로드 시스템
     const modal = document.getElementById('admin-edit-modal');
     
     const closeModal = () => { modal.style.display = 'none'; };
@@ -374,12 +361,11 @@
         modal.style.display = 'flex';
     };
 
-    // 🚀 모달창 내부 서브밋 처리 (ImgBB 익명 호스팅 업로드 연동)
     document.getElementById('admin-content-form').onsubmit = async (e) => {
         e.preventDefault();
         
         const submitBtn = document.getElementById('form-submit-btn');
-        submitBtn.innerText = "⏳ 외부 클라우드에 사진 업로드 중...";
+        submitBtn.innerText = "클라우드에 사진 업로드 중...";
         submitBtn.disabled = true;
 
         const newTitle = document.getElementById('form-intro-title').value;
@@ -392,15 +378,11 @@
         let finalImageUrl = currentHeroImageUrl; 
 
         try {
-            // 👑 관리자가 새로운 사진 파일을 골랐을 때 실행되는 우회 업로드 엔진
             if (fileInput.files.length > 0) {
                 const file = fileInput.files[0];
-                
-                // Form 데이터 규격 조립
                 const formData = new FormData();
                 formData.append("image", file);
 
-                // 무료 이미지 호스팅 전송 API 호출 (익명 전용 키 탑재)
                 const apiResponse = await fetch("https://api.imgbb.com/1/upload?key=6df75908f97232e01dfdb6a40efbb9b1", {
                     method: "POST",
                     body: formData
@@ -409,15 +391,14 @@
                 const apiResult = await apiResponse.json();
 
                 if (apiResult.success) {
-                    finalImageUrl = apiResult.data.url; // 생성된 이미지의 원본 다이렉트 주소 획득 성공
+                    finalImageUrl = apiResult.data.url;
                 } else {
-                    throw new Error("이미지 클라우드 전송 실패");
+                    throw new Error("이미지 전송 실패");
                 }
             }
 
-            submitBtn.innerText = "⏳ 파이어베이스 DB 동기화 중...";
+            submitBtn.innerText = "데이터베이스 동기화 중...";
 
-            // 최종 결과물 Firestore에 밀어넣기
             await setDoc(doc(db, "homepage", "main_content"), {
                 intro_title: newTitle,
                 box1_text: newBox1,
@@ -427,11 +408,11 @@
                 hero_image: finalImageUrl
             });
 
-            alert("🎉 외부 저장소를 우회하여 사진과 텍스트를 모두 완벽히 업데이트했습니다!");
+            alert("업데이트되었습니다.");
             closeModal();
             window.location.reload();
         } catch (err) {
-            alert("업데이트 중 오류가 발생했습니다. 파일 용량이 너무 크거나 네트워크 장애일 수 있습니다.");
+            alert("업데이트 중 오류가 발생했습니다.");
             console.error(err);
         } finally {
             submitBtn.innerText = "변동사항 저장하기";
@@ -439,9 +420,7 @@
         }
     };
 
-    // =========================================================
-    // 🔐 [기능 3] 유저 상태에 따른 UI 분기 제어 엔진
-    // =========================================================
+    // [기능 3] 유저 상태에 따른 UI 분기 제어 엔진
     onAuthStateChanged(auth, async (user) => {
         const authBtn = document.getElementById('admin-auth-btn');
         const adminBar = document.getElementById('admin-top-bar');
