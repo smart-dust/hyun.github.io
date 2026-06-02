@@ -1,75 +1,50 @@
-<script type="module">
-    // 1. Firebase 라이브러리 불러오기
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-    // 2. 사용자가 제공한 진짜 서버 설정값 (열쇠)
-    const firebaseConfig = {
-        apiKey: "AIzaSyAp8majwjPetRnK5u9f_agOWEcW2_veBdw",
-        authDomain: "dhchurch-cf85f.firebaseapp.com",
-        projectId: "dhchurch-cf85f",
-        storageBucket: "dhchurch-cf85f.firebasestorage.app",
-        messagingSenderId: "718998916531",
-        appId: "1:718998916531:web:6d5641ed5a404c2ee0cfc6",
-        measurementId: "G-KKT2TX7SZ9"
-    };
-
-    // 3. Firebase 초기화
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-
-    // 4. 로그인 상태 감지 및 화면 UI 변경
-    onAuthStateChanged(auth, (user) => {
-        const authBtn = document.getElementById('admin-auth-btn'); // Login/Logout 버튼
-        const adminFab = document.getElementById('admin-fab');     // 글쓰기(＋) 버튼
-
-        if (user) {
-            // [관리자가 로그인한 상태]
-            console.log("관리자 로그인 성공:", user.email);
-            if (authBtn) {
-                authBtn.innerText = "Logout";
-                authBtn.href = "#"; // 페이지 이동 방지
-                authBtn.onclick = (e) => {
-                    e.preventDefault();
-                    if(confirm("로그아웃 하시겠습니까?")) {
-                        signOut(auth).then(() => {
-                            alert("로그아웃 되었습니다.");
-                            location.reload();
-                        });
-                    }
-                };
-            }
-            // 글쓰기 버튼 보여주기
-            if (adminFab) adminFab.style.display = "block";
-            
-            // 만약 notice.html에 'write-section'이 있다면 그것도 보여주기
-            const writeSection = document.getElementById('write-section');
-            if (writeSection) writeSection.style.display = "block";
-
-        } else {
-            // [로그인이 안 된 상태]
-            console.log("로그인되지 않음");
-            if (authBtn) {
-                authBtn.innerText = "Login";
-                authBtn.href = "login.html";
-                authBtn.onclick = () => {
-                    // 로그인 후 다시 이 페이지로 돌아오기 위해 현재 주소 저장
-                    sessionStorage.setItem('redirectURL', window.location.href);
-                };
-            }
-            // 글쓰기 버튼 숨기기
-            if (adminFab) adminFab.style.display = "none";
-        }
-    });
-</script>
-
 document.addEventListener('DOMContentLoaded', function() {
+    const isAdmin = sessionStorage.getItem('isAdmin');
+    const authBtn = document.getElementById('admin-auth-btn');
+    const adminFab = document.getElementById('admin-fab');
+
+    if (isAdmin === 'true') {
+        // [관리자 상태]
+        if (authBtn) {
+            authBtn.innerText = "Logout";
+            authBtn.onclick = () => {
+                sessionStorage.removeItem('isAdmin'); // 세션 삭제
+                alert("로그아웃 되었습니다.");
+                location.reload();
+            };
+        }
+        if (adminFab) adminFab.style.display = "block";
+    } else {
+        // [일반 사용자 상태]
+        if (authBtn) {
+            authBtn.innerText = "Login";
+            authBtn.href = "login.html";
+        }
+        if (adminFab) adminFab.style.display = "none";
+    }
+});
+// [햄버거 메뉴 자동 생성 및 동작 스크립트]
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. 햄버거 버튼 생성 (HTML 수정 없이 버튼 추가)
+    if (!document.querySelector('.hamburger-menu')) {
+        const hamBtn = document.createElement('button');
+        hamBtn.className = 'hamburger-menu';
+        hamBtn.innerHTML = '☰';
+        
+        // 로고 뒤에 버튼을 붙입니다.
+        const navLeft = document.querySelector('.nav-left');
+        if (navLeft) {
+            navLeft.after(hamBtn);
+        }
+    }
+
+    // 2. 버튼 클릭 시 메뉴 토글
     const hamBtn = document.querySelector('.hamburger-menu');
     const navMenu = document.querySelector('.nav-menu');
 
-    if (hamBtn) { // 버튼이 있을 때만 실행되도록 안전장치
+    if (hamBtn && navMenu) {
         hamBtn.addEventListener('click', function() {
-            navMenu.classList.toggle('show');
+            navMenu.classList.toggle('show-mobile');
         });
     }
 });
