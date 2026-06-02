@@ -116,26 +116,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
 document.addEventListener('DOMContentLoaded', function() {
-    // [햄버거 버튼 생성 로직]
-    // 1. 화면 너비가 768px 이하일 때만 버튼을 생성하거나 표시함
-    if (window.innerWidth <= 768) {
-        let hamBtn = document.querySelector('.hamburger-menu');
-        if (!hamBtn) {
-            hamBtn = document.createElement('button');
-            hamBtn.className = 'hamburger-menu';
-            hamBtn.innerHTML = '☰';
-            const navLeft = document.querySelector('.nav-left');
-            if (navLeft) navLeft.after(hamBtn);
-        }
-    }
-
-    // [기존 이벤트 리스너]
+    // 햄버거 메뉴 동작
     const hamBtn = document.querySelector('.hamburger-menu');
     const navMenu = document.querySelector('.nav-menu');
+
     if (hamBtn && navMenu) {
-        hamBtn.addEventListener('click', (e) => {
+        hamBtn.addEventListener('click', function(e) {
             e.stopPropagation();
             navMenu.classList.toggle('show-mobile');
         });
     }
+
+    // 문서 클릭 시 메뉴 닫기
+    document.addEventListener('click', function() {
+        if (navMenu && navMenu.classList.contains('show-mobile')) {
+            navMenu.classList.remove('show-mobile');
+        }
+    });
 });
