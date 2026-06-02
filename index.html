@@ -7,12 +7,20 @@
     <link rel="stylesheet" href="css/common.css">
     <link rel="stylesheet" href="css/index.css">
     <style>
+        /* 👑 [교정] 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
         .admin-only-bar {
+            position: fixed;   /* 화면 최상단에 고정 */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 40px;      /* 높이를 40px로 고정 */
+            box-sizing: border-box;
+            z-index: 10001;    /* 기존 고정 nav(보통 z-index: 1000 내외)보다 무조건 높게 설정 */
             background-color: #1d1d1f;
             color: #ffffff;
-            padding: 10px 20px;
+            padding: 0 20px;
             font-size: 0.85rem;
-            display: none; 
+            display: none;     /* 자바스크립트가 확인하기 전엔 숨김 */
             justify-content: space-between;
             align-items: center;
             font-weight: 500;
@@ -46,6 +54,18 @@
             from { transform: translateY(-100%); }
             to { transform: translateY(0); }
         }
+
+        /* 👑 [추가] 관리자 바가 열릴 때 기존 고정 nav와 웹페이지를 40px 밀어내는 규칙 */
+        body.admin-mode-active {
+            padding-top: 40px !important; 
+        }
+        body.admin-mode-active nav {
+            top: 40px !important; /* 고정 nav의 시작 위치를 하단으로 40px 밀어냄 */
+            transition: top 0.3s ease-out;
+        }
+        nav {
+            transition: top 0.3s ease-out; /* 부드러운 전환 효과 추가 */
+        }
     </style>
 </head>
 <body>
@@ -53,7 +73,6 @@
 <div id="admin-top-bar" class="admin-only-bar">
     <span class="admin-title">🛠️ 청소년부 관리자 모드 활성화됨</span>
     <div class="admin-btn-group">
-        <!-- 💡 메인 수정을 누르면 프롬프트나 모달 창을 띄워 바로 수정하게 만들 수 있습니다 -->
         <a href="#" id="edit-main-btn" style="background:#0062ff;">✏️ 메인 내용 수정하기</a>
         <a href="notice_write.html">📢 공지 작성</a>
         <a href="sermon_manage.html">📖 공과/설교 관리</a>
@@ -110,10 +129,8 @@
 
 <div class="hero" id="home">
     <div class="overlay"></div>
-    <!-- 💡 ID 부여: 데이터베이스에 등록된 사진 주소로 교체됨 -->
     <img id="db-hero-img" src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="교회 전경">
     <div class="hero-content">
-        <!-- 💡 ID 부여: 데이터베이스 내용으로 교체됨 -->
         <h1 id="db-intro-title">"하나님이 보시기에 기쁘신 교회"</h1>
         <p>대전대흥교회 청소년부</p>
         <a href="http://www.dhchurch.org/" target="_blank" class="hero-btn">대전대흥교회 바로가기</a>
@@ -123,22 +140,18 @@
 <section class="section-container">
     <div class="section-box">
         <h2>교회소개</h2>
-        <!-- 💡 ID 부여 -->
         <p id="db-box1-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>예배 안내</h2>
-        <!-- 💡 ID 부여 -->
         <p id="db-box2-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>공지사항</h2>
-        <!-- 💡 ID 부여 -->
         <p id="db-box3-text">데이터를 불러오는 중입니다...</p>
     </div>
     <div class="section-box">
         <h2>Play list</h2>
-        <!-- 💡 ID 부여 -->
         <p id="db-box4-text">데이터를 불러오는 중입니다...</p>
     </div>
 </section>
@@ -151,7 +164,7 @@
         src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" 
         allowfullscreen 
         loading="lazy">
-    </iframe>
+    </table>
     
     <div class="map-buttons">
         <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="map-btn kakao">카카오 길찾기</a>
@@ -170,7 +183,6 @@
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-    // 👑 Firestore에서 읽기(getDoc), 쓰기(setDoc) 기능 추가 임포트
     import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
     const firebaseConfig = {
@@ -183,7 +195,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
-    const db = getFirestore(app); // 👑 데이터베이스 객체 선언
+    const db = getFirestore(app);
 
     // =========================================================
     // 📥 [기능 1] 데이터베이스에서 실시간 내용 읽어와 화면에 뿌리기
@@ -195,16 +207,13 @@
 
             if (docSnap.exists()) {
                 const data = docSnap.data();
-                // 형식을 유지한 채 내부 글자와 이미지 소스만 교체합니다.
                 if(data.intro_title) document.getElementById('db-intro-title').innerText = data.intro_title;
-                // 줄바꿈(\n)을 브라우저가 인식할 수 있게 <br> 조치하거나 innerHTML 처리합니다.
                 if(data.box1_text) document.getElementById('db-box1-text').innerHTML = data.box1_text.replace(/\n/g, '<br>');
                 if(data.box2_text) document.getElementById('db-box2-text').innerHTML = data.box2_text.replace(/\n/g, '<br>');
                 if(data.box3_text) document.getElementById('db-box3-text').innerHTML = data.box3_text.replace(/\n/g, '<br>');
                 if(data.box4_text) document.getElementById('db-box4-text').innerHTML = data.box4_text.replace(/\n/g, '<br>');
                 if(data.hero_image) document.getElementById('db-hero-img').src = data.hero_image;
             } else {
-                // 만약 DB에 데이터가 한 번도 안 만들어졌다면 기본값 배치
                 document.getElementById('db-box1-text').innerText = "교회소개 내용을 입력해 주세요.";
                 document.getElementById('db-box2-text').innerText = "예배 안내 내용을 입력해 주세요.";
                 document.getElementById('db-box3-text').innerText = "공지사항 내용을 입력해 주세요.";
@@ -215,16 +224,14 @@
         }
     }
 
-    // 페이지 열리자마자 데이터 자동 로딩
     loadMainContent();
 
     // =========================================================
-    // 📤 [기능 2] 관리자용 즉석 수정 기능 (인라인 업데이트)
+    // 📤 [기능 2] 관리자용 즉석 수정 기능
     // =========================================================
     document.getElementById('edit-main-btn').onclick = async (e) => {
         e.preventDefault();
         
-        // 현재 화면에 적힌 기존 텍스트 추출 (줄바꿈 원상복구)
         const currentTitle = document.getElementById('db-intro-title').innerText;
         const currentBox1 = document.getElementById('db-box1-text').innerHTML.replace(/<br>/g, '\n');
         const currentBox2 = document.getElementById('db-box2-text').innerHTML.replace(/<br>/g, '\n');
@@ -232,7 +239,6 @@
         const currentBox4 = document.getElementById('db-box4-text').innerHTML.replace(/<br>/g, '\n');
         const currentImg = document.getElementById('db-hero-img').src;
 
-        // 브라우저 프롬프트 창으로 초간단 수정 접수
         const newTitle = prompt("메인 슬로건 문구를 입력하세요:", currentTitle);
         const newBox1 = prompt("1번 상자 (교회소개) 내용을 입력하세요:", currentBox1);
         const newBox2 = prompt("2번 상자 (예배안내) 내용을 입력하세요:", currentBox2);
@@ -260,16 +266,9 @@
     };
 
     // =========================================================
-    // 🔐 인증 및 권한 확인 파트
+    // 🔐 [교정 완료] 실시간 권한 동기화 및 겹침 제어 시스템
     // =========================================================
-    setTimeout(() => {
-        const btn = document.getElementById('admin-auth-btn');
-        if (btn && btn.style.opacity !== "1") {
-            btn.style.opacity = "1";
-        }
-    }, 1500);
-
-    onAuthStateChanged(auth, (user) => {
+    onAuthStateChanged(auth, async (user) => {
         const authBtn = document.getElementById('admin-auth-btn');
         const adminBar = document.getElementById('admin-top-bar');
         if (!authBtn) return; 
@@ -278,9 +277,27 @@
             authBtn.innerText = "Logout";
             authBtn.setAttribute('href', '#');
             
-            if (sessionStorage.getItem('isAdmin') === 'true') {
-                if (adminBar) adminBar.style.display = 'flex';
-            } else {
+            try {
+                // 🔍 로그인 완료 시 세션스토리지에 속지 않고, DB에서 실제 권한 데이터를 즉시 조회합니다.
+                const userDocRef = doc(db, "users", user.uid);
+                const userDocSnap = await getDoc(userDocRef);
+                
+                if (userDocSnap.exists() && userDocSnap.data().role === 'staff') {
+                    sessionStorage.setItem('isAdmin', 'true');
+                    if (adminBar) {
+                        adminBar.style.display = 'flex';
+                        document.body.classList.add('admin-mode-active'); // 👈 탑바가 나오면 화면 전체를 40px 밀어내어 가려짐 해결
+                    }
+                } else {
+                    // 관리자가 아닐 때 처리
+                    sessionStorage.removeItem('isAdmin');
+                    if (adminBar) {
+                        adminBar.style.display = 'none';
+                        document.body.classList.remove('admin-mode-active');
+                    }
+                }
+            } catch (error) {
+                console.error("권한 대조 중 오류 발생:", error);
                 if (adminBar) adminBar.style.display = 'none';
             }
 
@@ -295,16 +312,20 @@
                 }
             };
         } else {
+            // 비로그인 상태 원상복구
             authBtn.innerText = "Login";
             authBtn.setAttribute('href', 'login.html');
-            if (adminBar) adminBar.style.display = 'none';
+            if (adminBar) {
+                adminBar.style.display = 'none';
+                document.body.classList.remove('admin-mode-active');
+            }
+            sessionStorage.removeItem('isAdmin');
             
             authBtn.onclick = (e) => {
                 const currentURL = window.location.href;
                 if(!currentURL.includes('login.html')) {
                     sessionStorage.setItem('redirectURL', currentURL);
                 }
-                sessionStorage.removeItem('isAdmin');
             };
         }
         authBtn.style.opacity = "1";
