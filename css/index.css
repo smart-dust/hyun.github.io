@@ -83,12 +83,13 @@
 
 /* [2] 카드 섹션 (중간 소개 영역) */
 .section-container {
-    display: flex;               /* 카드들을 옆으로 나란히 배치 */
+    display: flex !important;    /* 카드들을 옆으로 나란히 배치 */
     justify-content: center;     /* 카드들을 가로 정가운데로 모음 */
     gap: 25px;                   /* 카드와 카드 사이 간격 */
     padding: 100px 20px;         /* 위아래 100px씩 넉넉한 공간 확보 */
     background: #fdfdfd;         /* 배경색: 거의 하얀색에 가까운 미색 */
     flex-wrap: wrap;             /* 화면이 좁아지면 카드가 자동으로 다음 줄로 내려감 */
+    visibility: visible !important; /* 강제 표시 */
 }
 
 /* 개별 카드 박스 */
@@ -99,7 +100,7 @@
     min-height: 230px;           /* 내용이 적어도 최소 이 높이는 유지함 */
     padding: 35px 25px;          /* 카드 안쪽 상하좌우 여백 */
     text-align: center;          /* 카드 내 모든 텍스트 가운데 정렬 */
-    display: flex;               /* 내부 텍스트 정렬용 */
+    display: flex !important;    /* 강제 표시 */
     flex-direction: column;      /* 제목과 내용을 위아래로 배치 */
     border: 1px solid rgba(111, 168, 220, 0.15); /* 아주 연한 하늘색 테두리 */
     box-shadow: 0 5px 15px rgba(0,0,0,0.02); /* 거의 안 보일 듯한 미세한 그림자 */
@@ -217,6 +218,7 @@
 .hero-btn:active, .map-btn:active {
     transform: translateY(1px) scale(0.98); /* 실제 버튼을 누르는 것처럼 쑥 들어가고 작아짐 */
 }
+
 /* PC 환경 메뉴바 강제 고정 */
 @media (min-width: 769px) {
     .hamburger-menu { display: none !important; }
@@ -228,20 +230,22 @@
     .hamburger-menu { 
         display: block !important; 
         background: none; border: none; font-size: 28px; cursor: pointer; padding: 10px;
+        z-index: 9999 !important; /* 클릭 우선순위 확보 */
     }
     .nav-container { padding: 0 15px !important; }
     .nav-menu {
-        display: none;
+        display: none !important; /* 평소엔 숨김 */
         position: absolute; top: 60px; left: 0;
         width: 100%; background: #fff;
-        flex-direction: column; z-index: 999;
+        flex-direction: column; z-index: 9999 !important;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
+    /* JS로 show-mobile 클래스가 붙었을 때 강제 출력 */
     .nav-menu.show-mobile { display: flex !important; }
     
     /* 섹션 레이아웃 복구 */
     .section-container { padding: 40px 15px !important; }
-    .section-box { width: 100% !important; margin-bottom: 20px; }
+    .section-box { width: 100% !important; margin-bottom: 20px; display: block !important; }
     .map-section { max-width: 95% !important; padding: 15px !important; }
     .map-btn { width: 100% !important; margin-bottom: 10px; }
 }
