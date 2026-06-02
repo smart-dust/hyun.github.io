@@ -2,7 +2,6 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <!-- 모바일 크기 최적화 및 자동 확대 방지 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>로그인 | 대전대흥교회 청소년부</title>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
@@ -12,9 +11,9 @@
             --primary-blue-dark: #004dc7;
             --text-dark: #1d1d1f;
             --text-gray: #86868b;
-            --border-color: #d2d2d7;
+            --border-color: #e5e5ea;
             --bg-gray: #f5f5f7;
-            --transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         * { 
@@ -29,60 +28,54 @@
             background-color: #ffffff;
             color: var(--text-dark);
             display: flex; 
-            justify-content: center; 
             align-items: center;
+            justify-content: center;
             min-height: 100vh; 
-            /* 모바일 하단 노치/인디케이터 여백 확보 */
-            padding: 20px padding-bottom: calc(20px + env(safe-area-inset-bottom));
+            padding: 20px;
+            padding-bottom: calc(20px + env(safe-area-inset-bottom));
         }
 
         .container { 
             width: 100%; 
-            max-width: 360px; /* 조금 더 트렌디하고 컴팩트한 폭 조정 */
-            animation: fadeIn 0.5s ease-out;
+            max-width: 350px; 
+            animation: fadeIn 0.4s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
+            from { opacity: 0; transform: translateY(8px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        header { text-align: center; margin-bottom: 40px; }
-        header h1 { font-size: 1.8rem; font-weight: 900; letter-spacing: -1px; margin-bottom: 10px; color: var(--primary-blue); }
-        header p { font-size: 0.9rem; color: var(--text-gray); font-weight: 500; }
+        header { text-align: center; margin-bottom: 35px; }
+        header h1 { font-size: 1.6rem; font-weight: 800; letter-spacing: -0.5px; color: var(--text-dark); }
 
-        .login-form { display: flex; flex-direction: column; gap: 18px; }
-        .field { display: flex; flex-direction: column; gap: 8px; }
+        .login-form { display: flex; flex-direction: column; gap: 16px; }
+        .field { display: flex; flex-direction: column; gap: 6px; }
         
-        /* 비밀번호 눈 아이콘 배치를 위한 부모 요소 고정 */
         .password-wrapper { position: relative; width: 100%; }
         
-        label { font-size: 0.85rem; font-weight: 700; position: relative; padding-left: 12px; color: #333; }
-        label::before {
-            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
-            width: 3px; height: 12px; background-color: var(--primary-blue); border-radius: 2px;
-        }
+        label { font-size: 0.8rem; font-weight: 700; color: var(--text-dark); padding-left: 2px; }
 
         input {
             width: 100%; 
-            padding: 16px; 
+            padding: 15px; 
             border: 1px solid var(--border-color);
             border-radius: 12px; 
-            font-size: 1rem; 
-            background-color: #fff;
+            font-size: 0.95rem; 
+            background-color: var(--bg-gray);
             transition: var(--transition); 
             outline: none;
-            /* iOS 기기에서 input 안쪽 기본 그림자 제거 및 모서리 둥글기 고정 */
             -webkit-appearance: none;
         }
         
-        /* 모바일 터치 피드백 강화 및 테두리 변화 */
-        input:focus { border-color: var(--primary-blue); background-color: #fff; box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.08); }
+        input:focus { 
+            border-color: var(--primary-blue); 
+            background-color: #fff; 
+            box-shadow: 0 0 0 4px rgba(0, 98, 255, 0.08); 
+        }
         
-        /* 모바일 가독성을 위해 글자가 눈 아이콘에 가려지지 않도록 우측 패딩 충분히 확보 */
-        #password { padding-right: 52px; }
+        #password { padding-right: 50px; }
 
-        /* [변경] 현대적인 눈 아이콘 버튼 스타일 */
         .toggle-password {
             position: absolute; 
             right: 4px; 
@@ -91,53 +84,47 @@
             background: none; 
             border: none; 
             cursor: pointer;
-            width: 44px; /* 모바일 최소 터치 영역 확보 */
+            width: 44px;
             height: 44px;
             display: flex; 
             align-items: center; 
             justify-content: center;
-            user-select: none; 
-            transition: var(--transition);
+            user-select: none;
         }
         .toggle-password svg {
-            width: 20px;
-            height: 20px;
-            stroke: var(--text-gray);
+            width: 22px;
+            height: 22px;
             fill: none;
+            stroke: var(--text-gray);
+            stroke-width: 1.75;
+            stroke-linecap: round;
+            stroke-linejoin: round;
             transition: var(--transition);
         }
-        .toggle-password:active svg {
-            transform: scale(0.9);
-        }
-        /* 눈 아이콘 활성화 시 색상 변경 */
-        .toggle-password.active svg {
-            stroke: var(--primary-blue);
-        }
+        .toggle-password:hover svg { stroke: var(--text-dark); }
 
         .login-btn {
             width: 100%;
-            padding: 16px; 
-            background: linear-gradient(135deg, var(--primary-blue) 0%, var(--primary-blue-dark) 100%);
+            padding: 15px; 
+            background: var(--primary-blue);
             color: white; 
             border: none; 
             border-radius: 12px; 
-            font-size: 1rem;
-            font-weight: 700; 
+            font-size: 0.95rem;
+            font-weight: 600; 
             cursor: pointer; 
-            margin-top: 8px; 
+            margin-top: 10px; 
             transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(0, 98, 255, 0.15);
             -webkit-appearance: none;
         }
-        /* 모바일에서 버튼 터치하고 있을 때(누르고 있을 때) 반응 효과 */
         .login-btn:active { 
-            transform: scale(0.98); 
-            box-shadow: 0 2px 6px rgba(0, 98, 255, 0.2); 
+            background: var(--primary-blue-dark);
+            transform: scale(0.99); 
         }
 
-        .nav-links { text-align: center; margin-top: 25px; display: flex; justify-content: center; align-items: center; gap: 8px; }
-        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.85rem; font-weight: 500; padding: 8px 12px; border-radius: 8px; transition: var(--transition); }
-        .nav-links a:active { background-color: var(--bg-gray); color: var(--primary-blue); }
+        .nav-links { text-align: center; margin-top: 20px; display: flex; justify-content: center; align-items: center; gap: 8px; }
+        .nav-links a { color: var(--text-gray); text-decoration: none; font-size: 0.8rem; font-weight: 500; padding: 6px 10px; border-radius: 6px; transition: var(--transition); }
+        .nav-links a:active { background-color: var(--bg-gray); }
         .divider { width: 1px; height: 10px; background-color: var(--border-color); }
     </style>
 </head>
@@ -146,28 +133,23 @@
     <div class="container">
         <header>
             <h1>대전대흥교회 청소년부</h1>
-            <p>서비스 이용을 위해 로그인을 해주세요</p>
         </header>
 
         <div class="login-form">
             <div class="field">
-                <label for="email">ID</label>
-                <!-- 모바일에서 이메일 키패드가 바로 뜨도록 가이드 제공 -->
-                <input type="email" id="email" placeholder="아이디(이메일)를 입력해주세요" required autocomplete="username" inputmode="email">
+                <label for="email">이메일 아이디</label>
+                <input type="email" id="email" placeholder="example@email.com" required autocomplete="username" inputmode="email">
             </div>
 
             <div class="field">
-                <label for="password">Password</label>
+                <label for="password">비밀번호</label>
                 <div class="password-wrapper">
-                    <input type="password" id="password" placeholder="비밀번호를 입력해주세요" required autocomplete="current-password">
-                    <!-- [변경] 이모지 대신 들어간 정밀 가공된 모던 SVG 눈 아이콘 -->
+                    <input type="password" id="password" placeholder="비밀번호 입력" required autocomplete="current-password">
                     <button type="button" id="toggle-password" class="toggle-password" title="비밀번호 보기">
-                        <svg id="eye-icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <!-- 기본 감겨있는 눈 모양 경로 (기본값) -->
-                            <path class="eye-open" d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                            <circle class="eye-open" cx="12" cy="12" r="3"></circle>
-                            <!-- 감은 눈 선 (자바스크립트에서 토글 처리 예정) -->
-                            <line class="eye-close" x1="1" y1="1" x2="23" y2="23" style="display:none;"></line>
+                        <svg id="eye-icon" viewBox="0 0 24 24">
+                            <path id="eye-path" d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7z"></path>
+                            <circle id="eye-circle" cx="12" cy="12" r="3"></circle>
+                            <line id="eye-slash" x1="4" y1="4" x2="20" y2="20" stroke-width="1.75" style="display:none;"></line>
                         </svg>
                     </button>
                 </div>
@@ -178,7 +160,7 @@
             <div class="nav-links">
                 <a href="signup.html">회원가입</a>
                 <span class="divider"></span>
-                <a href="index.html">홈페이지로 돌아가기</a>
+                <a href="index.html">홈으로 돌아가기</a>
             </div>
         </div>
     </div>
@@ -248,21 +230,21 @@
             if (e.key === 'Enter') handleLogin();
         });
 
-        // [변경] SVG 눈 아이콘 전용 토글 자바스크립트 로직
         const passwordInput = document.getElementById('password');
         const togglePasswordBtn = document.getElementById('toggle-password');
-        const eyeCloseLine = togglePasswordBtn.querySelector('.eye-close');
+        const eyeIcon = document.getElementById('eye-icon');
+        const eyeSlash = document.getElementById('eye-slash');
 
         togglePasswordBtn.addEventListener('click', () => {
             if (passwordInput.type === 'password') {
                 passwordInput.type = 'text';
-                togglePasswordBtn.classList.add('active');
-                eyeCloseLine.style.display = 'block'; // 패스워드가 보일 때 사선(\)을 그어 숨기기 상태 유도
+                eyeSlash.style.display = 'block';
+                eyeIcon.style.stroke = 'var(--primary-blue)';
                 togglePasswordBtn.setAttribute('title', '비밀번호 숨기기');
             } else {
                 passwordInput.type = 'password';
-                togglePasswordBtn.classList.remove('active');
-                eyeCloseLine.style.display = 'none'; // 다시 패스워드를 가릴 때 사선 지우기
+                eyeSlash.style.display = 'none';
+                eyeIcon.style.stroke = 'var(--text-gray)';
                 togglePasswordBtn.setAttribute('title', '비밀번호 보기');
             }
         });
