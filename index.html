@@ -9,17 +9,17 @@
     <style>
         /* 👑 관리자 탑바 최상단 완전 고정 및 레이어 설정 */
         .admin-only-bar {
-            position: fixed;   /* 화면 최상단에 고정 */
+            position: fixed;   
             top: 0;
             left: 0;
             width: 100%;
-            height: 40px;      /* 높이를 40px로 고정 */
+            height: 40px;      
             box-sizing: border-box;
-            z-index: 10001;    /* 기존 고정 nav보다 무조건 높게 설정 */
+            z-index: 10001;    
             background-color: #1d1d1f;
             color: #ffffff;
             padding: 0 20px;
-            display: none;     /* 자바스크립트가 확인하기 전엔 숨김 */
+            display: none;     
             justify-content: space-between;
             align-items: center;
             font-size: 0.85rem;
@@ -50,29 +50,143 @@
             background: #0062ff;
         }
 
-        /* 👑 관리자 바가 열릴 때 기존 고정 nav와 웹페이지를 40px 밀어내는 규칙 */
+        /* 👑 관리자 바 활성화 시 본문 밀어내기 */
         body.admin-mode-active {
             padding-top: 40px !important; 
         }
         body.admin-mode-active nav {
-            top: 40px !important; /* 고정 nav의 시작 위치를 하단으로 40px 밀어냄 */
+            top: 40px !important; 
         }
         nav {
-            transition: top 0.3s ease-out; /* 부드러운 전환 효과 */
+            transition: top 0.3s ease-out; 
+        }
+
+        /* 👑 [신규] 대시보드 수정 모달창 고급 CSS 스타일링 */
+        .admin-modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 20000;
+            display: none; /* 기본 숨김 */
+            justify-content: center;
+            align-items: center;
+        }
+        .admin-modal-box {
+            background: #fff;
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            overflow-y: auto;
+            border-radius: 14px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            font-family: 'Noto Sans KR', sans-serif;
+            animation: modalFadeUp 0.3s ease-out;
+        }
+        .admin-modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 20px;
+        }
+        .admin-modal-header h3 {
+            margin: 0; font-size: 1.3rem; color: #111; font-weight: 700;
+        }
+        .admin-modal-close {
+            background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #aaa;
+        }
+        .admin-modal-close:hover { color: #000; }
+        
+        .admin-form-group {
+            margin-bottom: 16px;
+        }
+        .admin-form-group label {
+            display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; color: #444;
+        }
+        .admin-form-group input[type="text"],
+        .admin-form-group textarea {
+            width: 100%; box-sizing: border-box; padding: 10px;
+            border: 1px solid #ccc; border-radius: 8px; font-size: 0.9rem; font-family: inherit;
+        }
+        .admin-form-group textarea { height: 70px; resize: vertical; }
+        .admin-form-group input:focus, .admin-form-group textarea:focus {
+            border-color: #0062ff; outline: none; box-shadow: 0 0 4px rgba(0,98,255,0.2);
+        }
+        
+        .admin-modal-footer {
+            display: flex; justify-content: flex-end; gap: 10px; margin-top: 25px;
+            border-top: 1px solid #eee; padding-top: 15px;
+        }
+        .admin-btn {
+            padding: 10px 20px; border: none; border-radius: 8px; font-weight: 600; font-size: 0.9rem; cursor: pointer;
+        }
+        .admin-btn-save { background: #0062ff; color: #fff; }
+        .admin-btn-save:hover { background: #004bca; }
+        .admin-btn-cancel { background: #eee; color: #555; }
+        .admin-btn-cancel:hover { background: #ddd; }
+
+        @keyframes modalFadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+<!-- 🛠️ 관리자 탑바 -->
 <div id="admin-top-bar" class="admin-only-bar">
-    <span class="admin-title">🛠️ 청소년부 관리자 모드 활성화됨</span>
+    <span class="admin-title"> 관리자 모드 </span>
     <div class="admin-btn-group">
-        <a href="#" id="edit-main-btn" style="background:#0062ff;">✏️ 메인 내용 수정하기</a>
-        <a href="notice_write.html">📢 공지 작성</a>
-        <a href="sermon_manage.html">📖 공과/설교 관리</a>
+        <a href="#" id="edit-main-btn" style="background:#0062ff;"> 메인 내용 수정하기</a>
+        <a href="notice_write.html"> 공지 작성</a>
+        <a href="sermon_manage.html"> 공과/설교 관리</a>
     </div>
 </div>
 
+<!-- 👑 [신규 추가] 메인 통합 수정을 위한 폼 모달 엘리먼트 -->
+<div id="admin-edit-modal" class="admin-modal-overlay">
+    <div class="admin-modal-box">
+        <div class="admin-modal-header">
+            <h3>✏️ 홈페이지 통합 수정 콘솔</h3>
+            <button class="admin-modal-close" id="modal-close-x">&times;</button>
+        </div>
+        <form id="admin-content-form">
+            <div class="admin-form-group">
+                <label>메인 대슬로건 문구</label>
+                <input type="text" id="form-intro-title" required>
+            </div>
+            <div class="admin-form-group">
+                <label>1번 상자 내용 (교회소개)</label>
+                <textarea id="form-box1-text" required></textarea>
+            </div>
+            <div class="admin-form-group">
+                <label>2번 상자 내용 (예배 안내)</label>
+                <textarea id="form-box2-text" required></textarea>
+            </div>
+            <div class="admin-form-group">
+                <label>3번 상자 내용 (공지사항)</label>
+                <textarea id="form-box3-text" required></textarea>
+            </div>
+            <div class="admin-form-group">
+                <label>4번 상자 내용 (Play list)</label>
+                <textarea id="form-box4-text" required></textarea>
+            </div>
+            <div class="admin-form-group">
+                <label>메인 배경 이미지 큰 사진 주소(URL)</label>
+                <input type="text" id="form-hero-image" required>
+            </div>
+            <div class="admin-modal-footer">
+                <button type="button" class="admin-btn admin-btn-cancel" id="modal-close-btn">취소</button>
+                <button type="submit" class="admin-btn admin-btn-save">변동사항 저장하기</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- 🧭 네비게이션 메뉴바 -->
 <nav>
     <div class="nav-container">
         <div class="nav-left">
@@ -121,6 +235,7 @@
     </div>
 </nav>
 
+<!-- 📸 히어로 섹션 -->
 <div class="hero" id="home">
     <div class="overlay"></div>
     <img id="db-hero-img" src="https://smart-dust.github.io/hyun.github.io/images/church.png" alt="교회 전경">
@@ -131,6 +246,7 @@
     </div>
 </div>
 
+<!-- 📦 4칸 그리드 박스 섹션 -->
 <section class="section-container">
     <div class="section-box">
         <h2>교회소개</h2>
@@ -150,6 +266,7 @@
     </div>
 </section>
 
+<!-- 🗺️ 지도 섹션 -->
 <section class="map-section">
     <h2>오시는 길</h2>
     <p>대전대흥교회 교육선교관 2층 : 대전광역시 중구 충무로 11번길 43</p>
@@ -158,12 +275,15 @@
         src="https://maps.google.com/maps?q=대전광역시 중구 충무로 11번길 43&t=&z=18&ie=UTF8&iwloc=near&output=embed" 
         allowfullscreen 
         loading="lazy">
-    </iframe> <div class="map-buttons">
+    </iframe>
+    
+    <div class="map-buttons">
         <a href="https://map.kakao.com/link/search/대전광역시 중구 충무로 11번길 43" target="_blank" class="map-btn kakao">카카오 길찾기</a>
         <a href="https://map.naver.com/v5/search/대전대흥교회교육선교관" target="_blank" class="map-btn naver">네이버 길찾기</a>
     </div>
 </section>
 
+<!-- 👣 푸터 섹션 -->
 <footer class="footer">
     <p>주소: 대전광역시 중구 충무로 11번길 43 (교육선교관 2층)</p>
     <p>전화: 042-123-4567 | 이메일: youth@dhchurch.org</p>
@@ -172,6 +292,7 @@
 
 <script src="js/main.js"></script>
     
+<!-- 🔐 파이어베이스 핵심 로직 스크립트 -->
 <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
@@ -219,41 +340,60 @@
     loadMainContent();
 
     // =========================================================
-    // 📤 [기능 2] 관리자 인라인 원격 수정 기능
+    // 📤 [기능 2] 고급형 원페이지 모달 제어 시스템 (프롬프트 삭제)
     // =========================================================
-    document.getElementById('edit-main-btn').onclick = async (e) => {
+    const modal = document.getElementById('admin-edit-modal');
+    
+    // 모달 닫기 함수 리팩토링
+    const closeModal = () => { modal.style.display = 'none'; };
+    document.getElementById('modal-close-x').onclick = closeModal;
+    document.getElementById('modal-close-btn').onclick = closeModal;
+
+    // 모달창 바깥 검은 공간 누르면 닫히기 기능 추가
+    window.onclick = (e) => { if (e.target === modal) closeModal(); };
+
+    // [수정하기] 버튼 이벤트 바인딩
+    document.getElementById('edit-main-btn').onclick = (e) => {
         e.preventDefault();
         
-        const currentTitle = document.getElementById('db-intro-title').innerText;
-        const currentBox1 = document.getElementById('db-box1-text').innerHTML.replace(/<br>/g, '\n');
-        const currentBox2 = document.getElementById('db-box2-text').innerHTML.replace(/<br>/g, '\n');
-        const currentBox3 = document.getElementById('db-box3-text').innerHTML.replace(/<br>/g, '\n');
-        const currentBox4 = document.getElementById('db-box4-text').innerHTML.replace(/<br>/g, '\n');
-        const currentImg = document.getElementById('db-hero-img').src;
+        // 현재 화면 문구 읽어와서 모달 입력창에 사전 세팅 완료
+        document.getElementById('form-intro-title').value = document.getElementById('db-intro-title').innerText;
+        document.getElementById('form-box1-text').value = document.getElementById('db-box1-text').innerHTML.replace(/<br>/g, '\n');
+        document.getElementById('form-box2-text').value = document.getElementById('db-box2-text').innerHTML.replace(/<br>/g, '\n');
+        document.getElementById('form-box3-text').value = document.getElementById('db-box3-text').innerHTML.replace(/<br>/g, '\n');
+        document.getElementById('form-box4-text').value = document.getElementById('db-box4-text').innerHTML.replace(/<br>/g, '\n');
+        document.getElementById('form-hero-image').value = document.getElementById('db-hero-img').src;
 
-        const newTitle = prompt("메인 슬로건 문구를 입력하세요:", currentTitle);
-        const newBox1 = prompt("1번 상자 (교회소개) 내용을 입력하세요:", currentBox1);
-        const newBox2 = prompt("2번 상자 (예배안내) 내용을 입력하세요:", currentBox2);
-        const newBox3 = prompt("3번 상자 (공지사항) 내용을 입력하세요:", currentBox3);
-        const newBox4 = prompt("4번 상자 (Play list) 내용을 입력하세요:", currentBox4);
-        const newImg = prompt("메인 배경 이미지 URL을 입력하세요:", currentImg);
+        // 모달창 활성화
+        modal.style.display = 'flex';
+    };
 
-        if (newTitle && newBox1 && newBox2 && newBox3 && newBox4 && newImg) {
-            try {
-                await setDoc(doc(db, "homepage", "main_content"), {
-                    intro_title: newTitle,
-                    box1_text: newBox1,
-                    box2_text: newBox2,
-                    box3_text: newBox3,
-                    box4_text: newBox4,
-                    hero_image: newImg
-                });
-                alert("홈페이지 내용이 성공적으로 업데이트되었습니다!");
-                window.location.reload();
-            } catch (err) {
-                alert("저장 실패: 권한이 없거나 오류가 발생했습니다.");
-                console.error(err);
-            }
+    // 모달창 내부 서브밋(저장) 핸들러
+    document.getElementById('admin-content-form').onsubmit = async (e) => {
+        e.preventDefault();
+        
+        const newTitle = document.getElementById('form-intro-title').value;
+        const newBox1 = document.getElementById('form-box1-text').value;
+        const newBox2 = document.getElementById('form-box2-text').value;
+        const newBox3 = document.getElementById('form-box3-text').value;
+        const newBox4 = document.getElementById('form-box4-text').value;
+        const newImg = document.getElementById('form-hero-image').value;
+
+        try {
+            await setDoc(doc(db, "homepage", "main_content"), {
+                intro_title: newTitle,
+                box1_text: newBox1,
+                box2_text: newBox2,
+                box3_text: newBox3,
+                box4_text: newBox4,
+                hero_image: newImg
+            });
+            alert("🎉 홈페이지 내용이 일괄 업데이트 되었습니다!");
+            closeModal();
+            window.location.reload();
+        } catch (err) {
+            alert("저장 실패: 권한이 부족하거나 통신 장애가 있습니다.");
+            console.error(err);
         }
     };
 
